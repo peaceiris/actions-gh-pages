@@ -19,10 +19,11 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 ### (1) Add deploy Key
 
 1. Generate deploy key `ssh-keygen -t rsa -b 4096 -C "your@email.com" -f gh-pages -N ""`
+    - You will get 2 files: `gh-pages.pub` (public key) and `gh-pages` (private key)
 2. Go to "Settings > Deploy Keys" of repository.
 3. Add your public key within "Allow write access" option.
 4. Go to "Settings > Secrets" of repository.
-5. Add your private deploy key as `ACTIONS_DEPLOY_KEY`
+5. Add your private key as `ACTIONS_DEPLOY_KEY`
 
 ### (2) Create `main.workflow`
 
