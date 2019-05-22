@@ -69,6 +69,6 @@ action "deploy" {
 
 
 
-## Supprt author
+## Support the author
 
 <a href="https://www.patreon.com/peaceiris"><img src="./images/patreon.jpg" alt="peaceiris - Patreon" width="150px"></a>
