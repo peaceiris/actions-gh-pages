@@ -69,6 +69,49 @@ action "deploy" {
 
 
 
+## Examples
+
+### MkDocs
+
+- [peaceiris/actions-pipenv: GitHub Actions for pipenv](https://github.com/peaceiris/actions-pipenv)
+- [main.workflow - peaceiris/mkdocs-material-boilerplate](https://github.com/peaceiris/mkdocs-material-boilerplate/blob/master/.github/main.workflow)
+
+```hcl
+workflow "MkDocs workflow" {
+  on = "push"
+  resolves = ["deploy"]
+}
+
+action "branch-filter" {
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
+action "pipenv-sync" {
+  needs = ["branch-filter"]
+  uses = "peaceiris/actions-pipenv@3.6"
+  args = "sync"
+}
+
+action "mkdocs-build" {
+  needs = ["pipenv-sync"]
+  uses = "peaceiris/actions-pipenv@3.6"
+  args = ["run", "mkdocs", "build", "--config-file", "./mkdocs-sample.yml"]
+}
+
+action "deploy" {
+  needs = ["mkdocs-build"]
+  uses = "peaceiris/actions-gh-pages@v1.0.0"
+  env = {
+    PUBLISH_DIR = "./site"
+    PUBLISH_BRANCH = "gh-pages"
+  }
+  secrets = ["ACTIONS_DEPLOY_KEY"]
+}
+```
+
+
+
 ## License
 
 [MIT License - peaceiris/actions-gh-pages]
