@@ -58,7 +58,7 @@ action "build" {
 
 action "deploy" {
   needs = "build"
-  uses = "peaceiris/actions-gh-pages@v1.0.0"
+  uses = "peaceiris/actions-gh-pages@v1.0.1"
   env = {
     PUBLISH_DIR = "./public"
     PUBLISH_BRANCH = "gh-pages"
