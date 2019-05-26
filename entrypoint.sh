@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # setup ssh
-if [[ -z "${ACTIONS_DEPLOY_KEY}" ]]; then
+if [ -z "${ACTIONS_DEPLOY_KEY}" ]; then
     echo "error: not found ACTIONS_DEPLOY_KEY"
     exit 1
 fi
@@ -11,12 +11,12 @@ echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
 chmod 400 /root/.ssh/id_rsa
 
 # push to gh-pages branch
-if [[ -z "${PUBLISH_DIR}" ]]; then
+if [ -z "${PUBLISH_DIR}" ]; then
     echo "error: not found PUBLISH_DIR"
     exit 1
 fi
-cd ${PUBLISH_DIR}
-if [[ -z "${PUBLISH_BRANCH}" ]]; then
+cd "${PUBLISH_DIR}" || exit 1
+if [ -z "${PUBLISH_BRANCH}" ]; then
     echo "error: not found PUBLISH_BRANCH"
     exit 1
 fi
