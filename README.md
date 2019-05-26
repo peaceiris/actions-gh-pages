@@ -101,7 +101,7 @@ action "mkdocs-build" {
 
 action "deploy" {
   needs = ["mkdocs-build"]
-  uses = "peaceiris/actions-gh-pages@v1.0.0"
+  uses = "peaceiris/actions-gh-pages@v1.0.1"
   env = {
     PUBLISH_DIR = "./site"
     PUBLISH_BRANCH = "gh-pages"
