@@ -53,8 +53,13 @@ action "is-branch-master" {
   args = "branch master"
 }
 
+action "is-not-branch-deleted" {
+  uses = "actions/bin/filter@master"
+  args = "not deleted"
+}
+
 action "build" {
-  needs = "is-branch-master"
+  needs = ["is-branch-master", "is-not-branch-deleted"]
   uses = "peaceiris/actions-hugo@v0.55.6"
   args = ["--gc", "--minify", "--cleanDestinationDir"]
 }
@@ -69,6 +74,10 @@ action "deploy" {
   secrets = ["ACTIONS_DEPLOY_KEY"]
 }
 ```
+
+| Workflow overview | Actions log |
+|---|---|
+| ![GitHub Actions for deploying to GitHub Pages Workflow overview](./images/workflow-1.jpg) | ![GitHub Actions for deploying to GitHub Pages Actions log](./images/workflow-2.jpg) |
 
 
 
