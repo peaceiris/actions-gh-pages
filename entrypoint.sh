@@ -1,14 +1,10 @@
 #!/bin/sh
 
 # setup ssh
-if [ -z "${ACTIONS_DEPLOY_KEY}" ]; then
-    echo "error: not found ACTIONS_DEPLOY_KEY"
+if [ -z "${GITHUB_TOKEN}" ]; then
+    echo "error: not found GITHUB_TOKEN"
     exit 1
 fi
-mkdir /root/.ssh
-ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
-echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
-chmod 400 /root/.ssh/id_rsa
 
 # push to gh-pages branch
 if [ -z "${PUBLISH_DIR}" ]; then
@@ -20,7 +16,7 @@ if [ -z "${PUBLISH_BRANCH}" ]; then
     echo "error: not found PUBLISH_BRANCH"
     exit 1
 fi
-remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
+remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_branch="${PUBLISH_BRANCH}"
 git init
 git config user.name "${GITHUB_ACTOR}"
