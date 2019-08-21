@@ -52,10 +52,6 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
-| Workflow overview | Actions log |
-|---|---|
-| ![GitHub Actions for deploying to GitHub Pages Workflow overview](./images/workflow-1.jpg) | ![GitHub Actions for deploying to GitHub Pages Actions log](./images/workflow-2.jpg) |
-
 
 
 ## Examples
