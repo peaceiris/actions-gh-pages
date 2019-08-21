@@ -1,0 +1,21 @@
+name: docker-image-ci
+
+on:
+  push:
+    tags:
+    - invalid-tag
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: build
+      if: github.event.deleted == false
+      env:
+        DOCKER_IMAGE: ${{ github.repository }}:${{ github.sha }}
+      run: |
+        docker build . --file Dockerfile --tag ${DOCKER_IMAGE} ||
+        (echo -e "\e[31m[${GITHUB_WORKFLOW}] failed to build\e[m" && exit 1)
