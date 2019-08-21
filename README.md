@@ -16,7 +16,7 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 
 ## Getting started
 
-### Create `.github/main.workflow`
+### Create `.github/workflows/gh-pages.yml`
 
 An example with Hugo action.
 
@@ -25,37 +25,31 @@ An example with Hugo action.
 ![peaceiris/actions-hugo latest version](https://img.shields.io/github/release/peaceiris/actions-hugo.svg?label=peaceiris%2Factions-hugo)
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
-```hcl
-workflow "GitHub Pages" {
-  on = "push"
-  resolves = ["deploy"]
-}
+```yaml
+name: github-pages
 
-action "is-branch-master" {
-  uses = "actions/bin/filter@master"
-  args = "branch master"
-}
+on:
+  push:
+    branches:
+    - master
 
-action "is-not-branch-deleted" {
-  uses = "actions/bin/filter@master"
-  args = "not deleted"
-}
-
-action "build" {
-  needs = ["is-branch-master", "is-not-branch-deleted"]
-  uses = "peaceiris/actions-hugo@v0.56.3"
-  args = ["--gc", "--minify", "--cleanDestinationDir"]
-}
-
-action "deploy" {
-  needs = "build"
-  uses = "peaceiris/actions-gh-pages@v1.1.0"
-  env = {
-    PUBLISH_DIR = "./public"
-    PUBLISH_BRANCH = "gh-pages"
-  }
-  secrets = ["GITHUB_TOKEN"]
-}
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - name: build
+      uses: peaceiris/actions-hugo@v0.57.2
+      if: github.event.deleted == false
+      with:
+        args: --gc --minify --cleanDestinationDir
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v1.1.0
+      if: success()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./public
 ```
 
 | Workflow overview | Actions log |
