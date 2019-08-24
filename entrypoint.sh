@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -ex
+set -e
+# set -ex
 
 # check values
 if [ -z "${GITHUB_TOKEN}" ]; then
