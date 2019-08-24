@@ -21,7 +21,7 @@ fi
 remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_branch="${PUBLISH_BRANCH}"
 
-local_dir="$(uuidgen)"
+local_dir="$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)"
 if git clone --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
     git rm -r '*'
