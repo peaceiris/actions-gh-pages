@@ -27,6 +27,12 @@ if [ -z "${PUBLISH_DIR}" ]; then
     exit 1
 fi
 
+GIT_STATUS=$(git status -z | tr -d '\0')
+if [ -z "${GIT_STATUS}" ]; then
+    print_message "nothing to commit, working tree clean"
+    exit 0
+fi
+
 remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_branch="${PUBLISH_BRANCH}"
 
@@ -41,12 +47,6 @@ else
     cd "${PUBLISH_DIR}"
     git init
     git checkout --orphan "${remote_branch}"
-fi
-
-GIT_STATUS=$(git status -z | tr -d '\0')
-if [ -z "${GIT_STATUS}" ]; then
-    print_message "nothing to commit, working tree clean"
-    exit 0
 fi
 
 # push to publishing branch
