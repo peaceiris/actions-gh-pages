@@ -3,19 +3,27 @@
 set -e
 # set -ex
 
+function print_error() {
+    echo -e "\e[31mERROR: ${1}\e[m"
+}
+
+function print_message() {
+    echo -e "\e[36mMESSAGE: ${1}\e[m"
+}
+
 # check values
 if [ -z "${GITHUB_TOKEN}" ]; then
-    echo "error: not found GITHUB_TOKEN"
+    print_error "not found GITHUB_TOKEN"
     exit 1
 fi
 
 if [ -z "${PUBLISH_BRANCH}" ]; then
-    echo "error: not found PUBLISH_BRANCH"
+    print_error "not found PUBLISH_BRANCH"
     exit 1
 fi
 
 if [ -z "${PUBLISH_DIR}" ]; then
-    echo "error: not found PUBLISH_DIR"
+    print_error "not found PUBLISH_DIR"
     exit 1
 fi
 
@@ -31,6 +39,11 @@ else
     cd "${PUBLISH_DIR}"
     git init
     git checkout --orphan "${remote_branch}"
+fi
+
+if [ -z "$(git status -z)" ]; then
+    print_message "nothing to commit, working tree clean"
+    exit 0
 fi
 
 # push to publishing branch
