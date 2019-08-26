@@ -34,7 +34,9 @@ local_dir="${HOME}/$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)"
 if git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
     git rm -r '*'
-    cp -rf $(find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 | tail -n +2) "${local_dir}/"
+    find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 | \
+        tail -n +2 | \
+        xargs -I % cp -rf % "${local_dir}/"
 else
     cd "${PUBLISH_DIR}"
     git init
