@@ -27,12 +27,6 @@ if [ -z "${PUBLISH_DIR}" ]; then
     exit 1
 fi
 
-GIT_STATUS=$(git status -z | tr -d '\0')
-if [ -z "${GIT_STATUS}" ]; then
-    print_message "nothing to commit, working tree clean"
-    exit 0
-fi
-
 remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 remote_branch="${PUBLISH_BRANCH}"
 
@@ -55,5 +49,5 @@ git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git remote rm origin || true
 git remote add origin "${remote_repo}"
 git add --all
-git commit -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
 git push origin "${remote_branch}"
