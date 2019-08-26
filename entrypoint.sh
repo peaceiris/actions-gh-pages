@@ -43,7 +43,8 @@ else
     git checkout --orphan "${remote_branch}"
 fi
 
-if [ -z "$(git status -z)" ]; then
+GIT_STATUS=$(git status -z | tr -d '\0')
+if [ -z "${GIT_STATUS}" ]; then
     print_message "nothing to commit, working tree clean"
     exit 0
 fi
