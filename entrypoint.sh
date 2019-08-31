@@ -8,7 +8,7 @@ function print_error() {
 }
 
 function print_info() {
-    echo -e "\e[36mMESSAGE: ${1}\e[m"
+    echo -e "\e[36mINFO: ${1}\e[m"
 }
 
 # check values
@@ -51,4 +51,4 @@ git remote add origin "${remote_repo}"
 git add --all
 git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
 git push origin "${remote_branch}"
-print_info "INFO: ${GITHUB_SHA} was successfully deployed"
+print_info "${GITHUB_SHA} was successfully deployed"
