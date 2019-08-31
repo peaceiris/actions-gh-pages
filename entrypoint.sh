@@ -7,7 +7,7 @@ function print_error() {
     echo -e "\e[31mERROR: ${1}\e[m"
 }
 
-function print_message() {
+function print_info() {
     echo -e "\e[36mMESSAGE: ${1}\e[m"
 }
 
@@ -51,3 +51,4 @@ git remote add origin "${remote_repo}"
 git add --all
 git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
 git push origin "${remote_branch}"
+print_info "INFO: ${GITHUB_SHA} was successfully deployed"
