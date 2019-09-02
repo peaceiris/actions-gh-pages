@@ -82,38 +82,50 @@ jobs:
 
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
-```hcl
-workflow "MkDocs workflow" {
-  on = "push"
-  resolves = ["deploy"]
-}
+```yaml
+name: github pages
 
-action "branch-filter" {
-  uses = "actions/bin/filter@master"
-  args = "branch master"
-}
+on:
+  push:
+    branches:
+    - master
+    - 'release-v*'
 
-action "pipenv-sync" {
-  needs = ["branch-filter"]
-  uses = "peaceiris/actions-pipenv@3.6"
-  args = "sync"
-}
+jobs:
+  build:
 
-action "mkdocs-build" {
-  needs = ["pipenv-sync"]
-  uses = "peaceiris/actions-pipenv@3.6"
-  args = ["run", "mkdocs", "build", "--config-file", "./mkdocs-sample.yml"]
-}
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 1
+      matrix:
+        python-version: [3.6]
 
-action "deploy" {
-  needs = ["mkdocs-build"]
-  uses = "peaceiris/actions-gh-pages@v1.1.0"
-  env = {
-    PUBLISH_DIR = "./site"
-    PUBLISH_BRANCH = "gh-pages"
-  }
-  secrets = ["GITHUB_TOKEN"]
-}
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      if: github.event.deleted == false
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      if: success()
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Build with MkDocs
+      if: success()
+      run: mkdocs build --config-file ./mkdocs-sample.yml
+
+    - name: Deploy to GitHub Pages
+      uses: docker://peaceiris/gh-pages:latest
+      if: success()
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./site
 ```
 
 
