@@ -102,7 +102,7 @@ action "deploy" {
 
 ## License
 
-[MIT License - peaceiris/actions-gh-pages]
+- [MIT License - peaceiris/actions-gh-pages]
 
 [MIT License - peaceiris/actions-gh-pages]: https://github.com/peaceiris/actions-gh-pages/blob/master/LICENSE
 
