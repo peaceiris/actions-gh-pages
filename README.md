@@ -17,7 +17,25 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 
 ## Getting started
 
-### Create `.github/workflows/gh-pages.yml`
+### (1) Add ssh deploy key
+
+Generate your deploy key with the following command.
+
+```sh
+ssh-keygen -t rsa -b 4096 -C "your@email.com" -f gh-pages -N ""
+# You will get 2 files:
+#   gh-pages.pub (public key)
+#   gh-pages     (private key)
+```
+
+Next, Go to **Repository Settings**
+
+- Go to **Deploy Keys** and add your public key with the **Allow write access**
+- Go to **Secrets** and add your private key as `GHA_DEPLOY_KEY`
+
+NOTES: `GITHUB_TOKEN` has some problems to deploy to GitHub Pages.
+
+### (2) Create `.github/workflows/gh-pages.yml`
 
 An example with Hugo action.
 
@@ -45,10 +63,10 @@ jobs:
       with:
         args: --gc --minify --cleanDestinationDir
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v1.1.0
+      uses: peaceiris/actions-gh-pages@v2.0.0
       if: success()
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GHA_DEPLOY_KEY: ${{ secrets.GHA_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
 ```
@@ -102,7 +120,7 @@ action "deploy" {
 
 ## License
 
-[MIT License - peaceiris/actions-gh-pages]
+- [MIT License - peaceiris/actions-gh-pages]
 
 [MIT License - peaceiris/actions-gh-pages]: https://github.com/peaceiris/actions-gh-pages/blob/master/LICENSE
 
