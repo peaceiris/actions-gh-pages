@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM ubuntu:18.04
 
 LABEL "com.github.actions.name"="Deploy to GitHub Pages for Static Site Generator"
 LABEL "com.github.actions.description"="A GitHub Action to deploy your static site to GitHub Pages with Static Site Generator"
@@ -9,9 +9,11 @@ LABEL "repository"="https://github.com/peaceiris/actions-gh-pages"
 LABEL "homepage"="https://github.com/peaceiris/actions-gh-pages"
 LABEL "maintainer"="peaceiris"
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    openssh-client
+    openssh-client \
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-ADD entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
