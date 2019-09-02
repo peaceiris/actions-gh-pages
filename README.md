@@ -31,7 +31,7 @@ ssh-keygen -t rsa -b 4096 -C "your@email.com" -f gh-pages -N ""
 Next, Go to **Repository Settings**
 
 - Go to **Deploy Keys** and add your public key with the **Allow write access**
-- Go to **Secrets** and add your private key as `GHA_DEPLOY_KEY`
+- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
 
 NOTES: `GITHUB_TOKEN` has some problems to deploy to GitHub Pages.
 
@@ -66,7 +66,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v2.0.0
       if: success()
       env:
-        GHA_DEPLOY_KEY: ${{ secrets.GHA_DEPLOY_KEY }}
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
 ```
