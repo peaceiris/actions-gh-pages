@@ -32,3 +32,21 @@ jobs:
         echo ${PKG_GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin &&
         docker push ${DOCKER_IMAGE} &&
         docker logout
+
+  shellcheck:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+    - name: shellcheck
+      if: github.event.deleted == false
+      run: shellcheck ./entrypoint.sh
+
+  hadolint:
+    runs-on: macOS-10.14
+    steps:
+    - uses: actions/checkout@master
+    - name: hadolint
+      if: github.event.deleted == false
+      run: |
+        brew install hadolint
+        hadolint ./Dockerfile
