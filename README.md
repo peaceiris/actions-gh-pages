@@ -93,22 +93,17 @@ on:
     - 'release-v*'
 
 jobs:
-  build:
-
+  build-deploy:
     runs-on: ubuntu-18.04
-    strategy:
-      max-parallel: 1
-      matrix:
-        python-version: [3.6]
-
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v1
       if: github.event.deleted == false
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.6'
+        architecture: 'x64'
 
     - name: Install dependencies
       if: success()
