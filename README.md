@@ -34,11 +34,9 @@ Next, Go to **Repository Settings**
 - Go to **Deploy Keys** and add your public key with the **Allow write access**
 - Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
 
-NOTES: `GITHUB_TOKEN` has some problems to deploy to GitHub Pages.
-
 ### (2) Create `.github/workflows/gh-pages.yml`
 
-An example with Hugo action.
+An example yaml file with Hugo action.
 
 - [peaceiris/actions-hugo: GitHub Actions for Hugo extended](https://github.com/peaceiris/actions-hugo)
 
@@ -70,6 +68,36 @@ jobs:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
+```
+
+### Options
+
+#### Pull action image from Docker Hub
+
+You can pull a public docker image from Docker Hub.
+By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
+
+```diff
+- uses: peaceiris/actions-gh-pages@v2.0.0
++ uses: docker://peaceiris/gh-pages:v2.0.0
+```
+
+- [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
+
+```diff
+- uses: peaceiris/actions-hugo@v0.58.0
++ uses: docker://peaceiris/gha-hugo:v0.58.0
+```
+
+- [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
+
+### `GITHUB_TOKEN`
+
+> **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
+
+```diff
+- ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
++ GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 
