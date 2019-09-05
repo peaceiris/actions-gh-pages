@@ -59,7 +59,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: build
-      uses: peaceiris/actions-hugo@v0.57.2
+      uses: peaceiris/actions-hugo@v0.58.0
       if: github.event.deleted == false
       with:
         args: --gc --minify --cleanDestinationDir
