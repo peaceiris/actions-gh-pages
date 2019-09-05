@@ -23,7 +23,7 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 Generate your deploy key with the following command.
 
 ```sh
-ssh-keygen -t rsa -b 4096 -C "your@email.com" -f gh-pages -N ""
+ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
 # You will get 2 files:
 #   gh-pages.pub (public key)
 #   gh-pages     (private key)
