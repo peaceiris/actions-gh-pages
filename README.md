@@ -91,7 +91,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
 
-### `GITHUB_TOKEN`
+#### `GITHUB_TOKEN`
 
 > **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
 
