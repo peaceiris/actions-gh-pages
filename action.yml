@@ -1,0 +1,9 @@
+name: 'Deploy to GitHub Pages for Static Site Generator'
+description: 'A GitHub Action to deploy your static site to GitHub Pages with Static Site Generator'
+author: 'peaceiris'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'

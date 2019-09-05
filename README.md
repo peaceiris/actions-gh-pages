@@ -18,9 +18,25 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 
 ## Getting started
 
-### Create `.github/workflows/gh-pages.yml`
+### (1) Add ssh deploy key
 
-An example with Hugo action.
+Generate your deploy key with the following command.
+
+```sh
+ssh-keygen -t rsa -b 4096 -C "your@email.com" -f gh-pages -N ""
+# You will get 2 files:
+#   gh-pages.pub (public key)
+#   gh-pages     (private key)
+```
+
+Next, Go to **Repository Settings**
+
+- Go to **Deploy Keys** and add your public key with the **Allow write access**
+- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
+
+### (2) Create `.github/workflows/gh-pages.yml`
+
+An example yaml file with Hugo action.
 
 - [peaceiris/actions-hugo: GitHub Actions for Hugo extended](https://github.com/peaceiris/actions-hugo)
 
@@ -40,18 +56,48 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+
     - name: build
-      uses: peaceiris/actions-hugo@v0.57.2
-      if: github.event.deleted == false
+      uses: peaceiris/actions-hugo@v0.58.0
       with:
         args: --gc --minify --cleanDestinationDir
+
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v1.1.0
-      if: success()
+      uses: peaceiris/actions-gh-pages@v2.0.0
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
+```
+
+### Options
+
+#### Pull action image from Docker Hub
+
+You can pull a public docker image from Docker Hub.
+By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
+
+```diff
+- uses: peaceiris/actions-gh-pages@v2.0.0
++ uses: docker://peaceiris/gh-pages:v2.0.0
+```
+
+- [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
+
+```diff
+- uses: peaceiris/actions-hugo@v0.58.0
++ uses: docker://peaceiris/gha-hugo:v0.58.0
+```
+
+- [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
+
+### `GITHUB_TOKEN`
+
+> **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
+
+```diff
+- ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
++ GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 
@@ -60,43 +106,42 @@ jobs:
 
 ### MkDocs
 
-- [peaceiris/actions-pipenv: GitHub Actions for pipenv](https://github.com/peaceiris/actions-pipenv)
-- [main.workflow - peaceiris/mkdocs-material-boilerplate](https://github.com/peaceiris/mkdocs-material-boilerplate/blob/master/.github/main.workflow)
-
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
-```hcl
-workflow "MkDocs workflow" {
-  on = "push"
-  resolves = ["deploy"]
-}
+```yaml
+name: github pages
 
-action "branch-filter" {
-  uses = "actions/bin/filter@master"
-  args = "branch master"
-}
+on:
+  push:
+    branches:
+    - master
 
-action "pipenv-sync" {
-  needs = ["branch-filter"]
-  uses = "peaceiris/actions-pipenv@3.6"
-  args = "sync"
-}
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
 
-action "mkdocs-build" {
-  needs = ["pipenv-sync"]
-  uses = "peaceiris/actions-pipenv@3.6"
-  args = ["run", "mkdocs", "build", "--config-file", "./mkdocs-sample.yml"]
-}
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.6'
+        architecture: 'x64'
 
-action "deploy" {
-  needs = ["mkdocs-build"]
-  uses = "peaceiris/actions-gh-pages@v1.1.0"
-  env = {
-    PUBLISH_DIR = "./site"
-    PUBLISH_BRANCH = "gh-pages"
-  }
-  secrets = ["GITHUB_TOKEN"]
-}
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r ./requirements.txt
+
+    - name: Build with MkDocs
+      run: mkdocs build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v2.0.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./site
 ```
 
 
