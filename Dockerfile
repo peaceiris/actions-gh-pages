@@ -1,6 +1,7 @@
-FROM ubuntu:18.04
+FROM alpine:3.10.2
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
+    bash \
     git \
     openssh-client \
     ca-certificates && \
