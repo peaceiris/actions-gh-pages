@@ -58,14 +58,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+
     - name: build
       uses: peaceiris/actions-hugo@v0.58.0
-      if: github.event.deleted == false
       with:
         args: --gc --minify --cleanDestinationDir
+
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.0.0
-      if: success()
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -90,7 +90,6 @@ on:
   push:
     branches:
     - master
-    - 'release-v*'
 
 jobs:
   build-deploy:
@@ -100,24 +99,20 @@ jobs:
 
     - name: Set up Python
       uses: actions/setup-python@v1
-      if: github.event.deleted == false
       with:
         python-version: '3.6'
         architecture: 'x64'
 
     - name: Install dependencies
-      if: success()
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Build with MkDocs
-      if: success()
       run: mkdocs build --config-file ./mkdocs-sample.yml
 
     - name: Deploy to GitHub Pages
       uses: docker://peaceiris/gh-pages:latest
-      if: success()
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
