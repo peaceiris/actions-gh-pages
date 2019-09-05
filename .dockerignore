@@ -1,5 +1,7 @@
 .git
 .github
+.hadolint.yaml
 LICENSE
 README.md
+action.yml
 images
