@@ -78,9 +78,6 @@ jobs:
 
 ### MkDocs
 
-- [peaceiris/actions-pipenv: GitHub Actions for pipenv](https://github.com/peaceiris/actions-pipenv)
-- [main.workflow - peaceiris/mkdocs-material-boilerplate](https://github.com/peaceiris/mkdocs-material-boilerplate/blob/master/.github/main.workflow)
-
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
@@ -105,14 +102,14 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install --upgrade pip
+        pip install -r ./requirements.txt
 
     - name: Build with MkDocs
-      run: mkdocs build --config-file ./mkdocs-sample.yml
+      run: mkdocs build
 
     - name: Deploy to GitHub Pages
-      uses: docker://peaceiris/gh-pages:latest
+      uses: peaceiris/actions-gh-pages@v2.0.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
