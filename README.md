@@ -133,6 +133,9 @@ jobs:
         pip install --upgrade pip
         pip install -r ./requirements.txt
 
+    - name: Check MkDocs
+      run: mkdocs --version
+
     - name: Build with MkDocs
       run: mkdocs build
 
