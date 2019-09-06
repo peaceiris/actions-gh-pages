@@ -131,7 +131,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install -r ./requirements.txt
+        pip install mkdocs
 
     - name: Build with MkDocs
       run: mkdocs build
