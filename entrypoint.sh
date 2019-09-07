@@ -23,14 +23,20 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
     remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
 
+elif [ -n "${PERSONAL_TOKEN}" ]; then
+
+    print_info "setup with PERSONAL_TOKEN"
+
+    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
 
-    remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 else
-    print_error "not found ACTIONS_DEPLOY_KEY or GITHUB_TOKEN"
+    print_error "not found ACTIONS_DEPLOY_KEY, PERSONAL_TOKEN, or GITHUB_TOKEN"
     exit 1
 fi
 
