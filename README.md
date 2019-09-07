@@ -91,6 +91,15 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
 
+#### `PERSONAL_TOKEN`
+
+[Create a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
+
+```diff
+- ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
++ PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+```
+
 #### `GITHUB_TOKEN`
 
 > **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
