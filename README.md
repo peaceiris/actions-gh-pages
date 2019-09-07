@@ -63,7 +63,7 @@ jobs:
         args: --gc --minify --cleanDestinationDir
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v2.1.0
+      uses: peaceiris/actions-gh-pages@v2.2.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -78,8 +78,8 @@ You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
 
 ```diff
-- uses: peaceiris/actions-gh-pages@v2.1.0
-+ uses: docker://peaceiris/gh-pages:v2.1.0
+- uses: peaceiris/actions-gh-pages@v2.2.0
++ uses: docker://peaceiris/gh-pages:v2.2.0
 ```
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
@@ -146,7 +146,7 @@ jobs:
       run: mkdocs build
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v2.1.0
+      uses: peaceiris/actions-gh-pages@v2.2.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
