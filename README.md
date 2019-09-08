@@ -14,6 +14,26 @@ A GitHub Action to deploy your static site to GitHub Pages with [Static Site Gen
 
 [Static Site Generators]: https://www.staticgen.com/
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+Table of Contents
+
+- [Getting started](#getting-started)
+  - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
+  - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
+    - [Repository type - Project](#repository-type---project)
+    - [Repository type - User and Organization](#repository-type---user-and-organization)
+  - [Options](#options)
+    - [Pull action image from Docker Hub](#pull-action-image-from-docker-hub)
+    - [`PERSONAL_TOKEN`](#personal_token)
+    - [`GITHUB_TOKEN`](#github_token)
+- [Examples](#examples)
+  - [MkDocs](#mkdocs)
+- [License](#license)
+- [About the author](#about-the-author)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 
 ## Getting started
