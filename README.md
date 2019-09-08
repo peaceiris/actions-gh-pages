@@ -36,6 +36,8 @@ Next, Go to **Repository Settings**
 
 ### (2) Create `.github/workflows/gh-pages.yml`
 
+#### Repository type - Project
+
 An example yaml file with Hugo action.
 
 - [peaceiris/actions-hugo: GitHub Actions for Hugo extended](https://github.com/peaceiris/actions-hugo)
@@ -70,6 +72,25 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
+The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
+
+#### Repository type - User and Organization
+
+For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
+we have to set `master` branch to `PUBLISH_BRANCH`.
+
+```yaml
+on:
+  push:
+    branches:
+    - source  # default branch
+
+PUBLISH_BRANCH: master  # deploying branch
+```
+
+[Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
+[User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
+
 ### Options
 
 #### Pull action image from Docker Hub
@@ -93,7 +114,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 #### `PERSONAL_TOKEN`
 
-[Create a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
+[Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
 ```diff
 - ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
