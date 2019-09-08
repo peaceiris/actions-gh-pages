@@ -4,8 +4,7 @@ RUN apk add --no-cache \
     bash \
     git \
     openssh-client \
-    ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+    ca-certificates
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
