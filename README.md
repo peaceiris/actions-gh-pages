@@ -126,8 +126,8 @@ By pulling docker images, you can reduce the overall execution time of your work
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
 
 ```diff
-- uses: peaceiris/actions-hugo@v0.58.0
-+ uses: docker://peaceiris/gha-hugo:v0.58.0
+- uses: peaceiris/actions-hugo@v0.58.1
++ uses: docker://peaceiris/gha-hugo:v0.58.1
 ```
 
 - [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
