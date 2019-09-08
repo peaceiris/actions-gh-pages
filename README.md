@@ -80,7 +80,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: build
-      uses: peaceiris/actions-hugo@v0.58.0
+      uses: peaceiris/actions-hugo@v0.58.1
       with:
         args: --gc --minify --cleanDestinationDir
 
