@@ -21,12 +21,12 @@ Table of Contents
 - [Getting started](#getting-started)
   - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
   - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
-    - [Repository type - Project](#repository-type---project)
-    - [Repository type - User and Organization](#repository-type---user-and-organization)
+    - [:star: Repository type - Project](#star-repository-type---project)
+    - [:star: Repository type - User and Organization](#star-repository-type---user-and-organization)
   - [Options](#options)
-    - [Pull action image from Docker Hub](#pull-action-image-from-docker-hub)
-    - [`PERSONAL_TOKEN`](#personal_token)
-    - [`GITHUB_TOKEN`](#github_token)
+    - [:star: Pull action image from Docker Hub](#star-pull-action-image-from-docker-hub)
+    - [:star: `PERSONAL_TOKEN`](#star-personal_token)
+    - [:star: `GITHUB_TOKEN`](#star-github_token)
 - [Examples](#examples)
   - [MkDocs](#mkdocs)
 - [License](#license)
@@ -56,7 +56,7 @@ Next, Go to **Repository Settings**
 
 ### (2) Create `.github/workflows/gh-pages.yml`
 
-#### Repository type - Project
+#### :star: Repository type - Project
 
 An example yaml file with Hugo action.
 
@@ -94,7 +94,7 @@ jobs:
 
 The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
 
-#### Repository type - User and Organization
+#### :star: Repository type - User and Organization
 
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
 we have to set `master` branch to `PUBLISH_BRANCH`.
@@ -113,7 +113,7 @@ PUBLISH_BRANCH: master  # deploying branch
 
 ### Options
 
-#### Pull action image from Docker Hub
+#### :star: Pull action image from Docker Hub
 
 You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
@@ -132,7 +132,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
 
-#### `PERSONAL_TOKEN`
+#### :star: `PERSONAL_TOKEN`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
@@ -141,7 +141,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
-#### `GITHUB_TOKEN`
+#### :star: `GITHUB_TOKEN`
 
 > **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
 
