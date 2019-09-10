@@ -168,6 +168,10 @@ By pulling docker images, you can reduce the overall execution time of your work
 [react-static]: https://github.com/react-static/react-static
 [gridsome]: https://github.com/gridsome/gridsome
 
+Premise: Dependencies are managed by `package.json` and `package-lock.json`
+
+![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
+
 ```yaml
 name: github pages
 
@@ -206,6 +210,8 @@ jobs:
 [MkDocs]: https://github.com/mkdocs/mkdocs
 [sphinx]: https://github.com/sphinx-doc/sphinx
 
+Premise: Dependencies are managed by `requirements.txt`
+
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
@@ -233,10 +239,10 @@ jobs:
         pip install --upgrade pip
         pip install -r ./requirements.txt
 
-    - name: Build with MkDocs
+    - name: Build
       run: mkdocs build
 
-    - name: Deploy to GitHub Pages
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.2.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
