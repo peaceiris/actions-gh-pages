@@ -28,7 +28,7 @@ Table of Contents
     - [:star: `PERSONAL_TOKEN`](#star-personal_token)
     - [:star: `GITHUB_TOKEN`](#star-github_token)
 - [Examples](#examples)
-  - [MkDocs](#mkdocs)
+  - [Static Site Generators in Python](#static-site-generators-in-python)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -156,7 +156,13 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ## Examples
 
-### MkDocs
+### Static Site Generators in Python
+
+[pelican], [MkDocs], [sphinx], etc.
+
+[pelican]: https://github.com/getpelican/pelican
+[MkDocs]: https://github.com/mkdocs/mkdocs
+[sphinx]: https://github.com/sphinx-doc/sphinx
 
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
