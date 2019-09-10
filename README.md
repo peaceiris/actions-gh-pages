@@ -28,7 +28,8 @@ Table of Contents
     - [:star: `PERSONAL_TOKEN`](#star-personal_token)
     - [:star: `GITHUB_TOKEN`](#star-github_token)
 - [Examples](#examples)
-  - [Static Site Generators in Python](#static-site-generators-in-python)
+  - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
+  - [Static Site Generators with Python](#static-site-generators-with-python)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -156,7 +157,47 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ## Examples
 
-### Static Site Generators in Python
+### Static Site Generators with Node.js
+
+[gatsby], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
+
+[gatsby]: https://github.com/gatsbyjs/gatsby
+[hexo]: https://github.com/hexojs/hexo
+[gitbook]: https://github.com/GitbookIO/gitbook
+[vuepress]: https://github.com/vuejs/vuepress
+[react-static]: https://github.com/react-static/react-static
+[gridsome]: https://github.com/gridsome/gridsome
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: build
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.16'
+    - run: |
+        npm install
+        npm run build
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v2.2.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./public
+```
+
+### Static Site Generators with Python
 
 [pelican], [MkDocs], [sphinx], etc.
 
