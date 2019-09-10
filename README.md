@@ -189,6 +189,7 @@ jobs:
     - run: |
         npm install
         npm run build
+
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.2.0
       env:
