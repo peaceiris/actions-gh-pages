@@ -159,8 +159,10 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### Static Site Generators with Node.js
 
-[gatsby], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
+[next.js], [nuxt.js], [gatsby], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
 
+[next.js]: https://github.com/zeit/next.js
+[nuxt.js]: https://github.com/nuxt/nuxt.js
 [gatsby]: https://github.com/gatsbyjs/gatsby
 [hexo]: https://github.com/hexojs/hexo
 [gitbook]: https://github.com/GitbookIO/gitbook
