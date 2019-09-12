@@ -30,6 +30,7 @@ Table of Contents
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
   - [Gatsby](#gatsby)
+  - [React and Next](#react-and-next)
   - [Vue and Nuxt](#vue-and-nuxt)
   - [Static Site Generators with Python](#static-site-generators-with-python)
 - [License](#license)
@@ -161,9 +162,8 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### Static Site Generators with Node.js
 
-[Next.js], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
+[hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
 
-[Next.js]: https://github.com/zeit/next.js
 [hexo]: https://github.com/hexojs/hexo
 [gitbook]: https://github.com/GitbookIO/gitbook
 [vuepress]: https://github.com/vuejs/vuepress
@@ -211,6 +211,8 @@ An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 [Gatsby]: https://github.com/gatsbyjs/gatsby
 [gatsby-starter-blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 
+![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
+
 ```yaml
 name: github pages
 
@@ -248,6 +250,56 @@ jobs:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
+```
+
+### React and Next
+
+An example for [Next.js] (React.js) project with [create-next-app]
+
+- cf. [Deploying a Next.js app into GitHub Pages · zeit/next.js Wiki](https://github.com/zeit/next.js/wiki/Deploying-a-Next.js-app-into-GitHub-Pages)
+
+[Next.js]: https://github.com/zeit/next.js
+[create-next-app]: https://nextjs.org/docs
+
+![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.16'
+
+    - name: install
+      run: yarn install
+
+    - name: build
+      run: yarn build
+
+    - name: export
+      run: yarn export
+
+    - name: add nojekyll
+      run: touch ./out/.nojekyll
+
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v2.2.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./out
 ```
 
 ### Vue and Nuxt
