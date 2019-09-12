@@ -209,6 +209,8 @@ jobs:
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
+Premise: Repository root has `.nojekyll`
+
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
 
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
