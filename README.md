@@ -209,7 +209,8 @@ jobs:
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
-Premise: Repository root has `.nojekyll`
+- cf. [GitHub Pages Deployment - Nuxt.js](https://nuxtjs.org/faq/github-pages)
+- Premise: Repository root has `.nojekyll`
 
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
 
