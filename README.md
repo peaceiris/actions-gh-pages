@@ -29,6 +29,7 @@ Table of Contents
     - [:star: `GITHUB_TOKEN`](#star-github_token)
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
+  - [Gatsby](#gatsby)
   - [Vue and Nuxt](#vue-and-nuxt)
   - [Static Site Generators with Python](#static-site-generators-with-python)
 - [License](#license)
@@ -160,11 +161,9 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### Static Site Generators with Node.js
 
-[Next.js], [Nuxt.js], [gatsby], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
+[Next.js], [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
 
 [Next.js]: https://github.com/zeit/next.js
-[Nuxt.js]: https://github.com/nuxt/nuxt.js
-[gatsby]: https://github.com/gatsbyjs/gatsby
 [hexo]: https://github.com/hexojs/hexo
 [gitbook]: https://github.com/GitbookIO/gitbook
 [vuepress]: https://github.com/vuejs/vuepress
@@ -205,6 +204,52 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
+### Gatsby
+
+An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
+
+[Gatsby]: https://github.com/gatsbyjs/gatsby
+[gatsby-starter-blog]: https://github.com/gatsbyjs/gatsby-starter-blog
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.16'
+
+    - name: install
+      run: npm install
+
+    - name: format
+      run: npm run format
+
+    - name: test
+      run: npm run test
+
+    - name: build
+      run: npm run build
+
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v2.2.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./public
+```
+
 ### Vue and Nuxt
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
@@ -212,6 +257,7 @@ An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 - cf. [GitHub Pages Deployment - Nuxt.js](https://nuxtjs.org/faq/github-pages)
 - Premise: Repository root has `.nojekyll`
 
+[Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
 
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
