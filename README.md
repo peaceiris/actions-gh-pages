@@ -29,6 +29,7 @@ Table of Contents
     - [:star: `GITHUB_TOKEN`](#star-github_token)
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
+  - [Vue and Nuxt](#vue-and-nuxt)
   - [Static Site Generators with Python](#static-site-generators-with-python)
 - [License](#license)
 - [About the author](#about-the-author)
