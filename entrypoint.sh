@@ -73,8 +73,12 @@ git remote add origin "${remote_repo}"
 git add --all
 
 print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
-[[ ${INPUT_EMPTYCOMMITS} == "true" ]] && params+=(--allow-empty) #optionally allow empty commits
-git commit "${params[@]}" -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+if [[ ${INPUT_EMPTYCOMMITS} == "true" ]]
+then
+    git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+else
+    git commit -m "Automated deployment: $(date -u) ${GITHUB_SHA}" || true
+fi
 
 git push origin "${remote_branch}"
 print_info "${GITHUB_SHA} was successfully deployed"
