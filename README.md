@@ -27,6 +27,7 @@ Table of Contents
     - [:star: Pull action image from Docker Hub](#star-pull-action-image-from-docker-hub)
     - [:star: `PERSONAL_TOKEN`](#star-personal_token)
     - [:star: `GITHUB_TOKEN`](#star-github_token)
+    - [:star: Suppressing empty commits](#star-suppressing-empty-commits)
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
   - [Gatsby](#gatsby)
@@ -156,7 +157,20 @@ By pulling docker images, you can reduce the overall execution time of your work
 + GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+#### :star: Suppressing empty commits
 
+By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. For example:
+
+```yaml
+- name: deploy
+  uses: peaceiris/actions-gh-pages@v2.2.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  with:
+    emptyCommits: false
+```
 
 ## Examples
 
