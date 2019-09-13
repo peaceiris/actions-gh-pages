@@ -71,6 +71,10 @@ git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git remote rm origin || true
 git remote add origin "${remote_repo}"
 git add --all
-git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+
+print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
+[[ ${INPUT_EMPTYCOMMITS} == "true" ]] && params+=(--allow-empty) #optionally allow empty commits
+git commit "${params[@]}" -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+
 git push origin "${remote_branch}"
 print_info "${GITHUB_SHA} was successfully deployed"
