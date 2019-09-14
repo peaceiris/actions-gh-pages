@@ -71,6 +71,16 @@ git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git remote rm origin || true
 git remote add origin "${remote_repo}"
 git add --all
-git commit --allow-empty -m "Automated deployment: $(date -u) ${GITHUB_SHA}"
+
+print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
+COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
+if [[ ${INPUT_EMPTYCOMMITS} == "true" ]]; then
+    git commit --allow-empty -m "${COMMIT_MESSAGE}"
+else
+    git commit -m "${COMMIT_MESSAGE}" || \
+      print_info "No changes detected, skipping deployment" && \
+      exit 0
+fi
+
 git push origin "${remote_branch}"
 print_info "${GITHUB_SHA} was successfully deployed"

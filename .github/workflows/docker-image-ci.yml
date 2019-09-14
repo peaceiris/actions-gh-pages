@@ -1,10 +1,6 @@
 name: docker image ci
 
-on:
-  push:
-    branches:
-    - master
-    - 'release-v*'
+on: push
 
 jobs:
   test:
@@ -19,16 +15,6 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag ${DOCKER_IMAGE} ||
         (echo -e "\e[31m[${GITHUB_WORKFLOW}] failed to build\e[m" && exit 1)
-
-    # - name: push latest image
-    #   if: endsWith(github.ref, 'master')
-    #   env:
-    #     DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/action:latest
-    #     PKG_GITHUB_TOKEN: ${{ secrets.PKG_GITHUB_TOKEN }}
-    #   run: |
-    #     echo ${PKG_GITHUB_TOKEN} | docker login docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin &&
-    #     docker push ${DOCKER_IMAGE} &&
-    #     docker logout
 
   shellcheck:
     runs-on: ubuntu-18.04
