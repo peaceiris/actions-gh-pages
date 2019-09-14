@@ -159,7 +159,11 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 #### :star: Suppressing empty commits
 
-By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. For example:
+By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. cf. [Issue #21]
+
+[Issue #21]: https://github.com/peaceiris/actions-gh-pages/issues/21
+
+For example:
 
 ```yaml
 - name: deploy
@@ -171,6 +175,8 @@ By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`
   with:
     emptyCommits: false
 ```
+
+
 
 ## Examples
 
