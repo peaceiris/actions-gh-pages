@@ -77,7 +77,9 @@ COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
 if [[ ${INPUT_EMPTYCOMMITS} == "true" ]]; then
     git commit --allow-empty -m "${COMMIT_MESSAGE}"
 else
-    git commit -m "${COMMIT_MESSAGE}" || true
+    git commit -m "${COMMIT_MESSAGE}" || \
+      print_info "No changes detected, skipping deployment" && \
+      exit 0
 fi
 
 git push origin "${remote_branch}"
