@@ -63,13 +63,8 @@ Next, Go to **Repository Settings**
 
 #### :star: Repository type - Project
 
-An example yaml file with Hugo action.
+An example workflow for Hugo.
 
-- [peaceiris/actions-hugo: GitHub Actions for Hugo extended](https://github.com/peaceiris/actions-hugo)
-
-[![peaceiris/actions-hugo - GitHub](https://gh-card.dev/repos/peaceiris/actions-hugo.svg?fullname)](https://github.com/peaceiris/actions-hugo)
-
-![peaceiris/actions-hugo latest version](https://img.shields.io/github/release/peaceiris/actions-hugo.svg?label=peaceiris%2Factions-hugo)
 ![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
@@ -86,12 +81,19 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: build
-      uses: peaceiris/actions-hugo@v0.58.1
-      with:
-        args: --gc --minify --cleanDestinationDir
+    - name: Install Hugo
+      env:
+        HUGO_VERSION: '0.58.2'
+      run: |
+        mkdir /tmp/hugo && cd /tmp/hugo
+        curl -L https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-64bit.tar.gz | \
+          tar -xz && \
+          sudo mv ./hugo /usr/local/bin/
 
-    - name: deploy
+    - name: Build
+      run: hugo --gc --minify --cleanDestinationDir
+
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.3.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -131,13 +133,6 @@ By pulling docker images, you can reduce the overall execution time of your work
 ```
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
-
-```diff
-- uses: peaceiris/actions-hugo@v0.58.1
-+ uses: docker://peaceiris/gha-hugo:v0.58.1
-```
-
-- [peaceiris/gha-hugo - Docker Hub](https://hub.docker.com/r/peaceiris/gha-hugo)
 
 #### :star: `PERSONAL_TOKEN`
 
