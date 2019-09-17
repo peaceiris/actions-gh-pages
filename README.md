@@ -28,6 +28,8 @@ Table of Contents
     - [:star: `PERSONAL_TOKEN`](#star-personal_token)
     - [:star: `GITHUB_TOKEN`](#star-github_token)
     - [:star: Suppressing empty commits](#star-suppressing-empty-commits)
+- [Tips and FAQ](#tips-and-faq)
+  - [How to add `CNAME`](#how-to-add-cname)
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
   - [Gatsby](#gatsby)
@@ -171,6 +173,18 @@ For example:
   with:
     emptyCommits: false
 ```
+
+
+## Tips and FAQ
+
+### How to add `CNAME`
+
+Most of the Static Site Generators support `CNAME` as a static file.
+
+- [Use a Custom Domain | Hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/#use-a-custom-domain)
+- [Using the Static folder | GatsbyJS](https://www.gatsbyjs.org/docs/static-folder/)
+
+The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
 
 
 
