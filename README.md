@@ -89,7 +89,7 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.0.0
+      uses: peaceiris/actions-hugo@v2.1.0
       with:
         hugo-version: '0.58.2'
 
