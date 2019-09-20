@@ -30,6 +30,7 @@ Table of Contents
     - [:star: Suppressing empty commits](#star-suppressing-empty-commits)
 - [Tips and FAQ](#tips-and-faq)
   - [How to add `CNAME`](#how-to-add-cname)
+  - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
   - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
   - [Gatsby](#gatsby)
@@ -185,6 +186,16 @@ Most of the Static Site Generators support `CNAME` as a static file.
 - [Using the Static folder | GatsbyJS](https://www.gatsbyjs.org/docs/static-folder/)
 
 The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
+
+### Deployment completed but you cannot read
+
+Does your `PUBLISH_DIR` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
+GitHub Pages does not read those by default.
+Please add `.nojekyll` file to `PUBLISH_DIR`.
+
+- [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
+
+> It is now possible to completely bypass Jekyll processing on GitHub Pages by creating a file named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
 
 
 
