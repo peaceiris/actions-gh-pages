@@ -74,12 +74,12 @@ git add --all
 
 print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
 COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
-if [[ ${INPUT_EMPTYCOMMITS} == "true" ]]; then
-    git commit --allow-empty -m "${COMMIT_MESSAGE}"
-else
+if [[ ${INPUT_EMPTYCOMMITS} == "false" ]]; then
     git commit -m "${COMMIT_MESSAGE}" || \
         print_info "No changes detected, skipping deployment" && \
         exit 0
+else
+    git commit --allow-empty -m "${COMMIT_MESSAGE}"
 fi
 
 git push origin "${remote_branch}"
