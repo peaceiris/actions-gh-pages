@@ -169,7 +169,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 > **NOTES**: Do not use `GITHUB_TOKEN`.
 >
-> This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See [Issue #9]
+> This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
 
 [Issue #9]: https://github.com/peaceiris/actions-gh-pages/issues/9
 
