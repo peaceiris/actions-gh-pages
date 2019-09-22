@@ -62,6 +62,14 @@ Next, Go to **Repository Settings**
 - Go to **Deploy Keys** and add your public key with the **Allow write access**
 - Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
 
+| Add your public key | Success |
+|---|---|
+| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
+
+| Add your private key | Success |
+|---|---|
+| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
+
 ### (2) Create `.github/workflows/gh-pages.yml`
 
 #### :star: Repository type - Project
@@ -107,6 +115,14 @@ jobs:
 
 The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
 
+| Actions log overview | Build step log |
+|---|---|
+| ![](./images/log1.jpg) | ![](./images/log2.jpg) |
+
+| Deploy step log | GitHub Pages log |
+|---|---|
+| ![](./images/log3.jpg) | ![](./images/log4.jpg) |
+
 #### :star: Repository type - User and Organization
 
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
@@ -123,6 +139,8 @@ PUBLISH_BRANCH: master  # deploying branch
 
 [Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
 [User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
+
+![Change default branch](./images/default-branch.jpg)
 
 ### Options
 
