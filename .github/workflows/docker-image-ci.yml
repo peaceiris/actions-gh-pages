@@ -1,6 +1,12 @@
 name: docker image ci
 
-on: push
+on:
+  push:
+    paths:
+    - '**'
+    - '!LICENSE'
+    - '!README.md'
+    - '!images'
 
 jobs:
   test:
