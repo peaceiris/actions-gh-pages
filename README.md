@@ -21,13 +21,13 @@ Table of Contents
 - [Getting started](#getting-started)
   - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
   - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
-    - [:star: Repository type - Project](#star-repository-type---project)
-    - [:star: Repository type - User and Organization](#star-repository-type---user-and-organization)
+    - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
+    - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
   - [Options](#options)
-    - [:star: Pull action image from Docker Hub](#star-pull-action-image-from-docker-hub)
-    - [:star: `PERSONAL_TOKEN`](#star-personal_token)
-    - [:star: `GITHUB_TOKEN`](#star-github_token)
-    - [:star: Suppressing empty commits](#star-suppressing-empty-commits)
+    - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
+    - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
+    - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
+    - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
 - [Tips and FAQ](#tips-and-faq)
   - [How to add `CNAME`](#how-to-add-cname)
   - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
@@ -72,7 +72,7 @@ Next, Go to **Repository Settings**
 
 ### (2) Create `.github/workflows/gh-pages.yml`
 
-#### :star: Repository type - Project
+#### ⭐️ Repository type - Project
 
 An example workflow for Hugo.
 
@@ -123,7 +123,7 @@ The above example is for [Project Pages sites]. (`<username>/<project_name>` rep
 |---|---|
 | ![](./images/log3.jpg) | ![](./images/log4.jpg) |
 
-#### :star: Repository type - User and Organization
+#### ⭐️ Repository type - User and Organization
 
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
 we have to set `master` branch to `PUBLISH_BRANCH`.
@@ -144,7 +144,7 @@ PUBLISH_BRANCH: master  # deploying branch
 
 ### Options
 
-#### :star: Pull action image from Docker Hub
+#### ⭐️ Pull action image from Docker Hub
 
 You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
@@ -156,7 +156,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
 
-#### :star: `PERSONAL_TOKEN`
+#### ⭐️ `PERSONAL_TOKEN`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
@@ -165,7 +165,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
-#### :star: `GITHUB_TOKEN`
+#### ⭐️ `GITHUB_TOKEN`
 
 > **NOTES**: This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. See #9
 
@@ -174,7 +174,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-#### :star: Suppressing empty commits
+#### ⭐️ Suppressing empty commits
 
 By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. cf. [Issue #21]
 
