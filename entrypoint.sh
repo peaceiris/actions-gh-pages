@@ -32,6 +32,7 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
+    print_error "Do not use GITHUB_TOKEN, See #9"
 
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
