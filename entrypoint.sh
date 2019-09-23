@@ -11,6 +11,11 @@ function print_info() {
     echo -e "\e[36mINFO: ${1}\e[m"
 }
 
+function skip() {
+    print_info "No changes detected, skipping deployment"
+    exit 0
+}
+
 # check values
 if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
@@ -32,6 +37,7 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
+    print_error "Do not use GITHUB_TOKEN, See #9"
 
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
@@ -74,12 +80,10 @@ git add --all
 
 print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
 COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
-if [[ ${INPUT_EMPTYCOMMITS} == "true" ]]; then
-    git commit --allow-empty -m "${COMMIT_MESSAGE}"
+if [[ ${INPUT_EMPTYCOMMITS} == "false" ]]; then
+    git commit -m "${COMMIT_MESSAGE}" || skip
 else
-    git commit -m "${COMMIT_MESSAGE}" || \
-        print_info "No changes detected, skipping deployment" && \
-        exit 0
+    git commit --allow-empty -m "${COMMIT_MESSAGE}"
 fi
 
 git push origin "${remote_branch}"

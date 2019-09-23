@@ -1,9 +1,12 @@
 name: docker image ci
 
 on:
+  pull_request:
+    types: [opened, synchronize]
   push:
     paths:
     - '**'
+    - '.**'
     - '!LICENSE'
     - '!README.md'
     - '!images'
@@ -14,6 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
 
     - name: build
       env:
@@ -26,6 +31,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
     - name: shellcheck
       run: shellcheck ./entrypoint.sh
 
@@ -33,6 +40,8 @@ jobs:
     runs-on: macOS-10.14
     steps:
     - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
     - name: hadolint
       run: |
         brew install hadolint
