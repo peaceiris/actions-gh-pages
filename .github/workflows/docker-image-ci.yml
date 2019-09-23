@@ -1,9 +1,12 @@
 name: docker image ci
 
 on:
+  pull_request:
+    types: [opened, synchronize]
   push:
     paths:
     - '**'
+    - '.**'
     - '!LICENSE'
     - '!README.md'
     - '!images'
