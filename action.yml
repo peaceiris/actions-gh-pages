@@ -12,3 +12,7 @@ inputs:
     description: 'If empty commits should be made to the publication branch'
     required: false
     default: 'true'
+  keepFiles:
+    description: 'If existing files in the publish branch should be not removed before deploying'
+    required: false
+    default: 'false'
