@@ -190,7 +190,7 @@ By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`
 For example:
 
 ```yaml
-- name: deploy
+- name: Deploy
   uses: peaceiris/actions-gh-pages@v2.3.2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -207,7 +207,7 @@ By default, existing files in the publish branch are removed before adding the o
 For example:
 
 ```yaml
-- name: deploy
+- name: Deploy
   uses: peaceiris/actions-gh-pages@v2.3.2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -216,6 +216,7 @@ For example:
   with:
     keepFiles: true
 ```
+
 
 
 ## Tips and FAQ
