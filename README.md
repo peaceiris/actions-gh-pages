@@ -199,6 +199,23 @@ For example:
     emptyCommits: false
 ```
 
+#### ⭐️ Keeping existing files
+
+By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keepFiles` to `true`.
+
+For example:
+
+```yaml
+- name: deploy
+  uses: peaceiris/actions-gh-pages@v2.3.2
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  with:
+    keepFiles: true
+```
+
 
 ## Tips and FAQ
 
