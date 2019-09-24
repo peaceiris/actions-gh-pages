@@ -62,8 +62,9 @@ local_dir="${HOME}/$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)"
 if git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
 
-    print_info "Keeping existing files: ${INPUT_KEEPFILES}"
-    if [[ ${INPUT_KEEPFILES} != "true" ]]; then
+    if [[ ${INPUT_KEEPFILES} == "true" ]]; then
+        print_info "Keeping existing files: ${INPUT_KEEPFILES}"
+    else
         git rm -r --ignore-unmatch '*'
     fi
 
