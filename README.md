@@ -28,6 +28,7 @@ Table of Contents
     - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
     - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
     - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
+    - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
 - [Tips and FAQ](#tips-and-faq)
   - [How to add `CNAME`](#how-to-add-cname)
   - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
