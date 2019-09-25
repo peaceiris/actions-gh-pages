@@ -101,7 +101,7 @@ jobs:
       #   submodules: true
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.2.0
+      uses: peaceiris/actions-hugo@v2.2.1
       with:
         hugo-version: '0.58.3'
 
