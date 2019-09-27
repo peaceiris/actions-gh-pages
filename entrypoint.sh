@@ -49,6 +49,7 @@ elif [ -n "${GITHUB_TOKEN}" ]; then
     if [ -n "${PUBLISH_REPO}" ]; then
         if [ "${GITHUB_REPOSITORY}" !=  "${PUBLISH_REPO}" ]; then
             echo "can not use GITHUB_TOKEN to deploy to a different repository"
+            exit 1
         fi
     fi
 
