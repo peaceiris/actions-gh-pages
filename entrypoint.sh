@@ -46,14 +46,12 @@ elif [ -n "${GITHUB_TOKEN}" ]; then
     print_info "setup with GITHUB_TOKEN"
     print_error "Do not use GITHUB_TOKEN, See #9"
 
-    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
-
-    if [ -n "${PUBLISH_REPOSITORY}" ]; then
-        if [ "${GITHUB_REPOSITORY}" !=  "${PUBLISH_REPOSITORY}" ]; then
-            echo "can not use GITHUB_TOKEN to deploy to a different repository"
-            exit 1
-        fi
+    if [ -n "${EXTERNAL_REPOSITORY}" ]; then
+        print_error "can not use GITHUB_TOKEN to deploy to a external repository"
+        exit 1
     fi
+
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPOSITORY}.git"
 
 else
     print_error "not found ACTIONS_DEPLOY_KEY, PERSONAL_TOKEN, or GITHUB_TOKEN"
