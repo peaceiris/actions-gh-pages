@@ -17,6 +17,11 @@ function skip() {
 }
 
 # check values
+if [ -z "${PUBLISH_REPO}" ]; then
+    print_info "setup with PUBLISH_REPO = GITHUB_REPOSITORY"
+    PUBLISH_REPO=GITHUB_REPOSITORY
+fi
+
 if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
     print_info "setup with ACTIONS_DEPLOY_KEY"
@@ -26,20 +31,26 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
     echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
     chmod 400 /root/.ssh/id_rsa
 
-    remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
+    remote_repo="git@github.com:${PUBLISH_REPO}.git"
 
 elif [ -n "${PERSONAL_TOKEN}" ]; then
 
     print_info "setup with PERSONAL_TOKEN"
 
-    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${PERSONAL_TOKEN}@github.com/${PUBLISH_REPO}.git"
 
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
     print_error "Do not use GITHUB_TOKEN, See #9"
 
-    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${PUBLISH_REPO}.git"
+
+    if [ -n "${PUBLISH_REPO}" ]; then
+        if [ "${GITHUB_REPOSITORY}" !=  "${PUBLISH_REPO}" ]; then
+            echo "can not use GITHUB_TOKEN to deploy to a different repository"
+        fi
+    fi
 
 else
     print_error "not found ACTIONS_DEPLOY_KEY, PERSONAL_TOKEN, or GITHUB_TOKEN"
