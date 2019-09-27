@@ -29,7 +29,7 @@ Table of Contents
     - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
     - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
     - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
-    - [⭐️ Publish to other repository](#%EF%B8%8F-publish-to-other-repository)
+    - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
 - [Tips and FAQ](#tips-and-faq)
   - [How to add `CNAME`](#how-to-add-cname)
   - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
