@@ -220,7 +220,7 @@ For example:
 
 #### ⭐️ Deploy to external repository
 
-By default, the files are published to the respository which is running this action. If you want to publish to another repository on GitHub set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<repo>`.
+By default, your files are published to the repository which is running this action. If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
 
 For example:
 
@@ -229,10 +229,16 @@ For example:
   uses: peaceiris/actions-gh-pages@v2.4.0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    EXTERNAL_REPOSITORY: peaceiris/peaceiris.github.io
+    EXTERNAL_REPOSITORY: username/username.github.io
     PUBLISH_BRANCH: master
     PUBLISH_DIR: ./public
 ```
+
+You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`. When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
+
+Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
+
+
 
 ## Tips and FAQ
 
