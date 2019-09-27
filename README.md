@@ -29,6 +29,7 @@ Table of Contents
     - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
     - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
     - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
+    - [⭐️ Publish to other repository](#%EF%B8%8F-publish-to-other-repository)
 - [Tips and FAQ](#tips-and-faq)
   - [How to add `CNAME`](#how-to-add-cname)
   - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
@@ -217,7 +218,21 @@ For example:
     keepFiles: true
 ```
 
+#### ⭐️ Publish to other repository
 
+By default, the files are published to the respository which is running this action. If you want to publish to another repository on GitHub set the environment variable `PUBLISH_REPO` to `<username>/<repo>`.
+
+For example:
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2.4.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_REPO: peaceiris/peaceiris.github.io
+    PUBLISH_BRANCH: master
+    PUBLISH_DIR: ./public
+```
 
 ## Tips and FAQ
 
