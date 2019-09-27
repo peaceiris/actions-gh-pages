@@ -218,9 +218,9 @@ For example:
     keepFiles: true
 ```
 
-#### ⭐️ Publish to other repository
+#### ⭐️ Deploy to external repository
 
-By default, the files are published to the respository which is running this action. If you want to publish to another repository on GitHub set the environment variable `PUBLISH_REPO` to `<username>/<repo>`.
+By default, the files are published to the respository which is running this action. If you want to publish to another repository on GitHub set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<repo>`.
 
 For example:
 
@@ -229,7 +229,7 @@ For example:
   uses: peaceiris/actions-gh-pages@v2.4.0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_REPO: peaceiris/peaceiris.github.io
+    EXTERNAL_REPOSITORY: peaceiris/peaceiris.github.io
     PUBLISH_BRANCH: master
     PUBLISH_DIR: ./public
 ```

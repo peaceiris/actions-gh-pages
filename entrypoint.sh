@@ -17,10 +17,12 @@ function skip() {
 }
 
 # check values
-if [ -z "${PUBLISH_REPOSITORY}" ]; then
-    print_info "setup with PUBLISH_REPOSITORY = GITHUB_REPOSITORY"
+if [ -n "${EXTERNAL_REPOSITORY}" ]; then
+    PUBLISH_REPOSITORY=${EXTERNAL_REPOSITORY}
+else
     PUBLISH_REPOSITORY=${GITHUB_REPOSITORY}
 fi
+print_info "Deploy to ${PUBLISH_REPOSITORY}"
 
 if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
