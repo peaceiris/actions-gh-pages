@@ -39,21 +39,21 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
-  - [Options](#options)
-    - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
-    - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
-    - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
-    - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
-    - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
+- [Options](#options)
+  - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
+  - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
+  - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
+  - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
+  - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
 - [Tips and FAQ](#tips-and-faq)
-  - [How to add `CNAME`](#how-to-add-cname)
-  - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
+  - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
+  - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
-  - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
-  - [Gatsby](#gatsby)
-  - [React and Next](#react-and-next)
-  - [Vue and Nuxt](#vue-and-nuxt)
-  - [Static Site Generators with Python](#static-site-generators-with-python)
+  - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
+  - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
+  - [⭐️ React and Next](#%EF%B8%8F-react-and-next)
+  - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
+  - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -161,9 +161,15 @@ PUBLISH_BRANCH: master  # deploying branch
 
 ![Change default branch](./images/default-branch.jpg)
 
-### Options
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
 
-#### ⭐️ Pull action image from Docker Hub
+
+
+## Options
+
+### ⭐️ Pull action image from Docker Hub
 
 You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
@@ -175,7 +181,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
 
-#### ⭐️ `PERSONAL_TOKEN`
+### ⭐️ `PERSONAL_TOKEN`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
@@ -184,7 +190,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
-#### ⭐️ `GITHUB_TOKEN`
+### ⭐️ `GITHUB_TOKEN`
 
 > **NOTES**: Do not use `GITHUB_TOKEN`.
 >
@@ -197,7 +203,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-#### ⭐️ Suppressing empty commits
+### ⭐️ Suppressing empty commits
 
 By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. cf. [Issue #21]
 
@@ -216,7 +222,7 @@ For example:
     emptyCommits: false
 ```
 
-#### ⭐️ Keeping existing files
+### ⭐️ Keeping existing files
 
 By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keepFiles` to `true`.
 
@@ -241,7 +247,7 @@ For example:
 
 ## Tips and FAQ
 
-### How to add `CNAME`
+### ⭐️ How to add `CNAME`
 
 Most of the Static Site Generators support `CNAME` as a static file.
 
@@ -261,7 +267,7 @@ Does not your static site generator deal with the static files? No problem, you 
 - name: Deploy
 ```
 
-### Deployment completed but you cannot read
+### ⭐️ Deployment completed but you cannot read
 
 Does your `PUBLISH_DIR` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
 GitHub Pages does not read those by default.
@@ -290,7 +296,7 @@ Does not your static site generator deal with the static files? No problem, you 
 
 ## Examples
 
-### Static Site Generators with Node.js
+### ⭐️ Static Site Generators with Node.js
 
 [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
 
@@ -334,7 +340,7 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
-### Gatsby
+### ⭐️ Gatsby
 
 An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 
@@ -382,7 +388,7 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
-### React and Next
+### ⭐️ React and Next
 
 An example for [Next.js] (React.js) project with [create-next-app]
 
@@ -432,7 +438,7 @@ jobs:
         PUBLISH_DIR: ./out
 ```
 
-### Vue and Nuxt
+### ⭐️ Vue and Nuxt
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
@@ -479,7 +485,7 @@ jobs:
         PUBLISH_DIR: ./dist
 ```
 
-### Static Site Generators with Python
+### ⭐️ Static Site Generators with Python
 
 [pelican], [MkDocs], [sphinx], etc.
 
