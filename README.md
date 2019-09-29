@@ -8,15 +8,27 @@
 
 
 
-## GitHub Actions for deploying to GitHub Pages
+## GitHub Actions for GitHub Pages
 
-A GitHub Action to deploy your static site to GitHub Pages with [Static Site Generators] (Hugo, MkDocs, Gatsby, GitBook, etc.)
+This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
+This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, etc.)
 
 [Static Site Generators]: https://www.staticgen.com/
 
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2.4.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+```
+
+The above example step will deploy `./public` directory to `gh-pages` branch.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-Table of Contents
+*Table of Contents*
 
 - [Getting started](#getting-started)
   - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
