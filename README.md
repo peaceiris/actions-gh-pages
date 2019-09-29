@@ -26,9 +26,13 @@ This deploy action can be combined simply and freely with [Static Site Generator
 
 The above example step will deploy `./public` directory to `gh-pages` branch.
 
+
+
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-*Table of Contents*
+
 
 - [Getting started](#getting-started)
   - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
@@ -229,6 +233,10 @@ For example:
     keepFiles: true
 ```
 
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
+
 
 
 ## Tips and FAQ
@@ -273,6 +281,10 @@ Does not your static site generator deal with the static files? No problem, you 
 
 - name: Deploy
 ```
+
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
 
 
 
@@ -528,3 +540,9 @@ jobs:
 ## About the author
 
 - [peaceiris's homepage](https://peaceiris.com/)
+
+
+
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
