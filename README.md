@@ -46,6 +46,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
 - [Tips and FAQ](#tips-and-faq)
+  - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
   - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
@@ -248,6 +249,13 @@ For example:
 
 
 ## Tips and FAQ
+
+### ⭐️ Use the latest and specific release
+
+We recommend you to use the latest and specific release of this action for stable CI/CD.
+It is useful to watch this repository (release only) to check the [latest release] of this action.
+
+[latest release]: https://github.com/peaceiris/actions-gh-pages/releases
 
 ### ⭐️ How to add `CNAME`
 
