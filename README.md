@@ -230,6 +230,17 @@ Most of the Static Site Generators support `CNAME` as a static file.
 
 The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
 
+Does not your static site generator deal with the static files? No problem, you can add the file like the following.
+
+```yaml
+- name: Build
+  run: |
+    buildcommand
+    cp ./path/to/CNAME ./public/CNAME
+
+- name: Deploy
+```
+
 ### Deployment completed but you cannot read
 
 Does your `PUBLISH_DIR` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
@@ -239,6 +250,17 @@ Please add `.nojekyll` file to `PUBLISH_DIR`.
 - [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
 
 > It is now possible to completely bypass Jekyll processing on GitHub Pages by creating a file named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
+
+Does not your static site generator deal with the static files? No problem, you can add the file like the following.
+
+```yaml
+- name: Build
+  run: |
+    buildcommand
+    touch ./public/.nojekyll
+
+- name: Deploy
+```
 
 
 
