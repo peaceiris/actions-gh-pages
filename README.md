@@ -8,37 +8,54 @@
 
 
 
-## GitHub Actions for deploying to GitHub Pages
+## GitHub Actions for GitHub Pages
 
-A GitHub Action to deploy your static site to GitHub Pages with [Static Site Generators] (Hugo, MkDocs, Gatsby, GitBook, etc.)
+This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
+This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, etc.)
 
 [Static Site Generators]: https://www.staticgen.com/
 
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2.4.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+```
+
+The above example step will deploy `./public` directory to `gh-pages` branch.
+
+
+
+## Table of Contents
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-Table of Contents
+
 
 - [Getting started](#getting-started)
-  - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
-  - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
+  - [(1) Add SSH deploy key](#1-add-ssh-deploy-key)
+  - [(2) Create your workflow](#2-create-your-workflow)
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
-  - [Options](#options)
-    - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
-    - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
-    - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
-    - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
-    - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
-    - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
+- [Options](#options)
+  - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
+  - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
+  - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
+  - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
+  - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
+  - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
 - [Tips and FAQ](#tips-and-faq)
-  - [How to add `CNAME`](#how-to-add-cname)
-  - [Deployment completed but you cannot read](#deployment-completed-but-you-cannot-read)
+  - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
+  - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
+  - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
-  - [Static Site Generators with Node.js](#static-site-generators-with-nodejs)
-  - [Gatsby](#gatsby)
-  - [React and Next](#react-and-next)
-  - [Vue and Nuxt](#vue-and-nuxt)
-  - [Static Site Generators with Python](#static-site-generators-with-python)
+  - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
+  - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
+  - [⭐️ React and Next](#%EF%B8%8F-react-and-next)
+  - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
+  - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -48,7 +65,7 @@ Table of Contents
 
 ## Getting started
 
-### (1) Add ssh deploy key
+### (1) Add SSH deploy key
 
 Generate your deploy key with the following command.
 
@@ -72,7 +89,9 @@ Next, Go to **Repository Settings**
 |---|---|
 | ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
 
-### (2) Create `.github/workflows/gh-pages.yml`
+### (2) Create your workflow
+
+Add your workflow setting YAML file `.github/workflows/gh-pages.yml` and push to the default branch.
 
 #### ⭐️ Repository type - Project
 
@@ -146,9 +165,15 @@ PUBLISH_BRANCH: master  # deploying branch
 
 ![Change default branch](./images/default-branch.jpg)
 
-### Options
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
 
-#### ⭐️ Pull action image from Docker Hub
+
+
+## Options
+
+### ⭐️ Pull action image from Docker Hub
 
 You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
@@ -160,7 +185,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
 
-#### ⭐️ `PERSONAL_TOKEN`
+### ⭐️ `PERSONAL_TOKEN`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
@@ -169,7 +194,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
-#### ⭐️ `GITHUB_TOKEN`
+### ⭐️ `GITHUB_TOKEN`
 
 > **NOTES**: Do not use `GITHUB_TOKEN`.
 >
@@ -182,7 +207,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 + GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-#### ⭐️ Suppressing empty commits
+### ⭐️ Suppressing empty commits
 
 By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. cf. [Issue #21]
 
@@ -201,7 +226,7 @@ For example:
     emptyCommits: false
 ```
 
-#### ⭐️ Keeping existing files
+### ⭐️ Keeping existing files
 
 By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keepFiles` to `true`.
 
@@ -218,9 +243,10 @@ For example:
     keepFiles: true
 ```
 
-#### ⭐️ Deploy to external repository
+### ⭐️ Deploy to external repository
 
-By default, your files are published to the repository which is running this action. If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
+By default, your files are published to the repository which is running this action.
+If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
 
 For example:
 
@@ -234,15 +260,27 @@ For example:
     PUBLISH_DIR: ./public
 ```
 
-You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`. When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
+You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`.
+When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
 
 Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
+
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
 
 
 
 ## Tips and FAQ
 
-### How to add `CNAME`
+### ⭐️ Use the latest and specific release
+
+We recommend you to use the latest and specific release of this action for stable CI/CD.
+It is useful to watch this repository (release only) to check the [latest release] of this action.
+
+[latest release]: https://github.com/peaceiris/actions-gh-pages/releases
+
+### ⭐️ How to add `CNAME`
 
 Most of the Static Site Generators support `CNAME` as a static file.
 
@@ -251,7 +289,18 @@ Most of the Static Site Generators support `CNAME` as a static file.
 
 The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
 
-### Deployment completed but you cannot read
+Does not your static site generator deal with the static files? No problem, you can add the file like the following.
+
+```yaml
+- name: Build
+  run: |
+    buildcommand
+    cp ./path/to/CNAME ./public/CNAME
+
+- name: Deploy
+```
+
+### ⭐️ Deployment completed but you cannot read
 
 Does your `PUBLISH_DIR` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
 GitHub Pages does not read those by default.
@@ -261,11 +310,26 @@ Please add `.nojekyll` file to `PUBLISH_DIR`.
 
 > It is now possible to completely bypass Jekyll processing on GitHub Pages by creating a file named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
 
+Does not your static site generator deal with the static files? No problem, you can add the file like the following.
+
+```yaml
+- name: Build
+  run: |
+    buildcommand
+    touch ./public/.nojekyll
+
+- name: Deploy
+```
+
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
+
 
 
 ## Examples
 
-### Static Site Generators with Node.js
+### ⭐️ Static Site Generators with Node.js
 
 [hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
 
@@ -309,7 +373,7 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
-### Gatsby
+### ⭐️ Gatsby
 
 An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 
@@ -357,7 +421,7 @@ jobs:
         PUBLISH_DIR: ./public
 ```
 
-### React and Next
+### ⭐️ React and Next
 
 An example for [Next.js] (React.js) project with [create-next-app]
 
@@ -407,7 +471,7 @@ jobs:
         PUBLISH_DIR: ./out
 ```
 
-### Vue and Nuxt
+### ⭐️ Vue and Nuxt
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
@@ -454,7 +518,7 @@ jobs:
         PUBLISH_DIR: ./dist
 ```
 
-### Static Site Generators with Python
+### ⭐️ Static Site Generators with Python
 
 [pelican], [MkDocs], [sphinx], etc.
 
@@ -515,3 +579,9 @@ jobs:
 ## About the author
 
 - [peaceiris's homepage](https://peaceiris.com/)
+
+
+
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
