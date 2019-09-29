@@ -35,8 +35,8 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
 
 
 - [Getting started](#getting-started)
-  - [(1) Add ssh deploy key](#1-add-ssh-deploy-key)
-  - [(2) Create `.github/workflows/gh-pages.yml`](#2-create-githubworkflowsgh-pagesyml)
+  - [(1) Add SSH deploy key](#1-add-ssh-deploy-key)
+  - [(2) Create your workflow](#2-create-your-workflow)
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
@@ -63,7 +63,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
 
 ## Getting started
 
-### (1) Add ssh deploy key
+### (1) Add SSH deploy key
 
 Generate your deploy key with the following command.
 
@@ -87,7 +87,9 @@ Next, Go to **Repository Settings**
 |---|---|
 | ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
 
-### (2) Create `.github/workflows/gh-pages.yml`
+### (2) Create your workflow
+
+Add your workflow setting YAML file `.github/workflows/gh-pages.yml` and push to the default branch.
 
 #### ⭐️ Repository type - Project
 
