@@ -21,10 +21,10 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
     print_info "setup with ACTIONS_DEPLOY_KEY"
 
-    mkdir /root/.ssh
-    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
-    echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
-    chmod 400 /root/.ssh/id_rsa
+    mkdir "${HOME}/.ssh"
+    ssh-keyscan -t rsa github.com > "${HOME}/.ssh/known_hosts"
+    echo "${ACTIONS_DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa"
+    chmod 400 "${HOME}/.ssh/id_rsa"
 
     remote_repo="git@github.com:${GITHUB_REPOSITORY}.git"
 
@@ -37,7 +37,7 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
-    print_error "Do not use GITHUB_TOKEN, See #9"
+    print_error "GITHUB_TOKEN works only private repo, See #9"
 
     remote_repo="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
