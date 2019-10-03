@@ -1,5 +1,5 @@
 name: 'Deploy action for GitHub Pages'
-description: 'A GitHub Action to deploy your static site to GitHub Pages with Static Site Generator'
+description: 'GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.'
 author: 'peaceiris'
 runs:
   using: 'docker'
