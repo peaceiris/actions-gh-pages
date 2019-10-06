@@ -28,10 +28,15 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
     print_info "setup with ACTIONS_DEPLOY_KEY"
 
-    mkdir "${HOME}/.ssh"
-    ssh-keyscan -t rsa github.com > "${HOME}/.ssh/known_hosts"
-    echo "${ACTIONS_DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa"
-    chmod 400 "${HOME}/.ssh/id_rsa"
+    if [ -n "${SCRIPT_MODE}" ]; then
+        SSH_DIR="${HOME}/.ssh"
+    else
+        SSH_DIR="/root/.ssh"
+    fi
+    mkdir "${SSH_DIR}"
+    ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
+    echo "${ACTIONS_DEPLOY_KEY}" > "${SSH_DIR}/id_rsa"
+    chmod 400 "${SSH_DIR}/id_rsa"
 
     remote_repo="git@github.com:${PUBLISH_REPOSITORY}.git"
 
