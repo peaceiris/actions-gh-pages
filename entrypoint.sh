@@ -29,6 +29,7 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
     print_info "setup with ACTIONS_DEPLOY_KEY"
 
     if [ -n "${SCRIPT_MODE}" ]; then
+        print_info "run as SCRIPT_MODE"
         SSH_DIR="${HOME}/.ssh"
     else
         SSH_DIR="/root/.ssh"
@@ -75,7 +76,7 @@ fi
 
 remote_branch="${PUBLISH_BRANCH}"
 
-local_dir="${HOME}/$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)"
+local_dir="${HOME}/ghpages_${RANDOM}"
 if git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
 
