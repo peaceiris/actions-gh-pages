@@ -45,6 +45,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
   - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
+  - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
@@ -241,6 +242,28 @@ For example:
   with:
     keepFiles: true
 ```
+
+### ⭐️ Deploy to external repository
+
+By default, your files are published to the repository which is running this action.
+If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
+
+For example:
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2.4.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    EXTERNAL_REPOSITORY: username/username.github.io
+    PUBLISH_BRANCH: master
+    PUBLISH_DIR: ./public
+```
+
+You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`.
+When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
+
+Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
