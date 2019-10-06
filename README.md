@@ -254,7 +254,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0-rc0
+  uses: peaceiris/actions-gh-pages@v2.5.0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     EXTERNAL_REPOSITORY: username/external-repository
