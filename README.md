@@ -196,7 +196,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### ⭐️ `GITHUB_TOKEN`
 
-> **NOTES**: Do not use `GITHUB_TOKEN`.
+> ⚠️ **NOTES**: `GITHUB_TOKEN` works only on a private repository.
 >
 > This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
 
