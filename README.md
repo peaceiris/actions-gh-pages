@@ -272,12 +272,16 @@ Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
 From `v2.5.0`, we can run this action as a shell script.
 There is no Docker build or pull step, so it will start immediately.
 
+- `ACTIONS_DEPLOY_KEY` requires `SCRIPT_MODE: true`
+- `*_TOKEN` do not require `SCRIPT_MODE`
+
 ```yaml
 - name: Deploy
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
     PUBLISH_DIR: ./public
+    SCRIPT_MODE: true
   run: |
     wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
     bash ./entrypoint.sh
