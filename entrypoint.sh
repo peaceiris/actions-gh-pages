@@ -28,10 +28,16 @@ if [ -n "${ACTIONS_DEPLOY_KEY}" ]; then
 
     print_info "setup with ACTIONS_DEPLOY_KEY"
 
-    mkdir /root/.ssh
-    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
-    echo "${ACTIONS_DEPLOY_KEY}" > /root/.ssh/id_rsa
-    chmod 400 /root/.ssh/id_rsa
+    if [ -n "${SCRIPT_MODE}" ]; then
+        print_info "run as SCRIPT_MODE"
+        SSH_DIR="${HOME}/.ssh"
+    else
+        SSH_DIR="/root/.ssh"
+    fi
+    mkdir "${SSH_DIR}"
+    ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
+    echo "${ACTIONS_DEPLOY_KEY}" > "${SSH_DIR}/id_rsa"
+    chmod 400 "${SSH_DIR}/id_rsa"
 
     remote_repo="git@github.com:${PUBLISH_REPOSITORY}.git"
 
@@ -44,7 +50,7 @@ elif [ -n "${PERSONAL_TOKEN}" ]; then
 elif [ -n "${GITHUB_TOKEN}" ]; then
 
     print_info "setup with GITHUB_TOKEN"
-    print_error "Do not use GITHUB_TOKEN, See #9"
+    print_error "GITHUB_TOKEN works only private repo, See #9"
 
     if [ -n "${EXTERNAL_REPOSITORY}" ]; then
         print_error "can not use GITHUB_TOKEN to deploy to a external repository"
@@ -70,7 +76,7 @@ fi
 
 remote_branch="${PUBLISH_BRANCH}"
 
-local_dir="${HOME}/$(tr -cd 'a-f0-9' < /dev/urandom | head -c 32)"
+local_dir="${HOME}/ghpages_${RANDOM}"
 if git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
 

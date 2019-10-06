@@ -46,6 +46,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
+  - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
@@ -196,7 +197,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### ⭐️ `GITHUB_TOKEN`
 
-> **NOTES**: Do not use `GITHUB_TOKEN`.
+> ⚠️ **NOTES**: `GITHUB_TOKEN` works only on a **private** repository.
 >
 > This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
 
@@ -247,6 +248,7 @@ For example:
 
 By default, your files are published to the repository which is running this action.
 If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
+This option is available from `v2.5.0`.
 
 For example:
 
@@ -264,6 +266,26 @@ You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`.
 When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
 
 Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
+
+### ⭐️ Script mode
+
+From `v2.5.0`, we can run this action as a shell script.
+There is no Docker build or pull step, so it will start immediately.
+
+- `ACTIONS_DEPLOY_KEY` requires `SCRIPT_MODE: true`
+- `*_TOKEN` do not require `SCRIPT_MODE`
+
+```yaml
+- name: Deploy
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+    SCRIPT_MODE: true
+  run: |
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    bash ./entrypoint.sh
+```
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
