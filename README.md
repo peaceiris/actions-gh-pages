@@ -46,6 +46,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
+  - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
@@ -264,6 +265,22 @@ You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`.
 When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
 
 Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
+
+### ⭐️ Script mode
+
+From `v2.5.0`, we can run this action as a shell script.
+There is no Docker build or pull step, so it will start immediately.
+
+```yaml
+- name: Deploy
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  run: |
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    bash ./entrypoint.sh
+```
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
