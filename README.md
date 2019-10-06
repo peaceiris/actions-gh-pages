@@ -197,7 +197,7 @@ By pulling docker images, you can reduce the overall execution time of your work
 
 ### ⭐️ `GITHUB_TOKEN`
 
-> ⚠️ **NOTES**: `GITHUB_TOKEN` works only on a private repository.
+> ⚠️ **NOTES**: `GITHUB_TOKEN` works only on a **private** repository.
 >
 > This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
 
@@ -248,6 +248,7 @@ For example:
 
 By default, your files are published to the repository which is running this action.
 If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
+This option is available from `v2.5.0`.
 
 For example:
 
