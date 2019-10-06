@@ -258,7 +258,7 @@ For example:
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     EXTERNAL_REPOSITORY: username/external-repository
-    PUBLISH_BRANCH: master
+    PUBLISH_BRANCH: gh-pages
     PUBLISH_DIR: ./public
 ```
 
