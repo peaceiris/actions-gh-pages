@@ -254,10 +254,10 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.4.0
+  uses: peaceiris/actions-gh-pages@v2.5.0-rc0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    EXTERNAL_REPOSITORY: username/username.github.io
+    EXTERNAL_REPOSITORY: username/external-repository
     PUBLISH_BRANCH: master
     PUBLISH_DIR: ./public
 ```
