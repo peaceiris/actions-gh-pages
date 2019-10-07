@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
+    paths-ignore:
+    - 'README.md'
+    - '.github/workflows/gh-pages.yml'
     branches:
     - master
 
