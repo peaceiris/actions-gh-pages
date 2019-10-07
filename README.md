@@ -4,7 +4,7 @@
 [![GitHub Actions status](https://github.com/peaceiris/actions-gh-pages/workflows/docker%20image%20ci/badge.svg)](https://github.com/peaceiris/actions-gh-pages/actions)
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peaceiris/gh-pages.svg)](https://hub.docker.com/r/peaceiris/gh-pages)
 
-<img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
+<img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/ogp.svg">
 
 
 
@@ -84,11 +84,11 @@ Next, Go to **Repository Settings**
 
 | Add your public key | Success |
 |---|---|
-| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
+| ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/deploy-keys-1.jpg) | ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/deploy-keys-2.jpg) |
 
 | Add your private key | Success |
 |---|---|
-| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
+| ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/secrets-1.jpg) | ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/secrets-2.jpg) |
 
 ### (2) Create your workflow
 
@@ -141,11 +141,11 @@ The above example is for [Project Pages sites]. (`<username>/<project_name>` rep
 
 | Actions log overview | Build step log |
 |---|---|
-| ![](./images/log1.jpg) | ![](./images/log2.jpg) |
+| ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/log1.jpg) | ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/log2.jpg) |
 
 | Deploy step log | GitHub Pages log |
 |---|---|
-| ![](./images/log3.jpg) | ![](./images/log4.jpg) |
+| ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/log3.jpg) | ![](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/log4.jpg) |
 
 #### ⭐️ Repository type - User and Organization
 
@@ -164,7 +164,7 @@ PUBLISH_BRANCH: master  # deploying branch
 [Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
 [User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
 
-![Change default branch](./images/default-branch.jpg)
+![Change default branch](https://raw.githubusercontent.com/peaceiris/actions-gh-pages/master/images/default-branch.jpg)
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
