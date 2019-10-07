@@ -3,9 +3,14 @@ name: docker image ci
 on:
   pull_request:
     types: [opened, synchronize]
+    paths-ignore:
+    - 'README.md'
+    - 'website'
+    - '.github/workflows/gh-pages.yml'
   push:
     paths-ignore:
     - 'README.md'
+    - 'website'
     - '.github/workflows/gh-pages.yml'
     branches:
     - master

@@ -15,13 +15,13 @@ jobs:
 
     - name: Setup content
       run: |
-        mkdir ./public
+        mv ./website ./public
         cp ./README.md ./public/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
-        # ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
