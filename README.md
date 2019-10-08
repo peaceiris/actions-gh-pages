@@ -382,7 +382,7 @@ jobs:
     - name: build
       uses: actions/setup-node@v1
       with:
-        node-version: '10.16'
+        node-version: '10.x'
     - run: |
         npm install
         npm run build
@@ -421,7 +421,7 @@ jobs:
     - name: setup node
       uses: actions/setup-node@v1
       with:
-        node-version: '10.16'
+        node-version: '10.x'
 
     - name: install
       run: npm install
@@ -471,7 +471,7 @@ jobs:
     - name: setup node
       uses: actions/setup-node@v1
       with:
-        node-version: '10.16'
+        node-version: '10.x'
 
     - name: install
       run: yarn install
@@ -521,7 +521,7 @@ jobs:
     - name: setup node
       uses: actions/setup-node@v1
       with:
-        node-version: '10.16'
+        node-version: '10.x'
 
     - name: install
       run: npm install
