@@ -116,10 +116,10 @@ else
     git commit --allow-empty -m "${COMMIT_MESSAGE}"
 fi
 
-if [[ ${INPUT_FORCEORPHAN} == "false" ]]; then
-    git push origin "${remote_branch}"
-else
+if [[ ${INPUT_FORCEORPHAN} == "true" ]]; then
     git push origin --force "${remote_branch}"
+else
+    git push origin "${remote_branch}"
 fi
 
 print_info "${GITHUB_SHA} was successfully deployed"
