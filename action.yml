@@ -16,3 +16,7 @@ inputs:
     description: 'If existing files in the publish branch should be not removed before deploying'
     required: false
     default: 'false'
+  forceOrphan:
+    description: 'Keep only the latest commit on a GitHub Pages branch'
+    required: false
+    default: 'false'

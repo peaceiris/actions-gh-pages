@@ -77,7 +77,13 @@ fi
 remote_branch="${PUBLISH_BRANCH}"
 
 local_dir="${HOME}/ghpages_${RANDOM}"
-if git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
+
+if [ -n "${INPUT_FORCEORPHAN}" ]; then
+    print_info "force ophan: ${INPUT_FORCEORPHAN}"
+    cd "${PUBLISH_DIR}"
+    git init
+    git checkout --orphan "${remote_branch}"
+elif git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_repo}" "${local_dir}"; then
     cd "${local_dir}"
 
     if [[ ${INPUT_KEEPFILES} == "true" ]]; then
