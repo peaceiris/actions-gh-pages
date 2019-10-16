@@ -78,7 +78,7 @@ remote_branch="${PUBLISH_BRANCH}"
 
 local_dir="${HOME}/ghpages_${RANDOM}"
 
-if [ -n "${INPUT_FORCEORPHAN}" ]; then
+if [[ "${INPUT_FORCEORPHAN}" == "true" ]]; then
     print_info "force ophan: ${INPUT_FORCEORPHAN}"
     cd "${PUBLISH_DIR}"
     git init
