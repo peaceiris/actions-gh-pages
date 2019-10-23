@@ -1,0 +1,10 @@
+version: 1
+update_configs:
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "weekly"
+    default_labels:
+      - "dependencies"
+      - "docker"
+    commit_message:
+      prefix: "deps"
