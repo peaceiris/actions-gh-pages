@@ -1,4 +1,4 @@
-name: 'Deploy action for GitHub Pages'
+name: 'GitHub Pages action'
 description: 'GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.'
 author: 'peaceiris'
 runs:
