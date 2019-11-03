@@ -267,6 +267,19 @@ When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which 
 
 Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
 
+### ⭐️ Force orphan
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2.6.0
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  with:
+    forceOrphan: true
+```
+
 ### ⭐️ Script mode
 
 From `v2.5.0`, we can run this action as a shell script.
