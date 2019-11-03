@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
+    paths-ignore:
+    - '**.md'
     branches:
     - master
 

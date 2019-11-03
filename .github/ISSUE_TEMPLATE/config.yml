@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Actions Community Forum
+    url: https://github.community/t5/GitHub-Actions/bd-p/actions
+    about: Please ask questions about GitHub Actions here.
+  - name: GitHub Pages help
+    url: https://help.github.com/en/github/working-with-github-pages
+    about: GitHub Pages documentaion here.

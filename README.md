@@ -127,7 +127,7 @@ jobs:
         hugo-version: '0.58.3'
 
     - name: Build
-      run: hugo --gc --minify
+      run: hugo --minify
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
