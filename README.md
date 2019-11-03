@@ -269,6 +269,9 @@ Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
 
 ### ⭐️ Force orphan
 
+From `v2.6.0`, we can set the `forceOrphan: true` option.
+This allows you to make your publish branch with only the latest commit.
+
 ```yaml
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v2.6.0
