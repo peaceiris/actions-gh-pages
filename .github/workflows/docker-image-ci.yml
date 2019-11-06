@@ -35,7 +35,7 @@ jobs:
       run: shellcheck ./entrypoint.sh
 
   hadolint:
-    runs-on: macOS-10.14
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@master
       with:
