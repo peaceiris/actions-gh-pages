@@ -383,9 +383,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: |
-        npm install
-        npm run build
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install
+      run: npm install
+
+    - name: Build
+      run: npm run build
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -422,6 +433,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
     - name: install
       run: npm install
@@ -473,6 +492,14 @@ jobs:
       with:
         node-version: '10.x'
 
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
     - name: install
       run: yarn install
 
@@ -522,6 +549,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
     - name: install
       run: npm install
