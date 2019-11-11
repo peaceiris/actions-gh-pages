@@ -122,7 +122,7 @@ jobs:
       #   submodules: true
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.2.2
+      uses: peaceiris/actions-hugo@v2.2.3
       with:
         hugo-version: '0.58.3'
 
@@ -379,7 +379,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: build
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -429,7 +429,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -487,7 +487,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -545,7 +545,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -601,7 +601,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@v1
       with:
         python-version: '3.6'
