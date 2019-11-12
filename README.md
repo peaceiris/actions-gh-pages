@@ -392,13 +392,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: Install
-      run: npm install
+    - run: npm install
 
-    - name: Build
-      run: npm run build
+    - run: npm run build
 
-    - name: deploy
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -429,7 +427,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup Node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -442,19 +440,15 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: install
-      run: npm install
+    - run: npm install
 
-    - name: format
-      run: npm run format
+    - run: npm run format
 
-    - name: test
-      run: npm run test
+    - run: npm run test
 
-    - name: build
-      run: npm run build
+    - run: npm run build
 
-    - name: deploy
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -500,17 +494,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
 
-    - name: install
-      run: yarn install
+    - run: yarn install
 
-    - name: build
-      run: yarn build
+    - run: yarn build
 
-    - name: export
-      run: yarn export
+    - run: yarn export
 
-    - name: add nojekyll
-      run: touch ./out/.nojekyll
+    - run: touch ./out/.nojekyll
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -558,14 +548,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: install
-      run: npm install
+    - run: npm install
 
-    - name: test
-      run: npm test
+    - run: npm test
 
-    - name: generate
-      run: npm run generate
+    - run: npm run generate
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -612,8 +599,7 @@ jobs:
         pip install --upgrade pip
         pip install -r ./requirements.txt
 
-    - name: Build
-      run: mkdocs build
+    - run: mkdocs build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
