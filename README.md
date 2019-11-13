@@ -594,6 +594,14 @@ jobs:
         python-version: '3.6'
         architecture: 'x64'
 
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         pip install --upgrade pip
