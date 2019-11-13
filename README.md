@@ -392,7 +392,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - run: npm install
+    - run: npm ci
 
     - run: npm run build
 
@@ -440,7 +440,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - run: npm install
+    - run: npm ci
 
     - run: npm run format
 
@@ -548,7 +548,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - run: npm install
+    - run: npm ci
 
     - run: npm test
 
