@@ -57,6 +57,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ React and Next](#%EF%B8%8F-react-and-next)
   - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
+  - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
 - [License](#license)
 - [About the author](#about-the-author)
 
