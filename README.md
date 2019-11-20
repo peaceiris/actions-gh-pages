@@ -624,6 +624,10 @@ jobs:
 
 ### ⭐️ mdBook (Rust)
 
+An example GitHub Actions workflow to deploy [rust-lang/mdBook] site to GitHub Pages.
+
+[rust-lang/mdBook]: https://github.com/rust-lang/mdBook
+
 ```yaml
 name: github pages
 
