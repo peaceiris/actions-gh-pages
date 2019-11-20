@@ -649,7 +649,7 @@ jobs:
       run: |
         export MDBOOK_VERSION="v0.3.5"
         export MDBOOK_TARBALL="mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-        wget "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/${MDBOOK_TARBALL}"
+        wget -q "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/${MDBOOK_TARBALL}"
         tar -zxvf "${MDBOOK_TARBALL}"
         rm "${MDBOOK_TARBALL}"
         mkdir ~/bin
