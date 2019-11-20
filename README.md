@@ -621,6 +621,45 @@ jobs:
         PUBLISH_DIR: ./site
 ```
 
+### ⭐️ mdBook (Rust)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Setup mdbook
+      run: |
+        export MDBOOK_VERSION="v0.3.5"
+        wget "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        tar -zxvf "mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        rm "mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        mkdir ~/bin
+        mv ./mdbook ~/bin/
+        echo "::add-path::~/bin"
+
+    - run: mdbook build
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./book
+```
+
 
 
 ## License
