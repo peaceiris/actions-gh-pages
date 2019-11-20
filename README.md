@@ -648,9 +648,10 @@ jobs:
     - name: Setup mdbook
       run: |
         export MDBOOK_VERSION="v0.3.5"
-        wget "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-        tar -zxvf "mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-        rm "mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        export MDBOOK_TARBALL="mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+        wget "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/${MDBOOK_TARBALL}"
+        tar -zxvf "${MDBOOK_TARBALL}"
+        rm "${MDBOOK_TARBALL}"
         mkdir ~/bin
         mv ./mdbook ~/bin/
         echo "::add-path::~/bin"
