@@ -20,11 +20,19 @@ This deploy action can be combined simply and freely with [Static Site Generator
   uses: peaceiris/actions-gh-pages@v2.5.0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    # PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+    # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     PUBLISH_BRANCH: gh-pages
     PUBLISH_DIR: ./public
 ```
 
 The above example step will deploy `./public` directory to `gh-pages` branch.
+
+| Token | Private repo | Public repo | Protocol | Setup |
+|---|---|---|---|---|
+| `GITHUB_TOKEN` | ✅️ | ❌️ | https | Unnecessary |
+| `PERSONAL_TOKEN` | ✅️ | ✅️ | https | Necessary |
+| `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
 
 
 
