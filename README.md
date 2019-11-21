@@ -29,9 +29,9 @@ This deploy action can be combined simply and freely with [Static Site Generator
 The above example step will deploy `./public` directory to `gh-pages` branch.
 
 | Token | Private repo | Public repo | Protocol | Setup |
-|---|---|---|---|---|
-| `GITHUB_TOKEN` | ✅️ | ❌️ | https | Unnecessary |
-| `PERSONAL_TOKEN` | ✅️ | ✅️ | https | Necessary |
+|---|:---:|:---:|---|---|
+| `GITHUB_TOKEN` | ✅️ | ❌️ | HTTPS | Unnecessary |
+| `PERSONAL_TOKEN` | ✅️ | ✅️ | HTTPS | Necessary |
 | `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
 
 
