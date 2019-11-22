@@ -190,6 +190,7 @@ PUBLISH_BRANCH: master  # deploying branch
 [User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
 
 ![Change default branch](./images/default-branch.jpg)
+![Change default branch](./images/user_repo.jpg)
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
