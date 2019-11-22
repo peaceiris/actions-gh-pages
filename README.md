@@ -131,9 +131,9 @@ jobs:
       #   submodules: true
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.2.3
+      uses: peaceiris/actions-hugo@v2.3.0
       with:
-        hugo-version: '0.58.3'
+        hugo-version: '0.59.1'
 
     - name: Build
       run: hugo --minify
