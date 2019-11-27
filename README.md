@@ -653,6 +653,8 @@ An example GitHub Actions workflow to deploy [rust-lang/mdBook] site to GitHub P
 
 [rust-lang/mdBook]: https://github.com/rust-lang/mdBook
 
+- [peaceiris/actions-mdbook: GitHub Actions for mdBook (rust-lang/mdBook)](https://github.com/peaceiris/actions-mdbook)
+
 ```yaml
 name: github pages
 
@@ -670,16 +672,11 @@ jobs:
       with:
         fetch-depth: 1
 
-    - name: Setup mdbook
-      run: |
-        export MDBOOK_VERSION="v0.3.5"
-        export MDBOOK_TARBALL="mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-        wget -q "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/${MDBOOK_TARBALL}"
-        tar -zxvf "${MDBOOK_TARBALL}"
-        rm "${MDBOOK_TARBALL}"
-        mkdir ~/bin
-        mv ./mdbook ~/bin/
-        echo "::add-path::~/bin"
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: '0.3.5'
+        # mdbook-version: 'latest'
 
     - run: mdbook build
 
