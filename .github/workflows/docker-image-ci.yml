@@ -40,7 +40,5 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - name: hadolint
-      run: |
-        brew install hadolint
-        hadolint ./Dockerfile
+    - run: brew install hadolint
+    - run: hadolint ./Dockerfile
