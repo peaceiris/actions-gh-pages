@@ -82,6 +82,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
+  - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -688,7 +689,43 @@ jobs:
         PUBLISH_DIR: ./book
 ```
 
+### ⭐️ Flutter Web
 
+An exapmle for [Flutter](https://github.com/flutter/flutter) project with [flutter build web](https://flutter.dev/docs/get-started/web)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@master
+
+    - name: setup flutter
+      uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+
+    - name: install
+      run: |
+        flutter config --enable-web
+        flutter pub get
+    - name: build
+      run: flutter build web
+
+    - name: deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./build/web
+```
 
 ## License
 
