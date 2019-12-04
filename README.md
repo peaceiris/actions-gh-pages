@@ -691,7 +691,12 @@ jobs:
 
 ### ⭐️ Flutter Web
 
-An exapmle for [Flutter](https://github.com/flutter/flutter) project with [flutter build web](https://flutter.dev/docs/get-started/web)
+An exapmle workflow for [Flutter web project].
+Setup [Flutter] with [subosito/flutter-action].
+
+[Flutter]: https://github.com/flutter/flutter
+[Flutter web project]: https://flutter.dev/docs/get-started/web
+[subosito/flutter-action]: https://github.com/subosito/flutter-action
 
 ```yaml
 name: github pages
@@ -705,21 +710,22 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
-    - name: setup flutter
+    - name: Setup Flutter
       uses: subosito/flutter-action@v1
       with:
         channel: 'dev'
 
-    - name: install
+    - name: Install
       run: |
         flutter config --enable-web
         flutter pub get
-    - name: build
+
+    - name: Build
       run: flutter build web
 
-    - name: deploy
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
