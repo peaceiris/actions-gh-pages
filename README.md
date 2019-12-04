@@ -11,20 +11,44 @@
 ## GitHub Actions for GitHub Pages
 
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
-This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, etc.)
+This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.)
 
 [Static Site Generators]: https://www.staticgen.com/
+
+The next example step will deploy `./public` directory to the remote `gh-pages` branch.
 
 ```yaml
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v2.5.0
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    # PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+    # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     PUBLISH_BRANCH: gh-pages
     PUBLISH_DIR: ./public
 ```
 
-The above example step will deploy `./public` directory to `gh-pages` branch.
+Three tokens are supported.
+
+| Token | Private repo | Public repo | Protocol | Setup |
+|---|:---:|:---:|---|---|
+| `GITHUB_TOKEN` | ✅️ | ❌️ | HTTPS | Unnecessary |
+| `PERSONAL_TOKEN` | ✅️ | ✅️ | HTTPS | Necessary |
+| `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
+
+Do you want to skip the docker build step? OK, the script mode is available.
+
+```yaml
+- name: Deploy
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+    SCRIPT_MODE: true
+  run: |
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    bash ./entrypoint.sh
+```
 
 
 
@@ -57,6 +81,7 @@ The above example step will deploy `./public` directory to `gh-pages` branch.
   - [⭐️ React and Next](#%EF%B8%8F-react-and-next)
   - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
+  - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
 - [License](#license)
 - [About the author](#about-the-author)
@@ -123,9 +148,9 @@ jobs:
       #   submodules: true
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.2.2
+      uses: peaceiris/actions-hugo@v2
       with:
-        hugo-version: '0.58.3'
+        hugo-version: '0.59.1'
 
     - name: Build
       run: hugo --minify
@@ -166,6 +191,7 @@ PUBLISH_BRANCH: master  # deploying branch
 [User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
 
 ![Change default branch](./images/default-branch.jpg)
+![Change default branch](./images/user_repo.jpg)
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
@@ -380,15 +406,24 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: build
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - run: |
-        npm install
-        npm run build
 
-    - name: deploy
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - run: npm ci
+
+    - run: npm run build
+
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -419,24 +454,28 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
 
-    - name: install
-      run: npm install
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
-    - name: format
-      run: npm run format
+    - run: npm ci
 
-    - name: test
-      run: npm run test
+    - run: npm run format
 
-    - name: build
-      run: npm run build
+    - run: npm run test
 
-    - name: deploy
+    - run: npm run build
+
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -469,22 +508,30 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
 
-    - name: install
-      run: yarn install
+    - name: Get yarn cache
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
 
-    - name: build
-      run: yarn build
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
 
-    - name: export
-      run: yarn export
+    - run: yarn install
 
-    - name: add nojekyll
-      run: touch ./out/.nojekyll
+    - run: yarn build
+
+    - run: yarn export
+
+    - run: touch ./out/.nojekyll
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -519,19 +566,24 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: setup node
+    - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
 
-    - name: install
-      run: npm install
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
-    - name: test
-      run: npm test
+    - run: npm ci
 
-    - name: generate
-      run: npm run generate
+    - run: npm test
+
+    - run: npm run generate
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -567,19 +619,26 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Python
+    - name: Setup Python
       uses: actions/setup-python@v1
       with:
         python-version: '3.6'
         architecture: 'x64'
 
+    - name: Cache dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
-        pip install -r ./requirements.txt
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r ./requirements.txt
 
-    - name: Build
-      run: mkdocs build
+    - run: mkdocs build
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.5.0
@@ -587,6 +646,47 @@ jobs:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./site
+```
+
+### ⭐️ mdBook (Rust)
+
+An example GitHub Actions workflow to deploy [rust-lang/mdBook] site to GitHub Pages.
+
+[rust-lang/mdBook]: https://github.com/rust-lang/mdBook
+
+- [peaceiris/actions-mdbook: GitHub Actions for mdBook (rust-lang/mdBook)](https://github.com/peaceiris/actions-mdbook)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: '0.3.5'
+        # mdbook-version: 'latest'
+
+    - run: mdbook build
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./book
 ```
 
 ### ⭐️ Flutter Web
