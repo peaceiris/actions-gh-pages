@@ -143,7 +143,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       # with:
       #   submodules: true
 
@@ -404,7 +404,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -452,7 +452,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -506,7 +506,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -564,7 +564,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
