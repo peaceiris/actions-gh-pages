@@ -19,7 +19,7 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     # PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -46,7 +46,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
     PUBLISH_DIR: ./public
     SCRIPT_MODE: true
   run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
     bash ./entrypoint.sh
 ```
 
@@ -156,7 +156,7 @@ jobs:
       run: hugo --minify
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -207,8 +207,8 @@ You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
 
 ```diff
-- uses: peaceiris/actions-gh-pages@v2.5.0
-+ uses: docker://peaceiris/gh-pages:v2.5.0
+- uses: peaceiris/actions-gh-pages@v2
++ uses: docker://peaceiris/gh-pages:v2
 ```
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
@@ -245,7 +245,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
@@ -262,7 +262,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
@@ -281,7 +281,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     EXTERNAL_REPOSITORY: username/external-repository
@@ -310,7 +310,7 @@ There is no Docker build or pull step, so it will start immediately.
     PUBLISH_DIR: ./public
     SCRIPT_MODE: true
   run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
     bash ./entrypoint.sh
 ```
 
@@ -424,7 +424,7 @@ jobs:
     - run: npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -476,7 +476,7 @@ jobs:
     - run: npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -534,7 +534,7 @@ jobs:
     - run: touch ./out/.nojekyll
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -586,7 +586,7 @@ jobs:
     - run: npm run generate
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -641,7 +641,7 @@ jobs:
     - run: mkdocs build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -682,7 +682,7 @@ jobs:
     - run: mdbook build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -726,7 +726,7 @@ jobs:
       run: flutter build web
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
