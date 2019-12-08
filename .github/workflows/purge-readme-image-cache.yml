@@ -1,0 +1,17 @@
+name: Purge image cache
+
+on:
+  push:
+  schedule:
+    - cron: '54 18 * * *'
+
+jobs:
+  purge:
+    runs-on: ubuntu-18.04
+    steps:
+
+    - run: |
+        IMAGE_LIST=$(curl -sL https://github.com/${GITHUB_REPOSITORY} | \
+          grep -oE '<img src="https?://camo.githubusercontent.com/[^"]+' | \
+          sed -e 's/<img src="//')
+        echo ${IMAGE_LIST} | xargs -I % curl -sX PURGE %
