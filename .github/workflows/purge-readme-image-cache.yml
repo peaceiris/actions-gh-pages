@@ -9,10 +9,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
 
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-
     - run: >
         curl -sL https://github.com/${GITHUB_REPOSITORY} |
         grep -oE '<img src="https?://camo.githubusercontent.com/[^"]+' |
