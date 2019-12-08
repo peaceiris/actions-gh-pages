@@ -15,7 +15,4 @@ jobs:
         fetch-depth: 1
 
     - run: |
-        IMAGE_LIST=$(curl -sL https://github.com/${GITHUB_REPOSITORY} | \
-          grep -oE '<img src="https?://camo.githubusercontent.com/[^"]+' | \
-          sed -e 's/<img src="//')
-        echo ${IMAGE_LIST} | xargs -I % curl -sX PURGE %
+        curl -sL https://github.com/${GITHUB_REPOSITORY} | grep -oE '<img src="https?://camo.githubusercontent.com/[^"]+' | sed -e 's/<img src="//' | xargs -I % curl -sX PURGE %
