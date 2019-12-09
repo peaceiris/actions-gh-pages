@@ -2,7 +2,7 @@ name: Purge image cache
 
 on:
   schedule:
-    - cron: '54 18 * * *'
+    - cron: '54 18 * * */7'
 
 jobs:
   purge:
