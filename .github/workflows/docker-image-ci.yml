@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       with:
         fetch-depth: 1
 
@@ -30,7 +30,7 @@ jobs:
   shellcheck:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       with:
         fetch-depth: 1
     - name: shellcheck
@@ -39,10 +39,8 @@ jobs:
   hadolint:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       with:
         fetch-depth: 1
-    - name: hadolint
-      run: |
-        brew install hadolint
-        hadolint ./Dockerfile
+    - run: brew install hadolint
+    - run: hadolint ./Dockerfile

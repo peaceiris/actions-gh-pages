@@ -19,7 +19,7 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     # PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
@@ -46,7 +46,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
     PUBLISH_DIR: ./public
     SCRIPT_MODE: true
   run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
     bash ./entrypoint.sh
 ```
 
@@ -82,6 +82,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
+  - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -142,12 +143,12 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
       # with:
       #   submodules: true
 
     - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2.3.0
+      uses: peaceiris/actions-hugo@v2
       with:
         hugo-version: '0.59.1'
 
@@ -155,7 +156,7 @@ jobs:
       run: hugo --minify
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -190,6 +191,7 @@ PUBLISH_BRANCH: master  # deploying branch
 [User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
 
 ![Change default branch](./images/default-branch.jpg)
+![Change default branch](./images/user_repo.jpg)
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
@@ -205,8 +207,8 @@ You can pull a public docker image from Docker Hub.
 By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
 
 ```diff
-- uses: peaceiris/actions-gh-pages@v2.5.0
-+ uses: docker://peaceiris/gh-pages:v2.5.0
+- uses: peaceiris/actions-gh-pages@v2
++ uses: docker://peaceiris/gh-pages:v2
 ```
 
 - [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
@@ -243,7 +245,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
@@ -260,7 +262,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
@@ -279,7 +281,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.5.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     EXTERNAL_REPOSITORY: username/external-repository
@@ -324,7 +326,7 @@ There is no Docker build or pull step, so it will start immediately.
     PUBLISH_DIR: ./public
     SCRIPT_MODE: true
   run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2.5.0/entrypoint.sh
+    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
     bash ./entrypoint.sh
 ```
 
@@ -418,7 +420,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -438,7 +440,7 @@ jobs:
     - run: npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -466,7 +468,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -490,7 +492,7 @@ jobs:
     - run: npm run build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -520,7 +522,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -548,7 +550,7 @@ jobs:
     - run: touch ./out/.nojekyll
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -578,7 +580,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Setup Node
       uses: actions/setup-node@v1
@@ -600,7 +602,7 @@ jobs:
     - run: npm run generate
 
     - name: deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -655,7 +657,7 @@ jobs:
     - run: mkdocs build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
@@ -668,6 +670,8 @@ An example GitHub Actions workflow to deploy [rust-lang/mdBook] site to GitHub P
 
 [rust-lang/mdBook]: https://github.com/rust-lang/mdBook
 
+- [peaceiris/actions-mdbook: GitHub Actions for mdBook (rust-lang/mdBook)](https://github.com/peaceiris/actions-mdbook)
+
 ```yaml
 name: github pages
 
@@ -678,35 +682,72 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
 
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
 
-    - name: Setup mdbook
-      run: |
-        export MDBOOK_VERSION="v0.3.5"
-        export MDBOOK_TARBALL="mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz"
-        wget -q "https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/${MDBOOK_TARBALL}"
-        tar -zxvf "${MDBOOK_TARBALL}"
-        rm "${MDBOOK_TARBALL}"
-        mkdir ~/bin
-        mv ./mdbook ~/bin/
-        echo "::add-path::~/bin"
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: '0.3.5'
+        # mdbook-version: 'latest'
 
     - run: mdbook build
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
+      uses: peaceiris/actions-gh-pages@v2
       env:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./book
 ```
 
+### ⭐️ Flutter Web
 
+An exapmle workflow for [Flutter web project].
+Setup [Flutter] with [subosito/flutter-action].
+
+[Flutter]: https://github.com/flutter/flutter
+[Flutter web project]: https://flutter.dev/docs/get-started/web
+[subosito/flutter-action]: https://github.com/subosito/flutter-action
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+
+    - name: Install
+      run: |
+        flutter config --enable-web
+        flutter pub get
+
+    - name: Build
+      run: flutter build web
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./build/web
+```
 
 ## License
 
