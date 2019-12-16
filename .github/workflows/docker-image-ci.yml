@@ -3,8 +3,6 @@ name: docker image ci
 on:
   pull_request:
     types: [opened, synchronize]
-    paths-ignore:
-    - '**.md'
   push:
     paths-ignore:
     - '**.md'
