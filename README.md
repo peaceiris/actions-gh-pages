@@ -715,7 +715,7 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v1
       with:
-        channel: 'dev'
+        channel: 'beta'
 
     - name: Install
       run: |
