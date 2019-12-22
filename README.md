@@ -70,6 +70,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
+  - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
   - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
