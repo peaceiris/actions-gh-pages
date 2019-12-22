@@ -302,7 +302,7 @@ This allows you to make your publish branch with only the latest commit.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2.6.0
+  uses: peaceiris/actions-gh-pages@v2
   env:
     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     PUBLISH_BRANCH: gh-pages
