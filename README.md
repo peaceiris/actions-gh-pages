@@ -782,8 +782,7 @@ jobs:
         run: |
           mkdir ./public
           mv ./index.html ./public/
-        # Move files because `actions-gh-pages` respects separate directory.
-        # But if you have non-minimal setup with some assets and separate html/js files,
+        # If you have non-minimal setup with some assets and separate html/js files,
         # provide --output=<output-file> option for `elm make` and remove this step
 
       - name: Deploy
