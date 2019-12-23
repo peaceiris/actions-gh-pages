@@ -786,7 +786,7 @@ jobs:
         # provide --output=<output-file> option for `elm make` and remove this step
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v2.7.0-1
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
