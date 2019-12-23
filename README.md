@@ -84,6 +84,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
+  - [⭐️ Elm](#%EF%B8%8F-elm)
 - [License](#license)
 - [About the author](#about-the-author)
 
@@ -748,6 +749,49 @@ jobs:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./build/web
+```
+
+### ⭐️ Elm
+
+An exapmle workflow for [Elm] with [justgook/setup-elm].
+
+[Elm]: https://elm-lang.org/docs
+[justgook/setup-elm]: https://github.com/justgook/setup-elm
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Elm
+        uses: justgook/setup-elm@v1
+
+      - name: Make
+        run: elm make --optimize src/Main.elm
+
+      - name: Move files
+        run: |
+          mkdir ./public
+          mv ./index.html ./public/
+        # Move files because `actions-gh-pages` respects separate directory.
+        # But if you have non-minimal setup with some assets and separate html/js files,
+        # provide --output=<output-file> option for `elm make` and remove this step
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./public
 ```
 
 ## License
