@@ -102,8 +102,16 @@ else
 fi
 
 # push to publishing branch
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+if [[ -n "${INPUT_USERNAME}" ]]; then
+    git config user.name "${INPUT_USERNAME}"
+else
+    git config user.name "${GITHUB_ACTOR}"
+fi
+if [[ -n "${INPUT_USEREMAIL}" ]]; then
+    git config user.email "${INPUT_USEREMAIL}"
+else
+    git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+fi
 git remote rm origin || true
 git remote add origin "${remote_repo}"
 git add --all
