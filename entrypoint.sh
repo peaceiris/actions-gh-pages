@@ -92,7 +92,7 @@ elif git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_r
         git rm -r --ignore-unmatch '*'
     fi
 
-    find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 | \
+    find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 -not -name ".git" -not -name ".github" | \
         tail -n +2 | \
         xargs -I % cp -rf % "${local_dir}/"
 else
@@ -102,8 +102,16 @@ else
 fi
 
 # push to publishing branch
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+if [[ -n "${INPUT_USERNAME}" ]]; then
+    git config user.name "${INPUT_USERNAME}"
+else
+    git config user.name "${GITHUB_ACTOR}"
+fi
+if [[ -n "${INPUT_USEREMAIL}" ]]; then
+    git config user.email "${INPUT_USEREMAIL}"
+else
+    git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+fi
 git remote rm origin || true
 git remote add origin "${remote_repo}"
 git add --all

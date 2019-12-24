@@ -20,3 +20,9 @@ inputs:
     description: 'Keep only the latest commit on a GitHub Pages branch'
     required: false
     default: 'false'
+  username:
+    description: 'Set Git user.name'
+    required: false
+  useremail:
+    description: 'Set Git user.email'
+    required: false

@@ -71,6 +71,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
   - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
+  - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
@@ -310,6 +311,23 @@ This allows you to make your publish branch with only the latest commit.
     PUBLISH_DIR: ./public
   with:
     forceOrphan: true
+```
+
+### ⭐️ Set Git username and email
+
+Set custom `git config user.name` and `git config user.email`.
+A commit is always created with the same user.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  with:
+    username: "iris"
+    useremail: "iris@peaceiris.com"
 ```
 
 ### ⭐️ Script mode
