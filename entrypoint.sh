@@ -92,7 +92,7 @@ elif git clone --depth=1 --single-branch --branch "${remote_branch}" "${remote_r
         git rm -r --ignore-unmatch '*'
     fi
 
-    find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 | \
+    find "${GITHUB_WORKSPACE}/${PUBLISH_DIR}" -maxdepth 1 -not -name ".git" -not -name ".github" | \
         tail -n +2 | \
         xargs -I % cp -rf % "${local_dir}/"
 else
