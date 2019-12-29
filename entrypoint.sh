@@ -69,6 +69,11 @@ if [ -z "${PUBLISH_BRANCH}" ]; then
     exit 1
 fi
 
+if [ "${PUBLISH_DIR}" = "." ]; then
+    print_error "PUBLISH_DIR = '.' not supported. Please move your public files to a subdirectory (for example 'public/')."
+    exit 1
+fi
+
 if [ -z "${PUBLISH_DIR}" ]; then
     print_error "not found PUBLISH_DIR"
     exit 1
