@@ -117,7 +117,13 @@ git remote add origin "${remote_repo}"
 git add --all
 
 print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
-COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
+
+if [ -n "${EXTERNAL_REPOSITORY}" ]; then
+    COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_REPOSITORY}@${GITHUB_SHA}"
+else
+    COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
+fi
+
 if [[ ${INPUT_EMPTYCOMMITS} == "false" ]]; then
     git commit -m "${COMMIT_MESSAGE}" || skip
 else
