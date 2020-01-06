@@ -118,10 +118,16 @@ git add --all
 
 print_info "Allowing empty commits: ${INPUT_EMPTYCOMMITS}"
 
-if [ -n "${EXTERNAL_REPOSITORY}" ]; then
-    COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_REPOSITORY}@${GITHUB_SHA}"
+if [ -n "${INPUT_COMMITMESSAGE}" ]; then
+    BASE_COMMIT_MESSAGE="${INPUT_COMMITMESSAGE}"
 else
-    COMMIT_MESSAGE="Automated deployment: $(date -u) ${GITHUB_SHA}"
+    BASE_COMMIT_MESSAGE="Automated deployment: $(date -u)"
+fi
+
+if [ -n "${EXTERNAL_REPOSITORY}" ]; then
+    COMMIT_MESSAGE="${BASE_COMMIT_MESSAGE} ${GITHUB_REPOSITORY}@${GITHUB_SHA}"
+else
+    COMMIT_MESSAGE="${BASE_COMMIT_MESSAGE} ${GITHUB_SHA}"
 fi
 
 if [[ ${INPUT_EMPTYCOMMITS} == "false" ]]; then
