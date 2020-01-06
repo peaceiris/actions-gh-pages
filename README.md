@@ -343,7 +343,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
     PUBLISH_BRANCH: gh-pages
     PUBLISH_DIR: ./public
   with:
-    commitMessage: ${{ github.event.commits[0].message }}
+    commitMessage: ${{ github.event.head_commit.message }}
 ```
 
 ### ⭐️ Script mode
