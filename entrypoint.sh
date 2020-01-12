@@ -142,4 +142,13 @@ else
     git push origin "${remote_branch}"
 fi
 
+if [[ -n "${INPUT_TAGNAME}" ]]; then
+    if [[ -n "${INPUT_TAGMESSAGE}" ]]; then
+        git tag "${INPUT_TAGNAME}" -m "${INPUT_TAGMESSAGE}"
+    else
+        git tag "${INPUT_TAGNAME}"
+    fi
+    git push origin "${INPUT_TAGNAME}"
+fi
+
 print_info "${GITHUB_SHA} was successfully deployed"
