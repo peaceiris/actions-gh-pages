@@ -143,7 +143,9 @@ else
 fi
 
 if [[ -n "${INPUT_TAGNAME}" ]]; then
+    print_info "Tag name: ${INPUT_TAGNAME}"
     if [[ -n "${INPUT_TAGMESSAGE}" ]]; then
+        print_info "Tag message: ${INPUT_TAGMESSAGE}"
         git tag "${INPUT_TAGNAME}" -m "${INPUT_TAGMESSAGE}"
     else
         git tag "${INPUT_TAGNAME}"
