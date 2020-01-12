@@ -790,7 +790,7 @@ jobs:
 
 An exapmle workflow for [Elm] with [justgook/setup-elm].
 
-[Elm]: https://elm-lang.org/docs
+[Elm]: https://elm-lang.org
 [justgook/setup-elm]: https://github.com/justgook/setup-elm
 
 ```yaml
@@ -821,7 +821,7 @@ jobs:
         # provide --output=<output-file> option for `elm make` and remove this step
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.7.0-1
+        uses: peaceiris/actions-gh-pages@v2
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
