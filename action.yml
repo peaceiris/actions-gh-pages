@@ -26,3 +26,6 @@ inputs:
   useremail:
     description: 'Set Git user.email'
     required: false
+  commitMessage:
+    description: 'Set custom commit message'
+    required: false

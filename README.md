@@ -72,6 +72,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
   - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
+  - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
@@ -328,6 +329,22 @@ A commit is always created with the same user.
   with:
     username: "iris"
     useremail: "iris@peaceiris.com"
+```
+
+### ⭐️ Set custom commit message
+
+Set custom commit message.
+When we create a commit with a message `docs: Update some post`, a deployment commit will be generated with a message `docs: Update some post ${GITHUB_SHA}`.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v2
+  env:
+    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    PUBLISH_BRANCH: gh-pages
+    PUBLISH_DIR: ./public
+  with:
+    commitMessage: ${{ github.event.head_commit.message }}
 ```
 
 ### ⭐️ Script mode
