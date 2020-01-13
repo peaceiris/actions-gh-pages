@@ -73,6 +73,7 @@ Do you want to skip the docker build step? OK, the script mode is available.
   - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
+  - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
   - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
@@ -346,6 +347,63 @@ When we create a commit with a message `docs: Update some post`, a deployment co
   with:
     commitMessage: ${{ github.event.head_commit.message }}
 ```
+
+### ⭐️ Create Git tag
+
+Here is an example workflow.
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+    - master
+    tags:
+    - 'v*.*.*'
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Some build
+
+    - name: Prepare tag
+      id: prepare_tag
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        TAG_NAME="${GITHUB_REF##refs/tags/}"
+        echo "::set-output name=tag_name::${TAG_NAME}"
+        echo "::set-output name=deploy_tag_name::deploy-${TAG_NAME}"
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./public
+      with:
+        tagName: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
+        tagMessage: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
+```
+
+Commands on a local machine.
+
+```console
+$ # On the master branch
+$ git tag -a "v1.2.3" -m "Release v1.2.3"
+$ git push origin "v1.2.3"
+
+$ # After deployment
+$ git fetch origin
+$ git tag
+deploy-v1.2.3  # Tag on the gh-pages branch
+v1.2.3         # Tag on the master branch
+```
+
+We can set `tagOverwrite` option to `true` for overwriting a tag.
 
 ### ⭐️ Script mode
 
