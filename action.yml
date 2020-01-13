@@ -35,3 +35,7 @@ inputs:
   tagMessage:
     description: 'Set tag message'
     required: false
+  tagOverwrite:
+    description: 'Enable overwriting tag'
+    required: false
+    default: false
