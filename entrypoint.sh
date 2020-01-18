@@ -142,4 +142,22 @@ else
     git push origin "${remote_branch}"
 fi
 
+if [[ -n "${INPUT_TAGNAME}" ]]; then
+    print_info "Tag name: ${INPUT_TAGNAME}"
+    print_info "Tag message: ${INPUT_TAGMESSAGE}"
+    print_info "Tag overwrite: ${INPUT_TAGOVERWRITE}"
+    if [[ -n "${INPUT_TAGMESSAGE}" ]]; then
+        GIT_TAG_MESSAGE="${INPUT_TAGMESSAGE}"
+    else
+        GIT_TAG_MESSAGE="Deployment ${INPUT_TAGNAME}"
+    fi
+    if [[ "${INPUT_TAGOVERWRITE}" == "true" ]]; then
+        GIT_TAG_OPTION="--force"
+    else
+        GIT_TAG_OPTION=""
+    fi
+    git tag "${GIT_TAG_OPTION}" -a "${INPUT_TAGNAME}" -m "${GIT_TAG_MESSAGE}"
+    git push "${GIT_TAG_OPTION}" origin "${INPUT_TAGNAME}"
+fi
+
 print_info "${GITHUB_SHA} was successfully deployed"

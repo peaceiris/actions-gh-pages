@@ -29,3 +29,13 @@ inputs:
   commitMessage:
     description: 'Set custom commit message'
     required: false
+  tagName:
+    description: 'Set tag name'
+    required: false
+  tagMessage:
+    description: 'Set tag message'
+    required: false
+  tagOverwrite:
+    description: 'Enable overwriting tag'
+    required: false
+    default: false
