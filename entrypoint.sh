@@ -53,7 +53,7 @@ elif [ -n "${GITHUB_TOKEN}" ]; then
     print_error "GITHUB_TOKEN works only private repo, See #9"
 
     if [ -n "${EXTERNAL_REPOSITORY}" ]; then
-        print_error "can not use GITHUB_TOKEN to deploy to a external repository"
+        print_error "can not use GITHUB_TOKEN to deploy to an external repository"
         exit 1
     fi
 
