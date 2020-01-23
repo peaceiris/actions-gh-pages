@@ -2,7 +2,7 @@ version: 1
 update_configs:
   - package_manager: "docker"
     directory: "/"
-    update_schedule: "weekly"
+    update_schedule: "daily"
     default_labels:
       - "dependencies"
       - "docker"
