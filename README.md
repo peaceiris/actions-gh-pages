@@ -32,9 +32,11 @@ Three tokens are supported.
 
 | Token | Private repo | Public repo | Protocol | Setup |
 |---|:---:|:---:|---|---|
-| `GITHUB_TOKEN` | ✅️ | ❌️ | HTTPS | Unnecessary |
+| `GITHUB_TOKEN` | ✅️ | (1) | HTTPS | Unnecessary |
 | `PERSONAL_TOKEN` | ✅️ | ✅️ | HTTPS | Necessary |
 | `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
+
+- 1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
 
 Do you want to skip the docker build step? OK, the script mode is available.
 
