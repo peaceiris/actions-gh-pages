@@ -36,7 +36,7 @@ Three tokens are supported.
 | `PERSONAL_TOKEN` | ✅️ | ✅️ | HTTPS | Necessary |
 | `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
 
-- 1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
+1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
 
 Do you want to skip the docker build step? OK, the script mode is available.
 
