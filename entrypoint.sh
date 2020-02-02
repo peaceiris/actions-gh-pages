@@ -103,14 +103,14 @@ fi
 
 # push to publishing branch
 if [[ -n "${INPUT_USERNAME}" ]]; then
-    git config user.name "${INPUT_USERNAME}"
+    git config --global user.name "${INPUT_USERNAME}"
 else
-    git config user.name "${GITHUB_ACTOR}"
+    git config --global user.name "${GITHUB_ACTOR}"
 fi
 if [[ -n "${INPUT_USEREMAIL}" ]]; then
-    git config user.email "${INPUT_USEREMAIL}"
+    git config --global user.email "${INPUT_USEREMAIL}"
 else
-    git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+    git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 fi
 git remote rm origin || true
 git remote add origin "${remote_repo}"
