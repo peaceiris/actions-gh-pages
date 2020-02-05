@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.0...v3.0.1) (2020-02-05)
+
+
+### docs
+
+* Add link to v2 ([ec95e8e](https://github.com/peaceiris/actions-gh-pages/commit/ec95e8e7aae2075200c33461a0f3aa640d7fbe02))
+* remove Script mode section ([9b3fcdf](https://github.com/peaceiris/actions-gh-pages/commit/9b3fcdf51572449ce5f346724d01e878bd811834))
+* remove v2 example ([a1375a4](https://github.com/peaceiris/actions-gh-pages/commit/a1375a463794f123e06ddb6af0d74ef453d74fa0))
+* update ([1a26eac](https://github.com/peaceiris/actions-gh-pages/commit/1a26eaca33cf4f1d162fc37fd45cab6ea999140e))
+* update for v3 ([1a13108](https://github.com/peaceiris/actions-gh-pages/commit/1a1310886515195d8b9052e68aec5a973dd3779d))
+* update for v3 ([d0de38a](https://github.com/peaceiris/actions-gh-pages/commit/d0de38a352de7896c0bc618c3977f00f6a34151d))
+* update for v3 ([b3cfcb1](https://github.com/peaceiris/actions-gh-pages/commit/b3cfcb13c0e3d5b76fb2b306fafbc0bfdc349e2e))
+* update for v3 ([b1aaa85](https://github.com/peaceiris/actions-gh-pages/commit/b1aaa85b6766b71fd96a06d1ea8a99a5247e7b6c))
+* update for v3 ([f1e7cd6](https://github.com/peaceiris/actions-gh-pages/commit/f1e7cd608c631ec6a3c48e1e76f17b6c8a468ada))
+* update for v3 ([07a3f29](https://github.com/peaceiris/actions-gh-pages/commit/07a3f2915ef742feb191caf4315f92c5dbe24657))
+* update for v3 ([02c3858](https://github.com/peaceiris/actions-gh-pages/commit/02c38586a5b45e217af006473aa99749917bce73))
+* update for v3 ([59bbb98](https://github.com/peaceiris/actions-gh-pages/commit/59bbb98387fa6cde2495176555efd39a3c68b6b5))
+* update for v3 ([be27dcc](https://github.com/peaceiris/actions-gh-pages/commit/be27dcce4894bf0847e64b2ba676b9de08979d21))
+* update for v3 ([ccf71d1](https://github.com/peaceiris/actions-gh-pages/commit/ccf71d1162ce030d5f8aa4bb1e05c45d83912c67))
+* update for v3 ([5fe4aa3](https://github.com/peaceiris/actions-gh-pages/commit/5fe4aa3f24fd2a3f7cf683b04c29895c6882c5de))
+* update for v3 ([428902c](https://github.com/peaceiris/actions-gh-pages/commit/428902c6cd381168d113898fa3fd53e83ca658b2))
+* update for v3 ([00bca7b](https://github.com/peaceiris/actions-gh-pages/commit/00bca7b88cea3a6aff0cd9e90cc297f90981dfe8))
+* update GitHub Actions badge ([9cec798](https://github.com/peaceiris/actions-gh-pages/commit/9cec79845182679864d2e9f2b137c1829773b4a0))
+* update overview ([c940278](https://github.com/peaceiris/actions-gh-pages/commit/c940278a4c780afbd658b4a3f0f7834039913401))
+
+### feat
+
+* Add getHomeDir() for windows (#86) ([ed21b6a](https://github.com/peaceiris/actions-gh-pages/commit/ed21b6a5942b1be9f75103a2661d908d41ed9ea9)), closes [#86](https://github.com/peaceiris/actions-gh-pages/issues/86)
+
+### refactor
+
+* change to core.debug ([9f11da8](https://github.com/peaceiris/actions-gh-pages/commit/9f11da81ae3ead3c8929c35266dd40a0ddfd2bd1))
+
+
+
 # [3.0.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.0-1...v3.0.0) (2020-02-05)
 
 
