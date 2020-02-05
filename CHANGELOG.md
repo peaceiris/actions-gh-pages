@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.0.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.0-1...v3.0.0) (2020-02-05)
+
+
+### ci
+
+* force_orphan to false ([a150e4e](https://github.com/peaceiris/actions-gh-pages/commit/a150e4e690ab9bfcecae05b68c8efd14edac15df))
+
+### fix
+
+* action title ([0629bab](https://github.com/peaceiris/actions-gh-pages/commit/0629babb090ceea68f118101b903a8e6798b2962))
+
+
+
 # [3.0.0-1](https://github.com/peaceiris/actions-gh-pages/compare/v2.10.1...v3.0.0-1) (2020-02-05)
 
 
