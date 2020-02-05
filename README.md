@@ -269,40 +269,37 @@ For example:
 ### ⭐️ Deploy to external repository
 
 By default, your files are published to the repository which is running this action.
-If you want to publish to another repository on GitHub, set the environment variable `EXTERNAL_REPOSITORY` to `<username>/<external-repository>`.
-This option is available from `v2.5.0`.
+If you want to publish to another repository on GitHub, set the environment variable `external_repository` to `<username>/<external-repository>`.
 
 For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    EXTERNAL_REPOSITORY: username/external-repository
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    external_repository: username/external-repository
+    publish_branch: gh-pages
+    publish_dir: ./public
 ```
 
-You can use `ACTIONS_DEPLOY_KEY` or `PERSONAL_TOKEN`.
-When you use `ACTIONS_DEPLOY_KEY`, set your private key to the repository which includes this action and set your public key to your external repository.
+You can use `deploy_key` or `personal_token`.
+When you use `deploy_key`, set your private key to the repository which includes this action and set your public key to your external repository.
 
 Be careful, `GITHUB_TOKEN` has no permission to access to external repositories.
 
 ### ⭐️ Force orphan
 
-From `v2.6.0`, we can set the `forceOrphan: true` option.
+We can set the `force_orphan: true` option.
 This allows you to make your publish branch with only the latest commit.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
   with:
-    forceOrphan: true
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    force_orphan: true
 ```
 
 ### ⭐️ Set Git username and email
