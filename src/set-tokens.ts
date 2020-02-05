@@ -4,8 +4,23 @@ import * as github from '@actions/github';
 import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
+const cpSpawnSync = require('child_process').spawnSync;
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
+
+export function getHomeDir(): string {
+  let homedir = '';
+
+  if (process.platform === 'win32') {
+    homedir = process.env['USERPROFILE'] || 'C:\\';
+  } else {
+    homedir = `${process.env.HOME}`;
+  }
+
+  core.debug(`homeDir: ${homedir}`);
+
+  return homedir;
+}
 
 export function setPublishRepo(insp: Inputs): string {
   if (insp.ExternalRepository) {
@@ -20,7 +35,8 @@ export async function setSSHKey(
 ): Promise<string> {
   core.info('[INFO] setup SSH deploy key');
 
-  const sshDir = path.join(`${process.env.HOME}`, '.ssh');
+  const homeDir = getHomeDir();
+  const sshDir = path.join(homeDir, '.ssh');
   await io.mkdirP(sshDir);
   await exec.exec('chmod', ['700', sshDir]);
 
@@ -50,6 +66,12 @@ Host github
   core.info(`[INFO] wrote ${sshConfigPath}`);
   await exec.exec('chmod', ['600', sshConfigPath]);
 
+  if (process.platform === 'win32') {
+    await cpSpawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
+    await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
+    await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
+    await exec.exec('sc', ['start', 'ssh-agent']);
+  }
   await cpexec('ssh-agent', ['-a', '/tmp/ssh-auth.sock']);
   core.exportVariable('SSH_AUTH_SOCK', '/tmp/ssh-auth.sock');
   await exec.exec('ssh-add', [idRSA]);
