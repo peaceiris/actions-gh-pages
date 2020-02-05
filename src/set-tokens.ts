@@ -65,6 +65,10 @@ Host github
   core.info(`[INFO] wrote ${sshConfigPath}`);
   await exec.exec('chmod', ['600', sshConfigPath]);
 
+  if (process.platform === 'win32') {
+    await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
+    await exec.exec('sc', ['start', 'ssh-agent']);
+  }
   await cpexec('ssh-agent', ['-a', '/tmp/ssh-auth.sock']);
   core.exportVariable('SSH_AUTH_SOCK', '/tmp/ssh-auth.sock');
   await exec.exec('ssh-add', [idRSA]);
