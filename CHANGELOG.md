@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.1...v3.0.2) (2020-02-05)
+
+
+### ci
+
+* use github_token for windows-latest ([cfdf8c4](https://github.com/peaceiris/actions-gh-pages/commit/cfdf8c43ed170ce3bcfc1b4ee5ba50000e89f9e7))
+
+### docs
+
+* Add CodeFactor badge ([0ba5bf3](https://github.com/peaceiris/actions-gh-pages/commit/0ba5bf3eeb5f0ad9e42dc6344afa736b47dac67f))
+* Add Supported Platforms table ([f0177d1](https://github.com/peaceiris/actions-gh-pages/commit/f0177d176f9464c11cbdff5a68dbecd6e630e371))
+* update log example for v3 ([d35854b](https://github.com/peaceiris/actions-gh-pages/commit/d35854bdf87ba4311c5b5ba738260e4eb89c2295))
+
+### fix
+
+* add debug ([fb54d6a](https://github.com/peaceiris/actions-gh-pages/commit/fb54d6af4d2abbf7a42806620594b173c2f55882))
+* add filePath ([f8b5a36](https://github.com/peaceiris/actions-gh-pages/commit/f8b5a36401de48c3bf2fda47a51b010350405163))
+* copy directories #89 ([6edc4c9](https://github.com/peaceiris/actions-gh-pages/commit/6edc4c976449147551137b19eb7bc092d9d129ec)), closes [#89](https://github.com/peaceiris/actions-gh-pages/issues/89)
+* copy force ([848165c](https://github.com/peaceiris/actions-gh-pages/commit/848165cf9f01c61b1f2e83d433177a9f46ce5ea7))
+
+
+
 ## [3.0.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.0...v3.0.1) (2020-02-05)
 
 
