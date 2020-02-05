@@ -309,14 +309,12 @@ A commit is always created with the same user.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
   with:
-    username: "iris"
-    useremail: "iris@peaceiris.com"
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    user_name: iris
+    user_email: iris@peaceiris.com
 ```
 
 ### ⭐️ Set custom commit message
