@@ -1,7 +1,7 @@
 [![license](https://img.shields.io/github/license/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/blob/master/LICENSE)
 [![release](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases)
-![GitHub Actions status](https://github.com/peaceiris/actions-gh-pages/workflows/docker%20image%20ci/badge.svg)
+![Test Action](https://github.com/peaceiris/actions-gh-pages/workflows/Test%20Action/badge.svg?branch=master&event=push)
 [![Release Feed](https://img.shields.io/badge/release-feed-yellow)](https://github.com/peaceiris/actions-gh-pages/releases.atom)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=peaceiris/actions-gh-pages)](https://dependabot.com)
 
