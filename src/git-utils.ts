@@ -23,7 +23,7 @@ export async function copyAssets(
   publishDir: string,
   workDir: string
 ): Promise<void> {
-  const copyOpts = {recursive: true, force: false};
+  const copyOpts = {recursive: true, force: true};
   const files = fs.readdirSync(publishDir);
   core.debug(`${files}`);
   for await (const file of files) {
