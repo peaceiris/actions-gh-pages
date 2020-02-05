@@ -7,6 +7,20 @@ import fs from 'fs';
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 
+export function getHomeDir(): string {
+  let homedir = '';
+
+  if (process.platform === 'win32') {
+    homedir = process.env['USERPROFILE'] || 'C:\\';
+  } else {
+    homedir = `${process.env.HOME}`;
+  }
+
+  core.debug(`homeDir: ${homedir}`);
+
+  return homedir;
+}
+
 export function setPublishRepo(insp: Inputs): string {
   if (insp.ExternalRepository) {
     return insp.ExternalRepository;
@@ -20,7 +34,8 @@ export async function setSSHKey(
 ): Promise<string> {
   core.info('[INFO] setup SSH deploy key');
 
-  const sshDir = path.join(`${process.env.HOME}`, '.ssh');
+  const homeDir = getHomeDir();
+  const sshDir = path.join(homeDir, '.ssh');
   await io.mkdirP(sshDir);
   await exec.exec('chmod', ['700', sshDir]);
 
