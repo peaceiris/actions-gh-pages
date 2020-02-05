@@ -1,0 +1,86 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  skipci:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: echo "[Skip CI] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+
+  test:
+    runs-on: ${{ matrix.os }}
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-18.04'
+          # - 'macos-latest'
+          # - 'windows-latest'
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo "::set-output name=NVMRC::$(cat .nvmrc)"
+        id: nvm
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: '0.3.5'
+
+      - name: Build
+        working-directory: ./test_projects/mdbook
+        run: mdbook build
+
+      - name: Prepare tag
+        id: prepare_tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG_NAME="${GITHUB_REF##refs/tags/}"
+          echo "::set-output name=tag_name::${TAG_NAME}"
+          echo "::set-output name=deploy_tag_name::deploy-${TAG_NAME}"
+
+      - name: Deploy
+        uses: ./
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # publish_branch: master
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          # keep_files: true
+          force_orphan: true
+          # user_name: iris
+          # user_email: email@peaceiris.com
+          # commit_message: ${{ github.event.head_commit.message }}
+          # tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
+          # tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
+
+      # - name: Deploy v2
+      #   uses: peaceiris/actions-gh-pages@v2
+      #   env:
+      #     ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      #     PUBLISH_BRANCH: gh-pages
+      #     PUBLISH_DIR: ./test_projects/mdbook/book

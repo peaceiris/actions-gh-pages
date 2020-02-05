@@ -1,41 +1,57 @@
-name: 'GitHub Pages action'
+name: 'GitHub Pages v3'
 description: 'GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.'
 author: 'peaceiris'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'lib/index.js'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
 inputs:
-  emptyCommits:
+  deploy_key:
+    description: ''
+    required: false
+  github_token:
+    description: ''
+    required: false
+  personal_token:
+    description: ''
+    required: false
+  publish_branch:
+    description: ''
+    required: false
+    default: 'gh-pages'
+  publish_dir:
+    description: ''
+    required: false
+    default: 'public'
+  external_repository:
+    description: ''
+    required: false
+  allow_empty_commit:
     description: 'If empty commits should be made to the publication branch'
     required: false
-    default: 'true'
-  keepFiles:
+    default: 'false'
+  keep_files:
     description: 'If existing files in the publish branch should be not removed before deploying'
     required: false
     default: 'false'
-  forceOrphan:
+  force_orphan:
     description: 'Keep only the latest commit on a GitHub Pages branch'
     required: false
     default: 'false'
-  username:
+  user_name:
     description: 'Set Git user.name'
     required: false
-  useremail:
+  user_email:
     description: 'Set Git user.email'
     required: false
-  commitMessage:
+  commit_message:
     description: 'Set custom commit message'
     required: false
-  tagName:
+  tag_name:
     description: 'Set tag name'
     required: false
-  tagMessage:
+  tag_message:
     description: 'Set tag message'
     required: false
-  tagOverwrite:
-    description: 'Enable overwriting tag'
-    required: false
-    default: false

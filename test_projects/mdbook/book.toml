@@ -1,0 +1,6 @@
+[book]
+authors = ["peaceiris"]
+language = "en"
+multilingual = false
+src = "src"
+title = "GitHub Actions for GitHub Pages"

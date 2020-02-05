@@ -1,0 +1,64 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  skipci:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: echo "[Skip CI] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+
+  test:
+    runs-on: ${{ matrix.os }}
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    strategy:
+      matrix:
+        os:
+          - 'ubuntu-18.04'
+          - 'macos-latest'
+          - 'windows-latest'
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo "::set-output name=NVMRC::$(cat .nvmrc)"
+        id: nvm
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - run: npm ci
+
+      - name: Run prettier
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run format:check
+
+      - name: Run eslint
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run lint
+
+      - name: Run ncc
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run build
+
+      - run: npm test
+
+      - name: Upload test coverage as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage
+          path: coverage
