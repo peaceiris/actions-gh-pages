@@ -1,0 +1,76 @@
+{
+  "name": "actions-github-pages",
+  "version": "3.0.0-0",
+  "description": "GitHub Actions for GitHub Pages",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=12.14.1",
+    "npm": ">=6.13.7"
+  },
+  "scripts": {
+    "lint": "eslint ./{src,__tests__}/**/*.ts",
+    "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
+    "test": "jest --coverage --verbose --detectOpenHandles",
+    "build": "ncc build ./src/index.ts -o lib",
+    "tsc": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format:check": "prettier --check **/*.ts",
+    "release": "standard-version",
+    "update-deps": "(git diff 'HEAD@{1}' --name-only | grep 'package-lock.json' > /dev/null) && npm ci || :"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-merge": "npm run update-deps; git remote prune origin"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --check",
+      "eslint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peaceiris/actions-gh-pages.git"
+  },
+  "keywords": [
+    "GitHub Actions",
+    "Actions",
+    "JavaScript Action",
+    "TypeScript Action",
+    "GitHub Pages",
+    "gh-pages"
+  ],
+  "author": "peaceiris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peaceiris/actions-gh-pages/issues"
+  },
+  "homepage": "https://github.com/peaceiris/actions-gh-pages#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.2",
+    "@actions/exec": "^1.0.3",
+    "@actions/github": "^2.1.0",
+    "@actions/glob": "^0.1.0",
+    "@actions/io": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "@zeit/ncc": "^0.21.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "jest-circus": "^25.1.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "1.19.1",
+    "standard-version": "^7.1.0",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
+  }
+}

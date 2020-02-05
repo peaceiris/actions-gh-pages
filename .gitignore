@@ -1,1 +1,6 @@
 .DS_Store
+coverage
+.npm
+.eslintcache
+.env
+node_modules

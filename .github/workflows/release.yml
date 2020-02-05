@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - 'v3.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-18.04
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "${GITHUB_CONTEXT}"
+
+      - name: Install github/hub
+        run: |
+          export HUB_VERSION="2.14.1"
+          curl -fsSL https://github.com/github/hub/raw/40e421edd2c63d57bb8daa4bb9bbdfa21e8becf9/script/get | bash -s "${HUB_VERSION}"
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG_NAME="${GITHUB_REF##refs/tags/}"
+          echo "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for more details." > ./release_notes.md
+          RELEASE_NAME="$(jq -r '.name' ./package.json)"
+          sed -i "1i${RELEASE_NAME} ${TAG_NAME}\n" ./release_notes.md
+          ./bin/hub release create \
+            --draft \
+            --prerelease \
+            --file ./release_notes.md \
+            "${TAG_NAME}"
