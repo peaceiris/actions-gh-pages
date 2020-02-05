@@ -4,6 +4,7 @@ import * as github from '@actions/github';
 import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
+const cpSpawnSync = require('child_process').spawnSync;
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 
@@ -66,7 +67,7 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
-    await cpexec('eval', ['"$(ssh-agent)"']);
+    await cpSpawnSync('eval', ['"$(ssh-agent)"'], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
     await exec.exec('sc', ['start', 'ssh-agent']);
   }
