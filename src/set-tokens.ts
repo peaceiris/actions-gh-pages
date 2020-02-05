@@ -67,7 +67,7 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
-    await cpSpawnSync('eval', ['"$(ssh-agent)"'], {shell: true});
+    await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
     await exec.exec('sc', ['start', 'ssh-agent']);
   }
