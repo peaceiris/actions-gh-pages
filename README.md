@@ -341,35 +341,33 @@ name: github pages
 on:
   push:
     branches:
-    - master
+      - master
     tags:
-    - 'v*.*.*'
+      - 'v*.*.*'
 
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Some build
+      - name: Some build
 
-    - name: Prepare tag
-      id: prepare_tag
-      if: startsWith(github.ref, 'refs/tags/')
-      run: |
-        TAG_NAME="${GITHUB_REF##refs/tags/}"
-        echo "::set-output name=tag_name::${TAG_NAME}"
-        echo "::set-output name=deploy_tag_name::deploy-${TAG_NAME}"
+      - name: Prepare tag
+        id: prepare_tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          TAG_NAME="${GITHUB_REF##refs/tags/}"
+          echo "::set-output name=tag_name::${TAG_NAME}"
+          echo "::set-output name=deploy_tag_name::deploy-${TAG_NAME}"
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./public
-      with:
-        tagName: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
-        tagMessage: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./public
+          tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
+          tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
 ```
 
 Commands on a local machine.
@@ -385,8 +383,6 @@ $ git tag
 deploy-v1.2.3  # Tag on the gh-pages branch
 v1.2.3         # Tag on the master branch
 ```
-
-We can set `tagOverwrite` option to `true` for overwriting a tag.
 
 ### ⭐️ Script mode
 
