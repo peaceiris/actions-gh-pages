@@ -23,11 +23,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     if: contains(github.event.head_commit.message, '[skip ci]') == false
     strategy:
+      max-parallel: 1
       matrix:
         os:
           - 'ubuntu-18.04'
-          # - 'macos-latest'
-          # - 'windows-latest'
+          - 'macos-latest'
+          - 'windows-latest'
     steps:
 
       - uses: actions/checkout@v2
@@ -66,7 +67,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           # github_token: ${{ secrets.GITHUB_TOKEN }}
-          # publish_branch: master
+          # publish_branch: gh-pages
           publish_dir: ./test_projects/mdbook/book
           # external_repository: ''
           allow_empty_commit: true
