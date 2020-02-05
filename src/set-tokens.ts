@@ -66,8 +66,15 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
-    await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
-    await exec.exec('sc', ['start', 'ssh-agent']);
+    // await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
+    // await exec.exec('sc', ['start', 'ssh-agent']);
+    await exec.exec('Set-Service', [
+      '-Name',
+      'ssh-agent',
+      '-StartupType',
+      'Manual'
+    ]);
+    await exec.exec('Start-Service', ['ssh-agent']);
   }
   await cpexec('ssh-agent', ['-a', '/tmp/ssh-auth.sock']);
   core.exportVariable('SSH_AUTH_SOCK', '/tmp/ssh-auth.sock');
