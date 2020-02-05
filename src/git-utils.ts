@@ -30,7 +30,8 @@ export async function copyAssets(
     if (file.endsWith('.git') || file.endsWith('.github')) {
       continue;
     }
-    await io.cp(file, `${workDir}/`, copyOpts);
+    const filePath = path.join(publishDir, file);
+    await io.cp(filePath, `${workDir}/`, copyOpts);
     core.info(`[INFO] copy ${file}`);
   }
 
