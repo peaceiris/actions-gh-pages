@@ -2,8 +2,8 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
 import * as io from '@actions/io';
-import * as glob from '@actions/glob';
 import path from 'path';
+import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
 import {getHomeDir} from './utils';
 
@@ -24,8 +24,8 @@ export async function copyAssets(
   workDir: string
 ): Promise<void> {
   const copyOpts = {recursive: true, force: false};
-  const globber = await glob.create(`${publishDir}/*`);
-  for await (const file of globber.globGenerator()) {
+  const files = fs.readdirSync(publishDir);
+  for await (const file of files) {
     if (file.endsWith('.git') || file.endsWith('.github')) {
       continue;
     }
