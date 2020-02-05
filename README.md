@@ -34,6 +34,8 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
     publish_dir: ./public
 ```
 
+### Supported Tokens
+
 Three tokens are supported.
 
 | Token | Private repo | Public repo | Protocol | Setup |
@@ -43,6 +45,16 @@ Three tokens are supported.
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
 
 1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
+
+### Supported Platforms
+
+| runs-on | `deploy_key` | `github_token` | `personal_token` |
+|---|:---:|:---:|:---:|
+| ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
+| macos-latest | ✅️ | ✅️ | ✅️ |
+| windows-latest | (2) | ✅️ | ✅️ |
+
+2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
 
 
 
