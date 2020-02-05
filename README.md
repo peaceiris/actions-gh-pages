@@ -83,7 +83,6 @@ Three tokens are supported.
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
-  - [⭐️ Script mode](#%EF%B8%8F-script-mode)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
@@ -382,26 +381,6 @@ $ git fetch origin
 $ git tag
 deploy-v1.2.3  # Tag on the gh-pages branch
 v1.2.3         # Tag on the master branch
-```
-
-### ⭐️ Script mode
-
-From `v2.5.0`, we can run this action as a shell script.
-There is no Docker build or pull step, so it will start immediately.
-
-- `ACTIONS_DEPLOY_KEY` requires `SCRIPT_MODE: true`
-- `*_TOKEN` do not require `SCRIPT_MODE`
-
-```yaml
-- name: Deploy
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
-    SCRIPT_MODE: true
-  run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
-    bash ./entrypoint.sh
 ```
 
 <div align="right">
