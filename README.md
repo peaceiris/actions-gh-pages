@@ -22,6 +22,20 @@ This deploy action can be combined simply and freely with [Static Site Generator
 
 The next example step will deploy `./public` directory to the remote `gh-pages` branch.
 
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    # github_token: ${{ secrets.GITHUB_TOKEN }}
+    # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    publish_dir: ./public
+```
+
+<details>
+<summary>👉 Old v2 YAML here</summary>
+
 ```yaml
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v2
@@ -33,29 +47,18 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
     PUBLISH_DIR: ./public
 ```
 
+</details>
+
+
 Three tokens are supported.
 
 | Token | Private repo | Public repo | Protocol | Setup |
 |---|:---:|:---:|---|---|
-| `GITHUB_TOKEN` | ✅️ | (1) | HTTPS | Unnecessary |
-| `PERSONAL_TOKEN` | ✅️ | ✅️ | HTTPS | Necessary |
-| `ACTIONS_DEPLOY_KEY` | ✅️ | ✅️ | SSH | Necessary |
+| `github_token` | ✅️ | (1) | HTTPS | Unnecessary |
+| `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
+| `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
 
 1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
-
-Do you want to skip the docker build step? OK, the script mode is available.
-
-```yaml
-- name: Deploy
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
-    SCRIPT_MODE: true
-  run: |
-    wget https://raw.githubusercontent.com/peaceiris/actions-gh-pages/v2/entrypoint.sh
-    bash ./entrypoint.sh
-```
 
 
 
