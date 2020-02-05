@@ -744,7 +744,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        env:
+        with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./book
 ```
@@ -770,30 +770,29 @@ on:
       - master
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v1
-      with:
-        channel: 'beta'
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'beta'
 
-    - name: Install
-      run: |
-        flutter config --enable-web
-        flutter pub get
+      - name: Install
+        run: |
+          flutter config --enable-web
+          flutter pub get
 
-    - name: Build
-      run: flutter build web
+      - name: Build
+        run: flutter build web
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./build/web
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./build/web
 ```
 
 ### ⭐️ Elm
