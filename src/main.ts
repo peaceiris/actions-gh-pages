@@ -12,7 +12,7 @@ export async function run(): Promise<void> {
     await git.setConfig(inps.UserName, inps.UserEmail);
 
     const remoteURL = await setTokens(inps);
-    core.info(`[INFO] remoteURL: ${remoteURL}`); // TODO: remove
+    core.debug(`[INFO] remoteURL: ${remoteURL}`);
 
     await git.setRepo(inps, remoteURL);
 
