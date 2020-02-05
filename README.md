@@ -74,10 +74,9 @@ Three tokens are supported.
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
-  - [⭐️ Pull action image from Docker Hub](#%EF%B8%8F-pull-action-image-from-docker-hub)
-  - [⭐️ `PERSONAL_TOKEN`](#%EF%B8%8F-personal_token)
-  - [⭐️ `GITHUB_TOKEN`](#%EF%B8%8F-github_token)
-  - [⭐️ Suppressing empty commits](#%EF%B8%8F-suppressing-empty-commits)
+  - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
+  - [⭐️ `github_token`](#%EF%B8%8F-github_token)
+  - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
   - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
@@ -152,30 +151,29 @@ name: github pages
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v1
-      # with:
-      #   submodules: true
+      - uses: actions/checkout@v1
+        # with:
+        #   submodules: true
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.59.1'
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.64.0'
 
-    - name: Build
-      run: hugo --minify
+      - name: Build
+        run: hugo --minify
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./public
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./public
 ```
 
 The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
@@ -197,9 +195,9 @@ we have to set `master` branch to `PUBLISH_BRANCH`.
 on:
   push:
     branches:
-    - source  # default branch
+      - source  # default branch
 
-PUBLISH_BRANCH: master  # deploying branch
+publish_branch: master  # deploying branch
 ```
 
 [Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
@@ -216,74 +214,56 @@ PUBLISH_BRANCH: master  # deploying branch
 
 ## Options
 
-### ⭐️ Pull action image from Docker Hub
-
-You can pull a public docker image from Docker Hub.
-By pulling docker images, you can reduce the overall execution time of your workflow. In addition, `latest` tag is provided.
-
-```diff
-- uses: peaceiris/actions-gh-pages@v2
-+ uses: docker://peaceiris/gh-pages:v2
-```
-
-- [peaceiris/gh-pages - Docker Hub](https://hub.docker.com/r/peaceiris/gh-pages)
-
-### ⭐️ `PERSONAL_TOKEN`
+### ⭐️ `personal_token`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
 ```diff
-- ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
++ personal_token: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
-### ⭐️ `GITHUB_TOKEN`
+### ⭐️ `github_token`
 
-> ⚠️ **NOTES**: `GITHUB_TOKEN` works only on a **private** repository.
+> ⚠️ **NOTES**: `github_token` works only on a **private** repository.
 >
 > This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
 
 [Issue #9]: https://github.com/peaceiris/actions-gh-pages/issues/9
 
 ```diff
-- ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
++ github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### ⭐️ Suppressing empty commits
+### ⭐️ Allow empty commits
 
-By default, a commit will always be generated and pushed to the `PUBLISH_BRANCH`, even if nothing changed. If you want to suppress this behavior, set the optional parameter `emptyCommits` to `false`. cf. [Issue #21]
-
-[Issue #21]: https://github.com/peaceiris/actions-gh-pages/issues/21
+By default, a commit will not be generated when no file changes. If you want to allow an empty commit, set the optional parameter `allow_empty_commit` to `true`.
 
 For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
   with:
-    emptyCommits: false
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    allow_empty_commit: true
 ```
 
 ### ⭐️ Keeping existing files
 
-By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keepFiles` to `true`.
+By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keep_files` to `true`.
 
 For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
   with:
-    keepFiles: true
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    keep_files: true
 ```
 
 ### ⭐️ Deploy to external repository
