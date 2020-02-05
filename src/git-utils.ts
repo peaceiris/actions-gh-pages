@@ -25,6 +25,7 @@ export async function copyAssets(
 ): Promise<void> {
   const copyOpts = {recursive: true, force: false};
   const files = fs.readdirSync(publishDir);
+  core.debug(`${files}`);
   for await (const file of files) {
     if (file.endsWith('.git') || file.endsWith('.github')) {
       continue;
