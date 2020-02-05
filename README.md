@@ -324,13 +324,11 @@ When we create a commit with a message `docs: Update some post`, a deployment co
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v2
-  env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
+  uses: peaceiris/actions-gh-pages@v3
   with:
-    commitMessage: ${{ github.event.head_commit.message }}
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    commit_message: ${{ github.event.head_commit.message }}
 ```
 
 ### ⭐️ Create Git tag
