@@ -71,7 +71,7 @@ jobs:
           # external_repository: ''
           allow_empty_commit: true
           # keep_files: true
-          force_orphan: true
+          # force_orphan: true
           # user_name: iris
           # user_email: email@peaceiris.com
           # commit_message: ${{ github.event.head_commit.message }}
