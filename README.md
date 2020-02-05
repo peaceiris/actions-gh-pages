@@ -420,9 +420,9 @@ Does not your static site generator deal with the static files? No problem, you 
 
 ### ⭐️ Deployment completed but you cannot read
 
-Does your `PUBLISH_DIR` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
+Does your `publish_dir` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
 GitHub Pages does not read those by default.
-Please add `.nojekyll` file to `PUBLISH_DIR`.
+Please add `.nojekyll` file to `publish_dir`.
 
 - [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
 
