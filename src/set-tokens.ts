@@ -67,7 +67,7 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
-    await exec.exec('Start-Process', ['powershell.exe', '-Verb', 'runas']);
+    await cpSpawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
     await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
     await exec.exec('sc', ['start', 'ssh-agent']);
