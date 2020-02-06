@@ -65,39 +65,46 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
       }
     }
   };
-  result.exitcode = await exec.exec(
-    'git',
-    [
-      'clone',
-      '--depth=1',
-      '--single-branch',
-      '--branch',
-      inps.PublishBranch,
-      remoteURL,
-      workDir
-    ],
-    options
-  );
 
-  process.chdir(workDir);
-
-  if (result.exitcode === 0) {
-    if (inps.KeepFiles) {
-      core.info('[INFO] Keep existing files');
-    } else {
-      await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
-    }
-
-    await copyAssets(publishDir, workDir);
-    return;
-  } else {
-    core.info(
-      `[INFO] first deployment, create new branch ${inps.PublishBranch}`
+  try {
+    result.exitcode = await exec.exec(
+      'git',
+      [
+        'clone',
+        '--depth=1',
+        '--single-branch',
+        '--branch',
+        inps.PublishBranch,
+        remoteURL,
+        workDir
+      ],
+      options
     );
-    await createWorkDir(workDir);
-    await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, workDir);
-    return;
+    if (result.exitcode === 0) {
+      if (inps.KeepFiles) {
+        core.info('[INFO] Keep existing files');
+      } else {
+        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+      }
+
+      await copyAssets(publishDir, workDir);
+      return;
+    } else {
+      throw new Error(`Failed to close remote branch ${inps.PublishBranch}`);
+    }
+  } catch (e) {
+    if (result.exitcode === 128) {
+      core.info(
+        `[INFO] first deployment, create new branch ${inps.PublishBranch}`
+      );
+      process.chdir(workDir);
+      await createWorkDir(workDir);
+      await createBranchForce(inps.PublishBranch);
+      await copyAssets(publishDir, workDir);
+      return;
+    } else {
+      throw new Error(e);
+    }
   }
 }
 
