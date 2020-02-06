@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.3-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.2...v3.0.3-0) (2020-02-06)
+
+
+### fix
+
+* Enable to create branch for first deployment (#92) ([1b6740c](https://github.com/peaceiris/actions-gh-pages/commit/1b6740cb30fc6a5a695a015144589862eb241b7d)), closes [#92](https://github.com/peaceiris/actions-gh-pages/issues/92)
+
+
+
 ## [3.0.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.1...v3.0.2) (2020-02-05)
 
 
