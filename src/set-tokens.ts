@@ -100,9 +100,6 @@ export async function setGithubToken(
         `You deploy from ${inps.PublishBranch} to ${inps.PublishBranch}`
       );
     }
-  } else if (context.eventName === 'pull_request') {
-    // TODO: support pull_request event
-    throw new Error('This action does not support pull_request event now.');
   }
 
   const isPrivateRepository = payload.repository?.private;
