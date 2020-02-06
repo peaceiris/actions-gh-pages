@@ -43,6 +43,7 @@ jobs:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
 
       - run: npm ci
+      - run: npm uninstall lint-staged husky
       - run: npm run build
 
       - name: Setup mdBook
