@@ -101,6 +101,7 @@ export async function setRepo(
     );
     core.info(e);
     await createWorkDir(workDir);
+    process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, workDir);
     return true;
