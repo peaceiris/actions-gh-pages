@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.3-0...v3.0.3) (2020-02-06)
+
+
+### docs
+
+* update example of publish_branch ([2948e5e](https://github.com/peaceiris/actions-gh-pages/commit/2948e5eda85d99ffc20cda677353918ea9ea3f45))
+
+
+
 ## [3.0.3-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.2...v3.0.3-0) (2020-02-06)
 
 
