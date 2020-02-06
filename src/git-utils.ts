@@ -97,7 +97,6 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
       `[INFO] first deployment, create new branch ${inps.PublishBranch}`
     );
     core.info(e);
-    process.chdir(workDir);
     await createWorkDir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, workDir);
