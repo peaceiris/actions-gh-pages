@@ -184,7 +184,7 @@ The above example is for [Project Pages sites]. (`<username>/<project_name>` rep
 #### ⭐️ Repository type - User and Organization
 
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
-we have to set `master` branch to `PUBLISH_BRANCH`.
+we have to set `master` branch to `publish_branch`.
 
 A default value of `publish_branch` is `gh-pages`.
 
