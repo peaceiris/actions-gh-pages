@@ -93,7 +93,7 @@ Three tokens are supported.
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
   - [⭐️ Elm](#%EF%B8%8F-elm)
 - [License](#license)
-- [About the author](#about-the-author)
+- [Maintainer](#maintainer)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -855,9 +855,9 @@ jobs:
 
 
 
-## About the author
+## Maintainer
 
-- [peaceiris's homepage](https://peaceiris.com/)
+- [peaceiris homepage](https://peaceiris.com/)
 
 
 
