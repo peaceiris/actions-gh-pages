@@ -93,18 +93,15 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
       throw new Error(`Failed to close remote branch ${inps.PublishBranch}`);
     }
   } catch (e) {
-    if (result.exitcode === 128) {
-      core.info(
-        `[INFO] first deployment, create new branch ${inps.PublishBranch}`
-      );
-      process.chdir(workDir);
-      await createWorkDir(workDir);
-      await createBranchForce(inps.PublishBranch);
-      await copyAssets(publishDir, workDir);
-      return;
-    } else {
-      throw new Error(e);
-    }
+    core.info(
+      `[INFO] first deployment, create new branch ${inps.PublishBranch}`
+    );
+    core.info(e);
+    process.chdir(workDir);
+    await createWorkDir(workDir);
+    await createBranchForce(inps.PublishBranch);
+    await copyAssets(publishDir, workDir);
+    return;
   }
 }
 
