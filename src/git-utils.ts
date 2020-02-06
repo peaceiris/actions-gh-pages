@@ -84,6 +84,7 @@ export async function setRepo(
       options
     );
     if (result.exitcode === 0) {
+      process.chdir(workDir);
       if (inps.KeepFiles) {
         core.info('[INFO] Keep existing files');
       } else {
@@ -93,7 +94,7 @@ export async function setRepo(
       await copyAssets(publishDir, workDir);
       return false;
     } else {
-      throw new Error(`Failed to close remote branch ${inps.PublishBranch}`);
+      throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
   } catch (e) {
     core.info(
