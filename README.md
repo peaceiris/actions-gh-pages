@@ -149,7 +149,7 @@ on:
       - master
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
@@ -186,13 +186,28 @@ The above example is for [Project Pages sites]. (`<username>/<project_name>` rep
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
 we have to set `master` branch to `PUBLISH_BRANCH`.
 
+A default value of `publish_branch` is `gh-pages`.
+
 ```yaml
 on:
   push:
     branches:
       - source  # default branch
 
-publish_branch: master  # deploying branch
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: somebuild
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./public
+          publish_branch: master  # deploying branch
 ```
 
 [Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
