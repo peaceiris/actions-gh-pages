@@ -65,36 +65,41 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
       }
     }
   };
-  result.exitcode = await exec.exec(
-    'git',
-    [
-      'clone',
-      '--depth=1',
-      '--single-branch',
-      '--branch',
-      inps.PublishBranch,
-      remoteURL,
-      workDir
-    ],
-    options
-  );
 
-  process.chdir(workDir);
+  try {
+    result.exitcode = await exec.exec(
+      'git',
+      [
+        'clone',
+        '--depth=1',
+        '--single-branch',
+        '--branch',
+        inps.PublishBranch,
+        remoteURL,
+        workDir
+      ],
+      options
+    );
+    if (result.exitcode === 0) {
+      process.chdir(workDir);
+      if (inps.KeepFiles) {
+        core.info('[INFO] Keep existing files');
+      } else {
+        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+      }
 
-  if (result.exitcode === 0) {
-    if (inps.KeepFiles) {
-      core.info('[INFO] Keep existing files');
+      await copyAssets(publishDir, workDir);
+      return;
     } else {
-      await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+      throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
-
-    await copyAssets(publishDir, workDir);
-    return;
-  } else {
+  } catch (e) {
     core.info(
       `[INFO] first deployment, create new branch ${inps.PublishBranch}`
     );
+    core.info(e);
     await createWorkDir(workDir);
+    process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, workDir);
     return;
