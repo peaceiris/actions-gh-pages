@@ -44,7 +44,7 @@ Three tokens are supported.
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
 
-1. Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.
+1. ~~Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.~~ Maybe, we can use it but there no official announcement by GitHub.
 
 ### Supported Platforms
 
