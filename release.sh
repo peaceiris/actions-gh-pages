@@ -3,12 +3,23 @@
 # fail on unset variables and command errors
 set -eu -o pipefail # -x: is for debugging
 
-if [ "$(git branch --show-current)" != "master" ]; then
-  echo "$0: Current branch is not master" 1>&2
-  exit 1
+CURRENT_BRANCH="$(git branch --show-current)"
+if [ "${CURRENT_BRANCH}" != "master" ]; then
+  echo "$0: Current branch ${CURRENT_BRANCH} is not master, continue? (y/n)"
+  read -r res
+  if [ "${res}" = "n" ]; then
+    echo "$0: Stop script"
+    exit 0
+  fi
 fi
 
-RELEASE_TYPE_LIST="prerelease prepatch patch preminor minor major premajor"
+PRERELEASE_TYPE_LIST="prerelease prepatch preminor premajor"
+if [ "${CURRENT_BRANCH}" != "master" ]; then
+  RELEASE_TYPE_LIST="${PRERELEASE_TYPE_LIST}"
+else
+  RELEASE_TYPE_LIST="${PRERELEASE_TYPE_LIST} patch minor major"
+fi
+
 if command -v fzf; then
   RELEASE_TYPE=$(echo "${RELEASE_TYPE_LIST}" | tr ' ' '\n' | fzf --layout=reverse)
 else
@@ -26,7 +37,11 @@ if [ "${res}" = "n" ]; then
 fi
 
 git fetch origin
-git pull origin master
+if [ "${CURRENT_BRANCH}" != "master" ]; then
+  git pull origin "${CURRENT_BRANCH}"
+else
+  git pull origin master
+fi
 git tag -d v3 || true
 git pull origin --tags
 
@@ -43,6 +58,11 @@ git rm ./lib/index.js
 rm -rf ./lib
 git commit -m "chore(release): Remove build assets [skip ci]"
 
+if [ "${CURRENT_BRANCH}" != "master" ]; then
+  git push origin "${CURRENT_BRANCH}"
+else
+  git push origin master
+fi
+
 TAG_NAME="v$(jq -r '.version' ./package.json)"
-git push origin master
 git push origin "${TAG_NAME}"
