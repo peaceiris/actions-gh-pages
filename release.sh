@@ -42,8 +42,8 @@ if [ "${CURRENT_BRANCH}" != "master" ]; then
 else
   git pull origin master
 fi
-git tag -d v3 || true
 git pull origin --tags
+git tag -d v3 || true
 
 npm ci
 
