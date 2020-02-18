@@ -38,7 +38,10 @@ export async function copyAssets(
   return;
 }
 
-export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
+export async function setRepo(
+  inps: Inputs,
+  remoteURL: string
+): Promise<string> {
   const workDir = path.join(getHomeDir(), 'actions_github_pages');
   const publishDir = path.join(
     `${process.env.GITHUB_WORKSPACE}`,
@@ -51,7 +54,7 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, workDir);
-    return;
+    return workDir;
   }
 
   const result: CmdResult = {
@@ -89,7 +92,7 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
       }
 
       await copyAssets(publishDir, workDir);
-      return;
+      return workDir;
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
@@ -102,7 +105,7 @@ export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, workDir);
-    return;
+    return workDir;
   }
 }
 

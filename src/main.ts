@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as io from '@actions/io';
 import {Inputs} from './interfaces';
 import {getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
@@ -14,7 +15,7 @@ export async function run(): Promise<void> {
     const remoteURL = await setTokens(inps);
     core.debug(`[INFO] remoteURL: ${remoteURL}`);
 
-    await git.setRepo(inps, remoteURL);
+    const workDir = await git.setRepo(inps, remoteURL);
 
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
@@ -32,6 +33,8 @@ export async function run(): Promise<void> {
     await git.push(inps.PublishBranch, inps.ForceOrphan);
     await git.pushTag(inps.TagName, inps.TagMessage);
     core.info('[INFO] Action successfully completed');
+
+    io.rmRF(workDir);
 
     return;
   } catch (e) {
