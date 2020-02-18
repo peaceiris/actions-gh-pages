@@ -7,20 +7,7 @@ import fs from 'fs';
 const cpSpawnSync = require('child_process').spawnSync;
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
-
-export function getHomeDir(): string {
-  let homedir = '';
-
-  if (process.platform === 'win32') {
-    homedir = process.env['USERPROFILE'] || 'C:\\';
-  } else {
-    homedir = `${process.env.HOME}`;
-  }
-
-  core.debug(`homeDir: ${homedir}`);
-
-  return homedir;
-}
+import {getHomeDir} from './utils';
 
 export function setPublishRepo(insp: Inputs): string {
   if (insp.ExternalRepository) {

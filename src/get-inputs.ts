@@ -16,7 +16,7 @@ function showInputs(inps: Inputs): void {
   core.info(`[INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}`);
   core.info(`[INFO] KeepFiles: ${inps.KeepFiles}`);
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
-  core.info(`[INFO] UserEmail: ${inps.UserEmail}`);
+  core.info(`[INFO] UserName: ${inps.UserName}`);
   core.info(`[INFO] UserEmail: ${inps.UserEmail}`);
   core.info(`[INFO] CommitMessage: ${inps.CommitMessage}`);
   core.info(`[INFO] TagName: ${inps.TagName}`);
