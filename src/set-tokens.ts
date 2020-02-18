@@ -7,7 +7,7 @@ import fs from 'fs';
 const cpSpawnSync = require('child_process').spawnSync;
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
-import {getHomeDir} from './utils'
+import {getHomeDir} from './utils';
 
 export function setPublishRepo(insp: Inputs): string {
   if (insp.ExternalRepository) {
