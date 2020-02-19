@@ -61,8 +61,7 @@ Three tokens are supported.
 
 
 - [Getting started](#getting-started)
-  - [(1) Add SSH deploy key](#1-add-ssh-deploy-key)
-  - [(2) Create your workflow](#2-create-your-workflow)
+  - [Create your workflow](#create-your-workflow)
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
@@ -79,6 +78,7 @@ Three tokens are supported.
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
 - [Tips and FAQ](#tips-and-faq)
+  - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
   - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
@@ -100,31 +100,7 @@ Three tokens are supported.
 
 ## Getting started
 
-### (1) Add SSH deploy key
-
-Generate your deploy key with the following command.
-
-```sh
-ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
-# You will get 2 files:
-#   gh-pages.pub (public key)
-#   gh-pages     (private key)
-```
-
-Next, Go to **Repository Settings**
-
-- Go to **Deploy Keys** and add your public key with the **Allow write access**
-- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
-
-| Add your public key | Success |
-|---|---|
-| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
-
-| Add your private key | Success |
-|---|---|
-| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
-
-### (2) Create your workflow
+### Create your workflow
 
 Add your workflow setting YAML file `.github/workflows/gh-pages.yml` and push to the default branch.
 
@@ -224,6 +200,8 @@ jobs:
 ## Options
 
 ### ⭐️ `deploy_key`
+
+Read [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH deploy key, and set the `deploy_key` option like the following.
 
 ```yaml
 - name: Deploy
@@ -440,6 +418,31 @@ v1.2.3         # Tag on the master branch
 
 
 ## Tips and FAQ
+
+### ⭐️ Create SSH Deploy Key
+
+Generate your deploy key with the following command.
+
+```sh
+ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+# You will get 2 files:
+#   gh-pages.pub (public key)
+#   gh-pages     (private key)
+```
+
+Next, Go to **Repository Settings**
+
+- Go to **Deploy Keys** and add your public key with the **Allow write access**
+- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
+
+| Add your public key | Success |
+|---|---|
+| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
+
+| Add your private key | Success |
+|---|---|
+| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
+
 
 ### ⭐️ Use the latest and specific release
 
