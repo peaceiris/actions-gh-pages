@@ -73,10 +73,8 @@ export async function setGithubToken(
   core.info('[INFO] setup GITHUB_TOKEN');
 
   const context = github.context;
-  const payload = github.context.payload;
   core.debug(`ref: ${context.ref}`);
   core.debug(`eventName: ${context.eventName}`);
-  core.debug(`private: ${payload.repository?.private}`);
   let isProhibitedBranch = false;
 
   const ref = context.ref;
@@ -89,15 +87,9 @@ export async function setGithubToken(
     }
   }
 
-  const isPrivateRepository = payload.repository?.private;
   if (inps.ExternalRepository) {
     throw new Error(
       'GITHUB_TOKEN does not support to push to an external repository'
-    );
-  }
-  if (isPrivateRepository === false) {
-    core.warning(
-      'GITHUB_TOKEN does not support to trigger the GitHub Pages build event on a public repository'
     );
   }
 
