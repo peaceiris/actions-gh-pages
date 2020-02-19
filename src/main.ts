@@ -16,7 +16,7 @@ export async function run(): Promise<void> {
 
     const date = new Date();
     const unixTime = date.getTime();
-    await git.setRepo(inps, remoteURL, unixTime);
+    await git.setRepo(inps, remoteURL, `${unixTime}`);
 
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
