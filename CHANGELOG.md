@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.4-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.4-0...v3.0.4-1) (2020-02-19)
+
+
+### deps
+
+* bump @types/node from 13.7.1 to 13.7.2 (#110) ([591c4bd](https://github.com/peaceiris/actions-gh-pages/commit/591c4bdf2ee1c6aa5f1958c4553902feac06dcfe)), closes [#110](https://github.com/peaceiris/actions-gh-pages/issues/110)
+* Rollback @types/node 13 to 12 (#111) ([195ab80](https://github.com/peaceiris/actions-gh-pages/commit/195ab8005d4af142c40fd8e53a59783b697d75d9)), closes [#111](https://github.com/peaceiris/actions-gh-pages/issues/111)
+
+### fix
+
+* Add await ([0031179](https://github.com/peaceiris/actions-gh-pages/commit/00311793aa104bf99501373756461475b6752f16))
+* convert to string ([cbe4d56](https://github.com/peaceiris/actions-gh-pages/commit/cbe4d56fb8bd50d63919f783483f74c694a3dd9b))
+* use onetime workdir name ([0d912a1](https://github.com/peaceiris/actions-gh-pages/commit/0d912a1314ce9d77f29bc0c1fada559223dd5563))
+
+### refactor
+
+* Add info message ([8e6c12a](https://github.com/peaceiris/actions-gh-pages/commit/8e6c12a2b5f973c8736f831398d0fe7c980f1431))
+
+
+
 ## [3.0.4-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.3...v3.0.4-0) (2020-02-18)
 
 
