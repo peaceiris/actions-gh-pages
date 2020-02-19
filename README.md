@@ -28,9 +28,7 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    # github_token: ${{ secrets.GITHUB_TOKEN }}
-    # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
 ```
 
@@ -40,11 +38,9 @@ Three tokens are supported.
 
 | Token | Private repo | Public repo | Protocol | Setup |
 |---|:---:|:---:|---|---|
-| `github_token` | ✅️ | (1) | HTTPS | Unnecessary |
+| `github_token` | ✅️ | ✅️ | HTTPS | Unnecessary |
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
-
-1. ~~Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.~~ Maybe, we can use it but there is no official announcement by GitHub.
 
 ### Supported Platforms
 
@@ -70,6 +66,7 @@ Three tokens are supported.
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
+  - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ `github_token`](#%EF%B8%8F-github_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
@@ -225,6 +222,16 @@ jobs:
 
 
 ## Options
+
+### ⭐️ `deploy_key`
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+```
 
 ### ⭐️ `personal_token`
 
