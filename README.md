@@ -67,7 +67,6 @@ Three tokens are supported.
 - [Options](#options)
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
-  - [⭐️ `github_token`](#%EF%B8%8F-github_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
   - [⭐️ Disable `.nojekyll`](#%EF%B8%8F-disable-nojekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
@@ -218,19 +217,6 @@ Read [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create yo
 ```diff
 - deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 + personal_token: ${{ secrets.PERSONAL_TOKEN }}
-```
-
-### ⭐️ `github_token`
-
-> ⚠️ **NOTES**: `github_token` works only on a **private** repository.
->
-> This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
-
-[Issue #9]: https://github.com/peaceiris/actions-gh-pages/issues/9
-
-```diff
-- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### ⭐️ CNAME
