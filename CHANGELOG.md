@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.1.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.3...v3.1.0) (2020-02-19)
+
+
+### deps
+
+* bump @types/jest from 25.1.1 to 25.1.2 (#93) ([aec195e](https://github.com/peaceiris/actions-gh-pages/commit/aec195ebb4e984f62f48139a5e24aa85ea31e891)), closes [#93](https://github.com/peaceiris/actions-gh-pages/issues/93)
+* bump @types/node from 13.7.0 to 13.7.1 (#99) ([0b00dd2](https://github.com/peaceiris/actions-gh-pages/commit/0b00dd2a9f91c1854f4b1cfe68dc30891ebccc9f)), closes [#99](https://github.com/peaceiris/actions-gh-pages/issues/99)
+* bump @types/node from 13.7.1 to 13.7.2 (#110) ([591c4bd](https://github.com/peaceiris/actions-gh-pages/commit/591c4bdf2ee1c6aa5f1958c4553902feac06dcfe)), closes [#110](https://github.com/peaceiris/actions-gh-pages/issues/110)
+* bump @typescript-eslint/eslint-plugin from 2.19.0 to 2.19.2 (#97) ([5d5e933](https://github.com/peaceiris/actions-gh-pages/commit/5d5e9338ccbca63f80f5ee66ba9e9eff14bacb68)), closes [#97](https://github.com/peaceiris/actions-gh-pages/issues/97)
+* bump @typescript-eslint/eslint-plugin from 2.19.2 to 2.20.0 (#105) ([1c50baa](https://github.com/peaceiris/actions-gh-pages/commit/1c50baa294d259f81459f7a495f8d0d2a50a1b6d)), closes [#105](https://github.com/peaceiris/actions-gh-pages/issues/105)
+* bump @typescript-eslint/parser from 2.19.0 to 2.19.2 (#96) ([8b52b41](https://github.com/peaceiris/actions-gh-pages/commit/8b52b41ecb191f50bd5efc9ee2c0266a2d171d14)), closes [#96](https://github.com/peaceiris/actions-gh-pages/issues/96)
+* bump @typescript-eslint/parser from 2.19.2 to 2.20.0 (#106) ([73c09c7](https://github.com/peaceiris/actions-gh-pages/commit/73c09c703e63c0b442ffa50624ace10eaa929280)), closes [#106](https://github.com/peaceiris/actions-gh-pages/issues/106)
+* bump eslint-plugin-jest from 23.6.0 to 23.7.0 (#95) ([0a1a581](https://github.com/peaceiris/actions-gh-pages/commit/0a1a58196ba5bf48e168475e0ac3898fbd3043e2)), closes [#95](https://github.com/peaceiris/actions-gh-pages/issues/95)
+* bump husky from 4.2.1 to 4.2.3 (#102) ([49a6939](https://github.com/peaceiris/actions-gh-pages/commit/49a6939dbb77d7656228cdc3bed6a99d5124a6b2)), closes [#102](https://github.com/peaceiris/actions-gh-pages/issues/102)
+* bump node from 12.14.1 to 12.15.0 (#94) ([0e542f9](https://github.com/peaceiris/actions-gh-pages/commit/0e542f9f9231c005e1a6363a33a69fdbde436085)), closes [#94](https://github.com/peaceiris/actions-gh-pages/issues/94)
+* Rollback @types/node 13 to 12 (#111) ([195ab80](https://github.com/peaceiris/actions-gh-pages/commit/195ab8005d4af142c40fd8e53a59783b697d75d9)), closes [#111](https://github.com/peaceiris/actions-gh-pages/issues/111)
+
+### docs
+
+* fix ([60c31d2](https://github.com/peaceiris/actions-gh-pages/commit/60c31d23a8a096624a3b9a0955a05ea9941dc140))
+* rename author to Maintainer ([4101589](https://github.com/peaceiris/actions-gh-pages/commit/41015898aad0abad9d0760bc576e4748e476d4f9))
+* update job name ([752214a](https://github.com/peaceiris/actions-gh-pages/commit/752214aa33756f6e097f908671681a13865a9991))
+* update publish_branch for v3 ([a7866b5](https://github.com/peaceiris/actions-gh-pages/commit/a7866b5bd3a121a460c8c39cb1c9d1586db6b231))
+* update status of github_token ([1887981](https://github.com/peaceiris/actions-gh-pages/commit/1887981f72e59b54f68febb4fa4786e7e153ef6d))
+
+### fix
+
+* Change final message ([476fa94](https://github.com/peaceiris/actions-gh-pages/commit/476fa94197aea4d3f74e5619ae77ebf966fd5fff))
+* Use onetime workdir name (#109) ([2f5ccc9](https://github.com/peaceiris/actions-gh-pages/commit/2f5ccc92dfcf8e85d9d3c19dc842a440380253bf)), closes [#109](https://github.com/peaceiris/actions-gh-pages/issues/109)
+
+### refactor
+
+* fix typo and remove useless function (#107) ([55a68e3](https://github.com/peaceiris/actions-gh-pages/commit/55a68e34ca406d99b5b2a4549d7ade5eeb03d860)), closes [#107](https://github.com/peaceiris/actions-gh-pages/issues/107)
+
+
+
 ## [3.0.4-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.4-0...v3.0.4-1) (2020-02-19)
 
 
