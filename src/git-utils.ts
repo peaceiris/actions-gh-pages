@@ -38,8 +38,12 @@ export async function copyAssets(
   return;
 }
 
-export async function setRepo(inps: Inputs, remoteURL: string): Promise<void> {
-  const workDir = path.join(getHomeDir(), 'actions_github_pages');
+export async function setRepo(
+  inps: Inputs,
+  remoteURL: string,
+  unixTime: string
+): Promise<void> {
+  const workDir = path.join(getHomeDir(), `actions_github_pages_${unixTime}`);
   const publishDir = path.join(
     `${process.env.GITHUB_WORKSPACE}`,
     inps.PublishDir

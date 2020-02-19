@@ -14,7 +14,9 @@ export async function run(): Promise<void> {
     const remoteURL = await setTokens(inps);
     core.debug(`[INFO] remoteURL: ${remoteURL}`);
 
-    await git.setRepo(inps, remoteURL);
+    const date = new Date();
+    const unixTime = date.getTime();
+    await git.setRepo(inps, remoteURL, `${unixTime}`);
 
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
@@ -31,6 +33,7 @@ export async function run(): Promise<void> {
     );
     await git.push(inps.PublishBranch, inps.ForceOrphan);
     await git.pushTag(inps.TagName, inps.TagMessage);
+
     core.info('[INFO] Action successfully completed');
 
     return;
