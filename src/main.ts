@@ -32,9 +32,11 @@ export async function run(): Promise<void> {
     );
     await git.push(inps.PublishBranch, inps.ForceOrphan);
     await git.pushTag(inps.TagName, inps.TagMessage);
-    core.info('[INFO] Action successfully completed');
 
+    core.info(`[INFO] Deleting ${workDir}`);
     io.rmRF(workDir);
+
+    core.info('[INFO] Action successfully completed');
 
     return;
   } catch (e) {
