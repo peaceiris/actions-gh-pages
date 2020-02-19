@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
     await git.pushTag(inps.TagName, inps.TagMessage);
 
     core.info(`[INFO] Deleting ${workDir}`);
-    io.rmRF(workDir);
+    await io.rmRF(workDir);
 
     core.info('[INFO] Action successfully completed');
 
