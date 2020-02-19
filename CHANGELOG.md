@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.2.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.1.0...v3.2.0) (2020-02-19)
+
+
+### feat
+
+* Remove warning about GITHUB_TOKEN (#108) ([74f652a](https://github.com/peaceiris/actions-gh-pages/commit/74f652acfdfc3290f8b6f7c5e65fd1f563412cf5)), closes [#108](https://github.com/peaceiris/actions-gh-pages/issues/108) [#9](https://github.com/peaceiris/actions-gh-pages/issues/9)
+
+
+
 # [3.1.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.0.3...v3.1.0) (2020-02-19)
 
 
