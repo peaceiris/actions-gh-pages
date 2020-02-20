@@ -10,7 +10,8 @@ RUN apt-get update && \
     libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf \
     ca-certificates \
     wget \
-    ssh && \
+    ssh \
+    vim && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /git
