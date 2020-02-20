@@ -21,6 +21,8 @@ function showInputs(inps: Inputs): void {
   core.info(`[INFO] CommitMessage: ${inps.CommitMessage}`);
   core.info(`[INFO] TagName: ${inps.TagName}`);
   core.info(`[INFO] TagMessage: ${inps.TagMessage}`);
+  core.info(`[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}`);
+  core.info(`[INFO] CNAME: ${inps.CNAME}`);
 }
 
 export function getInputs(): Inputs {
@@ -41,7 +43,10 @@ export function getInputs(): Inputs {
     UserEmail: core.getInput('user_email'),
     CommitMessage: core.getInput('commit_message'),
     TagName: core.getInput('tag_name'),
-    TagMessage: core.getInput('tag_message')
+    TagMessage: core.getInput('tag_message'),
+    DisableNoJekyll:
+      (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE',
+    CNAME: core.getInput('cname')
   };
 
   showInputs(inps);

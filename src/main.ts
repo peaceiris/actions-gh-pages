@@ -4,6 +4,7 @@ import {Inputs} from './interfaces';
 import {getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
 import * as git from './git-utils';
+import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
 
 export async function run(): Promise<void> {
   try {
@@ -16,12 +17,16 @@ export async function run(): Promise<void> {
 
     const date = new Date();
     const unixTime = date.getTime();
-    await git.setRepo(inps, remoteURL, `${unixTime}`);
+    const workDir = await getWorkDirName(`${unixTime}`);
+    await git.setRepo(inps, remoteURL, workDir);
+
+    await addNoJekyll(workDir, inps.DisableNoJekyll, inps.PublishBranch);
+    await addCNAME(workDir, inps.CNAME);
 
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
     } catch (e) {
-      core.info(`[INFO] e`);
+      core.info(`[INFO] ${e}`);
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);

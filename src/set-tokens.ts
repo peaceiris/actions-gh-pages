@@ -22,7 +22,7 @@ export async function setSSHKey(
 ): Promise<string> {
   core.info('[INFO] setup SSH deploy key');
 
-  const homeDir = getHomeDir();
+  const homeDir = await getHomeDir();
   const sshDir = path.join(homeDir, '.ssh');
   await io.mkdirP(sshDir);
   await exec.exec('chmod', ['700', sshDir]);

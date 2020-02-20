@@ -55,3 +55,10 @@ inputs:
   tag_message:
     description: 'Set tag message'
     required: false
+  disable_nojekyll:
+    description: 'Disable adding .nojekyll file to master or gh-pages branches'
+    required: false
+    default: 'false'
+  cname:
+    description: 'Set custom domain'
+    required: false
