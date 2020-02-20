@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.3.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.2.0...v3.3.0-0) (2020-02-20)
+
+
+### chore
+
+* Add vim ([b9a6975](https://github.com/peaceiris/actions-gh-pages/commit/b9a697582713e95c1d628172933226631d3825af))
+
+### deps
+
+* bump @types/jest from 25.1.2 to 25.1.3 (#118) ([0b1dd44](https://github.com/peaceiris/actions-gh-pages/commit/0b1dd44709acc2ba27cf43e181767b92e78d1577)), closes [#118](https://github.com/peaceiris/actions-gh-pages/issues/118)
+* bump ts-jest from 25.2.0 to 25.2.1 (#117) ([e1bf32a](https://github.com/peaceiris/actions-gh-pages/commit/e1bf32ad68fadb9a32147579d6dc49b51d6ddefb)), closes [#117](https://github.com/peaceiris/actions-gh-pages/issues/117)
+
+### feat
+
+* Add disable_nojekyll and cname options ([7c4b591](https://github.com/peaceiris/actions-gh-pages/commit/7c4b591cf65cf4daf0464fba89b32ff4e764b427)), closes [#112](https://github.com/peaceiris/actions-gh-pages/issues/112)
+
+
+
 # [3.2.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.1.0...v3.2.0) (2020-02-19)
 
 
