@@ -16,6 +16,19 @@ beforeEach(() => {
 
 // });
 
+describe('getHomeDir()', () => {
+  test('get home directory name', async () => {
+    let test = '';
+    if (process.platform === 'win32') {
+      test = 'C:\\Users\\runneradmin';
+    } else {
+      test = `${process.env.HOME}`;
+    }
+    const expected = await getHomeDir();
+    expect(test).toMatch(expected);
+  });
+});
+
 describe('getWorkDirName()', () => {
   test('get work directory name', async () => {
     const date = new Date();
@@ -33,16 +46,14 @@ describe('getWorkDirName()', () => {
   });
 });
 
-describe('getHomeDir()', () => {
-  test('get home directory name', async () => {
-    let test = '';
-    if (process.platform === 'win32') {
-      test = 'C:\\Users\\runneradmin';
-    } else {
-      test = `${process.env.HOME}`;
-    }
-    const expected = await getHomeDir();
-    expect(test).toMatch(expected);
+describe('createWorkDir()', () => {
+  test('create work directory', async () => {
+    const date = new Date();
+    const unixTime = date.getTime();
+    const workDirName = await getWorkDirName(`${unixTime}`);
+    await createWorkDir(workDirName);
+    const test = fs.existsSync(workDirName);
+    expect(test).toBe(true);
   });
 });
 
