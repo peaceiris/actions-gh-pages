@@ -16,6 +16,12 @@ beforeEach(() => {
 
 // });
 
+async function getTime(): Promise<string> {
+  const date = new Date();
+  const unixTime = date.getTime();
+  return `${unixTime}`;
+}
+
 describe('getHomeDir()', () => {
   test('get home directory name', async () => {
     let test = '';
@@ -31,15 +37,13 @@ describe('getHomeDir()', () => {
 
 describe('getWorkDirName()', () => {
   test('get work directory name', async () => {
-    const date = new Date();
-    const unixTime = date.getTime();
-
     let home = '';
     if (process.platform === 'win32') {
       home = 'C:\\Users\\runneradmin';
     } else {
       home = `${process.env.HOME}`;
     }
+    const unixTime = await getTime();
     const expected = path.join(home, `actions_github_pages_${unixTime}`);
     const test = await getWorkDirName(`${unixTime}`);
     expect(test).toMatch(expected);
@@ -48,8 +52,7 @@ describe('getWorkDirName()', () => {
 
 describe('createWorkDir()', () => {
   test('create work directory', async () => {
-    const date = new Date();
-    const unixTime = date.getTime();
+    const unixTime = await getTime();
     const workDirName = await getWorkDirName(`${unixTime}`);
     await createWorkDir(workDirName);
     const test = fs.existsSync(workDirName);
@@ -58,8 +61,7 @@ describe('createWorkDir()', () => {
 });
 
 async function getWorkDir(): Promise<string> {
-  const date = new Date();
-  const unixTime = date.getTime();
+  const unixTime = await getTime();
   let workDir = '';
   workDir = await getWorkDirName(`${unixTime}`);
   await createWorkDir(workDir);
