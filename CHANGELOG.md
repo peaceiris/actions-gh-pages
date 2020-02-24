@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.4.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.3.0...v3.4.0) (2020-02-24)
+
+
+### deps
+
+* bump eslint-plugin-jest from 23.7.0 to 23.8.0 (#124) ([e0af1f7](https://github.com/peaceiris/actions-gh-pages/commit/e0af1f7de04642a5e810c38b24abd507d81b86be)), closes [#124](https://github.com/peaceiris/actions-gh-pages/issues/124)
+
+### docs
+
+* Put github_token as first example (#115) ([62e7849](https://github.com/peaceiris/actions-gh-pages/commit/62e7849d7ab5a2167baf529dc8fd9034fcf41c43)), closes [#115](https://github.com/peaceiris/actions-gh-pages/issues/115)
+* update ([7b12ca9](https://github.com/peaceiris/actions-gh-pages/commit/7b12ca9aebe1ddcf25dc1c6fd793308e703b4ec7))
+
+
+
 # [3.3.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.2.0...v3.3.0) (2020-02-24)
 
 
