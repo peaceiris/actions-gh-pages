@@ -1,6 +1,6 @@
 name: Check Pages Status
 
-on: [page_build]
+on: page_build
 
 jobs:
   pages-status-check:
@@ -8,10 +8,7 @@ jobs:
     steps:
       - name: check status
         run: |
-          import os
-          status, errormsg = os.getenv('STATUS'), os.getenv('ERROR')
-          assert status == 'built', f'Status: {status}\nError: {errormsg}'
+          status = '${{ github.event.build.status }}'
+          errormsg = '${{ github.event.build.error.message }}'
+          assert status == 'built', 'Status: {status}\nError: {errormsg}'.format(status, errormsg)
         shell: python
-        env:
-          STATUS: ${{ github.event.build.status }}
-          ERROR: ${{ github.event.build.error.message }}
