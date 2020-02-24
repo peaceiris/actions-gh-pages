@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.3.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.2.0...v3.3.0) (2020-02-24)
+
+
+### deps
+
+* bump @actions/github from 2.1.0 to 2.1.1 (#120) ([5d3cd50](https://github.com/peaceiris/actions-gh-pages/commit/5d3cd509d9e8ab8ba8b6c6981eb8ecb077ab2109)), closes [#120](https://github.com/peaceiris/actions-gh-pages/issues/120)
+* bump @types/jest from 25.1.2 to 25.1.3 (#118) ([0b1dd44](https://github.com/peaceiris/actions-gh-pages/commit/0b1dd44709acc2ba27cf43e181767b92e78d1577)), closes [#118](https://github.com/peaceiris/actions-gh-pages/issues/118)
+* bump @types/node from 12.12.27 to 12.12.28 (#122) ([b243caf](https://github.com/peaceiris/actions-gh-pages/commit/b243cafb6e6598d71925399552d569a628a42aa7)), closes [#122](https://github.com/peaceiris/actions-gh-pages/issues/122)
+* bump @zeit/ncc from 0.21.0 to 0.21.1 (#101) ([6244b19](https://github.com/peaceiris/actions-gh-pages/commit/6244b197b6c5a57172d87769cd03d79cedae9dca)), closes [#101](https://github.com/peaceiris/actions-gh-pages/issues/101)
+* bump ts-jest from 25.2.0 to 25.2.1 (#117) ([e1bf32a](https://github.com/peaceiris/actions-gh-pages/commit/e1bf32ad68fadb9a32147579d6dc49b51d6ddefb)), closes [#117](https://github.com/peaceiris/actions-gh-pages/issues/117)
+* bump typescript from 3.7.5 to 3.8.2 (#121) ([e58a6c1](https://github.com/peaceiris/actions-gh-pages/commit/e58a6c156e7249d4e6052539e2ed0aa449bdd4f4)), closes [#121](https://github.com/peaceiris/actions-gh-pages/issues/121)
+
+### feat
+
+* Add disable_nojekyll and cname options (#119) ([00fde1e](https://github.com/peaceiris/actions-gh-pages/commit/00fde1eb97e54d4fa89f31806ff2815878fafcb6)), closes [#119](https://github.com/peaceiris/actions-gh-pages/issues/119) [/github.com/peaceiris/actions-gh-pages/issues/112#issuecomment-589678269](https://github.com//github.com/peaceiris/actions-gh-pages/issues/112/issues/issuecomment-589678269) [#112](https://github.com/peaceiris/actions-gh-pages/issues/112)
+
+
+
 # [3.3.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.2.0...v3.3.0-0) (2020-02-20)
 
 
