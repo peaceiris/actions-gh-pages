@@ -79,7 +79,6 @@ Three tokens are supported.
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
-  - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
@@ -248,6 +247,8 @@ To disable this behavior, we can set the `disable_nojekyll` option to `true`.
     publish_dir: ./public
     disable_nojekyll: true
 ```
+
+For more details about `.nojekyll`: [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
 
 ### ⭐️ Allow empty commits
 
@@ -429,34 +430,12 @@ Next, Go to **Repository Settings**
 |---|---|
 | ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
 
-
 ### ⭐️ Use the latest and specific release
 
 We recommend you to use the latest and specific release of this action for stable CI/CD.
 It is useful to watch this repository (release only) to check the [latest release] of this action.
 
 [latest release]: https://github.com/peaceiris/actions-gh-pages/releases
-
-### ⭐️ Deployment completed but you cannot read
-
-Does your `publish_dir` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
-GitHub Pages does not read those by default.
-Please add `.nojekyll` file to `publish_dir`.
-
-- [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
-
-> It is now possible to completely bypass Jekyll processing on GitHub Pages by creating a file named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
-
-Does not your static site generator deal with the static files? No problem, you can add the file like the following.
-
-```yaml
-- name: Build
-  run: |
-    buildcommand
-    touch ./public/.nojekyll
-
-- name: Deploy
-```
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
