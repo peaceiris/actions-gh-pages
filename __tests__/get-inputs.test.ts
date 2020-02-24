@@ -21,6 +21,8 @@ afterEach(() => {
   delete process.env['INPUT_COMMIT_MESSAGE'];
   delete process.env['INPUT_TAG_NAME'];
   delete process.env['INPUT_TAG_MESSAGE'];
+  delete process.env['INPUT_DISABLE_NOJEKYLL'];
+  delete process.env['INPUT_CNAME'];
 });
 
 describe('getInputs()', () => {
@@ -30,15 +32,6 @@ describe('getInputs()', () => {
     // process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
     process.env['INPUT_PUBLISH_BRANCH'] = 'gh-pages';
     process.env['INPUT_PUBLISH_DIR'] = 'public';
-    // process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
-    // process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
-    // process.env['INPUT_KEEP_FILES'] = 'true';
-    // process.env['INPUT_FORCE_ORPHAN'] = 'true';
-    // process.env['INPUT_USER_NAME'] = 'username';
-    // process.env['INPUT_USER_EMAIL'] = 'github@github.com';
-    // process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
-    // process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
-    // process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
 
     const inps: Inputs = getInputs();
 
@@ -56,6 +49,8 @@ describe('getInputs()', () => {
     expect(inps.CommitMessage).toMatch('');
     expect(inps.TagName).toMatch('');
     expect(inps.TagMessage).toMatch('');
+    expect(inps.DisableNoJekyll).toBe(false);
+    expect(inps.CNAME).toMatch('');
   });
 
   test('get spec inputs', () => {
@@ -73,6 +68,8 @@ describe('getInputs()', () => {
     process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
     process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
     process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
+    process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
+    process.env['INPUT_CNAME'] = 'github.com';
 
     const inps: Inputs = getInputs();
 
@@ -90,5 +87,7 @@ describe('getInputs()', () => {
     expect(inps.CommitMessage).toMatch('feat: Add new feature');
     expect(inps.TagName).toMatch('deploy-v1.2.3');
     expect(inps.TagMessage).toMatch('Deployment v1.2.3');
+    expect(inps.DisableNoJekyll).toBe(true);
+    expect(inps.CNAME).toMatch('github.com');
   });
 });

@@ -5,13 +5,7 @@ import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
-import {getHomeDir} from './utils';
-
-export async function createWorkDir(workDirName: string): Promise<void> {
-  await io.mkdirP(workDirName);
-  core.debug(`workDir was created: ${workDirName}`);
-  return;
-}
+import {createWorkDir} from './utils';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -41,9 +35,8 @@ export async function copyAssets(
 export async function setRepo(
   inps: Inputs,
   remoteURL: string,
-  unixTime: string
+  workDir: string
 ): Promise<void> {
-  const workDir = path.join(getHomeDir(), `actions_github_pages_${unixTime}`);
   const publishDir = path.join(
     `${process.env.GITHUB_WORKSPACE}`,
     inps.PublishDir

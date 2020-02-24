@@ -13,6 +13,8 @@ export interface Inputs {
   readonly CommitMessage: string;
   readonly TagName: string;
   readonly TagMessage: string;
+  readonly DisableNoJekyll: boolean;
+  readonly CNAME: string;
 }
 
 export interface CmdResult {
