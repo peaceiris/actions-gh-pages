@@ -79,7 +79,6 @@ Three tokens are supported.
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
-  - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
   - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
@@ -437,26 +436,6 @@ We recommend you to use the latest and specific release of this action for stabl
 It is useful to watch this repository (release only) to check the [latest release] of this action.
 
 [latest release]: https://github.com/peaceiris/actions-gh-pages/releases
-
-### ⭐️ How to add `CNAME`
-
-Most of the Static Site Generators support `CNAME` as a static file.
-
-- [Use a Custom Domain | Hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/#use-a-custom-domain)
-- [Using the Static folder | GatsbyJS](https://www.gatsbyjs.org/docs/static-folder/)
-
-The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
-
-Does not your static site generator deal with the static files? No problem, you can add the file like the following.
-
-```yaml
-- name: Build
-  run: |
-    buildcommand
-    cp ./path/to/CNAME ./public/CNAME
-
-- name: Deploy
-```
 
 ### ⭐️ Deployment completed but you cannot read
 
