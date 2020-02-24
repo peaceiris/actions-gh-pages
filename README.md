@@ -28,9 +28,7 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    # github_token: ${{ secrets.GITHUB_TOKEN }}
-    # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
 ```
 
@@ -40,19 +38,17 @@ Three tokens are supported.
 
 | Token | Private repo | Public repo | Protocol | Setup |
 |---|:---:|:---:|---|---|
-| `github_token` | ✅️ | (1) | HTTPS | Unnecessary |
-| `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
+| `github_token` | ✅️ | ✅️ | HTTPS | Unnecessary |
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
-
-1. ~~Currently, GitHub Actions does not support to trigger a GitHub Pages build event using GITHUB_TOKEN on a public repository.~~ Maybe, we can use it but there is no official announcement by GitHub.
+| `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
 ### Supported Platforms
 
-| runs-on | `deploy_key` | `github_token` | `personal_token` |
+| runs-on | `github_token` | `deploy_key` | `personal_token` |
 |---|:---:|:---:|:---:|
 | ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
 | macos-latest | ✅️ | ✅️ | ✅️ |
-| windows-latest | (2) | ✅️ | ✅️ |
+| windows-latest | ✅️ | (2) | ✅️ |
 
 2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
 
@@ -65,13 +61,12 @@ Three tokens are supported.
 
 
 - [Getting started](#getting-started)
-  - [(1) Add SSH deploy key](#1-add-ssh-deploy-key)
-  - [(2) Create your workflow](#2-create-your-workflow)
+  - [Create your workflow](#create-your-workflow)
     - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
     - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
+  - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
-  - [⭐️ `github_token`](#%EF%B8%8F-github_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
   - [⭐️ Disable `.nojekyll`](#%EF%B8%8F-disable-nojekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
@@ -82,9 +77,8 @@ Three tokens are supported.
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
 - [Tips and FAQ](#tips-and-faq)
+  - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
-  - [⭐️ How to add `CNAME`](#%EF%B8%8F-how-to-add-cname)
-  - [⭐️ Deployment completed but you cannot read](#%EF%B8%8F-deployment-completed-but-you-cannot-read)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
@@ -103,31 +97,7 @@ Three tokens are supported.
 
 ## Getting started
 
-### (1) Add SSH deploy key
-
-Generate your deploy key with the following command.
-
-```sh
-ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
-# You will get 2 files:
-#   gh-pages.pub (public key)
-#   gh-pages     (private key)
-```
-
-Next, Go to **Repository Settings**
-
-- Go to **Deploy Keys** and add your public key with the **Allow write access**
-- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
-
-| Add your public key | Success |
-|---|---|
-| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
-
-| Add your private key | Success |
-|---|---|
-| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
-
-### (2) Create your workflow
+### Create your workflow
 
 Add your workflow setting YAML file `.github/workflows/gh-pages.yml` and push to the default branch.
 
@@ -138,9 +108,6 @@ An example workflow for Hugo.
 - [peaceiris/actions-hugo: GitHub Actions for Hugo](https://github.com/peaceiris/actions-hugo)
 
 [![peaceiris/actions-hugo - GitHub](https://gh-card.dev/repos/peaceiris/actions-hugo.svg?fullname)](https://github.com/peaceiris/actions-hugo)
-
-![peaceiris/actions-hugo latest version](https://img.shields.io/github/release/peaceiris/actions-hugo.svg?label=peaceiris%2Factions-hugo)
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -169,7 +136,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -207,7 +174,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
 ```
@@ -226,26 +193,29 @@ jobs:
 
 ## Options
 
+### ⭐️ `deploy_key`
+
+Read [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH deploy key, and set the `deploy_key` option like the following.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+```
+
 ### ⭐️ `personal_token`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
-```diff
-- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ personal_token: ${{ secrets.PERSONAL_TOKEN }}
-```
 
-### ⭐️ `github_token`
-
-> ⚠️ **NOTES**: `github_token` works only on a **private** repository.
->
-> This action supports `GITHUB_TOKEN` but it has some problems to deploy to GitHub Pages. GitHub team is investigating that. See [Issue #9]
-
-[Issue #9]: https://github.com/peaceiris/actions-gh-pages/issues/9
-
-```diff
-- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ github_token: ${{ secrets.GITHUB_TOKEN }}
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    publish_dir: ./public
 ```
 
 ### ⭐️ CNAME
@@ -258,7 +228,7 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     cname: github.com
 ```
@@ -273,10 +243,12 @@ To disable this behavior, we can set the `disable_nojekyll` option to `true`.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     disable_nojekyll: true
 ```
+
+For more details about `.nojekyll`: [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
 
 ### ⭐️ Allow empty commits
 
@@ -288,7 +260,7 @@ For example:
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     allow_empty_commit: true
 ```
@@ -303,7 +275,7 @@ For example:
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     keep_files: true
 ```
@@ -321,7 +293,7 @@ For example:
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
-    publish_branch: gh-pages
+    publish_branch: master
     publish_dir: ./public
 ```
 
@@ -339,7 +311,7 @@ This allows you to make your publish branch with only the latest commit.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     force_orphan: true
 ```
@@ -353,7 +325,7 @@ A commit is always created with the same user.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     user_name: iris
     user_email: iris@peaceiris.com
@@ -368,7 +340,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     commit_message: ${{ github.event.head_commit.message }}
 ```
@@ -406,7 +378,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
           tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
@@ -434,53 +406,36 @@ v1.2.3         # Tag on the master branch
 
 ## Tips and FAQ
 
+### ⭐️ Create SSH Deploy Key
+
+Generate your deploy key with the following command.
+
+```sh
+ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+# You will get 2 files:
+#   gh-pages.pub (public key)
+#   gh-pages     (private key)
+```
+
+Next, Go to **Repository Settings**
+
+- Go to **Deploy Keys** and add your public key with the **Allow write access**
+- Go to **Secrets** and add your private key as `ACTIONS_DEPLOY_KEY`
+
+| Add your public key | Success |
+|---|---|
+| ![](./images/deploy-keys-1.jpg) | ![](./images/deploy-keys-2.jpg) |
+
+| Add your private key | Success |
+|---|---|
+| ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
+
 ### ⭐️ Use the latest and specific release
 
 We recommend you to use the latest and specific release of this action for stable CI/CD.
 It is useful to watch this repository (release only) to check the [latest release] of this action.
 
 [latest release]: https://github.com/peaceiris/actions-gh-pages/releases
-
-### ⭐️ How to add `CNAME`
-
-Most of the Static Site Generators support `CNAME` as a static file.
-
-- [Use a Custom Domain | Hugo](https://gohugo.io/hosting-and-deployment/hosting-on-github/#use-a-custom-domain)
-- [Using the Static folder | GatsbyJS](https://www.gatsbyjs.org/docs/static-folder/)
-
-The same may be said of other files (`.nojekyll`, `BingSiteAuth.xml`, `robots.txt`, etc.). It is better to manage those files by Static Site Generators.
-
-Does not your static site generator deal with the static files? No problem, you can add the file like the following.
-
-```yaml
-- name: Build
-  run: |
-    buildcommand
-    cp ./path/to/CNAME ./public/CNAME
-
-- name: Deploy
-```
-
-### ⭐️ Deployment completed but you cannot read
-
-Does your `publish_dir` contain files or directories that name starts with an underscore? (`_modules`, `_sources` and `_next`, etc.)
-GitHub Pages does not read those by default.
-Please add `.nojekyll` file to `publish_dir`.
-
-- [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
-
-> It is now possible to completely bypass Jekyll processing on GitHub Pages by creating a file named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
-
-Does not your static site generator deal with the static files? No problem, you can add the file like the following.
-
-```yaml
-- name: Build
-  run: |
-    buildcommand
-    touch ./public/.nojekyll
-
-- name: Deploy
-```
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
@@ -502,8 +457,6 @@ Does not your static site generator deal with the static files? No problem, you 
 
 Premise: Dependencies are managed by `package.json` and `package-lock.json`
 
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
-
 ```yaml
 name: github pages
 
@@ -532,13 +485,12 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -549,8 +501,6 @@ An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 [Gatsby]: https://github.com/gatsbyjs/gatsby
 [gatsby-starter-blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
-
 ```yaml
 name: github pages
 
@@ -579,17 +529,14 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm run format
-
       - run: npm run test
-
       - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -601,8 +548,6 @@ An example for [Next.js] (React.js) project with [create-next-app]
 
 [Next.js]: https://github.com/zeit/next.js
 [create-next-app]: https://nextjs.org/docs
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -636,17 +581,13 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
-
       - run: yarn build
-
       - run: yarn export
-
-      - run: touch ./out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
 ```
 
@@ -658,8 +599,6 @@ An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
 [Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -689,15 +628,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm test
-
       - run: npm run generate
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
 
@@ -710,8 +647,6 @@ jobs:
 [sphinx]: https://github.com/sphinx-doc/sphinx
 
 Premise: Dependencies are managed by `requirements.txt`
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -751,7 +686,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
 ```
 
@@ -788,7 +723,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
 ```
 
@@ -834,7 +769,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
 ```
 
@@ -875,7 +810,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
