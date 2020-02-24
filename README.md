@@ -72,6 +72,8 @@ Three tokens are supported.
 - [Options](#options)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ `github_token`](#%EF%B8%8F-github_token)
+  - [⭐️ CNAME](#%EF%B8%8F-cname)
+  - [⭐️ Disable `.nojekyll`](#%EF%B8%8F-disable-nojekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
@@ -244,6 +246,36 @@ jobs:
 ```diff
 - deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
 + github_token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### ⭐️ CNAME
+
+To add `CNAME` file, we can set the `cname` option.
+
+For more details about `CNAME`, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site)
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    cname: github.com
+```
+
+### ⭐️ Disable `.nojekyll`
+
+By default, this action adds the `.nojekyll` file to only the `master` and `gh-pages` branches. When the file already exists, this action does nothing.
+
+To disable this behavior, we can set the `disable_nojekyll` option to `true`.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./public
+    disable_nojekyll: true
 ```
 
 ### ⭐️ Allow empty commits
