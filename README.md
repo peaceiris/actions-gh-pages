@@ -499,8 +499,6 @@ Does not your static site generator deal with the static files? No problem, you 
 
 Premise: Dependencies are managed by `package.json` and `package-lock.json`
 
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
-
 ```yaml
 name: github pages
 
@@ -544,8 +542,6 @@ An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 
 [Gatsby]: https://github.com/gatsbyjs/gatsby
 [gatsby-starter-blog]: https://github.com/gatsbyjs/gatsby-starter-blog
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -594,8 +590,6 @@ An example for [Next.js] (React.js) project with [create-next-app]
 
 [Next.js]: https://github.com/zeit/next.js
 [create-next-app]: https://nextjs.org/docs
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
@@ -648,8 +642,6 @@ An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 [Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
 
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
-
 ```yaml
 name: github pages
 
@@ -697,8 +689,6 @@ jobs:
 [sphinx]: https://github.com/sphinx-doc/sphinx
 
 Premise: Dependencies are managed by `requirements.txt`
-
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
 
 ```yaml
 name: github pages
