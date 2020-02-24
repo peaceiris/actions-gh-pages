@@ -39,16 +39,16 @@ Three tokens are supported.
 | Token | Private repo | Public repo | Protocol | Setup |
 |---|:---:|:---:|---|---|
 | `github_token` | ✅️ | ✅️ | HTTPS | Unnecessary |
-| `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
+| `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
 ### Supported Platforms
 
-| runs-on | `deploy_key` | `github_token` | `personal_token` |
+| runs-on | `github_token` | `deploy_key` | `personal_token` |
 |---|:---:|:---:|:---:|
 | ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
 | macos-latest | ✅️ | ✅️ | ✅️ |
-| windows-latest | (2) | ✅️ | ✅️ |
+| windows-latest | ✅️ | (2) | ✅️ |
 
 2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
 
@@ -111,9 +111,6 @@ An example workflow for Hugo.
 
 [![peaceiris/actions-hugo - GitHub](https://gh-card.dev/repos/peaceiris/actions-hugo.svg?fullname)](https://github.com/peaceiris/actions-hugo)
 
-![peaceiris/actions-hugo latest version](https://img.shields.io/github/release/peaceiris/actions-hugo.svg?label=peaceiris%2Factions-hugo)
-![peaceiris/actions-gh-pages latest version](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg?label=peaceiris%2Factions-gh-pages)
-
 ```yaml
 name: github pages
 
@@ -141,7 +138,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -179,7 +176,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: master  # deploying branch
 ```
@@ -214,9 +211,13 @@ Read [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create yo
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
 
-```diff
-- deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-+ personal_token: ${{ secrets.PERSONAL_TOKEN }}
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    personal_token: ${{ secrets.PERSONAL_TOKEN }}
+    publish_dir: ./public
 ```
 
 ### ⭐️ CNAME
@@ -229,7 +230,7 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     cname: github.com
 ```
@@ -244,7 +245,7 @@ To disable this behavior, we can set the `disable_nojekyll` option to `true`.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     disable_nojekyll: true
 ```
@@ -259,7 +260,7 @@ For example:
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     allow_empty_commit: true
 ```
@@ -274,7 +275,7 @@ For example:
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     keep_files: true
 ```
@@ -292,7 +293,7 @@ For example:
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
-    publish_branch: gh-pages
+    publish_branch: master
     publish_dir: ./public
 ```
 
@@ -310,7 +311,7 @@ This allows you to make your publish branch with only the latest commit.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     force_orphan: true
 ```
@@ -324,7 +325,7 @@ A commit is always created with the same user.
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     user_name: iris
     user_email: iris@peaceiris.com
@@ -339,7 +340,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
     commit_message: ${{ github.event.head_commit.message }}
 ```
@@ -377,7 +378,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
           tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
@@ -528,13 +529,12 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -575,17 +575,14 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm run format
-
       - run: npm run test
-
       - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
@@ -632,17 +629,13 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
-
       - run: yarn build
-
       - run: yarn export
-
-      - run: touch ./out/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
 ```
 
@@ -685,15 +678,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-
       - run: npm test
-
       - run: npm run generate
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
 ```
 
@@ -747,7 +738,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
 ```
 
@@ -784,7 +775,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
 ```
 
@@ -830,7 +821,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
 ```
 
@@ -871,7 +862,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
 
