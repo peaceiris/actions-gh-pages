@@ -61,9 +61,8 @@ Three tokens are supported.
 
 
 - [Getting started](#getting-started)
-  - [Create your workflow](#create-your-workflow)
-    - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
-    - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
+  - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
+  - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
@@ -97,11 +96,9 @@ Three tokens are supported.
 
 ## Getting started
 
-### Create your workflow
+### ⭐️ Repository type - Project
 
-Add your workflow setting YAML file `.github/workflows/gh-pages.yml` and push to the default branch.
-
-#### ⭐️ Repository type - Project
+Add your workflow file `.github/workflows/gh-pages.yml` and push to the remote master branch.
 
 An example workflow for Hugo.
 
@@ -150,7 +147,7 @@ The above example is for [Project Pages sites]. (`<username>/<project_name>` rep
 |---|---|
 | ![](./images/log3.jpg) | ![](./images/log4.jpg) |
 
-#### ⭐️ Repository type - User and Organization
+### ⭐️ Repository type - User and Organization
 
 For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
 we have to set `master` branch to `publish_branch`.
