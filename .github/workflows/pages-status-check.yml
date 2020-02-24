@@ -1,0 +1,17 @@
+name: Check Pages Status
+
+on: [page_build]
+
+jobs:
+  pages-status-check:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: check status
+        run: |
+          import os
+          status, errormsg = os.getenv('STATUS'), os.getenv('ERROR')
+          assert status == 'built', f'Status: {status}\nError: {errormsg}'
+        shell: python
+        env:
+          STATUS: ${{ github.event.build.status }}
+          ERROR: ${{ github.event.build.error.message }}
