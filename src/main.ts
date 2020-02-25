@@ -26,7 +26,7 @@ export async function run(): Promise<void> {
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
     } catch (e) {
-      core.info(`[INFO] ${e}`);
+      core.info(`[INFO] ${e.message}`);
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
