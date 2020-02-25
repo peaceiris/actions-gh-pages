@@ -9,13 +9,6 @@ const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';
 
-export function setPublishRepo(insp: Inputs): string {
-  if (insp.ExternalRepository) {
-    return insp.ExternalRepository;
-  }
-  return `${github.context.repo.owner}/${github.context.repo.repo}`;
-}
-
 export async function setSSHKey(
   inps: Inputs,
   publishRepo: string
@@ -104,9 +97,24 @@ export async function setPersonalToken(
   return `https://x-access-token:${inps.PersonalToken}@github.com/${publishRepo}.git`;
 }
 
+export function getPublishRepo(
+  externalRepository: string,
+  owner: string,
+  repo: string
+): string {
+  if (externalRepository) {
+    return externalRepository;
+  }
+  return `${owner}/${repo}`;
+}
+
 export async function setTokens(inps: Inputs): Promise<string> {
   try {
-    const publishRepo = setPublishRepo(inps);
+    const publishRepo = getPublishRepo(
+      inps.ExternalRepository,
+      github.context.repo.owner,
+      github.context.repo.repo
+    );
     if (inps.DeployKey) {
       return setSSHKey(inps, publishRepo);
     } else if (inps.GithubToken) {
