@@ -43,6 +43,6 @@ export async function run(): Promise<void> {
 
     return;
   } catch (e) {
-    throw new Error(e);
+    throw new Error(e.message);
   }
 }
