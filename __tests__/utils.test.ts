@@ -77,8 +77,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, false, 'gh-pages');
-    const test1 = fs.existsSync(filepath);
-    expect(test1).toBe(true);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(true);
 
     fs.unlinkSync(filepath);
   });
@@ -91,8 +91,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, false, 'master');
-    const test2 = fs.existsSync(filepath);
-    expect(test2).toBe(true);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(true);
 
     fs.unlinkSync(filepath);
   });
@@ -120,8 +120,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, true, 'gh-pages');
-    const test3 = fs.existsSync(filepath);
-    expect(test3).toBe(false);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(false);
   });
 
   test('not add .nojekyll disable_nojekyll master', async () => {
@@ -132,8 +132,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, true, 'master');
-    const test4 = fs.existsSync(filepath);
-    expect(test4).toBe(false);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(false);
   });
 
   test('not add .nojekyll other-branch', async () => {
@@ -144,8 +144,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, false, 'other-branch');
-    const test5 = fs.existsSync(filepath);
-    expect(test5).toBe(false);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(false);
   });
 
   test('not add .nojekyll disable_nojekyll other-branch', async () => {
@@ -156,8 +156,8 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, true, 'other-branch');
-    const test6 = fs.existsSync(filepath);
-    expect(test6).toBe(false);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(false);
   });
 });
 
@@ -170,8 +170,8 @@ describe('addCNAME()', () => {
     const filepath = path.join(workDir, 'CNAME');
 
     await addCNAME(workDir, 'github.com');
-    const test1 = fs.readFileSync(filepath, 'utf8');
-    expect(test1).toMatch('github.com');
+    const test = fs.readFileSync(filepath, 'utf8');
+    expect(test).toMatch('github.com');
 
     fs.unlinkSync(filepath);
   });
@@ -184,8 +184,8 @@ describe('addCNAME()', () => {
     const filepath = path.join(workDir, 'CNAME');
 
     await addCNAME(workDir, '');
-    const test2 = fs.existsSync(filepath);
-    expect(test2).toBe(false);
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(false);
   });
 
   test('CNAME already exists', async () => {
@@ -197,8 +197,8 @@ describe('addCNAME()', () => {
 
     await addCNAME(workDir, 'github.io');
     await addCNAME(workDir, 'github.com');
-    const test3 = fs.readFileSync(filepath, 'utf8');
-    expect(test3).toMatch('github.io');
+    const test = fs.readFileSync(filepath, 'utf8');
+    expect(test).toMatch('github.io');
 
     fs.unlinkSync(filepath);
   });
