@@ -27,6 +27,7 @@ afterEach(() => {
 });
 
 // Assert that process.stdout.write calls called only with the given arguments.
+// cf. https://github.com/actions/toolkit/blob/8b0300129f08728419263b016de8630f1d426d5f/packages/core/__tests__/core.test.ts
 function assertWriteCalls(calls: string[]): void {
   expect(process.stdout.write).toHaveBeenCalledTimes(calls.length);
 
