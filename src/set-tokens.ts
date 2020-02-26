@@ -89,12 +89,12 @@ export async function setGithubToken(
   return `https://x-access-token:${inps.GithubToken}@github.com/${publishRepo}.git`;
 }
 
-export async function setPersonalToken(
-  inps: Inputs,
+export function setPersonalToken(
+  personalToken: string,
   publishRepo: string
-): Promise<string> {
+): string {
   core.info('[INFO] setup personal access token');
-  return `https://x-access-token:${inps.PersonalToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${personalToken}@github.com/${publishRepo}.git`;
 }
 
 export function getPublishRepo(
@@ -120,7 +120,7 @@ export async function setTokens(inps: Inputs): Promise<string> {
     } else if (inps.GithubToken) {
       return setGithubToken(inps, publishRepo);
     } else if (inps.PersonalToken) {
-      return setPersonalToken(inps, publishRepo);
+      return setPersonalToken(inps.PersonalToken, publishRepo);
     } else {
       throw new Error('not found deploy key or tokens');
     }
