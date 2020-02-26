@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import {Inputs} from './interfaces';
-import {getInputs} from './get-inputs';
+import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
 import * as git from './git-utils';
 import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
@@ -9,6 +9,7 @@ import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
 export async function run(): Promise<void> {
   try {
     const inps: Inputs = getInputs();
+    showInputs(inps);
 
     await git.setConfig(inps.UserName, inps.UserEmail);
 

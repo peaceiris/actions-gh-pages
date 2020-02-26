@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import {Inputs} from './interfaces';
 
-function showInputs(inps: Inputs): void {
+export function showInputs(inps: Inputs): void {
   let authMethod = '';
   if (inps.DeployKey) {
     authMethod = 'DeployKey';
@@ -52,8 +52,6 @@ export function getInputs(): Inputs {
       (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE',
     CNAME: core.getInput('cname')
   };
-
-  showInputs(inps);
 
   return inps;
 }
