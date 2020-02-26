@@ -2,15 +2,17 @@ import * as core from '@actions/core';
 import {Inputs} from './interfaces';
 
 function showInputs(inps: Inputs): void {
+  let authMethod = '';
   if (inps.DeployKey) {
-    core.info(`[INFO] DeployKey: true`);
+    authMethod = 'DeployKey';
   } else if (inps.GithubToken) {
-    core.info(`[INFO] GithubToken: true`);
+    authMethod = 'GithubToken';
   } else if (inps.PersonalToken) {
-    core.info(`[INFO] PersonalToken: true`);
+    authMethod = 'PersonalToken';
   }
 
   core.info(`\
+[INFO] ${authMethod}: true
 [INFO] PublishBranch: ${inps.PublishBranch}
 [INFO] PublishDir: ${inps.PublishDir}
 [INFO] ExternalRepository: ${inps.ExternalRepository}
