@@ -22,7 +22,7 @@ describe('getPublishRepo()', () => {
 
 describe('setPersonalToken()', () => {
   test('set personal token', () => {
-    const expected = 'https://x-access-token:pat@github.com/owner/repo.git'
+    const expected = 'https://x-access-token:pat@github.com/owner/repo.git';
     const test = setPersonalToken('pat', 'owner/repo');
     expect(test).toMatch(expected);
   });
