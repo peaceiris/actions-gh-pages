@@ -59,34 +59,34 @@ Host github
   return `git@github.com:${publishRepo}.git`;
 }
 
-export async function setGithubToken(
-  inps: Inputs,
-  publishRepo: string
-): Promise<string> {
+export function setGithubToken(
+  githubToken: string,
+  publishRepo: string,
+  publishBranch: string,
+  externalRepository: string,
+  ref: string,
+  eventName: string
+): string {
   core.info('[INFO] setup GITHUB_TOKEN');
 
-  const context = github.context;
-  core.debug(`ref: ${context.ref}`);
-  core.debug(`eventName: ${context.eventName}`);
+  core.debug(`ref: ${ref}`);
+  core.debug(`eventName: ${eventName}`);
   let isProhibitedBranch = false;
 
-  const ref = context.ref;
-  if (context.eventName === 'push') {
-    isProhibitedBranch = ref.includes(`refs/heads/${inps.PublishBranch}`);
+  if (eventName === 'push') {
+    isProhibitedBranch = ref.includes(`refs/heads/${publishBranch}`);
     if (isProhibitedBranch) {
-      throw new Error(
-        `You deploy from ${inps.PublishBranch} to ${inps.PublishBranch}`
-      );
+      throw new Error(`You deploy from ${publishBranch} to ${publishBranch}`);
     }
   }
 
-  if (inps.ExternalRepository) {
+  if (externalRepository) {
     throw new Error(
       'GITHUB_TOKEN does not support to push to an external repository'
     );
   }
 
-  return `https://x-access-token:${inps.GithubToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${githubToken}@github.com/${publishRepo}.git`;
 }
 
 export function setPersonalToken(
@@ -118,7 +118,17 @@ export async function setTokens(inps: Inputs): Promise<string> {
     if (inps.DeployKey) {
       return setSSHKey(inps, publishRepo);
     } else if (inps.GithubToken) {
-      return setGithubToken(inps, publishRepo);
+      const context = github.context;
+      const ref = context.ref;
+      const eventName = context.eventName;
+      return setGithubToken(
+        inps.GithubToken,
+        publishRepo,
+        inps.PublishBranch,
+        inps.ExternalRepository,
+        ref,
+        eventName
+      );
     } else if (inps.PersonalToken) {
       return setPersonalToken(inps.PersonalToken, publishRepo);
     } else {
