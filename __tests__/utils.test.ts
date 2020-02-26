@@ -97,6 +97,21 @@ describe('addNoJekyll()', () => {
     fs.unlinkSync(filepath);
   });
 
+  test('.nojekyll already exists', async () => {
+    let workDir = '';
+    (async (): Promise<void> => {
+      workDir = await getWorkDir();
+    })();
+    const filepath = path.join(workDir, '.nojekyll');
+    fs.closeSync(fs.openSync(filepath, 'w'));
+
+    await addNoJekyll(workDir, false, 'master');
+    const test = fs.existsSync(filepath);
+    expect(test).toBe(true);
+
+    fs.unlinkSync(filepath);
+  });
+
   test('not add .nojekyll disable_nojekyll gh-pages', async () => {
     let workDir = '';
     (async (): Promise<void> => {
