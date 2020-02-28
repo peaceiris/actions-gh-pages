@@ -67,7 +67,7 @@ Three tokens are supported.
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
-  - [⭐️ Disable `.nojekyll`](#%EF%B8%8F-disable-nojekyll)
+  - [⭐️ Enable Jekyll](#%EF%B8%8F-enable-jekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
@@ -231,11 +231,11 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
     cname: github.com
 ```
 
-### ⭐️ Disable `.nojekyll`
+### ⭐️ Enable Jekyll
 
-By default, this action adds the `.nojekyll` file to only the `master` and `gh-pages` branches. When the file already exists, this action does nothing.
+If you are using the static site generator Jekyll, set `enable_jekyll` to true.
 
-To disable this behavior, we can set the `disable_nojekyll` option to `true`.
+By default, this action adds an empty `.nojekyll` file when publishing to the master or gh-pages branch, specifying that the site shall not be processed with Jekyll. This is particularly important if your site contains files or directories that start with underscores, since Jekyll considers these to be special resources and does not copy them to the final site. When a `.nojekyll` file already exists, this action does nothing. To disable the default behavior, allowing Jekyll to process your site, you need to set the `enable_jekyll` option to true.
 
 ```yaml
 - name: Deploy
@@ -243,7 +243,7 @@ To disable this behavior, we can set the `disable_nojekyll` option to `true`.
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
-    disable_nojekyll: true
+    enable_jekyll: true
 ```
 
 For more details about `.nojekyll`: [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
