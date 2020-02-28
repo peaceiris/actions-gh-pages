@@ -4,3 +4,9 @@ coverage
 .eslintcache
 .env
 node_modules
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

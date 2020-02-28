@@ -83,6 +83,7 @@ Three tokens are supported.
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
   - [⭐️ React and Next](#%EF%B8%8F-react-and-next)
   - [⭐️ Vue and Nuxt](#%EF%B8%8F-vue-and-nuxt)
+  - [⭐️ Docusaurus](#%EF%B8%8F-docusaurus)
   - [⭐️ Static Site Generators with Python](#%EF%B8%8F-static-site-generators-with-python)
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
@@ -633,6 +634,59 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+```
+
+### ⭐️ Docusaurus
+
+An example for pages created using [Docusaurus](https://docusaurus.io/).
+
+Examples where this is being used:
+
+- [Mittens](https://github.com/ExpediaGroup/mittens)
+- [graphql-kotlin](https://github.com/ExpediaGroup/graphql-kotlin)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+      - 'website/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('website/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Build
+        run: |
+          cd website
+          npm install
+          npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # use the projectName from your siteConfig.js file: https://docusaurus.io/docs/en/site-config#projectname-string
+          publish_dir: ./website/build/<projectName>
 ```
 
 ### ⭐️ Static Site Generators with Python
