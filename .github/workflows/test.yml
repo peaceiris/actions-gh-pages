@@ -29,7 +29,6 @@ jobs:
           - 'macos-latest'
           - 'windows-latest'
     steps:
-
       - uses: actions/checkout@v2
 
       - name: Read .nvmrc
@@ -40,6 +39,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - name: Clean npm cache directory  # To remove global installed packages on runners
+        run: npm cache clear --force
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - run: npm ci
 
