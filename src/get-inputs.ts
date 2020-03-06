@@ -1,28 +1,32 @@
 import * as core from '@actions/core';
 import {Inputs} from './interfaces';
 
-function showInputs(inps: Inputs): void {
+export function showInputs(inps: Inputs): void {
+  let authMethod = '';
   if (inps.DeployKey) {
-    core.info(`[INFO] DeployKey: true`);
+    authMethod = 'DeployKey';
   } else if (inps.GithubToken) {
-    core.info(`[INFO] GithubToken: true`);
+    authMethod = 'GithubToken';
   } else if (inps.PersonalToken) {
-    core.info(`[INFO] PersonalToken: true`);
+    authMethod = 'PersonalToken';
   }
 
-  core.info(`[INFO] PublishBranch: ${inps.PublishBranch}`);
-  core.info(`[INFO] PublishDir: ${inps.PublishDir}`);
-  core.info(`[INFO] ExternalRepository: ${inps.ExternalRepository}`);
-  core.info(`[INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}`);
-  core.info(`[INFO] KeepFiles: ${inps.KeepFiles}`);
-  core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
-  core.info(`[INFO] UserName: ${inps.UserName}`);
-  core.info(`[INFO] UserEmail: ${inps.UserEmail}`);
-  core.info(`[INFO] CommitMessage: ${inps.CommitMessage}`);
-  core.info(`[INFO] TagName: ${inps.TagName}`);
-  core.info(`[INFO] TagMessage: ${inps.TagMessage}`);
-  core.info(`[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}`);
-  core.info(`[INFO] CNAME: ${inps.CNAME}`);
+  core.info(`\
+[INFO] ${authMethod}: true
+[INFO] PublishBranch: ${inps.PublishBranch}
+[INFO] PublishDir: ${inps.PublishDir}
+[INFO] ExternalRepository: ${inps.ExternalRepository}
+[INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
+[INFO] KeepFiles: ${inps.KeepFiles}
+[INFO] ForceOrphan: ${inps.ForceOrphan}
+[INFO] UserName: ${inps.UserName}
+[INFO] UserEmail: ${inps.UserEmail}
+[INFO] CommitMessage: ${inps.CommitMessage}
+[INFO] TagName: ${inps.TagName}
+[INFO] TagMessage: ${inps.TagMessage}
+[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}
+[INFO] CNAME: ${inps.CNAME}
+`);
 }
 
 export function getInputs(): Inputs {
@@ -48,8 +52,6 @@ export function getInputs(): Inputs {
       (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE',
     CNAME: core.getInput('cname')
   };
-
-  showInputs(inps);
 
   return inps;
 }

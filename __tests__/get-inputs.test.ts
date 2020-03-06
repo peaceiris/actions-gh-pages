@@ -1,6 +1,7 @@
 // import * as main from '../src/main';
 import {Inputs} from '../src/interfaces';
-import {getInputs} from '../src/get-inputs';
+import {showInputs, getInputs} from '../src/get-inputs';
+import os from 'os';
 
 beforeEach(() => {
   jest.resetModules();
@@ -23,6 +24,96 @@ afterEach(() => {
   delete process.env['INPUT_TAG_MESSAGE'];
   delete process.env['INPUT_DISABLE_NOJEKYLL'];
   delete process.env['INPUT_CNAME'];
+});
+
+// Assert that process.stdout.write calls called only with the given arguments.
+// cf. https://github.com/actions/toolkit/blob/8b0300129f08728419263b016de8630f1d426d5f/packages/core/__tests__/core.test.ts
+function assertWriteCalls(calls: string[]): void {
+  expect(process.stdout.write).toHaveBeenCalledTimes(calls.length);
+
+  for (let i = 0; i < calls.length; i++) {
+    expect(process.stdout.write).toHaveBeenNthCalledWith(i + 1, calls[i]);
+  }
+}
+
+function setTestInputs(): void {
+  process.env['INPUT_PUBLISH_BRANCH'] = 'master';
+  process.env['INPUT_PUBLISH_DIR'] = 'out';
+  process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
+  process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
+  process.env['INPUT_KEEP_FILES'] = 'true';
+  process.env['INPUT_FORCE_ORPHAN'] = 'true';
+  process.env['INPUT_USER_NAME'] = 'username';
+  process.env['INPUT_USER_EMAIL'] = 'github@github.com';
+  process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
+  process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
+  process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
+  process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
+  process.env['INPUT_CNAME'] = 'github.com';
+}
+
+function getInputsLog(authMethod: string, inps: Inputs): string {
+  return `\
+[INFO] ${authMethod}: true
+[INFO] PublishBranch: ${inps.PublishBranch}
+[INFO] PublishDir: ${inps.PublishDir}
+[INFO] ExternalRepository: ${inps.ExternalRepository}
+[INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
+[INFO] KeepFiles: ${inps.KeepFiles}
+[INFO] ForceOrphan: ${inps.ForceOrphan}
+[INFO] UserName: ${inps.UserName}
+[INFO] UserEmail: ${inps.UserEmail}
+[INFO] CommitMessage: ${inps.CommitMessage}
+[INFO] TagName: ${inps.TagName}
+[INFO] TagMessage: ${inps.TagMessage}
+[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}
+[INFO] CNAME: ${inps.CNAME}
+`;
+}
+
+describe('showInputs()', () => {
+  beforeEach(() => {
+    process.stdout.write = jest.fn();
+  });
+
+  // eslint-disable-next-line jest/expect-expect
+  test('print all inputs DeployKey', () => {
+    process.env['INPUT_DEPLOY_KEY'] = 'test_deploy_key';
+    setTestInputs();
+
+    const inps: Inputs = getInputs();
+    showInputs(inps);
+
+    const authMethod = 'DeployKey';
+    const test = getInputsLog(authMethod, inps);
+    assertWriteCalls([`${test}${os.EOL}`]);
+  });
+
+  // eslint-disable-next-line jest/expect-expect
+  test('print all inputs GithubToken', () => {
+    process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
+    setTestInputs();
+
+    const inps: Inputs = getInputs();
+    showInputs(inps);
+
+    const authMethod = 'GithubToken';
+    const test = getInputsLog(authMethod, inps);
+    assertWriteCalls([`${test}${os.EOL}`]);
+  });
+
+  // eslint-disable-next-line jest/expect-expect
+  test('print all inputs PersonalToken', () => {
+    process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
+    setTestInputs();
+
+    const inps: Inputs = getInputs();
+    showInputs(inps);
+
+    const authMethod = 'PersonalToken';
+    const test = getInputsLog(authMethod, inps);
+    assertWriteCalls([`${test}${os.EOL}`]);
+  });
 });
 
 describe('getInputs()', () => {
