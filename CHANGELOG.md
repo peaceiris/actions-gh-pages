@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.5.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0) (2020-03-06)
+
+
+### deps
+
+* bump node 12.15.0 to 12.16.1 (#142) ([ade8887](https://github.com/peaceiris/actions-gh-pages/commit/ade88874791f5b67d0c475d6dffb5219ed4407f1)), closes [#142](https://github.com/peaceiris/actions-gh-pages/issues/142)
+
+### docs
+
+* improve description of enable_jekyll=disable_nojekyll (see #130) (#132) ([b76751b](https://github.com/peaceiris/actions-gh-pages/commit/b76751b9eefaaf771ce31d8ef3c69a8d907f535d)), closes [#130](https://github.com/peaceiris/actions-gh-pages/issues/130) [#132](https://github.com/peaceiris/actions-gh-pages/issues/132) [#130](https://github.com/peaceiris/actions-gh-pages/issues/130)
+
+### feat
+
+* Add enable_jekyll (#143) ([dc1169c](https://github.com/peaceiris/actions-gh-pages/commit/dc1169c5baf9ed1205d6f0f9c9ce0e6d26afb164)), closes [#143](https://github.com/peaceiris/actions-gh-pages/issues/143) [#130](https://github.com/peaceiris/actions-gh-pages/issues/130) [#132](https://github.com/peaceiris/actions-gh-pages/issues/132)
+
+
+
 # [3.5.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0-0) (2020-03-06)
 
 
