@@ -41,6 +41,14 @@ jobs:
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
 
+      - run: npm i -g npm
+
+      - name: Dump version
+        run: |
+          node -v
+          npm --version
+          git --version
+
       - run: npm ci
 
       - name: Remove lint-staged husky
