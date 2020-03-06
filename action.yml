@@ -55,8 +55,12 @@ inputs:
   tag_message:
     description: 'Set tag message'
     required: false
+  enable_jekyll:
+    description: 'Enable the GitHub Pages built-in Jekyll'
+    required: false
+    default: 'false'
   disable_nojekyll:
-    description: 'Disable adding .nojekyll file to master or gh-pages branches'
+    description: 'An alias for enable_jekyll to disable adding .nojekyll file to master or gh-pages branches'
     required: false
     default: 'false'
   cname:

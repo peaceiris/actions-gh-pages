@@ -24,12 +24,27 @@ export function showInputs(inps: Inputs): void {
 [INFO] CommitMessage: ${inps.CommitMessage}
 [INFO] TagName: ${inps.TagName}
 [INFO] TagMessage: ${inps.TagMessage}
-[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}
+[INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 `);
 }
 
 export function getInputs(): Inputs {
+  let useBuiltinJekyll = false;
+
+  const enableJekyll: boolean =
+    (core.getInput('enable_jekyll') || 'false').toUpperCase() === 'TRUE';
+  const disableNoJekyll: boolean =
+    (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE';
+
+  if (enableJekyll && disableNoJekyll) {
+    throw new Error(`Use either of enable_jekyll or disable_nojekyll`);
+  } else if (enableJekyll) {
+    useBuiltinJekyll = true;
+  } else if (disableNoJekyll) {
+    useBuiltinJekyll = true;
+  }
+
   const inps: Inputs = {
     DeployKey: core.getInput('deploy_key'),
     GithubToken: core.getInput('github_token'),
@@ -48,8 +63,7 @@ export function getInputs(): Inputs {
     CommitMessage: core.getInput('commit_message'),
     TagName: core.getInput('tag_name'),
     TagMessage: core.getInput('tag_message'),
-    DisableNoJekyll:
-      (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE',
+    DisableNoJekyll: useBuiltinJekyll,
     CNAME: core.getInput('cname')
   };
 
