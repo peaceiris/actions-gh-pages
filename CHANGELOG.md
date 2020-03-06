@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.5.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0-0) (2020-03-06)
+
+
+### deps
+
+* bump node 12.15.0 to 12.16.1 (#142) ([ade8887](https://github.com/peaceiris/actions-gh-pages/commit/ade88874791f5b67d0c475d6dffb5219ed4407f1)), closes [#142](https://github.com/peaceiris/actions-gh-pages/issues/142)
+
+### feat
+
+* Add enable_jekyll ([1fff2ca](https://github.com/peaceiris/actions-gh-pages/commit/1fff2ca84a6b42067a86c6229774aa5e2891a661))
+
+
+
+## [3.4.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.0...v3.4.1) (2020-03-06)
+
+
+### ci
+
+* Add deployment status check workflow (#125) ([b81e21a](https://github.com/peaceiris/actions-gh-pages/commit/b81e21a3dc037a4037bef6bd44bc1bee36d3626f)), closes [#125](https://github.com/peaceiris/actions-gh-pages/issues/125)
+
+### deps
+
+* bump @actions/core from 1.2.2 to 1.2.3 (#140) ([ac39f89](https://github.com/peaceiris/actions-gh-pages/commit/ac39f890622b7f6950b6eb9cc43666c033277fb1)), closes [#140](https://github.com/peaceiris/actions-gh-pages/issues/140)
+* bump @types/node from 12.12.28 to 12.12.29 (#136) ([dd0b5df](https://github.com/peaceiris/actions-gh-pages/commit/dd0b5dfc6981e11137b2a1fad785d5342c0b5bc0)), closes [#136](https://github.com/peaceiris/actions-gh-pages/issues/136)
+* bump @typescript-eslint/eslint-plugin from 2.20.0 to 2.21.0 (#128) ([ce61f4b](https://github.com/peaceiris/actions-gh-pages/commit/ce61f4bf52b32c725cd5837e7b56d7a587a32af6)), closes [#128](https://github.com/peaceiris/actions-gh-pages/issues/128)
+* bump @typescript-eslint/eslint-plugin from 2.21.0 to 2.22.0 (#139) ([9faed51](https://github.com/peaceiris/actions-gh-pages/commit/9faed51ce97835a66741dc3d9368dc3402c12174)), closes [#139](https://github.com/peaceiris/actions-gh-pages/issues/139)
+* bump @typescript-eslint/parser from 2.20.0 to 2.21.0 (#127) ([bc18026](https://github.com/peaceiris/actions-gh-pages/commit/bc18026d43cd46451191723b7502ac0057177f5c)), closes [#127](https://github.com/peaceiris/actions-gh-pages/issues/127)
+* bump @typescript-eslint/parser from 2.21.0 to 2.22.0 (#138) ([7c45cb4](https://github.com/peaceiris/actions-gh-pages/commit/7c45cb42cade3f3bc0dab3c894044809b8ed4b4a)), closes [#138](https://github.com/peaceiris/actions-gh-pages/issues/138)
+* bump eslint-plugin-jest from 23.8.0 to 23.8.1 (#134) ([50988c1](https://github.com/peaceiris/actions-gh-pages/commit/50988c17ae540cf540cac254aeae22e8f1cbad46)), closes [#134](https://github.com/peaceiris/actions-gh-pages/issues/134)
+* bump eslint-plugin-jest from 23.8.1 to 23.8.2 (#141) ([acd0462](https://github.com/peaceiris/actions-gh-pages/commit/acd04627103a2d4d7620edca1bb74897a8180a84)), closes [#141](https://github.com/peaceiris/actions-gh-pages/issues/141)
+* bump lint-staged from 10.0.7 to 10.0.8 (#129) ([56fe697](https://github.com/peaceiris/actions-gh-pages/commit/56fe6978255c0fb44f70c59879daca5984de7ac4)), closes [#129](https://github.com/peaceiris/actions-gh-pages/issues/129)
+* bump typescript from 3.8.2 to 3.8.3 (#135) ([140391d](https://github.com/peaceiris/actions-gh-pages/commit/140391da91a8b458871e276b87abbfe7c0557c8c)), closes [#135](https://github.com/peaceiris/actions-gh-pages/issues/135)
+
+### docs
+
+* Add Docusaurus example (#131) ([a4da635](https://github.com/peaceiris/actions-gh-pages/commit/a4da635d8c553a327144267b3826e838aefb1561)), closes [#131](https://github.com/peaceiris/actions-gh-pages/issues/131)
+
+### test
+
+* Add testing for set-tokens.ts (#126) ([fd6e5fc](https://github.com/peaceiris/actions-gh-pages/commit/fd6e5fc7ce07cfd94a2311f7ac112bd797c3aee7)), closes [#126](https://github.com/peaceiris/actions-gh-pages/issues/126)
+
+
+
 # [3.4.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.3.0...v3.4.0) (2020-02-24)
 
 

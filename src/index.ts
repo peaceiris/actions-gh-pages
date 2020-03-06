@@ -5,6 +5,6 @@ import * as main from './main';
   try {
     await main.run();
   } catch (e) {
-    core.setFailed(`Action failed with "${e}"`);
+    core.setFailed(`Action failed with "${e.message}"`);
   }
 })();

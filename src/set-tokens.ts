@@ -9,13 +9,6 @@ const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';
 
-export function setPublishRepo(insp: Inputs): string {
-  if (insp.ExternalRepository) {
-    return insp.ExternalRepository;
-  }
-  return `${github.context.repo.owner}/${github.context.repo.repo}`;
-}
-
 export async function setSSHKey(
   inps: Inputs,
   publishRepo: string
@@ -66,57 +59,82 @@ Host github
   return `git@github.com:${publishRepo}.git`;
 }
 
-export async function setGithubToken(
-  inps: Inputs,
-  publishRepo: string
-): Promise<string> {
+export function setGithubToken(
+  githubToken: string,
+  publishRepo: string,
+  publishBranch: string,
+  externalRepository: string,
+  ref: string,
+  eventName: string
+): string {
   core.info('[INFO] setup GITHUB_TOKEN');
 
-  const context = github.context;
-  core.debug(`ref: ${context.ref}`);
-  core.debug(`eventName: ${context.eventName}`);
+  core.debug(`ref: ${ref}`);
+  core.debug(`eventName: ${eventName}`);
   let isProhibitedBranch = false;
 
-  const ref = context.ref;
-  if (context.eventName === 'push') {
-    isProhibitedBranch = ref.includes(`refs/heads/${inps.PublishBranch}`);
+  if (eventName === 'push') {
+    isProhibitedBranch = ref.includes(`refs/heads/${publishBranch}`);
     if (isProhibitedBranch) {
-      throw new Error(
-        `You deploy from ${inps.PublishBranch} to ${inps.PublishBranch}`
-      );
+      throw new Error(`You deploy from ${publishBranch} to ${publishBranch}`);
     }
   }
 
-  if (inps.ExternalRepository) {
+  if (externalRepository) {
     throw new Error(
       'GITHUB_TOKEN does not support to push to an external repository'
     );
   }
 
-  return `https://x-access-token:${inps.GithubToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${githubToken}@github.com/${publishRepo}.git`;
 }
 
-export async function setPersonalToken(
-  inps: Inputs,
+export function setPersonalToken(
+  personalToken: string,
   publishRepo: string
-): Promise<string> {
+): string {
   core.info('[INFO] setup personal access token');
-  return `https://x-access-token:${inps.PersonalToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${personalToken}@github.com/${publishRepo}.git`;
+}
+
+export function getPublishRepo(
+  externalRepository: string,
+  owner: string,
+  repo: string
+): string {
+  if (externalRepository) {
+    return externalRepository;
+  }
+  return `${owner}/${repo}`;
 }
 
 export async function setTokens(inps: Inputs): Promise<string> {
   try {
-    const publishRepo = setPublishRepo(inps);
+    const publishRepo = getPublishRepo(
+      inps.ExternalRepository,
+      github.context.repo.owner,
+      github.context.repo.repo
+    );
     if (inps.DeployKey) {
       return setSSHKey(inps, publishRepo);
     } else if (inps.GithubToken) {
-      return setGithubToken(inps, publishRepo);
+      const context = github.context;
+      const ref = context.ref;
+      const eventName = context.eventName;
+      return setGithubToken(
+        inps.GithubToken,
+        publishRepo,
+        inps.PublishBranch,
+        inps.ExternalRepository,
+        ref,
+        eventName
+      );
     } else if (inps.PersonalToken) {
-      return setPersonalToken(inps, publishRepo);
+      return setPersonalToken(inps.PersonalToken, publishRepo);
     } else {
       throw new Error('not found deploy key or tokens');
     }
   } catch (e) {
-    throw new Error(e);
+    throw new Error(e.message);
   }
 }

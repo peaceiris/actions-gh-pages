@@ -94,7 +94,7 @@ export async function setRepo(
     core.info(
       `[INFO] first deployment, create new branch ${inps.PublishBranch}`
     );
-    core.info(e);
+    core.info(e.message);
     await createWorkDir(workDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
@@ -156,7 +156,7 @@ export async function commit(
     }
   } catch (e) {
     core.info('[INFO] skip commit');
-    core.debug(`[INFO] skip commit ${e}`);
+    core.debug(`[INFO] skip commit ${e.message}`);
   }
 }
 
