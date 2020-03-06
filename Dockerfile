@@ -12,7 +12,8 @@ RUN apt-get update && \
     wget \
     ssh \
     vim && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    npm i -g npm
 
 WORKDIR /git
 ENV GIT_VERSION="2.25.1"

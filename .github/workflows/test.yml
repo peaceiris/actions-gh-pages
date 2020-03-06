@@ -29,7 +29,6 @@ jobs:
           - 'macos-latest'
           - 'windows-latest'
     steps:
-
       - uses: actions/checkout@v2
 
       - name: Read .nvmrc
@@ -40,6 +39,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - name: Dump version
+        run: |
+          node -v
+          npm --version
+          git --version
 
       - run: npm ci
 

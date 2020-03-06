@@ -4,8 +4,8 @@
   "description": "GitHub Actions for GitHub Pages",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=12.14.1",
-    "npm": ">=6.13.7"
+    "node": ">=12.16.1",
+    "npm": ">=6.14.2"
   },
   "scripts": {
     "lint": "eslint ./{src,__tests__}/**/*.ts",
