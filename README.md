@@ -67,7 +67,7 @@ Three tokens are supported.
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
-  - [⭐️ Disable `.nojekyll`](#%EF%B8%8F-disable-nojekyll)
+  - [⭐️ Enable Jekyll](#%EF%B8%8F-enable-jekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
@@ -231,11 +231,14 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
     cname: github.com
 ```
 
-### ⭐️ Disable `.nojekyll`
+### ⭐️ Enable Jekyll
 
-By default, this action adds the `.nojekyll` file to only the `master` and `gh-pages` branches. When the file already exists, this action does nothing.
+If you want GitHub Pages to process the site with the static site generator Jekyll, set `enable_jekyll` to true.
 
-To disable this behavior, we can set the `disable_nojekyll` option to `true`.
+By default, this action signals to GitHub Pages that the site shall not be processed with Jekyll. This is done by adding an empty `.nojekyll` file when publishing to the master or gh-pages branch. When a `.nojekyll` file already exists, this action does nothing.
+
+Bypassing Jekyll makes the deployment faster and is necessary if you are deploying files or directories that start with underscores, since Jekyll considers these to be special resources and does not copy them to the final site. You only need to set `enable_jekyll` to true when you want to deploy a Jekyll-powered website and let GitHub Pages do the Jekyll processing.
+
 
 ```yaml
 - name: Deploy
@@ -243,7 +246,7 @@ To disable this behavior, we can set the `disable_nojekyll` option to `true`.
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
-    disable_nojekyll: true
+    enable_jekyll: true
 ```
 
 For more details about `.nojekyll`: [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
