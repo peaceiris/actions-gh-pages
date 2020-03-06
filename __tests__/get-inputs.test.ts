@@ -76,6 +76,7 @@ describe('showInputs()', () => {
     process.stdout.write = jest.fn();
   });
 
+  // eslint-disable-next-line jest/expect-expect
   test('print all inputs DeployKey', () => {
     process.env['INPUT_DEPLOY_KEY'] = 'test_deploy_key';
     setTestInputs();
@@ -88,6 +89,7 @@ describe('showInputs()', () => {
     assertWriteCalls([`${test}${os.EOL}`]);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   test('print all inputs GithubToken', () => {
     process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
     setTestInputs();
@@ -100,6 +102,7 @@ describe('showInputs()', () => {
     assertWriteCalls([`${test}${os.EOL}`]);
   });
 
+  // eslint-disable-next-line jest/expect-expect
   test('print all inputs PersonalToken', () => {
     process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
     setTestInputs();
