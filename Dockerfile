@@ -11,6 +11,7 @@ RUN apt-get update && \
     ca-certificates \
     wget \
     ssh \
+    rsync \
     vim && \
     rm -rf /var/lib/apt/lists/* && \
     npm i -g npm
