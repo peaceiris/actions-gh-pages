@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.6.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.0...v3.6.0-0) (2020-03-06)
+
+
+### feat
+
+* Use rsync instead of io.cp() ([5d8f5a1](https://github.com/peaceiris/actions-gh-pages/commit/5d8f5a15f78784a868a9744f3b343232dbcbd918))
+
+### fix
+
+* Use io.cp() on windows ([4614605](https://github.com/peaceiris/actions-gh-pages/commit/46146058b69b014134a7d788299d643e83cc3176))
+
+
+
 # [3.5.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0) (2020-03-06)
 
 
