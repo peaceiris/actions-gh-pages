@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.5.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0-0) (2020-03-06)
+
+
+### deps
+
+* bump node 12.15.0 to 12.16.1 (#142) ([ade8887](https://github.com/peaceiris/actions-gh-pages/commit/ade88874791f5b67d0c475d6dffb5219ed4407f1)), closes [#142](https://github.com/peaceiris/actions-gh-pages/issues/142)
+
+### feat
+
+* Add enable_jekyll ([1fff2ca](https://github.com/peaceiris/actions-gh-pages/commit/1fff2ca84a6b42067a86c6229774aa5e2891a661))
+
+
+
 ## [3.4.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.0...v3.4.1) (2020-03-06)
 
 

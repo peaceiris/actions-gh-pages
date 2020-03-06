@@ -2,28 +2,31 @@
 import {Inputs} from '../src/interfaces';
 import {showInputs, getInputs} from '../src/get-inputs';
 import os from 'os';
+import fs from 'fs';
+import yaml from 'js-yaml';
 
 beforeEach(() => {
   jest.resetModules();
+  process.stdout.write = jest.fn();
+
+  const doc = yaml.safeLoad(
+    fs.readFileSync(__dirname + '/../action.yml', 'utf8')
+  );
+  Object.keys(doc.inputs).forEach(name => {
+    const envVar = `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
+    process.env[envVar] = doc.inputs[name]['default'];
+  });
 });
 
 afterEach(() => {
-  delete process.env['INPUT_DEPLOY_KEY'];
-  delete process.env['INPUT_GITHUB_TOKEN'];
-  delete process.env['INPUT_PERSONAL_TOKEN'];
-  delete process.env['INPUT_PUBLISH_BRANCH'];
-  delete process.env['INPUT_PUBLISH_DIR'];
-  delete process.env['INPUT_EXTERNAL_REPOSITORY'];
-  delete process.env['INPUT_ALLOW_EMPTY_COMMIT'];
-  delete process.env['INPUT_KEEP_FILES'];
-  delete process.env['INPUT_FORCE_ORPHAN'];
-  delete process.env['INPUT_USER_NAME'];
-  delete process.env['INPUT_USER_EMAIL'];
-  delete process.env['INPUT_COMMIT_MESSAGE'];
-  delete process.env['INPUT_TAG_NAME'];
-  delete process.env['INPUT_TAG_MESSAGE'];
-  delete process.env['INPUT_DISABLE_NOJEKYLL'];
-  delete process.env['INPUT_CNAME'];
+  const doc = yaml.safeLoad(
+    fs.readFileSync(__dirname + '/../action.yml', 'utf8')
+  );
+  Object.keys(doc.inputs).forEach(name => {
+    const envVar = `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
+    console.debug(`delete ${envVar}\t${process.env[envVar]}`);
+    delete process.env[envVar];
+  });
 });
 
 // Assert that process.stdout.write calls called only with the given arguments.
@@ -34,22 +37,6 @@ function assertWriteCalls(calls: string[]): void {
   for (let i = 0; i < calls.length; i++) {
     expect(process.stdout.write).toHaveBeenNthCalledWith(i + 1, calls[i]);
   }
-}
-
-function setTestInputs(): void {
-  process.env['INPUT_PUBLISH_BRANCH'] = 'master';
-  process.env['INPUT_PUBLISH_DIR'] = 'out';
-  process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
-  process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
-  process.env['INPUT_KEEP_FILES'] = 'true';
-  process.env['INPUT_FORCE_ORPHAN'] = 'true';
-  process.env['INPUT_USER_NAME'] = 'username';
-  process.env['INPUT_USER_EMAIL'] = 'github@github.com';
-  process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
-  process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
-  process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
-  process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
-  process.env['INPUT_CNAME'] = 'github.com';
 }
 
 function getInputsLog(authMethod: string, inps: Inputs): string {
@@ -66,20 +53,15 @@ function getInputsLog(authMethod: string, inps: Inputs): string {
 [INFO] CommitMessage: ${inps.CommitMessage}
 [INFO] TagName: ${inps.TagName}
 [INFO] TagMessage: ${inps.TagMessage}
-[INFO] DisableNoJekyll: ${inps.DisableNoJekyll}
+[INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 `;
 }
 
 describe('showInputs()', () => {
-  beforeEach(() => {
-    process.stdout.write = jest.fn();
-  });
-
   // eslint-disable-next-line jest/expect-expect
   test('print all inputs DeployKey', () => {
     process.env['INPUT_DEPLOY_KEY'] = 'test_deploy_key';
-    setTestInputs();
 
     const inps: Inputs = getInputs();
     showInputs(inps);
@@ -91,8 +73,8 @@ describe('showInputs()', () => {
 
   // eslint-disable-next-line jest/expect-expect
   test('print all inputs GithubToken', () => {
+    delete process.env['INPUT_DEPLOY_KEY'];
     process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
-    setTestInputs();
 
     const inps: Inputs = getInputs();
     showInputs(inps);
@@ -104,8 +86,9 @@ describe('showInputs()', () => {
 
   // eslint-disable-next-line jest/expect-expect
   test('print all inputs PersonalToken', () => {
+    delete process.env['INPUT_DEPLOY_KEY'];
+    delete process.env['INPUT_GITHUB_TOKEN'];
     process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
-    setTestInputs();
 
     const inps: Inputs = getInputs();
     showInputs(inps);
@@ -119,10 +102,6 @@ describe('showInputs()', () => {
 describe('getInputs()', () => {
   test('get default inputs', () => {
     process.env['INPUT_DEPLOY_KEY'] = 'test_deploy_key';
-    // process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
-    // process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
-    process.env['INPUT_PUBLISH_BRANCH'] = 'gh-pages';
-    process.env['INPUT_PUBLISH_DIR'] = 'public';
 
     const inps: Inputs = getInputs();
 
@@ -180,5 +159,15 @@ describe('getInputs()', () => {
     expect(inps.TagMessage).toMatch('Deployment v1.2.3');
     expect(inps.DisableNoJekyll).toBe(true);
     expect(inps.CNAME).toMatch('github.com');
+  });
+
+  test('throw error enable_jekyll or disable_nojekyll', () => {
+    process.env['INPUT_DEPLOY_KEY'] = 'test_deploy_key';
+    process.env['INPUT_ENABLE_JEKYLL'] = 'true';
+    process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
+
+    expect(() => {
+      getInputs();
+    }).toThrowError('Use either of enable_jekyll or disable_nojekyll');
   });
 });
