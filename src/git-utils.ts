@@ -17,27 +17,29 @@ export async function copyAssets(
   publishDir: string,
   workDir: string
 ): Promise<void> {
-  // const copyOpts = {recursive: true, force: true};
-  // const files = fs.readdirSync(publishDir);
-  // core.debug(`${files}`);
-  await exec.exec('rsync', [
-    '-rptgoDv',
-    '--copy-links',
-    '--copy-dirlinks',
-    "--exclude='.git'",
-    "--exclude='.github'",
-    `${publishDir}/`,
-    `${workDir}/`
-  ]);
-  // for await (const file of files) {
-  //   if (file.endsWith('.git') || file.endsWith('.github')) {
-  //     continue;
-  //   }
-  //   const filePath = path.join(publishDir, file);
-  //   await io.cp(filePath, `${workDir}/`, copyOpts);
-  //   core.info(`[INFO] copy ${file}`);
-  // }
-
+  if (process.platform === 'win32') {
+    const copyOpts = {recursive: true, force: true};
+    const files = fs.readdirSync(publishDir);
+    core.debug(`${files}`);
+    for await (const file of files) {
+      if (file.endsWith('.git') || file.endsWith('.github')) {
+        continue;
+      }
+      const filePath = path.join(publishDir, file);
+      await io.cp(filePath, `${workDir}/`, copyOpts);
+      core.info(`[INFO] copy ${file}`);
+    }
+  } else {
+    await exec.exec('rsync', [
+      '-rptgoDv',
+      '--copy-links',
+      '--copy-dirlinks',
+      "--exclude='.git'",
+      "--exclude='.github'",
+      `${publishDir}/`,
+      `${workDir}/`
+    ]);
+  }
   return;
 }
 
