@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: 'Bug: This is a sample issue title'
+title: 'sample_title'
 labels: bug
 assignees: peaceiris
 
