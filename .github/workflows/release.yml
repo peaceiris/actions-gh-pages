@@ -3,13 +3,12 @@ name: Release
 on:
   push:
     tags:
-    - 'v3.*.*'
+      - 'v3.*.*'
 
 jobs:
   release:
     runs-on: ubuntu-18.04
     steps:
-
       - uses: actions/checkout@v2
 
       - name: Dump GitHub context
@@ -19,7 +18,7 @@ jobs:
 
       - name: Install github/hub
         run: |
-          export HUB_VERSION="2.14.1"
+          export HUB_VERSION="2.14.2"
           curl -fsSL https://github.com/github/hub/raw/40e421edd2c63d57bb8daa4bb9bbdfa21e8becf9/script/get | bash -s "${HUB_VERSION}"
 
       - name: Create release
