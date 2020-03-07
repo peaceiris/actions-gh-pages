@@ -42,7 +42,7 @@ Three tokens are supported.
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
-Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it has still some limitations. For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab.
+Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it has still some limitations. For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab. See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
 
 ### Supported Platforms
 
@@ -79,6 +79,7 @@ Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
+  - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
@@ -142,13 +143,9 @@ jobs:
 
 The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
 
-| Actions log overview | Build step log |
+| Actions log overview | GitHub Pages log |
 |---|---|
-| ![](./images/log1.jpg) | ![](./images/log2.jpg) |
-
-| Deploy step log | GitHub Pages log |
-|---|---|
-| ![](./images/log3.jpg) | ![](./images/log4.jpg) |
+| ![](./images/log_overview.jpg) | ![](./images/log_success.jpg) |
 
 ### ⭐️ Repository type - User and Organization
 
@@ -195,7 +192,7 @@ jobs:
 
 ### ⭐️ `deploy_key`
 
-Read [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH deploy key, and set the `deploy_key` option like the following.
+Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH deploy key, and set the `deploy_key` option like the following.
 
 ```yaml
 - name: Deploy
@@ -432,6 +429,18 @@ Next, Go to **Repository Settings**
 | Add your private key | Success |
 |---|---|
 | ![](./images/secrets-1.jpg) | ![](./images/secrets-2.jpg) |
+
+### ⭐️ First Deployment with `GITHUB_TOKEN`
+
+The `GITHUB_TOKEN` has limitations for the first deployment so we have to select the GitHub Pages branch on the repository settings tab.
+
+| First deployment failed | Go to the settings tab |
+|---|---|
+| ![](./images/log_first_deployment_failed_with_github_token.jpg) | ![](./images/settings_inactive.jpg) |
+
+| Select branch | Deploying again and succeed |
+|---|---|
+| ![](./images/settings_select.jpg) | ![](./images/log_success.jpg) |
 
 ### ⭐️ Use the latest and specific release
 
