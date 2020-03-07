@@ -1,7 +1,7 @@
 ---
 name: Proposal
 about: Suggest an idea for this project
-title: 'proposal: This is a sample title'
+title: 'sample_title'
 labels: proposal
 assignees: peaceiris
 
