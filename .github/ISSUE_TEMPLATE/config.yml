@@ -3,6 +3,9 @@ contact_links:
   - name: GitHub Actions Community Forum
     url: https://github.community/t5/GitHub-Actions/bd-p/actions
     about: Please ask questions about GitHub Actions here.
-  - name: GitHub Pages help
+  - name: GitHub Pages Documentation
     url: https://help.github.com/en/github/working-with-github-pages
-    about: GitHub Pages documentaion here.
+    about: GitHub Pages official documentaion here.
+  - name: GitHub Actions Documentation
+    url: https://help.github.com/en/actions
+    about: GitHub Actions official documentaion here.
