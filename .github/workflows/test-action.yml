@@ -87,8 +87,8 @@ jobs:
           allow_empty_commit: true
           # keep_files: true
           # force_orphan: true
-          # user_name: iris
-          # user_email: email@peaceiris.com
+          user_name: GitHub Actions
+          user_email: 'github-actions[bot]@users.noreply.github.com'
           # commit_message: ${{ github.event.head_commit.message }}
           # tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
           # tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
