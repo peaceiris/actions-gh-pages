@@ -327,8 +327,8 @@ A commit is always created with the same user.
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
-    user_name: iris
-    user_email: iris@peaceiris.com
+    user_name: GitHub Actions
+    user_email: 'github-actions[bot]@users.noreply.github.com'
 ```
 
 ### ⭐️ Set custom commit message
