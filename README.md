@@ -331,6 +331,8 @@ A commit is always created with the same user.
     user_email: 'github-actions[bot]@users.noreply.github.com'
 ```
 
+<img width="400px" alt="Add GitHub Actions bot as a committer" src="./images/committer_github_actions_bot.jpg">
+
 ### ⭐️ Set custom commit message
 
 Set custom commit message.
