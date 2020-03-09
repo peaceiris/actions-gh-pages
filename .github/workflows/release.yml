@@ -19,7 +19,7 @@ jobs:
       - name: Install github/hub
         run: |
           export HUB_VERSION="2.14.2"
-          curl -fsSL https://github.com/github/hub/raw/40e421edd2c63d57bb8daa4bb9bbdfa21e8becf9/script/get | bash -s "${HUB_VERSION}"
+          curl -fsSL https://github.com/github/hub/raw/8d91904208171b013f9a9d1175f4ab39068db047/script/get | bash -s "${HUB_VERSION}"
 
       - name: Create release
         env:
