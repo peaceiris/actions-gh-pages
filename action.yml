@@ -9,24 +9,24 @@ branding:
   color: 'blue'
 inputs:
   deploy_key:
-    description: ''
+    description: 'Set a SSH private key from repository secret value for pushing to the remote branch.'
     required: false
   github_token:
-    description: ''
+    description: 'Set a generated GITHUB_TOKEN for pushing to the remote branch.'
     required: false
   personal_token:
-    description: ''
+    description: 'Set a personal access token for pushing to the remote branch.'
     required: false
   publish_branch:
-    description: ''
+    description: 'Set a target branch for deployment.'
     required: false
     default: 'gh-pages'
   publish_dir:
-    description: ''
+    description: 'Set an input directory for deployment.'
     required: false
     default: 'public'
   external_repository:
-    description: ''
+    description: 'Set an external repository (owner/repo).'
     required: false
   allow_empty_commit:
     description: 'If empty commits should be made to the publication branch'
