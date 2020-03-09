@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.0...v3.5.1) (2020-03-09)
+
+
+### chore
+
+* [ImgBot] Optimize images (#147) ([d8ed36f](https://github.com/peaceiris/actions-gh-pages/commit/d8ed36f54aee9f59e2e00fa7aceda885cd6d3eb8)), closes [#147](https://github.com/peaceiris/actions-gh-pages/issues/147)
+* Add missing descriptions ([a7bc3c3](https://github.com/peaceiris/actions-gh-pages/commit/a7bc3c37fdc9c640720165cb06fbffe20febe7a3))
+* Add user support issue template (#146) ([86214f3](https://github.com/peaceiris/actions-gh-pages/commit/86214f3d7909e3e81e38f0a73a897e00fc1198e4)), closes [#146](https://github.com/peaceiris/actions-gh-pages/issues/146) [#58](https://github.com/peaceiris/actions-gh-pages/issues/58)
+
+### ci
+
+* Add GitHub Actions bot as committer ([80c8fe5](https://github.com/peaceiris/actions-gh-pages/commit/80c8fe5fb32cd1e1b866e2d0d0d34cb1ba492586))
+* fix user_name ([f3b165f](https://github.com/peaceiris/actions-gh-pages/commit/f3b165fbe1a9ec4c9bd8b435ee13fc7cb10ef42a))
+* fix user_name ([945c44d](https://github.com/peaceiris/actions-gh-pages/commit/945c44d50a26eb6b24dbc0157dd836a39f9d5edb))
+* update script link [skip ci] ([c279167](https://github.com/peaceiris/actions-gh-pages/commit/c2791671998aa8f7858322a1bb74a1e74fb58923))
+
+### deps
+
+* bump @types/jest from 25.1.3 to 25.1.4 (#148) ([a4c25ca](https://github.com/peaceiris/actions-gh-pages/commit/a4c25ca7788f09428015b84ffd661ec30c7f2734)), closes [#148](https://github.com/peaceiris/actions-gh-pages/issues/148)
+* bump hub 2.14.1 to 2.14.2 ([618792b](https://github.com/peaceiris/actions-gh-pages/commit/618792b2f09d6b33bc394ffa2ffaec5ce48fc15d))
+
+### docs
+
+* Add bot committer image ([d2d8e21](https://github.com/peaceiris/actions-gh-pages/commit/d2d8e21d7ee28e4ab68e977f54ce0de33f9ae3ba))
+* Add GitHub Actions bot committer ([81884ef](https://github.com/peaceiris/actions-gh-pages/commit/81884efe7cbee81f6d73a96037ac547b3eda1b78))
+* Add notes about GitHub_TOKEN (#145) ([6852043](https://github.com/peaceiris/actions-gh-pages/commit/68520436f89fb253238c54f1ad6c5c3681c3e85b)), closes [#145](https://github.com/peaceiris/actions-gh-pages/issues/145)
+* fix user_name ([9571d29](https://github.com/peaceiris/actions-gh-pages/commit/9571d29e0df7e4a5bd5700f5531848e9158d7a2c))
+* fix user_name ([eb73e9c](https://github.com/peaceiris/actions-gh-pages/commit/eb73e9cb9d8ed1656b67a83c37e7dc1bc9c0dc00))
+* fix user_name ([860ed19](https://github.com/peaceiris/actions-gh-pages/commit/860ed1944f8968c2df2e052bd419a015ec10be38))
+
+
+
 # [3.5.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.4.1...v3.5.0) (2020-03-06)
 
 
