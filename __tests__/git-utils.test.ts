@@ -1,9 +1,7 @@
 import {getUserName, getUserEmail, setCommitAuthor} from '../src/git-utils';
-import {getTime} from './test-utils';
 import {getWorkDirName, createWorkDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
 
 beforeEach(() => {
   jest.resetModules();
@@ -45,10 +43,10 @@ describe('getUserEmail()', () => {
 });
 
 describe('setCommitAuthor()', () => {
-  let unixTime = '';
   let workDirName = '';
   (async (): Promise<void> => {
-    unixTime = await getTime();
+    const date = new Date();
+    const unixTime = date.getTime();
     workDirName = await getWorkDirName(`${unixTime}`);
   })();
 

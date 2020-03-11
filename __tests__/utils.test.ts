@@ -7,7 +7,6 @@ import {
   addNoJekyll,
   addCNAME
 } from '../src/utils';
-import {getTime} from './test-utils';
 
 beforeEach(() => {
   jest.resetModules();
@@ -16,6 +15,12 @@ beforeEach(() => {
 // afterEach(() => {
 
 // });
+
+async function getTime(): Promise<string> {
+  const date = new Date();
+  const unixTime = date.getTime();
+  return `${unixTime}`;
+}
 
 describe('getHomeDir()', () => {
   test('get home directory name', async () => {
