@@ -103,33 +103,39 @@ export async function setRepo(
   }
 }
 
-export async function setConfig(
-  userName: string,
-  userEmail: string
-): Promise<void> {
-  let name = '';
+export function getUserName(userName: string): string {
   if (userName) {
-    name = userName;
+    return userName;
   } else {
-    name = `${process.env.GITHUB_ACTOR}`;
+    return `${process.env.GITHUB_ACTOR}`;
   }
-  await exec.exec('git', ['config', 'user.name', name]);
+}
 
-  let email = '';
-  if (userName !== '' && userEmail !== '') {
-    email = userEmail;
+export function getUserEmail(userEmail: string): string {
+  if (userEmail) {
+    return userEmail;
   } else {
-    email = `${process.env.GITHUB_ACTOR}@users.noreply.github.com`;
+    return `${process.env.GITHUB_ACTOR}@users.noreply.github.com`;
   }
-  await exec.exec('git', ['config', 'user.email', email]);
+}
 
-  return;
+export function getCommitAuthor(userName: string, userEmail: string): string {
+  if (userName && !userEmail) {
+    throw new Error('user_email is undefined');
+  }
+  if (!userName && userEmail) {
+    throw new Error('user_name is undefined');
+  }
+
+  return `${getUserName(userName)} <${getUserEmail(userEmail)}>`;
 }
 
 export async function commit(
   allowEmptyCommit: boolean,
   externalRepository: string,
-  message: string
+  message: string,
+  userName: string,
+  userEmail: string
 ): Promise<void> {
   let msg = '';
   if (message) {
@@ -146,11 +152,24 @@ export async function commit(
     msg = `${msg} ${hash}`;
   }
 
+  let commitAuthor = '';
+  try {
+    commitAuthor = `--author="${getCommitAuthor(userName, userEmail)}"`;
+  } catch (error) {
+    throw new Error(`${error.message}`);
+  }
+
   try {
     if (allowEmptyCommit) {
-      await exec.exec('git', ['commit', '--allow-empty', '-m', `${msg}`]);
+      await exec.exec('git', [
+        'commit',
+        commitAuthor,
+        '--allow-empty',
+        '-m',
+        `${msg}`
+      ]);
     } else {
-      await exec.exec('git', ['commit', '-m', `${msg}`]);
+      await exec.exec('git', ['commit', commitAuthor, '-m', `${msg}`]);
     }
   } catch (e) {
     core.info('[INFO] skip commit');

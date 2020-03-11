@@ -3,7 +3,7 @@ import * as exec from '@actions/exec';
 import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
-import * as git from './git-utils';
+import {setRepo, commit, push, pushTag} from './git-utils';
 import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
 
 export async function run(): Promise<void> {
@@ -11,15 +11,13 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
-    await exec.exec('git', ['config', '--global', 'gc.auto', '0']);
-
     const remoteURL = await setTokens(inps);
     core.debug(`[INFO] remoteURL: ${remoteURL}`);
 
     const date = new Date();
     const unixTime = date.getTime();
     const workDir = await getWorkDirName(`${unixTime}`);
-    await git.setRepo(inps, remoteURL, workDir);
+    await setRepo(inps, remoteURL, workDir);
 
     await addNoJekyll(workDir, inps.DisableNoJekyll, inps.PublishBranch);
     await addCNAME(workDir, inps.CNAME);
@@ -31,14 +29,15 @@ export async function run(): Promise<void> {
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
-    await git.setConfig(inps.UserName, inps.UserEmail);
-    await git.commit(
+    await commit(
       inps.AllowEmptyCommit,
       inps.ExternalRepository,
-      inps.CommitMessage
+      inps.CommitMessage,
+      inps.UserName,
+      inps.UserEmail
     );
-    await git.push(inps.PublishBranch, inps.ForceOrphan);
-    await git.pushTag(inps.TagName, inps.TagMessage);
+    await push(inps.PublishBranch, inps.ForceOrphan);
+    await pushTag(inps.TagName, inps.TagMessage);
 
     core.info('[INFO] Action successfully completed');
 
