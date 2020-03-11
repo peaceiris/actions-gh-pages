@@ -11,7 +11,7 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
-    await git.setConfig(inps.UserName, inps.UserEmail);
+    await exec.exec('git', ['config', '--global', 'gc.auto', '0']);
 
     const remoteURL = await setTokens(inps);
     core.debug(`[INFO] remoteURL: ${remoteURL}`);
@@ -31,7 +31,7 @@ export async function run(): Promise<void> {
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
-
+    await git.setConfig(inps.UserName, inps.UserEmail);
     await git.commit(
       inps.AllowEmptyCommit,
       inps.ExternalRepository,

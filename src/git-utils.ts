@@ -107,15 +107,13 @@ export async function setConfig(
   userName: string,
   userEmail: string
 ): Promise<void> {
-  await exec.exec('git', ['config', '--global', 'gc.auto', '0']);
-
   let name = '';
   if (userName) {
     name = userName;
   } else {
     name = `${process.env.GITHUB_ACTOR}`;
   }
-  await exec.exec('git', ['config', '--global', 'user.name', name]);
+  await exec.exec('git', ['config', 'user.name', name]);
 
   let email = '';
   if (userName !== '' && userEmail !== '') {
@@ -123,7 +121,7 @@ export async function setConfig(
   } else {
     email = `${process.env.GITHUB_ACTOR}@users.noreply.github.com`;
   }
-  await exec.exec('git', ['config', '--global', 'user.email', email]);
+  await exec.exec('git', ['config', 'user.email', email]);
 
   return;
 }
