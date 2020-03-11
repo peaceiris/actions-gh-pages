@@ -1,9 +1,9 @@
-import {
-  getUserName,
-  getUserEmail,
-  getCommitAuthor,
-  commit
-} from '../src/git-utils';
+import {getUserName, getUserEmail, setCommitAuthor} from '../src/git-utils';
+import {getTime} from './test-utils';
+import {getWorkDirName, createWorkDir} from '../src/utils';
+import {CmdResult} from '../src/interfaces';
+import * as exec from '@actions/exec';
+import * as io from '@actions/io';
 
 beforeEach(() => {
   jest.resetModules();
@@ -44,54 +44,75 @@ describe('getUserEmail()', () => {
   });
 });
 
-describe('getCommitAuthor()', () => {
-  test('get default commit author', () => {
+describe('setCommitAuthor()', () => {
+  let unixTime = '';
+  let workDirName = '';
+  (async (): Promise<void> => {
+    unixTime = await getTime();
+    workDirName = await getWorkDirName(`${unixTime}`);
+  })();
+
+  beforeEach(async () => {
+    await createWorkDir(workDirName);
+    process.chdir(workDirName);
+    await exec.exec('git', ['init']);
+  });
+
+  test('get default commit author', async () => {
     const userName = '';
     const userEmail = '';
-    const test = getCommitAuthor(userName, userEmail);
-    expect(test).toMatch(
-      'default-octocat <default-octocat@users.noreply.github.com>'
-    );
+    const result: CmdResult = {
+      exitcode: 0,
+      output: ''
+    };
+    const options = {
+      listeners: {
+        stdout: (data: Buffer): void => {
+          result.output += data.toString();
+        }
+      }
+    };
+    await setCommitAuthor(userName, userEmail);
+    result.exitcode = await exec.exec('git', ['config', 'user.name'], options);
+    expect(result.output).toMatch('default-octocat');
+    result.exitcode = await exec.exec('git', ['config', 'user.email'], options);
+    expect(result.output).toMatch('default-octocat@users.noreply.github.com');
   });
 
-  test('get custom commit author', () => {
+  test('get custom commit author', async () => {
     const userName = 'custom-octocat';
     const userEmail = 'custom-octocat@github.com';
-    const test = getCommitAuthor(userName, userEmail);
-    expect(test).toMatch(`${userName} <${userEmail}>`);
+    const result: CmdResult = {
+      exitcode: 0,
+      output: ''
+    };
+    const options = {
+      listeners: {
+        stdout: (data: Buffer): void => {
+          result.output += data.toString();
+        }
+      }
+    };
+    await setCommitAuthor(userName, userEmail);
+    result.exitcode = await exec.exec('git', ['config', 'user.name'], options);
+    expect(result.output).toMatch(userName);
+    result.exitcode = await exec.exec('git', ['config', 'user.email'], options);
+    expect(result.output).toMatch(userEmail);
   });
 
-  test('throw error user_email is undefined', () => {
-    const userName = 'custom-octocat';
-    const userEmail = '';
-    expect(() => {
-      getCommitAuthor(userName, userEmail);
-    }).toThrowError('user_email is undefined');
-  });
-
-  test('throw error user_name is undefined', () => {
-    const userName = '';
-    const userEmail = 'custom-octocat@github.com';
-    expect(() => {
-      getCommitAuthor(userName, userEmail);
-    }).toThrowError('user_name is undefined');
-  });
-});
-
-describe('commit()', () => {
   test('throw error user_email is undefined', async () => {
     const userName = 'custom-octocat';
     const userEmail = '';
-    await expect(
-      commit(false, '', '', userName, userEmail)
-    ).rejects.toThrowError('user_email is undefined');
+    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrowError(
+      'user_email is undefined'
+    );
   });
 
   test('throw error user_name is undefined', async () => {
     const userName = '';
     const userEmail = 'custom-octocat@github.com';
-    await expect(
-      commit(false, '', '', userName, userEmail)
-    ).rejects.toThrowError('user_name is undefined');
+    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrowError(
+      'user_name is undefined'
+    );
   });
 });

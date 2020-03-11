@@ -119,23 +119,24 @@ export function getUserEmail(userEmail: string): string {
   }
 }
 
-export function getCommitAuthor(userName: string, userEmail: string): string {
+export async function setCommitAuthor(
+  userName: string,
+  userEmail: string
+): Promise<void> {
   if (userName && !userEmail) {
     throw new Error('user_email is undefined');
   }
   if (!userName && userEmail) {
     throw new Error('user_name is undefined');
   }
-
-  return `${getUserName(userName)} <${getUserEmail(userEmail)}>`;
+  await exec.exec('git', ['config', 'user.name', getUserName(userName)]);
+  await exec.exec('git', ['config', 'user.email', getUserEmail(userEmail)]);
 }
 
 export async function commit(
   allowEmptyCommit: boolean,
   externalRepository: string,
-  message: string,
-  userName: string,
-  userEmail: string
+  message: string
 ): Promise<void> {
   let msg = '';
   if (message) {
@@ -152,24 +153,11 @@ export async function commit(
     msg = `${msg} ${hash}`;
   }
 
-  let commitAuthor = '';
-  try {
-    commitAuthor = `--author="${getCommitAuthor(userName, userEmail)}"`;
-  } catch (error) {
-    throw new Error(`${error.message}`);
-  }
-
   try {
     if (allowEmptyCommit) {
-      await exec.exec('git', [
-        'commit',
-        commitAuthor,
-        '--allow-empty',
-        '-m',
-        `${msg}`
-      ]);
+      await exec.exec('git', ['commit', '--allow-empty', '-m', `${msg}`]);
     } else {
-      await exec.exec('git', ['commit', commitAuthor, '-m', `${msg}`]);
+      await exec.exec('git', ['commit', '-m', `${msg}`]);
     }
   } catch (e) {
     core.info('[INFO] skip commit');

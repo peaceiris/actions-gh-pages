@@ -3,7 +3,7 @@ import * as exec from '@actions/exec';
 import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
-import {setRepo, commit, push, pushTag} from './git-utils';
+import {setRepo, setCommitAuthor, commit, push, pushTag} from './git-utils';
 import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
 
 export async function run(): Promise<void> {
@@ -29,12 +29,11 @@ export async function run(): Promise<void> {
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
+    await setCommitAuthor(inps.UserName, inps.UserEmail);
     await commit(
       inps.AllowEmptyCommit,
       inps.ExternalRepository,
-      inps.CommitMessage,
-      inps.UserName,
-      inps.UserEmail
+      inps.CommitMessage
     );
     await push(inps.PublishBranch, inps.ForceOrphan);
     await pushTag(inps.TagName, inps.TagMessage);
