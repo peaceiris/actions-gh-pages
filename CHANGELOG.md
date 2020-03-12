@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.1...v3.5.2) (2020-03-12)
+
+
+### chore
+
+* reindent ([b2788ae](https://github.com/peaceiris/actions-gh-pages/commit/b2788ae3c6c463fccde4f9db8abac12cf2f42b72))
+
+### deps
+
+* bump @typescript-eslint/eslint-plugin from 2.22.0 to 2.23.0 (#150) ([7f32718](https://github.com/peaceiris/actions-gh-pages/commit/7f32718f667956be6bab3cd2dffe9559cdd26fc7)), closes [#150](https://github.com/peaceiris/actions-gh-pages/issues/150)
+* bump @typescript-eslint/parser from 2.22.0 to 2.23.0 (#149) ([6801987](https://github.com/peaceiris/actions-gh-pages/commit/680198766bcc7c4625ee5c9f599187f99bf0c118)), closes [#149](https://github.com/peaceiris/actions-gh-pages/issues/149)
+
+### fix
+
+* set commit author as local config (#152) ([a1ff787](https://github.com/peaceiris/actions-gh-pages/commit/a1ff787715905a17a17d1ab7b42eba976a4553c6)), closes [#152](https://github.com/peaceiris/actions-gh-pages/issues/152) [#151](https://github.com/peaceiris/actions-gh-pages/issues/151)
+
+
+
 ## [3.5.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.0...v3.5.1) (2020-03-09)
 
 
