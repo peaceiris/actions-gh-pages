@@ -103,29 +103,34 @@ export async function setRepo(
   }
 }
 
-export async function setConfig(
+export function getUserName(userName: string): string {
+  if (userName) {
+    return userName;
+  } else {
+    return `${process.env.GITHUB_ACTOR}`;
+  }
+}
+
+export function getUserEmail(userEmail: string): string {
+  if (userEmail) {
+    return userEmail;
+  } else {
+    return `${process.env.GITHUB_ACTOR}@users.noreply.github.com`;
+  }
+}
+
+export async function setCommitAuthor(
   userName: string,
   userEmail: string
 ): Promise<void> {
-  await exec.exec('git', ['config', '--global', 'gc.auto', '0']);
-
-  let name = '';
-  if (userName) {
-    name = userName;
-  } else {
-    name = `${process.env.GITHUB_ACTOR}`;
+  if (userName && !userEmail) {
+    throw new Error('user_email is undefined');
   }
-  await exec.exec('git', ['config', '--global', 'user.name', name]);
-
-  let email = '';
-  if (userName !== '' && userEmail !== '') {
-    email = userEmail;
-  } else {
-    email = `${process.env.GITHUB_ACTOR}@users.noreply.github.com`;
+  if (!userName && userEmail) {
+    throw new Error('user_name is undefined');
   }
-  await exec.exec('git', ['config', '--global', 'user.email', email]);
-
-  return;
+  await exec.exec('git', ['config', 'user.name', getUserName(userName)]);
+  await exec.exec('git', ['config', 'user.email', getUserEmail(userEmail)]);
 }
 
 export async function commit(
