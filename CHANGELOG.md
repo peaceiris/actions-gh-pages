@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.2...v3.5.3) (2020-03-13)
+
+
+### deps
+
+* [security] bump acorn from 6.4.0 to 6.4.1 (#155) ([2fa0a59](https://github.com/peaceiris/actions-gh-pages/commit/2fa0a59e21f19c0862ebc505187b3ede95a92561)), closes [#155](https://github.com/peaceiris/actions-gh-pages/issues/155)
+* bump @types/node from 12.12.29 to 12.12.30 (#154) ([d1f9877](https://github.com/peaceiris/actions-gh-pages/commit/d1f987783c05614c72b8c5009fbfd941982128ec)), closes [#154](https://github.com/peaceiris/actions-gh-pages/issues/154)
+
+
+
 ## [3.5.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.1...v3.5.2) (2020-03-12)
 
 
