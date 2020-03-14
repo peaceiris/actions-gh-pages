@@ -1,3 +1,4 @@
+import {context} from '@actions/github';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import {Inputs} from './interfaces';
@@ -11,7 +12,11 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
+    const isForkRepository =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (context.payload as any).repository.fork === 'true';
     const isSkipOnFork = await skipOnFork(
+      isForkRepository,
       inps.GithubToken,
       inps.DeployKey,
       inps.PersonalToken

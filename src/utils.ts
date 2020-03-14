@@ -1,4 +1,3 @@
-import {context} from '@actions/github';
 import * as core from '@actions/core';
 import * as io from '@actions/io';
 import path from 'path';
@@ -65,20 +64,17 @@ export async function addCNAME(
 }
 
 export async function skipOnFork(
+  isForkRepository: boolean,
   githubToken: string,
   deployKey: string,
   personalToken: string
 ): Promise<boolean> {
-  const isForkRepository =
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (context.payload as any).repository.fork === 'true';
-
   if (isForkRepository) {
     if (githubToken) {
       return false;
     }
 
-    if (!deployKey && !personalToken) {
+    if (deployKey === '' && personalToken === '') {
       core.warning(
         'Action runs on fork and deploy_key or personal_token is empty'
       );

@@ -5,7 +5,8 @@ import {
   getWorkDirName,
   createWorkDir,
   addNoJekyll,
-  addCNAME
+  addCNAME,
+  skipOnFork
 } from '../src/utils';
 
 beforeEach(() => {
@@ -201,5 +202,32 @@ describe('addCNAME()', () => {
     expect(test).toMatch('github.io');
 
     fs.unlinkSync(filepath);
+  });
+});
+
+describe('skipOnFork()', () => {
+  test('return false on upstream', async () => {
+    const test = await skipOnFork(false, 'token', '', '');
+    expect(test).toBeFalsy();
+  });
+
+  test('return false on fork with github_token', async () => {
+    const test = await skipOnFork(true, 'token', '', '');
+    expect(test).toBeFalsy();
+  });
+
+  test('return false on fork with deploy_key', async () => {
+    const test = await skipOnFork(true, '', 'deploy_key', '');
+    expect(test).toBeFalsy();
+  });
+
+  test('return false on fork with personal_token', async () => {
+    const test = await skipOnFork(true, '', '', 'personal_token');
+    expect(test).toBeFalsy();
+  });
+
+  test('return true on fork with empty deploy_key or personal_token', async () => {
+    const test = await skipOnFork(true, '', '', '');
+    expect(test).toBeTruthy();
   });
 });
