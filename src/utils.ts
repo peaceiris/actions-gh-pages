@@ -71,7 +71,7 @@ export async function skipOnFork(
 ): Promise<boolean> {
   const isForkRepository =
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (context.payload as any).repository.fork.toUpperCase() === 'TRUE';
+    (context.payload as any).repository.fork === 'true';
 
   if (!isForkRepository || githubToken) {
     return false;
