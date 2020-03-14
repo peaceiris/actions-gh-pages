@@ -1,3 +1,4 @@
+import {context} from '@actions/github';
 import * as core from '@actions/core';
 import * as io from '@actions/io';
 import path from 'path';
@@ -61,4 +62,24 @@ export async function addCNAME(
   }
   fs.writeFileSync(filepath, content + '\n');
   core.info(`[INFO] Created ${filepath}`);
+}
+
+export async function skipOnFork(
+  githubToken: string,
+  deployKey: string,
+  personalToken: string
+): Promise<boolean> {
+  const isForkRepository =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (context.payload as any).repository.fork.toUpperCase() === 'TRUE';
+
+  if (!isForkRepository || githubToken) {
+    return false;
+  }
+
+  if (isForkRepository && (deployKey || personalToken)) {
+    return false;
+  }
+
+  return true;
 }
