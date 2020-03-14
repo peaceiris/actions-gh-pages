@@ -12,9 +12,8 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
-    const isForkRepository =
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (context.payload as any).repository.fork === 'true';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const isForkRepository = (context.payload as any).repository.fork;
     const isSkipOnFork = await skipOnFork(
       isForkRepository,
       inps.GithubToken,
@@ -22,6 +21,9 @@ export async function run(): Promise<void> {
       inps.PersonalToken
     );
     if (isSkipOnFork) {
+      core.warning(
+        'Action runs on fork and deploy_key or personal_token is empty, Skip deployment'
+      );
       return;
     }
 

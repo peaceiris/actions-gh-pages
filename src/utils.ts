@@ -75,9 +75,6 @@ export async function skipOnFork(
     }
 
     if (deployKey === '' && personalToken === '') {
-      core.warning(
-        'Action runs on fork and deploy_key or personal_token is empty'
-      );
       return true;
     }
   }
