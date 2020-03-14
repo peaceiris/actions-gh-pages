@@ -73,14 +73,17 @@ export async function skipOnFork(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (context.payload as any).repository.fork === 'true';
 
-  if (isForkRepository && deployKey === '') {
-    core.warning('Action runs on fork and deploy_key is empty');
-    return true;
-  }
+  if (isForkRepository) {
+    if (githubToken) {
+      return false;
+    }
 
-  if (isForkRepository && personalToken === '') {
-    core.warning('Action runs on fork and personalToken is empty');
-    return true;
+    if (!deployKey && !personalToken) {
+      core.warning(
+        'Action runs on fork and deploy_key or personal_token is empty'
+      );
+      return true;
+    }
   }
 
   return false;
