@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.4-5](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-4...v3.5.4-5) (2020-03-14)
+
+
+### fix
+
+* property access ([72f58a0](https://github.com/peaceiris/actions-gh-pages/commit/72f58a06cf5db88d3eb982f57de8dbc266e39232))
+
+
+
 ## [3.5.4-4](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-3...v3.5.4-4) (2020-03-14)
 
 
