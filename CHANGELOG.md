@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.4-3](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-2...v3.5.4-3) (2020-03-14)
+
+
+### fix
+
+* skip logic ([01976c9](https://github.com/peaceiris/actions-gh-pages/commit/01976c9d9b95b42997caa2a85c2d737eb75e852e))
+
+
+
 ## [3.5.4-2](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-1...v3.5.4-2) (2020-03-14)
 
 
