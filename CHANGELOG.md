@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.4-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-0...v3.5.4-1) (2020-03-14)
+
+
+### fix
+
+* isForkRepository ([6546aa9](https://github.com/peaceiris/actions-gh-pages/commit/6546aa96085e89bd91adc56f58be665766e93a1e))
+
+
+
 ## [3.5.4-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.3...v3.5.4-0) (2020-03-14)
 
 
