@@ -70,11 +70,7 @@ export async function skipOnFork(
   personalToken: string
 ): Promise<boolean> {
   if (isForkRepository) {
-    if (githubToken) {
-      return false;
-    }
-
-    if (deployKey === '' && personalToken === '') {
+    if (githubToken === '' && deployKey === '' && personalToken === '') {
       return true;
     }
   }

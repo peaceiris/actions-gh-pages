@@ -226,7 +226,7 @@ describe('skipOnFork()', () => {
     expect(test).toBeFalsy();
   });
 
-  test('return true on fork with empty deploy_key or personal_token', async () => {
+  test('return true on fork with no tokens', async () => {
     const test = await skipOnFork(true, '', '', '');
     expect(test).toBeTruthy();
   });
