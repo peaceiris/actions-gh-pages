@@ -22,7 +22,7 @@ export async function run(): Promise<void> {
     );
     if (isSkipOnFork) {
       core.warning(
-        'Action runs on fork and deploy_key or personal_token is empty, Skip deployment'
+        'This action runs on a fork and not found auth token, Skip deployment'
       );
       return;
     }
