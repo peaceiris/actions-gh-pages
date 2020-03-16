@@ -91,6 +91,7 @@ Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
   - [⭐️ Elm](#%EF%B8%8F-elm)
+  - [⭐️ github/personal-website](#%EF%B8%8F-githubpersonal-website)
 - [License](#license)
 - [Maintainer](#maintainer)
 
@@ -880,6 +881,35 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
+
+### ⭐️ github/personal-website
+
+- [github/personal-website: Code that'll help you kickstart a personal website that showcases your work as a software developer.](https://github.com/github/personal-website)
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+  schedule:
+    - cron: '24 */24 * * *'  # Once a day
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          allow_empty_commit: true
+          enable_jekyll: true
+          cname: github.peaceiris.com
+```
+
+
 
 ## License
 
