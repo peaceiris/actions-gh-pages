@@ -1,15 +1,31 @@
+import {context} from '@actions/github';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
 import {setRepo, setCommitAuthor, commit, push, pushTag} from './git-utils';
-import {getWorkDirName, addNoJekyll, addCNAME} from './utils';
+import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
 
 export async function run(): Promise<void> {
   try {
     const inps: Inputs = getInputs();
     showInputs(inps);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const isForkRepository = (context.payload as any).repository.fork;
+    const isSkipOnFork = await skipOnFork(
+      isForkRepository,
+      inps.GithubToken,
+      inps.DeployKey,
+      inps.PersonalToken
+    );
+    if (isSkipOnFork) {
+      core.warning(
+        'This action runs on a fork and not found auth token, Skip deployment'
+      );
+      return;
+    }
 
     const remoteURL = await setTokens(inps);
     core.debug(`[INFO] remoteURL: ${remoteURL}`);

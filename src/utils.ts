@@ -62,3 +62,18 @@ export async function addCNAME(
   fs.writeFileSync(filepath, content + '\n');
   core.info(`[INFO] Created ${filepath}`);
 }
+
+export async function skipOnFork(
+  isForkRepository: boolean,
+  githubToken: string,
+  deployKey: string,
+  personalToken: string
+): Promise<boolean> {
+  if (isForkRepository) {
+    if (githubToken === '' && deployKey === '' && personalToken === '') {
+      return true;
+    }
+  }
+
+  return false;
+}

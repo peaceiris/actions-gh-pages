@@ -2,6 +2,69 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.4-6](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-5...v3.5.4-6) (2020-03-15)
+
+
+### fix
+
+* skip logic ([44bdada](https://github.com/peaceiris/actions-gh-pages/commit/44bdada02c71f646d23ffefe1ea07d16386dbf83))
+
+
+
+## [3.5.4-5](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-4...v3.5.4-5) (2020-03-14)
+
+
+### fix
+
+* property access ([72f58a0](https://github.com/peaceiris/actions-gh-pages/commit/72f58a06cf5db88d3eb982f57de8dbc266e39232))
+
+
+
+## [3.5.4-4](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-3...v3.5.4-4) (2020-03-14)
+
+
+### test
+
+* skipOnFork() ([6f9a5b7](https://github.com/peaceiris/actions-gh-pages/commit/6f9a5b7a66bbf855cadc34099fa6450c40eff4a2))
+
+
+
+## [3.5.4-3](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-2...v3.5.4-3) (2020-03-14)
+
+
+### fix
+
+* skip logic ([01976c9](https://github.com/peaceiris/actions-gh-pages/commit/01976c9d9b95b42997caa2a85c2d737eb75e852e))
+
+
+
+## [3.5.4-2](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-1...v3.5.4-2) (2020-03-14)
+
+
+### fix
+
+* skip logic ([c97a39a](https://github.com/peaceiris/actions-gh-pages/commit/c97a39a35f681badbf7490c2786eddf06b17316d))
+
+
+
+## [3.5.4-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4-0...v3.5.4-1) (2020-03-14)
+
+
+### fix
+
+* isForkRepository ([6546aa9](https://github.com/peaceiris/actions-gh-pages/commit/6546aa96085e89bd91adc56f58be665766e93a1e))
+
+
+
+## [3.5.4-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.3...v3.5.4-0) (2020-03-14)
+
+
+### fix
+
+* skip on forks ([c320668](https://github.com/peaceiris/actions-gh-pages/commit/c320668126b104ad2c15ea1b583a75cd3978c2f3)), closes [#153](https://github.com/peaceiris/actions-gh-pages/issues/153)
+
+
+
 ## [3.5.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.2...v3.5.3) (2020-03-13)
 
 
