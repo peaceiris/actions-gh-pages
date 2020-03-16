@@ -1,6 +1,6 @@
 {
   "name": "actions-github-pages",
-  "version": "3.5.5",
+  "version": "3.5.6",
   "description": "GitHub Actions for GitHub Pages",
   "main": "lib/index.js",
   "engines": {
