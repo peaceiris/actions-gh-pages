@@ -21,3 +21,7 @@ test:
 .PHONY: commit
 commit:
 	$(DOCKER_RUN) git commit -m "$(msg)"
+
+.PHONY: all
+all:
+	$(DOCKER_RUN) npm run all

@@ -8,6 +8,7 @@
     "npm": ">=6.14.2"
   },
   "scripts": {
+    "all": "npm run format && npm run lint && npm test",
     "lint": "eslint ./{src,__tests__}/**/*.ts",
     "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
     "test": "jest --coverage --verbose --detectOpenHandles",
