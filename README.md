@@ -884,9 +884,11 @@ jobs:
 
 ### ⭐️ github/personal-website
 
-- [github/personal-website: Code that'll help you kickstart a personal website that showcases your work as a software developer.](https://github.com/github/personal-website)
+- [github/personal-website](https://github.com/github/personal-website) - Code that'll help you kickstart a personal website that showcases your work as a software developer.
 
 ```yaml
+# .github/workflows/github-pages.yml
+
 name: GitHub Pages
 
 on:
