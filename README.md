@@ -235,6 +235,8 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
 
 If you want GitHub Pages to process the site with the static site generator Jekyll, set `enable_jekyll` to true.
 
+[github/personal-website](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-githubpersonal-website) is one of the examples using GitHub Pages built-in Jekyll.
+
 By default, this action signals to GitHub Pages that the site shall not be processed with Jekyll. This is done by adding an empty `.nojekyll` file when publishing to the master or gh-pages branch. When a `.nojekyll` file already exists, this action does nothing.
 
 Bypassing Jekyll makes the deployment faster and is necessary if you are deploying files or directories that start with underscores, since Jekyll considers these to be special resources and does not copy them to the final site. You only need to set `enable_jekyll` to true when you want to deploy a Jekyll-powered website and let GitHub Pages do the Jekyll processing.
