@@ -12,19 +12,22 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const isForkRepository = (context.payload as any).repository.fork;
-    const isSkipOnFork = await skipOnFork(
-      isForkRepository,
-      inps.GithubToken,
-      inps.DeployKey,
-      inps.PersonalToken
-    );
-    if (isSkipOnFork) {
-      core.warning(
-        'This action runs on a fork and not found auth token, Skip deployment'
+    const eventName = context.eventName;
+    if (eventName === 'pull_request') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const isForkRepository = (context.payload as any).repository.fork;
+      const isSkipOnFork = await skipOnFork(
+        isForkRepository,
+        inps.GithubToken,
+        inps.DeployKey,
+        inps.PersonalToken
       );
-      return;
+      if (isSkipOnFork) {
+        core.warning(
+          'This action runs on a fork and not found auth token, Skip deployment'
+        );
+        return;
+      }
     }
 
     const remoteURL = await setTokens(inps);
