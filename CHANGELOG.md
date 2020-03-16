@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.5](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.4...v3.5.5) (2020-03-16)
+
+
+### chore
+
+* Add new task all ([01fdaf2](https://github.com/peaceiris/actions-gh-pages/commit/01fdaf2f0274401d2403c809b20c37fb7a8535a6))
+
+### fix
+
+* skip on fork if pull_request (#158) ([d6bd618](https://github.com/peaceiris/actions-gh-pages/commit/d6bd6182f264ce695613180743d42e377570bbf4)), closes [#158](https://github.com/peaceiris/actions-gh-pages/issues/158) [#157](https://github.com/peaceiris/actions-gh-pages/issues/157)
+
+
+
 ## [3.5.4](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.3...v3.5.4) (2020-03-16)
 
 
