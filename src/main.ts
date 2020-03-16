@@ -13,7 +13,7 @@ export async function run(): Promise<void> {
     showInputs(inps);
 
     const eventName = context.eventName;
-    if (eventName === 'pull_request') {
+    if (eventName === 'pull_request' || eventName === 'push') {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const isForkRepository = (context.payload as any).repository.fork;
       const isSkipOnFork = await skipOnFork(
