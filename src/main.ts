@@ -12,6 +12,10 @@ export async function run(): Promise<void> {
     const inps: Inputs = getInputs();
     showInputs(inps);
 
+    if (core.isDebug()) {
+      console.log(context);
+    }
+
     const eventName = context.eventName;
     if (eventName === 'pull_request' || eventName === 'push') {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +35,7 @@ export async function run(): Promise<void> {
     }
 
     const remoteURL = await setTokens(inps);
-    core.debug(`[INFO] remoteURL: ${remoteURL}`);
+    core.debug(`remoteURL: ${remoteURL}`);
 
     const date = new Date();
     const unixTime = date.getTime();
