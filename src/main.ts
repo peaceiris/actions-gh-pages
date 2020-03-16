@@ -35,7 +35,7 @@ export async function run(): Promise<void> {
     }
 
     const remoteURL = await setTokens(inps);
-    core.debug(`[INFO] remoteURL: ${remoteURL}`);
+    core.debug(`remoteURL: ${remoteURL}`);
 
     const date = new Date();
     const unixTime = date.getTime();
