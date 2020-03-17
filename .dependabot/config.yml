@@ -2,7 +2,7 @@ version: 1
 update_configs:
   - package_manager: "javascript"
     directory: "/"
-    update_schedule: "daily"
+    update_schedule: "live"
     default_labels:
       - "dependencies"
     commit_message:
