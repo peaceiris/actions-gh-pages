@@ -70,7 +70,7 @@
     "jest-circus": "^25.1.0",
     "js-yaml": "^3.13.1",
     "lint-staged": "^10.0.8",
-    "prettier": "1.19.1",
+    "prettier": "2.0.0",
     "standard-version": "^7.1.0",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
