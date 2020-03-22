@@ -66,3 +66,6 @@ inputs:
   cname:
     description: 'Set custom domain'
     required: false
+outputs:
+  skipped:
+    description: 'This parameter has true when this action skipped deployment'
