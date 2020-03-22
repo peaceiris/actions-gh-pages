@@ -30,6 +30,7 @@ export async function run(): Promise<void> {
         core.warning(
           'This action runs on a fork and not found auth token, Skip deployment'
         );
+        core.setOutput('skip', 'true');
         return;
       }
     }
