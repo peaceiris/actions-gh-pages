@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make build
-      - run: make run cmd="npm ci"
+      - run: docker run --rm -v "${PWD}:/repo" -v ~/.gitconfig:/root/.gitconfig "actions_github_pages_dev:latest" npm ci
       - run: make all
 
   test:
