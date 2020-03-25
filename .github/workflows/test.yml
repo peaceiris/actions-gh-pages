@@ -24,8 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make build
-      - run: docker run --rm -v "${PWD}:/repo" -v ~/.gitconfig:/root/.gitconfig "actions_github_pages_dev:latest" npm ci
-      - run: make all
+      - run: make cirun cmd="npm ci"
+      - run: make ciall
 
   test:
     runs-on: ${{ matrix.os }}
