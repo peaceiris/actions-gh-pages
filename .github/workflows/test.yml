@@ -19,6 +19,14 @@ jobs:
     steps:
       - run: echo "[Skip CI] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
 
+  dev-image:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: make build
+      - run: make run cmd="npm ci"
+      - run: make all
+
   test:
     runs-on: ${{ matrix.os }}
     if: contains(github.event.head_commit.message, '[skip ci]') == false
