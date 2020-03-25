@@ -1,0 +1,37 @@
+name: 'Dev Image CI'
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/dev-image.yml'
+      - '.dockerignore'
+      - '.nvmrc'
+      - 'Dockerfile'
+      - 'Makefile'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - '.github/workflows/dev-image.yml'
+      - '.dockerignore'
+      - '.nvmrc'
+      - 'Dockerfile'
+      - 'Makefile'
+
+jobs:
+  skipci:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: echo "[skip ci] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+
+  dev-image-test:
+    runs-on: ubuntu-18.04
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    steps:
+      - uses: actions/checkout@v2
+      - run: make build
+      - run: make cirun cmd="npm ci"
+      - run: make ciall
