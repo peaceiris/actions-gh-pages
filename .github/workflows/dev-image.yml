@@ -5,6 +5,7 @@ on:
     branches:
       - master
     paths:
+      - '.github/workflows/dev-image.yml'
       - '.dockerignore'
       - '.nvmrc'
       - 'Dockerfile'
@@ -14,6 +15,7 @@ on:
       - opened
       - synchronize
     paths:
+      - '.github/workflows/dev-image.yml'
       - '.dockerignore'
       - '.nvmrc'
       - 'Dockerfile'
