@@ -69,7 +69,7 @@ Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
-  - [⭐️ Enable Jekyll](#%EF%B8%8F-enable-jekyll)
+  - [⭐️ Enable Built-in Jekyll](#%EF%B8%8F-enable-built-in-jekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
   - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
   - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
@@ -231,9 +231,9 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
     cname: github.com
 ```
 
-### ⭐️ Enable Jekyll
+### ⭐️ Enable Built-in Jekyll
 
-If you want GitHub Pages to process the site with the static site generator Jekyll, set `enable_jekyll` to true.
+If you want GitHub Pages to process your site with the static site generator Jekyll, set `enable_jekyll` to true.
 
 [github/personal-website](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-githubpersonal-website) is one of the examples using GitHub Pages built-in Jekyll.
 
