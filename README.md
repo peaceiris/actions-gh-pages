@@ -918,6 +918,7 @@ jobs:
 ## Maintainer
 
 - [peaceiris homepage](https://peaceiris.com/)
+- [GitHub Action Hero: Shohei Ueda - The GitHub Blog](https://github.blog/2020-03-22-github-action-hero-shohei-ueda/)
 
 
 
