@@ -657,12 +657,9 @@ jobs:
 
 ### ⭐️ Docusaurus
 
-An example for pages created using [Docusaurus](https://docusaurus.io/).
+An example workflow for [Docusaurus](https://docusaurus.io/).
 
-Examples where this is being used:
-
-- [Mittens](https://github.com/ExpediaGroup/mittens)
-- [graphql-kotlin](https://github.com/ExpediaGroup/graphql-kotlin)
+`npx @docusaurus/init@next init` is useful to create a new Docusaurus project.
 
 ```yaml
 name: github pages
@@ -671,9 +668,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'docs/**'
-      - 'website/**'
 
 jobs:
   deploy:
@@ -684,28 +678,28 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: '12.x'
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('website/package-lock.json') }}
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
 
-      - name: Build
-        run: |
-          cd website
-          npm ci
-          npm run build
+      - run: yarn install
+      - run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # use the projectName from your siteConfig.js file: https://docusaurus.io/docs/en/site-config#projectname-string
-          publish_dir: ./website/build/<projectName>
+          publish_dir: ./build
 ```
 
 ### ⭐️ Static Site Generators with Python
