@@ -779,7 +779,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.3.5'
+          mdbook-version: '0.3.6'
           # mdbook-version: 'latest'
 
       - run: mdbook build
