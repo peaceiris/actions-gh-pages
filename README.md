@@ -800,14 +800,8 @@ jobs:
 ### ⭐️ Flutter Web
 
 An exapmle workflow for [Flutter web project].
-Setup [Flutter] with [subosito/flutter-action].
 
-[peanut | Dart Package] is also useful.
-
-[Flutter]: https://github.com/flutter/flutter
 [Flutter web project]: https://flutter.dev/docs/get-started/web
-[subosito/flutter-action]: https://github.com/subosito/flutter-action
-[peanut | Dart Package]: https://pub.dev/packages/peanut
 
 ```yaml
 name: github pages
@@ -824,9 +818,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: 'beta'
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 -b beta _flutter
+          echo "::add-path::${GITHUB_WORKSPACE}/_flutter/bin"
 
       - name: Install
         run: |
