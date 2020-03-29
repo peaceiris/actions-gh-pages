@@ -839,10 +839,9 @@ jobs:
 
 ### ⭐️ Elm
 
-An exapmle workflow for [Elm] with [justgook/setup-elm].
+An exapmle workflow for [Elm].
 
 [Elm]: https://elm-lang.org
-[justgook/setup-elm]: https://github.com/justgook/setup-elm
 
 ```yaml
 name: github pages
@@ -858,8 +857,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
       - name: Setup Elm
-        uses: justgook/setup-elm@v1
+        run: npm install elm --global
 
       - name: Make
         run: elm make --optimize src/Main.elm
