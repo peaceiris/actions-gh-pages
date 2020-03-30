@@ -61,7 +61,7 @@
     "@types/js-yaml": "^3.12.3",
     "@types/node": "~12",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.25.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "@zeit/ncc": "^0.22.0",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
