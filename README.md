@@ -42,7 +42,7 @@ Three tokens are supported.
 | `deploy_key` | ✅️ | ✅️ | SSH | Necessary |
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
-Notes: Actually, the `GitHub_TOKEN` works for deploying to GitHub Pages but it has still some limitations. For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab. See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
+Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it has still some limitations. For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab. See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
 
 ### Supported Platforms
 
