@@ -66,6 +66,7 @@ Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
   - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
+  - [⭐️ `github_token`](#%EF%B8%8F-github_token)
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
@@ -190,6 +191,22 @@ jobs:
 
 
 ## Options
+
+### ⭐️ `github_token`
+
+**This option is for `GITHUB_TOKEN`, not a personal access token.**
+
+GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use the `GITHUB_TOKEN` to authenticate in a workflow run.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+```
+
+For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
 
 ### ⭐️ `deploy_key`
 
