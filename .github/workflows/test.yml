@@ -76,25 +76,29 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Run ncc
-        if: startsWith(matrix.os, 'ubuntu')
         run: npm run build
 
       - name: Remove lint-staged husky
+        if: github.ref == 'refs/heads/master'
         run: |
           npm uninstall lint-staged husky
           git checkout package-lock.json package.json
 
       - name: Setup mdBook
+        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-mdbook@v1
         with:
           mdbook-version: '0.3.6'
 
       - name: Build site
+        if: github.ref == 'refs/heads/master'
         working-directory: ./test_projects/mdbook
         run: mdbook build
 
       - name: Deploy
-        if: matrix.os != 'windows-latest'
+        if: |
+          matrix.os != 'windows-latest' &&
+          github.ref == 'refs/heads/master'
         uses: ./
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -112,7 +116,9 @@ jobs:
           # tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
 
       - name: Deploy
-        if: matrix.os == 'windows-latest'
+        if: |
+          matrix.os == 'windows-latest' &&
+          github.ref == 'refs/heads/master'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
