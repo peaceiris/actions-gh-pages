@@ -17,7 +17,7 @@ jobs:
   skipci:
     runs-on: ubuntu-18.04
     steps:
-      - run: echo "[Skip CI] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+      - run: echo "[skip ci] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
 
   test:
     runs-on: ${{ matrix.os }}
@@ -30,6 +30,11 @@ jobs:
           - 'windows-latest'
     steps:
       - uses: actions/checkout@v2
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "${GITHUB_CONTEXT}"
 
       - name: Read .nvmrc
         run: echo "::set-output name=NVMRC::$(cat .nvmrc)"
@@ -58,10 +63,6 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: npm run lint
 
-      - name: Run ncc
-        if: startsWith(matrix.os, 'ubuntu')
-        run: npm run build
-
       - run: npm test
 
       - name: Upload test coverage as artifact
@@ -73,3 +74,79 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Run ncc
+        run: npm run build
+
+      - name: Remove lint-staged husky
+        if: github.ref == 'refs/heads/master'
+        run: |
+          npm uninstall lint-staged husky
+          git checkout package-lock.json package.json
+
+      - name: Setup mdBook
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: '0.3.6'
+
+      - name: Build site
+        if: github.ref == 'refs/heads/master'
+        working-directory: ./test_projects/mdbook
+        run: mdbook build
+
+      - name: Deploy
+        if: |
+          startsWith(matrix.os, 'ubuntu') &&
+          github.ref == 'refs/heads/master'
+        uses: ./
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # publish_branch: gh-pages
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          # keep_files: true
+          # force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          # commit_message: ${{ github.event.head_commit.message }}
+
+      - name: Deploy
+        if: |
+          startsWith(matrix.os, 'macos') &&
+          github.ref == 'refs/heads/master'
+        uses: ./
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages-macos
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          # keep_files: true
+          # force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          # commit_message: ${{ github.event.head_commit.message }}
+
+      - name: Deploy
+        if: |
+          startsWith(matrix.os, 'windows') &&
+          github.ref == 'refs/heads/master'
+        uses: ./
+        with:
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages-windows
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          # keep_files: true
+          # force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          # commit_message: ${{ github.event.head_commit.message }}
