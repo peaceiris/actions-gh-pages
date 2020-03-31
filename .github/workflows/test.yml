@@ -97,7 +97,7 @@ jobs:
 
       - name: Deploy
         if: |
-          matrix.os != 'windows-latest' &&
+          startsWith(matrix.os, 'ubuntu') &&
           github.ref == 'refs/heads/master'
         uses: ./
         with:
@@ -112,26 +112,41 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           # commit_message: ${{ github.event.head_commit.message }}
-          # tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
-          # tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
 
       - name: Deploy
         if: |
-          matrix.os == 'windows-latest' &&
+          startsWith(matrix.os, 'macos') &&
+          github.ref == 'refs/heads/master'
+        uses: ./
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages-macos
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          # keep_files: true
+          # force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          # commit_message: ${{ github.event.head_commit.message }}
+
+      - name: Deploy
+        if: |
+          startsWith(matrix.os, 'windows') &&
           github.ref == 'refs/heads/master'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # personal_token: ${{ secrets.PERSONAL_TOKEN }}
-          # publish_branch: gh-pages
+          publish_branch: gh-pages-windows
           publish_dir: ./test_projects/mdbook/book
           # external_repository: ''
           allow_empty_commit: true
           # keep_files: true
           # force_orphan: true
-          # user_name: iris
-          # user_email: email@peaceiris.com
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
           # commit_message: ${{ github.event.head_commit.message }}
-          # tag_name: ${{ steps.prepare_tag.outputs.deploy_tag_name }}
-          # tag_message: 'Deployment ${{ steps.prepare_tag.outputs.tag_name }}'
