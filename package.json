@@ -65,7 +65,7 @@
     "@zeit/ncc": "^0.22.1",
     "eslint": "^6.8.0",
     "eslint-plugin-jest": "^23.8.2",
-    "husky": "^4.2.3",
+    "husky": "^4.2.4",
     "jest": "^25.3.0",
     "jest-circus": "^25.3.0",
     "js-yaml": "^3.13.1",
