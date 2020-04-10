@@ -132,7 +132,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.64.0'
+          hugo-version: '0.68.3'
 
       - name: Build
         run: hugo --minify
@@ -797,7 +797,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.3.6'
+          mdbook-version: '0.3.7'
           # mdbook-version: 'latest'
 
       - run: mdbook build
