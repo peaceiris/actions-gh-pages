@@ -93,6 +93,7 @@ Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
   - [⭐️ Elm](#%EF%B8%8F-elm)
   - [⭐️ github/personal-website](#%EF%B8%8F-githubpersonal-website)
+  - [⭐️ Swift Publish](#%EF%B8%8F-swift-publish)
 - [License](#license)
 - [Maintainer](#maintainer)
 
@@ -921,6 +922,43 @@ jobs:
           allow_empty_commit: true
           enable_jekyll: true
           cname: github.peaceiris.com
+```
+
+### ⭐️ Swift Publish
+
+An example workflow for [JohnSundell/Publish].
+
+[JohnSundell/Publish]: https://github.com/JohnSundell/Publish
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup JohnSundell/Publish
+        run: |
+          cd ${HOME}
+          git clone --depth=1 https://github.com/JohnSundell/Publish.git
+          cd ./Publish
+          swift build -c release
+          echo "::add-path::${HOME}/Publish/.build/release"
+
+      - run: publish-cli generate
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Output
 ```
 
 
