@@ -905,6 +905,8 @@ name: GitHub Pages
 
 on:
   push:
+    branches:
+      - master
   schedule:
     - cron: '24 */24 * * *'  # Once a day
 
