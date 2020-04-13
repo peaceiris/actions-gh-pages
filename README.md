@@ -678,7 +678,7 @@ jobs:
 
 An example workflow for [Docusaurus](https://docusaurus.io/).
 
-`npx @docusaurus/init@next init` is useful to create a new Docusaurus project.
+`npx @docusaurus/init@next init website classic` is useful to create a new Docusaurus project.
 
 ```yaml
 name: github pages
@@ -720,7 +720,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: /website/build/<projectName in siteConfig.js>
+          publish_dir: ./website/build
 ```
 
 ### ⭐️ Static Site Generators with Python
