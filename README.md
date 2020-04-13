@@ -712,13 +712,15 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
+        working-directory: ./website
       - run: yarn build
+        working-directory: ./website
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: /website/build/<projectName in siteConfig.js>
 ```
 
 ### ⭐️ Static Site Generators with Python
