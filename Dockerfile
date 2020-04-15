@@ -16,7 +16,7 @@ RUN apt-get update && \
     npm i -g npm
 
 WORKDIR /git
-ENV GIT_VERSION="2.26.0"
+ENV GIT_VERSION="2.26.1"
 RUN wget -q "https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz" && \
     tar -zxf "./v${GIT_VERSION}.tar.gz" && \
     rm "./v${GIT_VERSION}.tar.gz" && \
