@@ -8,9 +8,8 @@
 
 <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
 
-> This Action has been migrated to a TypeScript Action (version 3).
->
-> The old Docker Action is [peaceiris/actions-gh-pages@v2](https://github.com/peaceiris/actions-gh-pages/tree/v2)
+This Action has been migrated to a TypeScript Action (version 3).
+The old Docker Action is [peaceiris/actions-gh-pages@v2](https://github.com/peaceiris/actions-gh-pages/tree/v2)
 
 
 
