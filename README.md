@@ -715,9 +715,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-website-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-website-
 
       - run: yarn install
       - run: yarn build
