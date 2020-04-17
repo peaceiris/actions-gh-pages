@@ -680,12 +680,21 @@ An example workflow for [Docusaurus](https://docusaurus.io/).
 `npx @docusaurus/init@next init website classic` is useful to create a new Docusaurus project.
 
 ```yaml
+# .github/workflows/deploy.yml
+
 name: github pages
 
 on:
   push:
     branches:
       - master
+    paths:
+      - '.github/workflows/deploy.yml'
+      - 'website/**'
+
+defaults:
+  run:
+    working-directory: website
 
 jobs:
   deploy:
@@ -711,9 +720,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
-        working-directory: ./website
       - run: yarn build
-        working-directory: ./website
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
