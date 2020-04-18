@@ -68,6 +68,8 @@ Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it h
   - [⭐️ `github_token`](#%EF%B8%8F-github_token)
   - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
+  - [⭐️ `publish_branch`](#%EF%B8%8F-publish_branch)
+  - [⭐️ `publish_dir`](#%EF%B8%8F-publish_dir)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
   - [⭐️ Enable Built-in Jekyll](#%EF%B8%8F-enable-built-in-jekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
@@ -232,6 +234,30 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
   with:
     personal_token: ${{ secrets.PERSONAL_TOKEN }}
     publish_dir: ./public
+```
+
+### ⭐️ `publish_branch`
+
+A target branch to deploy to GitHub Pages. The default is `gh-pages`.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_branch: master  # default: gh-pages
+```
+
+### ⭐️ `publish_dir`
+
+A target directory to deploy to GitHub Pages. The default is `public`.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./out  # default: public
 ```
 
 ### ⭐️ CNAME
