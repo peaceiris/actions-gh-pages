@@ -508,7 +508,7 @@ It is useful to watch this repository (release only) to check the [latest releas
 
 ### ⭐️ Static Site Generators with Node.js
 
-[hexo], [gitbook], [vuepress], [react-static], [gridsome], etc.
+[hexo], [gitbook], [vuepress], [react-static], [gridsome], and so on.
 
 [hexo]: https://github.com/hexojs/hexo
 [gitbook]: https://github.com/GitbookIO/gitbook
