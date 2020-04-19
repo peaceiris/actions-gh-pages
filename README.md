@@ -757,7 +757,7 @@ jobs:
 
 ### ⭐️ Static Site Generators with Python
 
-[pelican], [MkDocs], [sphinx], etc.
+[pelican], [MkDocs], [sphinx], and so on.
 
 [pelican]: https://github.com/getpelican/pelican
 [MkDocs]: https://github.com/mkdocs/mkdocs
