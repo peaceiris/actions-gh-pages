@@ -16,7 +16,7 @@ The old Docker Action is [peaceiris/actions-gh-pages@v2](https://github.com/peac
 ## GitHub Actions for GitHub Pages
 
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
-This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.)
+This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, mdBook, and so on.)
 
 [Static Site Generators]: https://www.staticgen.com/
 
