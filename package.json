@@ -30,6 +30,9 @@
     "src/**/*.ts": [
       "prettier --check",
       "eslint"
+    ],
+    "README.md": [
+      "npx doctoc@1.4.0 --github"
     ]
   },
   "repository": {
