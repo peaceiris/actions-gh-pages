@@ -1,5 +1,5 @@
 ---
-name: 1. User Support
+name: User Support
 about: Questions for this Action
 title: 'sample_title'
 labels: support
