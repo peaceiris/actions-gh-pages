@@ -1,6 +1,6 @@
 ---
-name: User support
-about: Questions for this action
+name: User Support
+about: Questions for this Action
 title: 'sample_title'
 labels: support
 assignees: peaceiris
