@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug Report
+about: First, use the User Support Issue Template
 title: 'sample_title'
 labels: bug
 assignees: peaceiris
