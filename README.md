@@ -481,7 +481,7 @@ Next, Go to **Repository Settings**
 
 ### ⭐️ First Deployment with `GITHUB_TOKEN`
 
-The `GITHUB_TOKEN` has limitations for the first deployment so we have to select the GitHub Pages branch on the repository settings tab.
+The `GITHUB_TOKEN` has limitations for the first deployment so we have to select the GitHub Pages branch on the repository settings tab. After that, do the second deployment like the following pictures.
 
 | First deployment failed | Go to the settings tab |
 |---|---|
