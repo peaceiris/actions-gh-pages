@@ -70,7 +70,7 @@
     "eslint-plugin-jest": "^23.8.2",
     "husky": "^4.2.5",
     "jest": "^25.3.0",
-    "jest-circus": "^25.3.0",
+    "jest-circus": "^25.5.0",
     "js-yaml": "^3.13.1",
     "lint-staged": "^10.1.6",
     "prettier": "2.0.4",
