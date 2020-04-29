@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.9](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.8...v3.5.9) (2020-04-29)
+
+
+### chore
+
+* bump node from 12.16.2 to 12.16.3 ([e5aa21b](https://github.com/peaceiris/actions-gh-pages/commit/e5aa21b8a847df106ce694432a6cac78300266a3))
+
+### deps
+
+* [security] bump @actions/http-client from 1.0.6 to 1.0.8 (#258) ([d217882](https://github.com/peaceiris/actions-gh-pages/commit/d2178821cb5968f5b7c818210297f3dbeea3114c)), closes [#258](https://github.com/peaceiris/actions-gh-pages/issues/258)
+* bump @actions/exec from 1.0.3 to 1.0.4 (#254) ([6cb5962](https://github.com/peaceiris/actions-gh-pages/commit/6cb5962c014ba1196680337447c834590d907bde)), closes [#254](https://github.com/peaceiris/actions-gh-pages/issues/254)
+* bump jest from 25.5.0 to 25.5.1 (#257) ([6462e1b](https://github.com/peaceiris/actions-gh-pages/commit/6462e1bf5e8ba9325ae66bacba198b12c7e101ed)), closes [#257](https://github.com/peaceiris/actions-gh-pages/issues/257)
+* bump jest-circus from 25.5.0 to 25.5.1 (#256) ([051ddfc](https://github.com/peaceiris/actions-gh-pages/commit/051ddfc79a0bbbdd8e623367741645052c63fb9a)), closes [#256](https://github.com/peaceiris/actions-gh-pages/issues/256)
+* bump node from 12.16.2 to 12.16.3 (#255) ([f191fb8](https://github.com/peaceiris/actions-gh-pages/commit/f191fb81878aaa8657d346e9b3a97a4ad625939d)), closes [#255](https://github.com/peaceiris/actions-gh-pages/issues/255)
+* bump prettier from 2.0.4 to 2.0.5 (#253) ([33b82d2](https://github.com/peaceiris/actions-gh-pages/commit/33b82d2be041389aa51ca38f09cf6e79a9129035)), closes [#253](https://github.com/peaceiris/actions-gh-pages/issues/253)
+
+
+
 ## [3.5.8](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.7...v3.5.8) (2020-04-29)
 
 
