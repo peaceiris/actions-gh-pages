@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.8](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.7...v3.5.8) (2020-04-29)
+
+
+### chore
+
+* Add issue priority [skip ci] ([eda4527](https://github.com/peaceiris/actions-gh-pages/commit/eda4527addb918b2101150ebb39fcf433918edaa))
+* Add issue priority [skip ci] ([af61d81](https://github.com/peaceiris/actions-gh-pages/commit/af61d81606e4fc7e288136ff2d253e2bc55c4f48))
+* enhance about [skip ci] ([1139364](https://github.com/peaceiris/actions-gh-pages/commit/1139364d4c33266789f7b3325cf9a44a8547dfd2))
+* update [skip ci] ([86114bb](https://github.com/peaceiris/actions-gh-pages/commit/86114bb2c7af49107a982228b5bdb03680d01f4d))
+
+### ci
+
+* Add hook for doctoc (#244) ([e3404eb](https://github.com/peaceiris/actions-gh-pages/commit/e3404eb04b31f2987120c926fea07b0213caebd8)), closes [#244](https://github.com/peaceiris/actions-gh-pages/issues/244)
+
+### deps
+
+* bump @types/node from 12.12.35 to 12.12.36 (#238) ([b7c9581](https://github.com/peaceiris/actions-gh-pages/commit/b7c9581509f430da7d5fd97e37245a2d0a66b564)), closes [#238](https://github.com/peaceiris/actions-gh-pages/issues/238)
+* bump @types/node from 12.12.36 to 12.12.37 (#251) ([7b01d76](https://github.com/peaceiris/actions-gh-pages/commit/7b01d765e76fa62e2452fd444f2b4c27a2a93821)), closes [#251](https://github.com/peaceiris/actions-gh-pages/issues/251)
+* bump @typescript-eslint/eslint-plugin from 2.28.0 to 2.30.0 (#252) ([f97b3d2](https://github.com/peaceiris/actions-gh-pages/commit/f97b3d256ec802bf086d5c96dcb299a63b38f705)), closes [#252](https://github.com/peaceiris/actions-gh-pages/issues/252)
+* bump @typescript-eslint/parser from 2.28.0 to 2.30.0 (#249) ([28e7732](https://github.com/peaceiris/actions-gh-pages/commit/28e7732e93caf2520c542d47eb7482a09d92399d)), closes [#249](https://github.com/peaceiris/actions-gh-pages/issues/249)
+* bump git from 2.26.1 to 2.26.2 (#246) ([db7681d](https://github.com/peaceiris/actions-gh-pages/commit/db7681db4d6bba0e054efa7da8d6494f40aa74dd)), closes [#246](https://github.com/peaceiris/actions-gh-pages/issues/246)
+* bump jest from 25.3.0 to 25.5.0 (#248) ([390b063](https://github.com/peaceiris/actions-gh-pages/commit/390b063535b4dc9533b19e2bdc0a5c756725bcd3)), closes [#248](https://github.com/peaceiris/actions-gh-pages/issues/248)
+* bump jest-circus from 25.3.0 to 25.5.0 (#247) ([50bcf7b](https://github.com/peaceiris/actions-gh-pages/commit/50bcf7b81dbedbab7f9d8c9cebc15c1d63724e52)), closes [#247](https://github.com/peaceiris/actions-gh-pages/issues/247)
+* bump lint-staged from 10.1.3 to 10.1.4 (#237) ([fd97637](https://github.com/peaceiris/actions-gh-pages/commit/fd976371344295a7f93bf199bc5557ef179ccb8c)), closes [#237](https://github.com/peaceiris/actions-gh-pages/issues/237)
+* bump lint-staged from 10.1.4 to 10.1.5 (#240) ([cfc119f](https://github.com/peaceiris/actions-gh-pages/commit/cfc119fff765ff9d58364aaacc6f3eeda2cfa803)), closes [#240](https://github.com/peaceiris/actions-gh-pages/issues/240)
+* bump lint-staged from 10.1.5 to 10.1.6 (#241) ([c1bc06c](https://github.com/peaceiris/actions-gh-pages/commit/c1bc06c3e6c64d6663aaaddce19c3092f44fee76)), closes [#241](https://github.com/peaceiris/actions-gh-pages/issues/241)
+* bump lint-staged from 10.1.6 to 10.2.0 (#250) ([4976317](https://github.com/peaceiris/actions-gh-pages/commit/4976317340cc18cda0238fb97829a0faaa845961)), closes [#250](https://github.com/peaceiris/actions-gh-pages/issues/250)
+* bump ts-jest from 25.3.1 to 25.4.0 (#236) ([f69bcb9](https://github.com/peaceiris/actions-gh-pages/commit/f69bcb9ae88328fdbf841072c8d6273cd64775d0)), closes [#236](https://github.com/peaceiris/actions-gh-pages/issues/236)
+
+### docs
+
+* Add publish_branch and publish_dir (#239) ([4b0ac94](https://github.com/peaceiris/actions-gh-pages/commit/4b0ac9453b6b8c117d2d477feec9438cbadde554)), closes [#239](https://github.com/peaceiris/actions-gh-pages/issues/239)
+* Enhance cache key (#235) ([f1ebad9](https://github.com/peaceiris/actions-gh-pages/commit/f1ebad9abbd9a38f40b3bf1731c8f24d11933c7f)), closes [#235](https://github.com/peaceiris/actions-gh-pages/issues/235)
+* Enhance Docusaurus example workflow (#234) ([63cdebd](https://github.com/peaceiris/actions-gh-pages/commit/63cdebd96bf13f045ac949edf7242044ecfef525)), closes [#234](https://github.com/peaceiris/actions-gh-pages/issues/234)
+* Enhance the Tips and FAQ section ([1511f85](https://github.com/peaceiris/actions-gh-pages/commit/1511f85febf4d985083555b7e644fc43582ec4ee))
+* update ([8632fea](https://github.com/peaceiris/actions-gh-pages/commit/8632feabc7064b8023ffa7da92bf6d91cf83a0fe))
+* update ([7d421d3](https://github.com/peaceiris/actions-gh-pages/commit/7d421d3e4c784eaebafdf020ccf4ce29ac14569a))
+* update ([95d87cf](https://github.com/peaceiris/actions-gh-pages/commit/95d87cfaa53b3d799c1c931048a43a92ddb87d15))
+
+
+
 ## [3.5.7](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.6...v3.5.7) (2020-04-15)
 
 
