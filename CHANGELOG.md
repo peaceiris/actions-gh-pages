@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.10](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.9...v3.5.10) (2020-04-30)
+
+
+### deps
+
+* bump jest from 25.5.1 to 25.5.2 (#260) ([714f710](https://github.com/peaceiris/actions-gh-pages/commit/714f7109225b609d3303bb0cd6f459690a9165b6)), closes [#260](https://github.com/peaceiris/actions-gh-pages/issues/260)
+* bump jest-circus from 25.5.1 to 25.5.2 (#259) ([813be06](https://github.com/peaceiris/actions-gh-pages/commit/813be0645e175e6e475ada4f9cc922daeeade00a)), closes [#259](https://github.com/peaceiris/actions-gh-pages/issues/259)
+
+### docs
+
+* Add ubuntu-16.04 ([d9f616f](https://github.com/peaceiris/actions-gh-pages/commit/d9f616f4a278b6c334ce6dea09e69ba698459b38)), closes [#263](https://github.com/peaceiris/actions-gh-pages/issues/263)
+* bump actions/setup-python from v1 to v2 (#262) ([029c1a0](https://github.com/peaceiris/actions-gh-pages/commit/029c1a08f9594e3b2c581d78c258cc8e9c66f96c)), closes [#262](https://github.com/peaceiris/actions-gh-pages/issues/262)
+* bump python from 3.6 to 3.8 ([eafac7a](https://github.com/peaceiris/actions-gh-pages/commit/eafac7a3ef405ea76543c2c7995b64a19a1695c0))
+* change to job level defaults ([20d80bc](https://github.com/peaceiris/actions-gh-pages/commit/20d80bcd8cdfda9728f3c0befe2aa5052209ea50))
+* Enhance Python workflow example (#261) ([e4462d9](https://github.com/peaceiris/actions-gh-pages/commit/e4462d9bb679154cb07cca446c8e12c692610838)), closes [#261](https://github.com/peaceiris/actions-gh-pages/issues/261)
+* Enhance Supported Platforms ([91e6658](https://github.com/peaceiris/actions-gh-pages/commit/91e6658ef01bbd482a965675988a765faad5fce5))
+
+### feat
+
+* Support ubuntu-16.04 (#263) ([e76c874](https://github.com/peaceiris/actions-gh-pages/commit/e76c874d85f0c0e45f3602fe4a85a15feb87610c)), closes [#263](https://github.com/peaceiris/actions-gh-pages/issues/263)
+
+
+
 ## [3.5.9](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.8...v3.5.9) (2020-04-29)
 
 
