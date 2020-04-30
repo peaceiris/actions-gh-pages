@@ -782,13 +782,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-          architecture: 'x64'
 
       - name: Upgrade pip
-        run: python3 -m pip install --upgrade pip
+        run: |
+          # install pip=>20.1 to use "pip cache dir"
+          python3 -m pip install --upgrade pip
 
       - name: Get pip cache dir
         id: pip-cache
