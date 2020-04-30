@@ -787,18 +787,23 @@ jobs:
           python-version: '3.6'
           architecture: 'x64'
 
+      - name: Upgrade pip
+        run: python3 -m pip install --upgrade pip
+
+      - name: Get pip cache dir
+        id: pip-cache
+        run: echo "::set-output name=dir::$(pip cache dir)"
+
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          path: ~/.cache/pip
+          path: ${{ steps.pip-cache.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install -r ./requirements.txt
+        run: python3 -m pip install -r ./requirements.txt
 
       - run: mkdocs build
 
