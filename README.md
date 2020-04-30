@@ -784,7 +784,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
-          python-version: '3.6'
+          python-version: '3.8'
           architecture: 'x64'
 
       - name: Upgrade pip
