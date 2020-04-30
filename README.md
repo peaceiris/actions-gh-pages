@@ -721,13 +721,12 @@ on:
       - '.github/workflows/deploy.yml'
       - 'website/**'
 
-defaults:
-  run:
-    working-directory: website
-
 jobs:
   deploy:
     runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: website
     steps:
       - uses: actions/checkout@v2
 
