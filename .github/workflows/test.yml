@@ -67,9 +67,9 @@ jobs:
       - run: npm test
 
       - name: Upload test coverage as artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: coverage
+          name: coverage-${{ matrix.os }}
           path: coverage
 
       - uses: codecov/codecov-action@v1
