@@ -50,6 +50,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 | runs-on | `github_token` | `deploy_key` | `personal_token` |
 |---|:---:|:---:|:---:|
 | ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
+| ubuntu-16.04 | ✅️ | ✅️ | ✅️ |
 | macos-latest | ✅️ | ✅️ | ✅️ |
 | windows-latest | ✅️ | (2) | ✅️ |
 
