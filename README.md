@@ -45,6 +45,8 @@ Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it h
 
 ### Supported Platforms
 
+All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
+
 | runs-on | `github_token` | `deploy_key` | `personal_token` |
 |---|:---:|:---:|:---:|
 | ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
