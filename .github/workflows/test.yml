@@ -26,6 +26,7 @@ jobs:
       matrix:
         os:
           - 'ubuntu-18.04'
+          - 'ubuntu-16.04'
           - 'macos-latest'
           - 'windows-latest'
     steps:
@@ -56,11 +57,11 @@ jobs:
       - run: npm ci
 
       - name: Run prettier
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu-18.04')
         run: npm run format:check
 
       - name: Run eslint
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu-18.04')
         run: npm run lint
 
       - run: npm test
@@ -97,7 +98,7 @@ jobs:
 
       - name: Deploy
         if: |
-          startsWith(matrix.os, 'ubuntu') &&
+          startsWith(matrix.os, 'ubuntu-18.04') &&
           github.ref == 'refs/heads/master'
         uses: ./
         with:
@@ -113,6 +114,24 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           # commit_message: ${{ github.event.head_commit.message }}
           cname: 'actions-gh-pages.peaceiris.com'
+
+      - name: Deploy
+        if: |
+          startsWith(matrix.os, 'ubuntu-16.04') &&
+          github.ref == 'refs/heads/master'
+        uses: ./
+        with:
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-ubuntu-16.04
+          publish_dir: ./test_projects/mdbook/book
+          # external_repository: ''
+          allow_empty_commit: true
+          keep_files: true
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          # commit_message: ${{ github.event.head_commit.message }}
 
       - name: Deploy
         if: |
