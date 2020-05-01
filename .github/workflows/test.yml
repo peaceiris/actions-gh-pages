@@ -171,7 +171,7 @@ jobs:
           user_email: 'github-actions[bot]@users.noreply.github.com'
           # commit_message: ${{ github.event.head_commit.message }}
 
-  test-ubuntu-20.04:
+  test-ubuntu-2004:
     runs-on: 'ubuntu-18.04'
     if: contains(github.event.head_commit.message, '[skip ci]') == false
     container:
