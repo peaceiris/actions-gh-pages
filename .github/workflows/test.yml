@@ -179,10 +179,10 @@ jobs:
     steps:
       - name: Install deps
         run: |
-          sudo apt install -y software-properties-common
-          sudo add-apt-repository ppa:git-core/ppa
-          sudo apt update
-          sudo apt install -y git
+          apt install -y software-properties-common
+          add-apt-repository ppa:git-core/ppa
+          apt update
+          apt install -y git
 
       - uses: actions/checkout@v2
 
