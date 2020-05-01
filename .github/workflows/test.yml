@@ -89,7 +89,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.3.6'
+          mdbook-version: '0.3.7'
 
       - name: Build site
         if: github.ref == 'refs/heads/master'
@@ -184,7 +184,7 @@ jobs:
           add-apt-repository ppa:git-core/ppa
           apt update
           apt install -y \
-            git
+            git \
             ssh
 
       - uses: actions/checkout@v2
