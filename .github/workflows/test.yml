@@ -183,7 +183,9 @@ jobs:
           apt install -y software-properties-common
           add-apt-repository ppa:git-core/ppa
           apt update
-          apt install -y git
+          apt install -y \
+            git
+            ssh
 
       - uses: actions/checkout@v2
 
