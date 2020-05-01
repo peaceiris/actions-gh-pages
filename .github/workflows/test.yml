@@ -30,13 +30,6 @@ jobs:
           - 'macos-latest'
           - 'windows-latest'
     steps:
-      - name: Install deps
-        run: |
-          sudo apt install -y software-properties-common
-          sudo add-apt-repository ppa:git-core/ppa
-          sudo apt update
-          sudo apt install -y git
-
       - uses: actions/checkout@v2
 
       - name: Dump GitHub context
@@ -184,6 +177,13 @@ jobs:
     container:
       image: 'ubuntu:20.04'
     steps:
+      - name: Install deps
+        run: |
+          sudo apt install -y software-properties-common
+          sudo add-apt-repository ppa:git-core/ppa
+          sudo apt update
+          sudo apt install -y git
+
       - uses: actions/checkout@v2
 
       - name: Dump GitHub context
