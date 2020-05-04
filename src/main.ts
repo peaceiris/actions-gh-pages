@@ -18,10 +18,14 @@ import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
 export async function run(): Promise<void> {
   try {
     const inps: Inputs = getInputs();
+    core.startGroup('Dump inputs');
     showInputs(inps);
+    core.endGroup();
 
     if (core.isDebug()) {
+      core.startGroup('Debug: dump context');
       console.log(context);
+      core.endGroup();
     }
 
     const eventName = context.eventName;
@@ -43,17 +47,21 @@ export async function run(): Promise<void> {
       }
     }
 
+    core.startGroup('Setup auth token');
     const remoteURL = await setTokens(inps);
     core.debug(`remoteURL: ${remoteURL}`);
+    core.endGroup();
 
+    core.startGroup('Prepare publishing assets');
     const date = new Date();
     const unixTime = date.getTime();
     const workDir = await getWorkDirName(`${unixTime}`);
     await setRepo(inps, remoteURL, workDir);
-
     await addNoJekyll(workDir, inps.DisableNoJekyll, inps.PublishBranch);
     await addCNAME(workDir, inps.CNAME);
+    core.endGroup();
 
+    core.startGroup('Setup Git config');
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
     } catch (e) {
@@ -62,6 +70,9 @@ export async function run(): Promise<void> {
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
     await setCommitAuthor(inps.UserName, inps.UserEmail);
+    core.endGroup();
+
+    core.startGroup('Create a commit');
     const hash = `${process.env.GITHUB_SHA}`;
     const baseRepo = `${github.context.repo.owner}/${github.context.repo.repo}`;
     const commitMessage = getCommitMessage(
@@ -72,8 +83,12 @@ export async function run(): Promise<void> {
       hash
     );
     await commit(inps.AllowEmptyCommit, commitMessage);
+    core.endGroup();
+
+    core.startGroup('Push the commit or tag');
     await push(inps.PublishBranch, inps.ForceOrphan);
     await pushTag(inps.TagName, inps.TagMessage);
+    core.endGroup();
 
     core.info('[INFO] Action successfully completed');
 
