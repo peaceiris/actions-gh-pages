@@ -102,8 +102,8 @@ jobs:
           github.ref == 'refs/heads/master'
         uses: ./
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           # publish_branch: gh-pages
           publish_dir: ./test_projects/mdbook/book
           # external_repository: ''
@@ -121,8 +121,8 @@ jobs:
           github.ref == 'refs/heads/master'
         uses: ./
         with:
-          # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages-ubuntu-16.04
           publish_dir: ./test_projects/mdbook/book
           # external_repository: ''
