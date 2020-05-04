@@ -18,6 +18,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] ExternalRepository: ${inps.ExternalRepository}
 [INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
 [INFO] KeepFiles: ${inps.KeepFiles}
+[INFO] RemovePathSpec: ${inps.RemovePathSpec}
 [INFO] ForceOrphan: ${inps.ForceOrphan}
 [INFO] UserName: ${inps.UserName}
 [INFO] UserEmail: ${inps.UserEmail}
@@ -57,6 +58,7 @@ export function getInputs(): Inputs {
       (core.getInput('allow_empty_commit') || 'false').toUpperCase() === 'TRUE',
     KeepFiles:
       (core.getInput('keep_files') || 'false').toUpperCase() === 'TRUE',
+    RemovePathSpec: core.getInput('remove_path_spec'),
     ForceOrphan:
       (core.getInput('force_orphan') || 'false').toUpperCase() === 'TRUE',
     UserName: core.getInput('user_name'),

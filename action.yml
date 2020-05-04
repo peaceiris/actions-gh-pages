@@ -36,6 +36,10 @@ inputs:
     description: 'If existing files in the publish branch should be not removed before deploying'
     required: false
     default: 'false'
+  remove_path_spec:
+    description: 'Git Pathspec that should be removed before deploying'
+    required: false
+    default: '*'
   force_orphan:
     description: 'Keep only the latest commit on a GitHub Pages branch'
     required: false
