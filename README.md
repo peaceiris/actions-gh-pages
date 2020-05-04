@@ -385,7 +385,7 @@ A commit is always created with the same user.
 
 ### ⭐️ Set custom commit message
 
-Set custom commit message.
+Set a custom commit message.
 When we create a commit with a message `docs: Update some post`, a deployment commit will be generated with a message `docs: Update some post ${GITHUB_SHA}`.
 
 ```yaml
@@ -396,6 +396,8 @@ When we create a commit with a message `docs: Update some post`, a deployment co
     publish_dir: ./public
     commit_message: ${{ github.event.head_commit.message }}
 ```
+
+![Set a custom commit message - GitHub Actions for GitHub Pages](./images/commit_message.jpg)
 
 To set a full custom commit message without a triggered commit hash,
 use the `full_commit_message` option instead of the `commit_message` option.
