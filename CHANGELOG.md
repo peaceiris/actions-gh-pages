@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.6.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.10...v3.6.0) (2020-05-04)
+
+
+### chore
+
+* Enhance style ([750c807](https://github.com/peaceiris/actions-gh-pages/commit/750c807fa1ecf9d3d455cfd0fb5533442c660a1e))
+
+### ci
+
+* Add test-ubuntu-20.04 job (#270) ([7501463](https://github.com/peaceiris/actions-gh-pages/commit/75014632413b319cb87db5b3e54bba2d6a21ac05)), closes [#270](https://github.com/peaceiris/actions-gh-pages/issues/270) [#268](https://github.com/peaceiris/actions-gh-pages/issues/268)
+* use github_token ([9d27fac](https://github.com/peaceiris/actions-gh-pages/commit/9d27fac8dcdc50937d59b3068c59acf257ad2398))
+
+### deps
+
+* bump @actions/core from 1.2.3 to 1.2.4 (#265) ([dd1933a](https://github.com/peaceiris/actions-gh-pages/commit/dd1933a7b4b77a06b1995b0e8c40b6c219f32550)), closes [#265](https://github.com/peaceiris/actions-gh-pages/issues/265)
+* bump jest from 25.5.2 to 25.5.3 (#267) ([e782e1d](https://github.com/peaceiris/actions-gh-pages/commit/e782e1d32332c2e99058a039dd5caaf0533d0af6)), closes [#267](https://github.com/peaceiris/actions-gh-pages/issues/267)
+* bump jest from 25.5.3 to 25.5.4 (#272) ([ae34186](https://github.com/peaceiris/actions-gh-pages/commit/ae34186caa187c2960bae6d656f6ef69c6aa0fba)), closes [#272](https://github.com/peaceiris/actions-gh-pages/issues/272)
+* bump jest-circus from 25.5.2 to 25.5.3 (#266) ([c12a4b1](https://github.com/peaceiris/actions-gh-pages/commit/c12a4b1908457ab10af84e0947b66af3f868790c)), closes [#266](https://github.com/peaceiris/actions-gh-pages/issues/266)
+* bump jest-circus from 25.5.3 to 25.5.4 (#271) ([a5d411b](https://github.com/peaceiris/actions-gh-pages/commit/a5d411bf285983883daecb16787a8f6549da66d8)), closes [#271](https://github.com/peaceiris/actions-gh-pages/issues/271)
+* bump lint-staged from 10.2.0 to 10.2.1 (#264) ([0809306](https://github.com/peaceiris/actions-gh-pages/commit/08093066ac77639e402a4b60492a7759c395ba36)), closes [#264](https://github.com/peaceiris/actions-gh-pages/issues/264)
+* bump lint-staged from 10.2.1 to 10.2.2 (#269) ([b9cccec](https://github.com/peaceiris/actions-gh-pages/commit/b9cccec41e2e47ef704d34a7409dc07a50e32d46)), closes [#269](https://github.com/peaceiris/actions-gh-pages/issues/269)
+
+### feat
+
+* Add full_commit_message (#275) ([0b7411e](https://github.com/peaceiris/actions-gh-pages/commit/0b7411e2cf05b033f6766798560d02e932e01bd2)), closes [#275](https://github.com/peaceiris/actions-gh-pages/issues/275) [#274](https://github.com/peaceiris/actions-gh-pages/issues/274)
+
+
+
 ## [3.5.10](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.9...v3.5.10) (2020-04-30)
 
 
