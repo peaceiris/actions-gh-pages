@@ -397,7 +397,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
     commit_message: ${{ github.event.head_commit.message }}
 ```
 
-![Set a custom commit message - GitHub Actions for GitHub Pages](./images/commit_message.jpg)
+<img width="400px" alt="Set a custom commit message - GitHub Actions for GitHub Pages" src="./images/commit_message.jpg">
 
 To set a full custom commit message without a triggered commit hash,
 use the `full_commit_message` option instead of the `commit_message` option.
