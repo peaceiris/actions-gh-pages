@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.0...v3.6.1) (2020-05-04)
+
+
+### docs
+
+* Add example image for commit_message ([f559ed8](https://github.com/peaceiris/actions-gh-pages/commit/f559ed8889a7ba2364757bc7a97b0491263147ff))
+
+### feat
+
+* Fold logs using core.startGroup() (#277) ([db3e60d](https://github.com/peaceiris/actions-gh-pages/commit/db3e60d230c7ebcd5342990f0ffc5af0ed1f4296)), closes [#277](https://github.com/peaceiris/actions-gh-pages/issues/277)
+
+### test
+
+* Add test case for getCommitMessage() (#276) ([5041814](https://github.com/peaceiris/actions-gh-pages/commit/504181401bb2df2de020ed72a7f2b4f8942bcb77)), closes [#276](https://github.com/peaceiris/actions-gh-pages/issues/276)
+
+
+
 # [3.6.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.5.10...v3.6.0) (2020-05-04)
 
 
