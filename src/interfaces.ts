@@ -11,6 +11,7 @@ export interface Inputs {
   readonly UserName: string;
   readonly UserEmail: string;
   readonly CommitMessage: string;
+  readonly FullCommitMessage: string;
   readonly TagName: string;
   readonly TagMessage: string;
   readonly DisableNoJekyll: boolean;

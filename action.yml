@@ -47,7 +47,10 @@ inputs:
     description: 'Set Git user.email'
     required: false
   commit_message:
-    description: 'Set custom commit message'
+    description: 'Set a custom commit message with a triggered commit hash'
+    required: false
+  full_commit_message:
+    description: 'Set a custom full commit message without a triggered commit hash'
     required: false
   tag_name:
     description: 'Set tag name'

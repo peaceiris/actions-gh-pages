@@ -1,6 +1,5 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as github from '@actions/github';
 import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
@@ -133,26 +132,38 @@ export async function setCommitAuthor(
   await exec.exec('git', ['config', 'user.email', getUserEmail(userEmail)]);
 }
 
+export function getCommitMessage(
+  msg: string,
+  fullMsg: string,
+  extRepo: string,
+  baseRepo: string,
+  hash: string
+): string {
+  const msgHash = ((): string => {
+    if (extRepo) {
+      return `${baseRepo}@${hash}`;
+    } else {
+      return hash;
+    }
+  })();
+
+  const subject = ((): string => {
+    if (fullMsg) {
+      return fullMsg;
+    } else if (msg) {
+      return `${msg} ${msgHash}`;
+    } else {
+      return `deploy: ${msgHash}`;
+    }
+  })();
+
+  return subject;
+}
+
 export async function commit(
   allowEmptyCommit: boolean,
-  externalRepository: string,
-  message: string
+  msg: string
 ): Promise<void> {
-  let msg = '';
-  if (message) {
-    msg = message;
-  } else {
-    msg = 'deploy:';
-  }
-
-  const hash = `${process.env.GITHUB_SHA}`;
-  const baseRepo = `${github.context.repo.owner}/${github.context.repo.repo}`;
-  if (externalRepository) {
-    msg = `${msg} ${baseRepo}@${hash}`;
-  } else {
-    msg = `${msg} ${hash}`;
-  }
-
   try {
     if (allowEmptyCommit) {
       await exec.exec('git', ['commit', '--allow-empty', '-m', `${msg}`]);
