@@ -169,4 +169,15 @@ describe('getCommitMessage()', () => {
     );
     expect(test).toMatch('Full custom msg');
   });
+
+  test('get full custom message for external repository', () => {
+    const test = getCommitMessage(
+      '',
+      'Full custom msg',
+      'actions/actions.github.io',
+      'actions/pages',
+      'commit_hash'
+    );
+    expect(test).toMatch('Full custom msg');
+  });
 });
