@@ -1,4 +1,9 @@
-import {getUserName, getUserEmail, setCommitAuthor} from '../src/git-utils';
+import {
+  getUserName,
+  getUserEmail,
+  setCommitAuthor,
+  getCommitMessage
+} from '../src/git-utils';
 import {getWorkDirName, createWorkDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
@@ -112,5 +117,56 @@ describe('setCommitAuthor()', () => {
     await expect(setCommitAuthor(userName, userEmail)).rejects.toThrowError(
       'user_name is undefined'
     );
+  });
+});
+
+describe('getCommitMessage()', () => {
+  test('get default message', () => {
+    const test = getCommitMessage('', '', '', 'actions/pages', 'commit_hash');
+    expect(test).toMatch('deploy: commit_hash');
+  });
+
+  test('get default message for external repository', () => {
+    const test = getCommitMessage(
+      '',
+      '',
+      'actions/actions.github.io',
+      'actions/pages',
+      'commit_hash'
+    );
+    expect(test).toMatch('deploy: actions/pages@commit_hash');
+  });
+
+  test('get custom message', () => {
+    const test = getCommitMessage(
+      'Custom msg',
+      '',
+      '',
+      'actions/pages',
+      'commit_hash'
+    );
+    expect(test).toMatch('Custom msg commit_hash');
+  });
+
+  test('get custom message for external repository', () => {
+    const test = getCommitMessage(
+      'Custom msg',
+      '',
+      'actions/actions.github.io',
+      'actions/pages',
+      'commit_hash'
+    );
+    expect(test).toMatch('Custom msg actions/pages@commit_hash');
+  });
+
+  test('get full custom message', () => {
+    const test = getCommitMessage(
+      '',
+      'Full custom msg',
+      '',
+      'actions/pages',
+      'commit_hash'
+    );
+    expect(test).toMatch('Full custom msg');
   });
 });

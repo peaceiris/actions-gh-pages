@@ -51,6 +51,7 @@ function getInputsLog(authMethod: string, inps: Inputs): string {
 [INFO] UserName: ${inps.UserName}
 [INFO] UserEmail: ${inps.UserEmail}
 [INFO] CommitMessage: ${inps.CommitMessage}
+[INFO] FullCommitMessage: ${inps.FullCommitMessage}
 [INFO] TagName: ${inps.TagName}
 [INFO] TagMessage: ${inps.TagMessage}
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
@@ -117,6 +118,7 @@ describe('getInputs()', () => {
     expect(inps.UserName).toMatch('');
     expect(inps.UserEmail).toMatch('');
     expect(inps.CommitMessage).toMatch('');
+    expect(inps.FullCommitMessage).toMatch('');
     expect(inps.TagName).toMatch('');
     expect(inps.TagMessage).toMatch('');
     expect(inps.DisableNoJekyll).toBe(false);
@@ -136,6 +138,7 @@ describe('getInputs()', () => {
     process.env['INPUT_USER_NAME'] = 'username';
     process.env['INPUT_USER_EMAIL'] = 'github@github.com';
     process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
+    process.env['INPUT_FULL_COMMIT_MESSAGE'] = 'feat: Add new feature';
     process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
     process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
     process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
@@ -155,10 +158,17 @@ describe('getInputs()', () => {
     expect(inps.UserName).toMatch('username');
     expect(inps.UserEmail).toMatch('github@github.com');
     expect(inps.CommitMessage).toMatch('feat: Add new feature');
+    expect(inps.FullCommitMessage).toMatch('feat: Add new feature');
     expect(inps.TagName).toMatch('deploy-v1.2.3');
     expect(inps.TagMessage).toMatch('Deployment v1.2.3');
     expect(inps.DisableNoJekyll).toBe(true);
     expect(inps.CNAME).toMatch('github.com');
+  });
+
+  test('get spec inputs enable_jekyll', () => {
+    process.env['INPUT_ENABLE_JEKYLL'] = 'true';
+    const inps: Inputs = getInputs();
+    expect(inps.DisableNoJekyll).toBe(true);
   });
 
   test('throw error enable_jekyll or disable_nojekyll', () => {

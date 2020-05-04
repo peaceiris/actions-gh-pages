@@ -1,10 +1,18 @@
 import {context} from '@actions/github';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as github from '@actions/github';
 import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
-import {setRepo, setCommitAuthor, commit, push, pushTag} from './git-utils';
+import {
+  setRepo,
+  setCommitAuthor,
+  getCommitMessage,
+  commit,
+  push,
+  pushTag
+} from './git-utils';
 import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
 
 export async function run(): Promise<void> {
@@ -54,11 +62,16 @@ export async function run(): Promise<void> {
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
     await exec.exec('git', ['add', '--all']);
     await setCommitAuthor(inps.UserName, inps.UserEmail);
-    await commit(
-      inps.AllowEmptyCommit,
+    const hash = `${process.env.GITHUB_SHA}`;
+    const baseRepo = `${github.context.repo.owner}/${github.context.repo.repo}`;
+    const commitMessage = getCommitMessage(
+      inps.CommitMessage,
+      inps.FullCommitMessage,
       inps.ExternalRepository,
-      inps.CommitMessage
+      baseRepo,
+      hash
     );
+    await commit(inps.AllowEmptyCommit, commitMessage);
     await push(inps.PublishBranch, inps.ForceOrphan);
     await pushTag(inps.TagName, inps.TagMessage);
 

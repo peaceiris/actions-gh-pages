@@ -22,6 +22,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] UserName: ${inps.UserName}
 [INFO] UserEmail: ${inps.UserEmail}
 [INFO] CommitMessage: ${inps.CommitMessage}
+[INFO] FullCommitMessage: ${inps.FullCommitMessage}
 [INFO] TagName: ${inps.TagName}
 [INFO] TagMessage: ${inps.TagMessage}
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
@@ -61,6 +62,7 @@ export function getInputs(): Inputs {
     UserName: core.getInput('user_name'),
     UserEmail: core.getInput('user_email'),
     CommitMessage: core.getInput('commit_message'),
+    FullCommitMessage: core.getInput('full_commit_message'),
     TagName: core.getInput('tag_name'),
     TagMessage: core.getInput('tag_message'),
     DisableNoJekyll: useBuiltinJekyll,

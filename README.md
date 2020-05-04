@@ -397,6 +397,18 @@ When we create a commit with a message `docs: Update some post`, a deployment co
     commit_message: ${{ github.event.head_commit.message }}
 ```
 
+To set a full custom commit message without a triggered commit hash,
+use the `full_commit_message` option instead of the `commit_message` option.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+    full_commit_message: ${{ github.event.head_commit.message }}
+```
+
 ### ⭐️ Create Git tag
 
 Here is an example workflow.
