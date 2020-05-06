@@ -74,7 +74,7 @@
     "js-yaml": "^3.13.1",
     "lint-staged": "^10.2.2",
     "prettier": "2.0.5",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.0",
     "ts-jest": "^25.5.0",
     "typescript": "^3.8.3"
   }
