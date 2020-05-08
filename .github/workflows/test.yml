@@ -7,9 +7,6 @@ on:
     paths-ignore:
       - '*.md'
   pull_request:
-    types:
-      - opened
-      - synchronize
     paths-ignore:
       - '*.md'
 
