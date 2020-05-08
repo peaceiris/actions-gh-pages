@@ -658,7 +658,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn export
 
@@ -761,7 +761,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-website-
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn build
 
       - name: Deploy
