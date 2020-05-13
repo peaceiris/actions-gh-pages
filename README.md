@@ -3,7 +3,6 @@
 [![GitHub release date](https://img.shields.io/github/release-date/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases)
 ![Test](https://github.com/peaceiris/actions-gh-pages/workflows/Test/badge.svg?branch=master&event=push)
 [![CodeFactor](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages/badge)](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages)
-[![Release Feed](https://img.shields.io/badge/release-feed-yellow)](https://github.com/peaceiris/actions-gh-pages/releases.atom)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=peaceiris/actions-gh-pages)](https://dependabot.com)
 
 <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
