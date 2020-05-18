@@ -72,7 +72,7 @@
     "jest": "^25.5.4",
     "jest-circus": "^26.0.1",
     "js-yaml": "^3.13.1",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.2.4",
     "prettier": "2.0.5",
     "standard-version": "^8.0.0",
     "ts-jest": "^25.5.1",
