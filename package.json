@@ -62,7 +62,7 @@
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "@types/js-yaml": "^3.12.4",
-    "@types/node": "~12",
+    "@types/node": "~14",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "@zeit/ncc": "^0.22.2",
