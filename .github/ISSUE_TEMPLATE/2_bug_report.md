@@ -7,6 +7,8 @@ assignees: peaceiris
 
 ---
 
+**Note that an issue which does not follow the template will be closed silently.**
+
 ### Describe the bug
 
 A clear and concise description of what the bug is.

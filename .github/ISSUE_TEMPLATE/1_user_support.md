@@ -6,6 +6,8 @@ labels: support
 assignees: peaceiris
 ---
 
+**Note that an issue which does not follow the template will be closed silently.**
+
 ### Check list before opening this issue
 
 - [ ] I read the latest README
