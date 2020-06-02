@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: '11:00'
+    timezone: Japan
+  pull-request-branch-name:
+    separator: "-"
+  open-pull-requests-limit: 1
+  labels:
+  - dependencies
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - ">= 13.a, < 14"
+  - dependency-name: "@types/node"
+    versions:
+    - ">= 14.a, < 15"
+  commit-message:
+    prefix: deps
