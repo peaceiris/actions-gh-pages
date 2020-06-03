@@ -20,3 +20,13 @@ updates:
     - ">= 14.a, < 15"
   commit-message:
     prefix: deps
+
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  open-pull-requests-limit: 1
+  labels:
+  - "dependencies:ci"
+  commit-message:
+    prefix: ci
