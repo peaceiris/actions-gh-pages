@@ -10,12 +10,11 @@ assignees: peaceiris
 
 ### Check list before opening this issue
 
-<!--
 - [ ] I read the latest README
   - I checked [Available Options](https://github.com/peaceiris/actions-gh-pages#options)
   - I followed [Tips and FAQ](https://github.com/peaceiris/actions-gh-pages#tips-and-faq)
   - I tried [Workflow Examples](https://github.com/peaceiris/actions-gh-pages#examples)
--->
+  - I read the latest GitHub Actions official documentation and learned the basic spec and concepts
 
 ### Describe your question
 
