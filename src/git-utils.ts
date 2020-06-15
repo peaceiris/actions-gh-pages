@@ -81,7 +81,13 @@ export async function setRepo(
       if (inps.KeepFiles) {
         core.info('[INFO] Keep existing files');
       } else {
-        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        await exec.exec('git', [
+          'rm',
+          '-r',
+          '--ignore-unmatch',
+          '--',
+          ...inps.RemovePathSpec.split(',')
+        ]);
       }
 
       await copyAssets(publishDir, workDir);

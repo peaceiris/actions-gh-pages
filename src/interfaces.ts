@@ -7,6 +7,7 @@ export interface Inputs {
   readonly ExternalRepository: string;
   readonly AllowEmptyCommit: boolean;
   readonly KeepFiles: boolean;
+  readonly RemovePathSpec: string;
   readonly ForceOrphan: boolean;
   readonly UserName: string;
   readonly UserEmail: string;
