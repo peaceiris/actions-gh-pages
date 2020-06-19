@@ -13,12 +13,18 @@ on:
 jobs:
   skipci:
     runs-on: ubuntu-18.04
+    outputs:
+      is_skip: ${{ steps.is_skip.outputs.is_skip }}
     steps:
-      - run: echo "[skip ci] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+      - name: Set is_skip
+        id: is_skip
+        run: echo "::set-output name=is_skip::${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+      - run: echo "[skip ci] ${{ steps.is_skip.outputs.is_skip }}"
 
   test:
     runs-on: ${{ matrix.os }}
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
+    needs: skipci
+    if: ${{ ! needs.skipci.outputs.is_skip }}
     strategy:
       matrix:
         os:
