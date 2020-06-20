@@ -11,7 +11,7 @@
 ## GitHub Actions for GitHub Pages
 
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
-This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, GitBook, mdBook, and so on.)
+This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
 
 [Static Site Generators]: https://www.staticgen.com/
 
@@ -521,10 +521,9 @@ It is useful to watch this repository (release only) to check the [latest releas
 
 ### ⭐️ Static Site Generators with Node.js
 
-[hexo], [gitbook], [vuepress], [react-static], [gridsome], and so on.
+[hexo], [vuepress], [react-static], [gridsome], and so on.
 
 [hexo]: https://github.com/hexojs/hexo
-[gitbook]: https://github.com/GitbookIO/gitbook
 [vuepress]: https://github.com/vuejs/vuepress
 [react-static]: https://github.com/react-static/react-static
 [gridsome]: https://github.com/gridsome/gridsome
