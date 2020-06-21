@@ -53,12 +53,9 @@ export function getInputs(): Inputs {
     PublishBranch: core.getInput('publish_branch'),
     PublishDir: core.getInput('publish_dir'),
     ExternalRepository: core.getInput('external_repository'),
-    AllowEmptyCommit:
-      (core.getInput('allow_empty_commit') || 'false').toUpperCase() === 'TRUE',
-    KeepFiles:
-      (core.getInput('keep_files') || 'false').toUpperCase() === 'TRUE',
-    ForceOrphan:
-      (core.getInput('force_orphan') || 'false').toUpperCase() === 'TRUE',
+    AllowEmptyCommit: (core.getInput('allow_empty_commit') || 'false').toUpperCase() === 'TRUE',
+    KeepFiles: (core.getInput('keep_files') || 'false').toUpperCase() === 'TRUE',
+    ForceOrphan: (core.getInput('force_orphan') || 'false').toUpperCase() === 'TRUE',
     UserName: core.getInput('user_name'),
     UserEmail: core.getInput('user_email'),
     CommitMessage: core.getInput('commit_message'),

@@ -47,10 +47,7 @@ export async function addNoJekyll(
   }
 }
 
-export async function addCNAME(
-  workDir: string,
-  content: string
-): Promise<void> {
+export async function addCNAME(workDir: string, content: string): Promise<void> {
   if (content === '') {
     return;
   }

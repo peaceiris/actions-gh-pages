@@ -9,10 +9,7 @@ const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';
 
-export async function setSSHKey(
-  inps: Inputs,
-  publishRepo: string
-): Promise<string> {
+export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<string> {
   core.info('[INFO] setup SSH deploy key');
 
   const homeDir = await getHomeDir();
@@ -81,27 +78,18 @@ export function setGithubToken(
   }
 
   if (externalRepository) {
-    throw new Error(
-      'GITHUB_TOKEN does not support to push to an external repository'
-    );
+    throw new Error('GITHUB_TOKEN does not support to push to an external repository');
   }
 
   return `https://x-access-token:${githubToken}@github.com/${publishRepo}.git`;
 }
 
-export function setPersonalToken(
-  personalToken: string,
-  publishRepo: string
-): string {
+export function setPersonalToken(personalToken: string, publishRepo: string): string {
   core.info('[INFO] setup personal access token');
   return `https://x-access-token:${personalToken}@github.com/${publishRepo}.git`;
 }
 
-export function getPublishRepo(
-  externalRepository: string,
-  owner: string,
-  repo: string
-): string {
+export function getPublishRepo(externalRepository: string, owner: string, repo: string): string {
   if (externalRepository) {
     return externalRepository;
   }

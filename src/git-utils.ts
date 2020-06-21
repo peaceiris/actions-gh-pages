@@ -12,10 +12,7 @@ export async function createBranchForce(branch: string): Promise<void> {
   return;
 }
 
-export async function copyAssets(
-  publishDir: string,
-  workDir: string
-): Promise<void> {
+export async function copyAssets(publishDir: string, workDir: string): Promise<void> {
   const copyOpts = {recursive: true, force: true};
   const files = fs.readdirSync(publishDir);
   core.debug(`${files}`);
@@ -31,15 +28,8 @@ export async function copyAssets(
   return;
 }
 
-export async function setRepo(
-  inps: Inputs,
-  remoteURL: string,
-  workDir: string
-): Promise<void> {
-  const publishDir = path.join(
-    `${process.env.GITHUB_WORKSPACE}`,
-    inps.PublishDir
-  );
+export async function setRepo(inps: Inputs, remoteURL: string, workDir: string): Promise<void> {
+  const publishDir = path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
@@ -65,15 +55,7 @@ export async function setRepo(
   try {
     result.exitcode = await exec.exec(
       'git',
-      [
-        'clone',
-        '--depth=1',
-        '--single-branch',
-        '--branch',
-        inps.PublishBranch,
-        remoteURL,
-        workDir
-      ],
+      ['clone', '--depth=1', '--single-branch', '--branch', inps.PublishBranch, remoteURL, workDir],
       options
     );
     if (result.exitcode === 0) {
@@ -90,9 +72,7 @@ export async function setRepo(
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
   } catch (e) {
-    core.info(
-      `[INFO] first deployment, create new branch ${inps.PublishBranch}`
-    );
+    core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
     core.info(e.message);
     await createWorkDir(workDir);
     process.chdir(workDir);
@@ -118,10 +98,7 @@ export function getUserEmail(userEmail: string): string {
   }
 }
 
-export async function setCommitAuthor(
-  userName: string,
-  userEmail: string
-): Promise<void> {
+export async function setCommitAuthor(userName: string, userEmail: string): Promise<void> {
   if (userName && !userEmail) {
     throw new Error('user_email is undefined');
   }
@@ -160,10 +137,7 @@ export function getCommitMessage(
   return subject;
 }
 
-export async function commit(
-  allowEmptyCommit: boolean,
-  msg: string
-): Promise<void> {
+export async function commit(allowEmptyCommit: boolean, msg: string): Promise<void> {
   try {
     if (allowEmptyCommit) {
       await exec.exec('git', ['commit', '--allow-empty', '-m', `${msg}`]);
@@ -176,10 +150,7 @@ export async function commit(
   }
 }
 
-export async function push(
-  branch: string,
-  forceOrphan: boolean
-): Promise<void> {
+export async function push(branch: string, forceOrphan: boolean): Promise<void> {
   if (forceOrphan) {
     await exec.exec('git', ['push', 'origin', '--force', branch]);
   } else {
@@ -187,10 +158,7 @@ export async function push(
   }
 }
 
-export async function pushTag(
-  tagName: string,
-  tagMessage: string
-): Promise<void> {
+export async function pushTag(tagName: string, tagMessage: string): Promise<void> {
   if (tagName === '') {
     return;
   }

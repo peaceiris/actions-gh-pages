@@ -5,14 +5,7 @@ import * as github from '@actions/github';
 import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
-import {
-  setRepo,
-  setCommitAuthor,
-  getCommitMessage,
-  commit,
-  push,
-  pushTag
-} from './git-utils';
+import {setRepo, setCommitAuthor, getCommitMessage, commit, push, pushTag} from './git-utils';
 import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
 
 export async function run(): Promise<void> {
@@ -39,9 +32,7 @@ export async function run(): Promise<void> {
         inps.PersonalToken
       );
       if (isSkipOnFork) {
-        core.warning(
-          'This action runs on a fork and not found auth token, Skip deployment'
-        );
+        core.warning('This action runs on a fork and not found auth token, Skip deployment');
         core.setOutput('skip', 'true');
         return;
       }
