@@ -27,7 +27,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "{src,__tests__}/**/*.ts": [
       "prettier --check",
       "eslint"
     ],
