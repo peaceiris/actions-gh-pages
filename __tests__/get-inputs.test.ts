@@ -9,9 +9,7 @@ beforeEach(() => {
   jest.resetModules();
   process.stdout.write = jest.fn();
 
-  const doc = yaml.safeLoad(
-    fs.readFileSync(__dirname + '/../action.yml', 'utf8')
-  );
+  const doc = yaml.safeLoad(fs.readFileSync(__dirname + '/../action.yml', 'utf8'));
   Object.keys(doc.inputs).forEach(name => {
     const envVar = `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
     process.env[envVar] = doc.inputs[name]['default'];
@@ -19,9 +17,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  const doc = yaml.safeLoad(
-    fs.readFileSync(__dirname + '/../action.yml', 'utf8')
-  );
+  const doc = yaml.safeLoad(fs.readFileSync(__dirname + '/../action.yml', 'utf8'));
   Object.keys(doc.inputs).forEach(name => {
     const envVar = `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
     console.debug(`delete ${envVar}\t${process.env[envVar]}`);

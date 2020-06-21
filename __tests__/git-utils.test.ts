@@ -1,9 +1,4 @@
-import {
-  getUserName,
-  getUserEmail,
-  setCommitAuthor,
-  getCommitMessage
-} from '../src/git-utils';
+import {getUserName, getUserEmail, setCommitAuthor, getCommitMessage} from '../src/git-utils';
 import {getWorkDirName, createWorkDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
@@ -138,13 +133,7 @@ describe('getCommitMessage()', () => {
   });
 
   test('get custom message', () => {
-    const test = getCommitMessage(
-      'Custom msg',
-      '',
-      '',
-      'actions/pages',
-      'commit_hash'
-    );
+    const test = getCommitMessage('Custom msg', '', '', 'actions/pages', 'commit_hash');
     expect(test).toMatch('Custom msg commit_hash');
   });
 
@@ -160,13 +149,7 @@ describe('getCommitMessage()', () => {
   });
 
   test('get full custom message', () => {
-    const test = getCommitMessage(
-      '',
-      'Full custom msg',
-      '',
-      'actions/pages',
-      'commit_hash'
-    );
+    const test = getCommitMessage('', 'Full custom msg', '', 'actions/pages', 'commit_hash');
     expect(test).toMatch('Full custom msg');
   });
 
