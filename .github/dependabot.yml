@@ -6,9 +6,6 @@ updates:
     interval: daily
     time: '11:00'
     timezone: Japan
-  pull-request-branch-name:
-    separator: "-"
-  open-pull-requests-limit: 1
   labels:
   - dependencies
   ignore:
@@ -23,7 +20,6 @@ updates:
   directory: "/"
   schedule:
     interval: "daily"
-  open-pull-requests-limit: 1
   labels:
   - "dependencies:ci"
   commit-message:
