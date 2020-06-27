@@ -346,7 +346,14 @@ For example:
 You can use `deploy_key` or `personal_token`.
 When you use `deploy_key`, set your private key to the repository which includes this action and set your public key to your external repository.
 
-**Be careful, `GITHUB_TOKEN` has no permission to access to external repositories. Please create a personal access token and set it to `personal_token` like `personal_token: ${{ secrets.PERSONAL_TOKEN }}`.**
+**Note that `GITHUB_TOKEN` has no permission to access to external repositories. Please create a personal access token and set it to `personal_token` like `personal_token: ${{ secrets.PERSONAL_TOKEN }}`.**
+
+Use case: 
+
+A GitHub Free Plan account cannot use the GitHub Pages in a private repository. To make your source contents private and deploy it with the GitHub Pages, you can deploy your site from a private repository to a public repository using this option.
+
+- `peaceiris/homepage`: A private repository running this action with `external_repository: peaceiris/peaceiris.github.io`
+- `peaceiris/peaceiris.github.io`: A public repository using GitHub Pages
 
 ### ⭐️ Force orphan
 
