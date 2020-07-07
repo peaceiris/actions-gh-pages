@@ -3,6 +3,7 @@ name: Purge image cache
 on:
   schedule:
     - cron: '54 18 * * */7'
+  workflow_dispatch:
 
 jobs:
   purge:
