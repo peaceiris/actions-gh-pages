@@ -76,7 +76,10 @@ export function setGithubToken(
   let isProhibitedBranch = false;
 
   if (externalRepository) {
-    throw new Error('GITHUB_TOKEN does not support to push to an external repository');
+    throw new Error(`\
+The generated GITHUB_TOKEN (github_token) does not support to push to an external repository.
+Use deploy_key or personal_token.
+`);
   }
 
   if (eventName === 'push') {
