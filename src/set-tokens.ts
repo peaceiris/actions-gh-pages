@@ -70,15 +70,15 @@ export function setGithubToken(
   core.debug(`eventName: ${eventName}`);
   let isProhibitedBranch = false;
 
+  if (externalRepository) {
+    throw new Error('GITHUB_TOKEN does not support to push to an external repository');
+  }
+
   if (eventName === 'push') {
     isProhibitedBranch = ref.includes(`refs/heads/${publishBranch}`);
     if (isProhibitedBranch) {
       throw new Error(`You deploy from ${publishBranch} to ${publishBranch}`);
     }
-  }
-
-  if (externalRepository) {
-    throw new Error('GITHUB_TOKEN does not support to push to an external repository');
   }
 
   return `https://x-access-token:${githubToken}@github.com/${publishRepo}.git`;
