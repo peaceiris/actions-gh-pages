@@ -44,6 +44,11 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
+    core.warning(`\
+Currently, the deploy_key option is not supported on the windows-latest.
+Watch https://github.com/peaceiris/actions-gh-pages/issues/87
+`);
+
     await cpSpawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
     await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
@@ -71,7 +76,10 @@ export function setGithubToken(
   let isProhibitedBranch = false;
 
   if (externalRepository) {
-    throw new Error('GITHUB_TOKEN does not support to push to an external repository');
+    throw new Error(`\
+The generated GITHUB_TOKEN (github_token) does not support to push to an external repository.
+Use deploy_key or personal_token.
+`);
   }
 
   if (eventName === 'push') {

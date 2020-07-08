@@ -63,7 +63,10 @@ describe('setGithubToken()', () => {
         'refs/heads/master',
         'push'
       );
-    }).toThrowError('GITHUB_TOKEN does not support to push to an external repository');
+    }).toThrowError(`\
+The generated GITHUB_TOKEN (github_token) does not support to push to an external repository.
+Use deploy_key or personal_token.
+`);
   });
 
   test('return remote url with GITHUB_TOKEN pull_request', () => {
