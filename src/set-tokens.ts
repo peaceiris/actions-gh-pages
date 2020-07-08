@@ -44,6 +44,11 @@ Host github
   await exec.exec('chmod', ['600', sshConfigPath]);
 
   if (process.platform === 'win32') {
+    core.warning(`\
+Currently, the deploy_key option is not supported on the windows-latest.
+Watch https://github.com/peaceiris/actions-gh-pages/issues/87
+`);
+
     await cpSpawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
     await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
