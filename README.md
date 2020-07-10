@@ -518,6 +518,24 @@ It is useful to watch this repository (release only) to check the [latest releas
 
 [latest release]: https://github.com/peaceiris/actions-gh-pages/releases
 
+For continuous updating, we can use the GitHub native Dependabot.
+Here is an example configuration of the bot. The config file is located in `.github/dependabot.yml`.
+
+```yaml
+version: 2
+updates:
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  labels:
+  - "dependencies:ci"
+  commit-message:
+    prefix: ci
+```
+
+See the official documentation for more details about the Dependabot: [Keeping your dependencies updated automatically - GitHub Docs](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically)
+
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
 </div>
