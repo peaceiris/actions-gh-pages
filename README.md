@@ -82,7 +82,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
-  - [Schedule and Manual Deployment](#schedule-and-manual-deployment)
+  - [⭐️ Schedule and Manual Deployment](#%EF%B8%8F-schedule-and-manual-deployment)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
@@ -537,7 +537,7 @@ updates:
 
 See the official documentation for more details about the Dependabot: [Keeping your dependencies updated automatically - GitHub Docs](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically)
 
-### Schedule and Manual Deployment
+### ⭐️ Schedule and Manual Deployment
 
 For deploying regularly, we can set the `on.schedule` workflow trigger.
 See [Scheduled events | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events)
