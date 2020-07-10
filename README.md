@@ -82,6 +82,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
+  - [Schedule and Manual Deployment](#schedule-and-manual-deployment)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
@@ -348,7 +349,7 @@ When you use `deploy_key`, set your private key to the repository which includes
 
 **Note that `GITHUB_TOKEN` has no permission to access to external repositories. Please create a personal access token and set it to `personal_token` like `personal_token: ${{ secrets.PERSONAL_TOKEN }}`.**
 
-Use case: 
+Use case:
 
 A GitHub Free Plan account cannot use the GitHub Pages in a private repository. To make your source contents private and deploy it with the GitHub Pages, you can deploy your site from a private repository to a public repository using this option.
 
@@ -535,6 +536,32 @@ updates:
 ```
 
 See the official documentation for more details about the Dependabot: [Keeping your dependencies updated automatically - GitHub Docs](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically)
+
+### Schedule and Manual Deployment
+
+For deploying regularly, we can set the `on.schedule` workflow trigger.
+See [Scheduled events | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events)
+
+For deploying manually, we can set the `on.workflow_dispatch` workflow trigger.
+See [Manual events `workflow_dispatch` | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events)
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "22 22 * * *"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    ...
+```
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
