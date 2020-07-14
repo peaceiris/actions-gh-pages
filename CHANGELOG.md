@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.2...v3.6.3) (2020-07-14)
+
+
+### deps
+
+* bump @types/node from 12.12.48 to 12.12.50 (#392) ([a4205cb](https://github.com/peaceiris/actions-gh-pages/commit/a4205cbdd8cd3a11aee9c47b7f9d99a615b70a21)), closes [#392](https://github.com/peaceiris/actions-gh-pages/issues/392)
+* bump standard-version from 8.0.0 to 8.0.1 (#391) ([6b76e36](https://github.com/peaceiris/actions-gh-pages/commit/6b76e36ab31b40e721fdf587221239d94ca5d141)), closes [#391](https://github.com/peaceiris/actions-gh-pages/issues/391)
+
+### docs
+
+* Add dependabot.yml example (#385) ([a8941b8](https://github.com/peaceiris/actions-gh-pages/commit/a8941b89c6f5476753fcdadcacbfb73206faefb3)), closes [#385](https://github.com/peaceiris/actions-gh-pages/issues/385)
+* add notes #349 (#387) ([488b74c](https://github.com/peaceiris/actions-gh-pages/commit/488b74cc9f861adb4649850096fb9f367363c096)), closes [#349](https://github.com/peaceiris/actions-gh-pages/issues/349) [#387](https://github.com/peaceiris/actions-gh-pages/issues/387)
+* Add Schedule and Manual Deployment (#386) ([16d58be](https://github.com/peaceiris/actions-gh-pages/commit/16d58bea333f07b6141ab6d6f95dca541fde8853)), closes [#386](https://github.com/peaceiris/actions-gh-pages/issues/386)
+* pin actions/setup-node from v2 to v2.1.0 (#389) ([d753ac9](https://github.com/peaceiris/actions-gh-pages/commit/d753ac9b7dd593b0877d35bc997ea8665c73866c)), closes [#389](https://github.com/peaceiris/actions-gh-pages/issues/389) [#388](https://github.com/peaceiris/actions-gh-pages/issues/388)
+
+### fix
+
+* isProhibitedBranch detection (#394) ([f53ab0c](https://github.com/peaceiris/actions-gh-pages/commit/f53ab0c2a5d3f3b2e6524639bae8ca84e454e049)), closes [#394](https://github.com/peaceiris/actions-gh-pages/issues/394)
+
+
+
 ## [3.6.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.1...v3.6.2) (2020-07-08)
 
 
