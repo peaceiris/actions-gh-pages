@@ -47,6 +47,32 @@ describe('setGithubToken()', () => {
     expect(test).toMatch(expected);
   });
 
+  test('return remote url with GITHUB_TOKEN gh-pages (RegExp)', () => {
+    const expected = 'https://x-access-token:GITHUB_TOKEN@github.com/owner/repo.git';
+    const test = setGithubToken(
+      'GITHUB_TOKEN',
+      'owner/repo',
+      'gh-pages',
+      '',
+      'refs/heads/gh-pages-base',
+      'push'
+    );
+    expect(test).toMatch(expected);
+  });
+
+  test('throw error gh-pages-base to gh-pages-base (RegExp)', () => {
+    expect(() => {
+      setGithubToken(
+        'GITHUB_TOKEN',
+        'owner/repo',
+        'gh-pages-base',
+        '',
+        'refs/heads/gh-pages-base',
+        'push'
+      );
+    }).toThrowError('You deploy from gh-pages-base to gh-pages-base');
+  });
+
   test('throw error master to master', () => {
     expect(() => {
       setGithubToken('GITHUB_TOKEN', 'owner/repo', 'master', '', 'refs/heads/master', 'push');

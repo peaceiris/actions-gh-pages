@@ -83,7 +83,7 @@ Use deploy_key or personal_token.
   }
 
   if (eventName === 'push') {
-    isProhibitedBranch = ref.includes(`refs/heads/${publishBranch}`);
+    isProhibitedBranch = ref.match(new RegExp(`^refs/heads/${publishBranch}$`)) !== null;
     if (isProhibitedBranch) {
       throw new Error(`You deploy from ${publishBranch} to ${publishBranch}`);
     }
