@@ -3,7 +3,7 @@ name: 'Test'
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '*.md'
   pull_request:
@@ -72,26 +72,26 @@ jobs:
         run: npm run build
 
       - name: Remove lint-staged husky
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           npm uninstall lint-staged husky
           git checkout package-lock.json package.json
 
       - name: Setup mdBook
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-mdbook@v1.1.12
         with:
           mdbook-version: '0.3.7'
 
       - name: Build site
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         working-directory: ./test_projects/mdbook
         run: mdbook build
 
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-18.04') &&
-          github.ref == 'refs/heads/master'
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -110,7 +110,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-16.04') &&
-          github.ref == 'refs/heads/master'
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -128,7 +128,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'macos') &&
-          github.ref == 'refs/heads/master'
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -147,7 +147,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'windows') &&
-          github.ref == 'refs/heads/master'
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -166,7 +166,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-20.04') &&
-          github.ref == 'refs/heads/master'
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
