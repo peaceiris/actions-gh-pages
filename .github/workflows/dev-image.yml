@@ -3,7 +3,7 @@ name: 'Dev Image CI'
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '.github/workflows/dev-image.yml'
       - '.dockerignore'
@@ -40,4 +40,4 @@ jobs:
       - run: make cirun cmd="npm ci"
       - run: make ciall
       - run: make push
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
