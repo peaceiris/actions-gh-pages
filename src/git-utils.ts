@@ -29,7 +29,9 @@ export async function copyAssets(publishDir: string, workDir: string): Promise<v
 }
 
 export async function setRepo(inps: Inputs, remoteURL: string, workDir: string): Promise<void> {
-  const publishDir = path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
+  const publishDir = path.isAbsolute(inps.PublishDir)
+    ? inps.PublishDir
+    : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
