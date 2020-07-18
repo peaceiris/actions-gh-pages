@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.4](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.3...v3.6.4) (2020-07-18)
+
+
+### chore
+
+* change default branch from master to main (#396) ([932df18](https://github.com/peaceiris/actions-gh-pages/commit/932df18147b59ce4a998b4caabfcc50f1889c827)), closes [#396](https://github.com/peaceiris/actions-gh-pages/issues/396)
+
+### deps
+
+* bump standard-version from 8.0.1 to 8.0.2 (#395) ([c935046](https://github.com/peaceiris/actions-gh-pages/commit/c935046a93788ca4ea55bb13f438ae77a54a9197)), closes [#395](https://github.com/peaceiris/actions-gh-pages/issues/395)
+* bump typescript from 3.9.6 to 3.9.7 (#399) ([7e92312](https://github.com/peaceiris/actions-gh-pages/commit/7e92312ae46d6a7ad1c55a6ce3d98c66ae1ddda3)), closes [#399](https://github.com/peaceiris/actions-gh-pages/issues/399)
+
+### docs
+
+* change default branch from master to main (#397) ([6901b8e](https://github.com/peaceiris/actions-gh-pages/commit/6901b8e8fcec69a339c4a622b85ec3f66e78f90a)), closes [#397](https://github.com/peaceiris/actions-gh-pages/issues/397)
+
+### feat
+
+* Allow absolute path for publish_dir (#400) ([e193524](https://github.com/peaceiris/actions-gh-pages/commit/e193524bff3509becae7e3ced3114176cc70a5dd)), closes [#400](https://github.com/peaceiris/actions-gh-pages/issues/400) [#242](https://github.com/peaceiris/actions-gh-pages/issues/242)
+* enhance error message (#398) ([3d65640](https://github.com/peaceiris/actions-gh-pages/commit/3d656402e52a96a0c027e4ad98f3ce06da7f8c1b)), closes [#398](https://github.com/peaceiris/actions-gh-pages/issues/398)
+
+
+
 ## [3.6.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.2...v3.6.3) (2020-07-14)
 
 
