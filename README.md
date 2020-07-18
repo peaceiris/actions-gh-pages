@@ -535,7 +535,7 @@ updates:
   schedule:
     interval: "daily"
   labels:
-  - "dependencies:ci"
+  - "CI/CD"
   commit-message:
     prefix: ci
 ```
