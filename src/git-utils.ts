@@ -73,11 +73,23 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
       options
     );
     if (result.exitcode === 0) {
-      process.chdir(workDir);
-      if (inps.KeepFiles) {
-        core.info('[INFO] Keep existing files');
+      await createDir(destDir);
+      process.chdir(destDir);
+
+      if (inps.DestinationDir !== '') {
+        if (inps.KeepFiles) {
+          core.info('[INFO] Keep existing files');
+        } else {
+          core.info(`[INFO] clean up ${destDir}`);
+          await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        }
       } else {
-        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        if (inps.KeepFiles) {
+          core.info('[INFO] Keep existing files');
+        } else {
+          core.info(`[INFO] clean up ${destDir}`);
+          await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+        }
       }
 
       await copyAssets(publishDir, destDir);
