@@ -15,6 +15,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] ${authMethod}: true
 [INFO] PublishBranch: ${inps.PublishBranch}
 [INFO] PublishDir: ${inps.PublishDir}
+[INFO] DestinationDir: ${inps.DestinationDir}
 [INFO] ExternalRepository: ${inps.ExternalRepository}
 [INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
 [INFO] KeepFiles: ${inps.KeepFiles}
@@ -52,6 +53,7 @@ export function getInputs(): Inputs {
     PersonalToken: core.getInput('personal_token'),
     PublishBranch: core.getInput('publish_branch'),
     PublishDir: core.getInput('publish_dir'),
+    DestinationDir: core.getInput('destination_dir'),
     ExternalRepository: core.getInput('external_repository'),
     AllowEmptyCommit: (core.getInput('allow_empty_commit') || 'false').toUpperCase() === 'TRUE',
     KeepFiles: (core.getInput('keep_files') || 'false').toUpperCase() === 'TRUE',

@@ -23,9 +23,9 @@ export async function getWorkDirName(unixTime: string): Promise<string> {
   return workDirName;
 }
 
-export async function createWorkDir(workDirName: string): Promise<void> {
-  await io.mkdirP(workDirName);
-  core.debug(`Created: ${workDirName}`);
+export async function createDir(dirPath: string): Promise<void> {
+  await io.mkdirP(dirPath);
+  core.debug(`Created directory ${dirPath}`);
   return;
 }
 

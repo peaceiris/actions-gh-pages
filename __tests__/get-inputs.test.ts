@@ -40,6 +40,7 @@ function getInputsLog(authMethod: string, inps: Inputs): string {
 [INFO] ${authMethod}: true
 [INFO] PublishBranch: ${inps.PublishBranch}
 [INFO] PublishDir: ${inps.PublishDir}
+[INFO] DestinationDir: ${inps.DestinationDir}
 [INFO] ExternalRepository: ${inps.ExternalRepository}
 [INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
 [INFO] KeepFiles: ${inps.KeepFiles}
@@ -107,6 +108,7 @@ describe('getInputs()', () => {
     expect(inps.PersonalToken).toMatch('');
     expect(inps.PublishBranch).toMatch('gh-pages');
     expect(inps.PublishDir).toMatch('public');
+    expect(inps.DestinationDir).toMatch('');
     expect(inps.ExternalRepository).toMatch('');
     expect(inps.AllowEmptyCommit).toBe(false);
     expect(inps.KeepFiles).toBe(false);
@@ -127,6 +129,7 @@ describe('getInputs()', () => {
     process.env['INPUT_PERSONAL_TOKEN'] = 'test_personal_token';
     process.env['INPUT_PUBLISH_BRANCH'] = 'master';
     process.env['INPUT_PUBLISH_DIR'] = 'out';
+    process.env['INPUT_DESTINATION_DIR'] = 'subdir';
     process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
     process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
     process.env['INPUT_KEEP_FILES'] = 'true';
@@ -147,6 +150,7 @@ describe('getInputs()', () => {
     expect(inps.PersonalToken).toMatch('test_personal_token');
     expect(inps.PublishBranch).toMatch('master');
     expect(inps.PublishDir).toMatch('out');
+    expect(inps.DestinationDir).toMatch('subdir');
     expect(inps.ExternalRepository).toMatch('user/repo');
     expect(inps.AllowEmptyCommit).toBe(true);
     expect(inps.KeepFiles).toBe(true);

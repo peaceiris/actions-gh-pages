@@ -4,7 +4,7 @@ import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
-import {createWorkDir} from './utils';
+import {createDir} from './utils';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -12,7 +12,7 @@ export async function createBranchForce(branch: string): Promise<void> {
   return;
 }
 
-export async function copyAssets(publishDir: string, workDir: string): Promise<void> {
+export async function copyAssets(publishDir: string, destDir: string): Promise<void> {
   const copyOpts = {recursive: true, force: true};
   const files = fs.readdirSync(publishDir);
   core.debug(`${files}`);
@@ -21,7 +21,7 @@ export async function copyAssets(publishDir: string, workDir: string): Promise<v
       continue;
     }
     const filePath = path.join(publishDir, file);
-    await io.cp(filePath, `${workDir}/`, copyOpts);
+    await io.cp(filePath, `${destDir}/`, copyOpts);
     core.info(`[INFO] copy ${file}`);
   }
 
@@ -33,12 +33,24 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     ? inps.PublishDir
     : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
+  if (path.isAbsolute(inps.DestinationDir)) {
+    throw new Error('destination_dir should be a relative path');
+  }
+  const destDir = ((): string => {
+    if (inps.DestinationDir === '') {
+      return workDir;
+    } else {
+      return path.join(workDir, inps.DestinationDir);
+    }
+  })();
+
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
-    await createWorkDir(workDir);
+    await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, workDir);
+    process.chdir(destDir);
+    await copyAssets(publishDir, destDir);
     return;
   }
 
@@ -68,7 +80,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
         await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
       }
 
-      await copyAssets(publishDir, workDir);
+      await copyAssets(publishDir, destDir);
       return;
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
@@ -76,10 +88,10 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
   } catch (e) {
     core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
     core.info(e.message);
-    await createWorkDir(workDir);
+    await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, workDir);
+    await copyAssets(publishDir, destDir);
     return;
   }
 }
