@@ -69,18 +69,18 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
   - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
   - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
-  - [⭐️ `github_token`](#%EF%B8%8F-github_token)
-  - [⭐️ `deploy_key`](#%EF%B8%8F-deploy_key)
-  - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
-  - [⭐️ `publish_branch`](#%EF%B8%8F-publish_branch)
-  - [⭐️ `publish_dir`](#%EF%B8%8F-publish_dir)
-  - [⭐️ `destination_dir`](#%EF%B8%8F-destination_dir)
-  - [⭐️ CNAME](#%EF%B8%8F-cname)
-  - [⭐️ Enable Built-in Jekyll](#%EF%B8%8F-enable-built-in-jekyll)
-  - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
-  - [⭐️ Keeping existing files](#%EF%B8%8F-keeping-existing-files)
-  - [⭐️ Deploy to external repository](#%EF%B8%8F-deploy-to-external-repository)
-  - [⭐️ Force orphan](#%EF%B8%8F-force-orphan)
+  - [⭐️ Set Runner's Access Token `github_token`](#%EF%B8%8F-set-runners-access-token-github_token)
+  - [⭐️ Set SSH Private Key `deploy_key`](#%EF%B8%8F-set-ssh-private-key-deploy_key)
+  - [⭐️ Set Personal Access Token `personal_token`](#%EF%B8%8F-set-personal-access-token-personal_token)
+  - [⭐️ Target Branch `publish_branch`](#%EF%B8%8F-target-branch-publish_branch)
+  - [⭐️ Source Directory `publish_dir`](#%EF%B8%8F-source-directory-publish_dir)
+  - [⭐️ Deploy to Subdirectory `destination_dir`](#%EF%B8%8F-deploy-to-subdirectory-destination_dir)
+  - [⭐️ Add CNAME file `cname`](#%EF%B8%8F-add-cname-file-cname)
+  - [⭐️ Enable Built-in Jekyll `enable_jekyll`](#%EF%B8%8F-enable-built-in-jekyll-enable_jekyll)
+  - [⭐️ Allow empty commits `allow_empty_commit`](#%EF%B8%8F-allow-empty-commits-allow_empty_commit)
+  - [⭐️ Keeping existing files `keep_files`](#%EF%B8%8F-keeping-existing-files-keep_files)
+  - [⭐️ Deploy to external repository `external_repository`](#%EF%B8%8F-deploy-to-external-repository-external_repository)
+  - [⭐️ Force orphan `force_orphan`](#%EF%B8%8F-force-orphan-force_orphan)
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
@@ -201,7 +201,7 @@ jobs:
 
 ## Options
 
-### ⭐️ `github_token`
+### ⭐️ Set Runner's Access Token `github_token`
 
 **This option is for `GITHUB_TOKEN`, not a personal access token.**
 
@@ -217,7 +217,7 @@ GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in yo
 
 For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
 
-### ⭐️ `deploy_key`
+### ⭐️ Set SSH Private Key `deploy_key`
 
 Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH deploy key, and set the `deploy_key` option like the following.
 
@@ -229,10 +229,9 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
     publish_dir: ./public
 ```
 
-### ⭐️ `personal_token`
+### ⭐️ Set Personal Access Token `personal_token`
 
 [Generate a personal access token (`repo`)](https://github.com/settings/tokens) and add it to Secrets as `PERSONAL_TOKEN`, it works as well as `ACTIONS_DEPLOY_KEY`.
-
 
 ```yaml
 - name: Deploy
@@ -242,7 +241,7 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
     publish_dir: ./public
 ```
 
-### ⭐️ `publish_branch`
+### ⭐️ Target Branch `publish_branch`
 
 A target branch to deploy to GitHub Pages. The default is `gh-pages`.
 
@@ -254,7 +253,7 @@ A target branch to deploy to GitHub Pages. The default is `gh-pages`.
     publish_branch: master  # default: gh-pages
 ```
 
-### ⭐️ `publish_dir`
+### ⭐️ Source Directory `publish_dir`
 
 A source directory to deploy to GitHub Pages. The default is `public`.
 
@@ -266,7 +265,10 @@ A source directory to deploy to GitHub Pages. The default is `public`.
     publish_dir: ./out  # default: public
 ```
 
-### ⭐️ `destination_dir`
+### ⭐️ Deploy to Subdirectory `destination_dir`
+
+*This feature is on beta.*
+*Any feedback is welcome at [Issue #324](https://github.com/peaceiris/actions-gh-pages/issues/324)*
 
 A destination subdirectory on a publishing branch. The default is empty.
 
@@ -278,7 +280,7 @@ A destination subdirectory on a publishing branch. The default is empty.
     destination_dir: subdir
 ```
 
-### ⭐️ CNAME
+### ⭐️ Add CNAME file `cname`
 
 To add `CNAME` file, we can set the `cname` option.
 
@@ -293,7 +295,7 @@ For more details about `CNAME`, read the official documentation: [Managing a cus
     cname: github.com
 ```
 
-### ⭐️ Enable Built-in Jekyll
+### ⭐️ Enable Built-in Jekyll `enable_jekyll`
 
 If you want GitHub Pages to process your site with the static site generator Jekyll, set `enable_jekyll` to true.
 
@@ -315,7 +317,7 @@ Bypassing Jekyll makes the deployment faster and is necessary if you are deployi
 
 For more details about `.nojekyll`: [Bypassing Jekyll on GitHub Pages - The GitHub Blog](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
 
-### ⭐️ Allow empty commits
+### ⭐️ Allow empty commits `allow_empty_commit`
 
 By default, a commit will not be generated when no file changes. If you want to allow an empty commit, set the optional parameter `allow_empty_commit` to `true`.
 
@@ -330,7 +332,7 @@ For example:
     allow_empty_commit: true
 ```
 
-### ⭐️ Keeping existing files
+### ⭐️ Keeping existing files `keep_files`
 
 By default, existing files in the publish branch are removed before adding the ones from publish dir. If you want the action to add new files but leave existing ones untouched, set the optional parameter `keep_files` to `true`.
 
@@ -345,7 +347,7 @@ For example:
     keep_files: true
 ```
 
-### ⭐️ Deploy to external repository
+### ⭐️ Deploy to external repository `external_repository`
 
 By default, your files are published to the repository which is running this action.
 If you want to publish to another repository on GitHub, set the environment variable `external_repository` to `<username>/<external-repository>`.
@@ -374,7 +376,7 @@ A GitHub Free Plan account cannot use the GitHub Pages in a private repository. 
 - `peaceiris/homepage`: A private repository running this action with `external_repository: peaceiris/peaceiris.github.io`
 - `peaceiris/peaceiris.github.io`: A public repository using GitHub Pages
 
-### ⭐️ Force orphan
+### ⭐️ Force orphan `force_orphan`
 
 We can set the `force_orphan: true` option.
 This allows you to make your publish branch with only the latest commit.
