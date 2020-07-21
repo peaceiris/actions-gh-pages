@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.4...v3.7.0-0) (2020-07-21)
+
+
+### ci
+
+* bump codecov/codecov-action from v1.0.10 to v1.0.11 (#401) ([a5a8912](https://github.com/peaceiris/actions-gh-pages/commit/a5a8912d3e47a3ba8785d356ebed0fd02e2eeb46)), closes [#401](https://github.com/peaceiris/actions-gh-pages/issues/401)
+* update label ([5980f05](https://github.com/peaceiris/actions-gh-pages/commit/5980f05de835c05638459c3c7a80d76edd0c7969))
+
+### deps
+
+* bump @types/jest from 26.0.4 to 26.0.5 (#402) ([42a6cdd](https://github.com/peaceiris/actions-gh-pages/commit/42a6cdde0c0d499af05cd22020132f6240d578a8)), closes [#402](https://github.com/peaceiris/actions-gh-pages/issues/402)
+* bump @types/node from 12.12.50 to 12.12.51 (#404) ([0cb61e9](https://github.com/peaceiris/actions-gh-pages/commit/0cb61e91a5487c04cb202e13a8d2bc25c09c80e1)), closes [#404](https://github.com/peaceiris/actions-gh-pages/issues/404)
+
+### docs
+
+* update dependabot label ([2504696](https://github.com/peaceiris/actions-gh-pages/commit/250469649c036a88f547b96f94867900a1f19163))
+
+### feat
+
+* Add destination_dir option (#403) ([f30118c](https://github.com/peaceiris/actions-gh-pages/commit/f30118c78eebbbe6cf66009b80a7414a4047de43)), closes [#403](https://github.com/peaceiris/actions-gh-pages/issues/403) [#324](https://github.com/peaceiris/actions-gh-pages/issues/324) [#390](https://github.com/peaceiris/actions-gh-pages/issues/390)
+
+
+
 ## [3.6.4](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.3...v3.6.4) (2020-07-18)
 
 
