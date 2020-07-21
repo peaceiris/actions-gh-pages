@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-0...v3.7.0-1) (2020-07-21)
+
+
+### docs
+
+* Enhance section name ([3874723](https://github.com/peaceiris/actions-gh-pages/commit/3874723ac6158d13e3f1e3c8fd34e1ce96d9edf7))
+
+### fix
+
+* KeepFiles behaviour when DestinationDir has dir (#405) ([ce4e3be](https://github.com/peaceiris/actions-gh-pages/commit/ce4e3beff1ed33658f3160b0f45b688c6ea09932)), closes [#405](https://github.com/peaceiris/actions-gh-pages/issues/405) [#324](https://github.com/peaceiris/actions-gh-pages/issues/324)
+
+
+
 # [3.7.0-0](https://github.com/peaceiris/actions-gh-pages/compare/v3.6.4...v3.7.0-0) (2020-07-21)
 
 
