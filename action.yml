@@ -25,6 +25,10 @@ inputs:
     description: 'Set an input directory for deployment.'
     required: false
     default: 'public'
+  destination_dir:
+    description: 'Set an destination subdirectory for deployment.'
+    required: false
+    default: ''
   external_repository:
     description: 'Set an external repository (owner/repo).'
     required: false

@@ -3,7 +3,7 @@ import fs from 'fs';
 import {
   getHomeDir,
   getWorkDirName,
-  createWorkDir,
+  createDir,
   addNoJekyll,
   addCNAME,
   skipOnFork
@@ -51,11 +51,11 @@ describe('getWorkDirName()', () => {
   });
 });
 
-describe('createWorkDir()', () => {
-  test('create work directory', async () => {
+describe('createDir()', () => {
+  test('create a directory', async () => {
     const unixTime = await getTime();
     const workDirName = await getWorkDirName(`${unixTime}`);
-    await createWorkDir(workDirName);
+    await createDir(workDirName);
     const test = fs.existsSync(workDirName);
     expect(test).toBe(true);
   });
@@ -65,7 +65,7 @@ async function getWorkDir(): Promise<string> {
   const unixTime = await getTime();
   let workDir = '';
   workDir = await getWorkDirName(`${unixTime}`);
-  await createWorkDir(workDir);
+  await createDir(workDir);
   return workDir;
 }
 
