@@ -12,9 +12,6 @@ on:
       - 'Makefile'
       - 'docker-compose.yml'
   pull_request:
-    types:
-      - opened
-      - synchronize
     paths:
       - '.github/workflows/dev-image.yml'
       - '.dockerignore'
