@@ -74,6 +74,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
   - [⭐️ `personal_token`](#%EF%B8%8F-personal_token)
   - [⭐️ `publish_branch`](#%EF%B8%8F-publish_branch)
   - [⭐️ `publish_dir`](#%EF%B8%8F-publish_dir)
+  - [⭐️ `destination_dir`](#%EF%B8%8F-destination_dir)
   - [⭐️ CNAME](#%EF%B8%8F-cname)
   - [⭐️ Enable Built-in Jekyll](#%EF%B8%8F-enable-built-in-jekyll)
   - [⭐️ Allow empty commits](#%EF%B8%8F-allow-empty-commits)
@@ -255,7 +256,7 @@ A target branch to deploy to GitHub Pages. The default is `gh-pages`.
 
 ### ⭐️ `publish_dir`
 
-A target directory to deploy to GitHub Pages. The default is `public`.
+A source directory to deploy to GitHub Pages. The default is `public`.
 
 ```yaml
 - name: Deploy
@@ -263,6 +264,18 @@ A target directory to deploy to GitHub Pages. The default is `public`.
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./out  # default: public
+```
+
+### ⭐️ `destination_dir`
+
+A destination subdirectory on a publishing branch. The default is empty.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3.7.0-0
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    destination_dir: subdir
 ```
 
 ### ⭐️ CNAME
