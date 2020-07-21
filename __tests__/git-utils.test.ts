@@ -1,5 +1,5 @@
 import {getUserName, getUserEmail, setCommitAuthor, getCommitMessage} from '../src/git-utils';
-import {getWorkDirName, createWorkDir} from '../src/utils';
+import {getWorkDirName, createDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
 
@@ -51,7 +51,7 @@ describe('setCommitAuthor()', () => {
   })();
 
   beforeEach(async () => {
-    await createWorkDir(workDirName);
+    await createDir(workDirName);
     process.chdir(workDirName);
     await exec.exec('git', ['init']);
   });
