@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+  dev:
+    image: 'docker.pkg.github.com/peaceiris/actions-gh-pages/dev:latest'
+    build:
+      context: .
+      cache_from:
+        - 'docker.pkg.github.com/peaceiris/actions-gh-pages/dev:latest'
+    container_name: peaceiris_actions_github_pages
+    volumes:
+      - ${PWD}:/repo
+    stdin_open: true
+    tty: true
+    command:
+      - bash
