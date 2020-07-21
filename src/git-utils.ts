@@ -43,10 +43,10 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
       return path.join(workDir, inps.DestinationDir);
     }
   })();
-  await createDir(destDir);
 
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
+    await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     process.chdir(destDir);
