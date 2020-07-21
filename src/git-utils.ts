@@ -33,6 +33,9 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     ? inps.PublishDir
     : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
+  if (path.isAbsolute(inps.DestinationDir)) {
+    throw new Error('destination_dir should be a relative path');
+  }
   const destDir = ((): string => {
     if (inps.DestinationDir === '') {
       return workDir;

@@ -1,4 +1,12 @@
-import {getUserName, getUserEmail, setCommitAuthor, getCommitMessage} from '../src/git-utils';
+import {
+  setRepo,
+  getUserName,
+  getUserEmail,
+  setCommitAuthor,
+  getCommitMessage
+} from '../src/git-utils';
+import {getInputs} from '../src/get-inputs';
+import {Inputs} from '../src/interfaces';
 import {getWorkDirName, createDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
@@ -12,6 +20,35 @@ beforeEach(() => {
 afterEach(() => {
   delete process.env['GITHUB_ACTOR'];
   delete process.env['GITHUB_REPOSITORY'];
+});
+
+describe('setRepo()', () => {
+  test('throw error destination_dir should be a relative path', async () => {
+    process.env['INPUT_GITHUB_TOKEN'] = 'test_github_token';
+    process.env['INPUT_PUBLISH_BRANCH'] = 'gh-pages';
+    process.env['INPUT_PUBLISH_DIR'] = 'public';
+    process.env['INPUT_DESTINATION_DIR'] = '/subdir';
+    // process.env['INPUT_EXTERNAL_REPOSITORY'] = 'user/repo';
+    // process.env['INPUT_ALLOW_EMPTY_COMMIT'] = 'true';
+    // process.env['INPUT_KEEP_FILES'] = 'true';
+    // process.env['INPUT_FORCE_ORPHAN'] = 'true';
+    // process.env['INPUT_USER_NAME'] = 'username';
+    // process.env['INPUT_USER_EMAIL'] = 'github@github.com';
+    // process.env['INPUT_COMMIT_MESSAGE'] = 'feat: Add new feature';
+    // process.env['INPUT_FULL_COMMIT_MESSAGE'] = 'feat: Add new feature';
+    // process.env['INPUT_TAG_NAME'] = 'deploy-v1.2.3';
+    // process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
+    // process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
+    // process.env['INPUT_CNAME'] = 'github.com';
+    const inps: Inputs = getInputs();
+    const remoteURL = 'https://x-access-token:pat@github.com/actions/pages.git';
+    const date = new Date();
+    const unixTime = date.getTime();
+    const workDir = await getWorkDirName(`${unixTime}`);
+    await expect(setRepo(inps, remoteURL, workDir)).rejects.toThrowError(
+      'destination_dir should be a relative path'
+    );
+  });
 });
 
 describe('getUserName()', () => {
