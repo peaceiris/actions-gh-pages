@@ -53,7 +53,7 @@ export async function addCNAME(workDir: string, content: string): Promise<void> 
   }
   const filepath = path.join(workDir, 'CNAME');
   if (fs.existsSync(filepath)) {
-    core.warning(`CNAME already exists, skip adding CNAME`);
+    core.info(`CNAME already exists, skip adding CNAME`);
     return;
   }
   fs.writeFileSync(filepath, content + '\n');
