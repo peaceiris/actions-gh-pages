@@ -127,7 +127,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -446,7 +446,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
     tags:
       - 'v*.*.*'
 
@@ -478,7 +478,7 @@ jobs:
 Commands on a local machine.
 
 ```console
-$ # On a default-branch branch
+$ # On a main branch
 $ git tag -a "v1.2.3" -m "Release v1.2.3"
 $ git push origin "v1.2.3"
 
@@ -486,7 +486,7 @@ $ # After deployment
 $ git fetch origin
 $ git tag
 deploy-v1.2.3  # Tag on the gh-pages branch
-v1.2.3         # Tag on the default-branch branch
+v1.2.3         # Tag on the main branch
 ```
 
 <div align="right">
@@ -572,7 +572,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
   schedule:
     - cron: "22 22 * * *"
   workflow_dispatch:
@@ -609,7 +609,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -653,7 +653,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -701,7 +701,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -752,7 +752,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -798,7 +798,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
     paths:
       - '.github/workflows/deploy.yml'
       - 'website/**'
@@ -855,7 +855,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -911,7 +911,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -946,7 +946,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -986,7 +986,7 @@ name: github pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
@@ -1062,7 +1062,7 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - default-branch
+      - main
 
 jobs:
   deploy:
