@@ -51,6 +51,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     await createBranchForce(inps.PublishBranch);
     process.chdir(destDir);
     await copyAssets(publishDir, destDir);
+    process.chdir(workDir);
     return;
   }
 
@@ -93,6 +94,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
       }
 
       await copyAssets(publishDir, destDir);
+      process.chdir(workDir);
       return;
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
@@ -104,6 +106,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, destDir);
+    process.chdir(workDir);
     return;
   }
 }
