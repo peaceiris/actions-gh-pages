@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-2](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-1...v3.7.0-2) (2020-07-23)
+
+
+### ci
+
+* Add docker-compose.yml (#406) ([a2712f7](https://github.com/peaceiris/actions-gh-pages/commit/a2712f7b923e3e05d0f46e54fbcacef3380aca31)), closes [#406](https://github.com/peaceiris/actions-gh-pages/issues/406)
+* bump actions/setup-node from v2.1.0 to v2.1.1 (#407) ([8cd820b](https://github.com/peaceiris/actions-gh-pages/commit/8cd820bd660be6aa016923b6b35005df2fb071da)), closes [#407](https://github.com/peaceiris/actions-gh-pages/issues/407)
+* bump codecov/codecov-action from v1.0.11 to v1.0.12 (#409) ([af7aac1](https://github.com/peaceiris/actions-gh-pages/commit/af7aac10073791e2907990204f723d6b0ff902c5)), closes [#409](https://github.com/peaceiris/actions-gh-pages/issues/409)
+* remove types [skip ci] ([f633b0f](https://github.com/peaceiris/actions-gh-pages/commit/f633b0f6b54f252348cc3b10713b111caaf6f3d1))
+
+### docs
+
+* Add Code Scanning workflow badge ([99a89f6](https://github.com/peaceiris/actions-gh-pages/commit/99a89f661a291c444965018bf828995e08d7bb7b))
+* bump hugo from 0.71.1 to 0.74.2 ([ad558aa](https://github.com/peaceiris/actions-gh-pages/commit/ad558aa8bd9ad82edc7bd886159659328e6d61de))
+* change default-branch to main ([6896bd8](https://github.com/peaceiris/actions-gh-pages/commit/6896bd8b80ecc02e6c47bbcf7fc1ae0bd4d47645))
+* change master branch to default-branch (#408) ([5051105](https://github.com/peaceiris/actions-gh-pages/commit/505110527986e8c3d30694488f643d6529d0d593)), closes [#408](https://github.com/peaceiris/actions-gh-pages/issues/408)
+
+### fix
+
+* chdir to workDir after copied assets ([612f1f7](https://github.com/peaceiris/actions-gh-pages/commit/612f1f7579820dc380d265d61924f7a7d8718859)), closes [#324](https://github.com/peaceiris/actions-gh-pages/issues/324)
+
+
+
 # [3.7.0-1](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-0...v3.7.0-1) (2020-07-21)
 
 
