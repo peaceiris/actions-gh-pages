@@ -22,6 +22,10 @@ export async function copyAssets(publishDir: string, destDir: string): Promise<v
     }
     const filePublishPath = path.join(publishDir, file);
     const fileDestPath = path.join(destDir, file);
+    const destPath = path.dirname(fileDestPath);
+    if (fs.existsSync(destPath) === false) {
+      await createDir(destPath);
+    }
     await io.cp(filePublishPath, fileDestPath, copyOpts);
     core.info(`[INFO] copy ${file}`);
   }
