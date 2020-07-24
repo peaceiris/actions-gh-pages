@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-3](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-2...v3.7.0-3) (2020-07-24)
+
+
+### deps
+
+* bump @types/jest from 26.0.5 to 26.0.7 (#411) ([d1700b5](https://github.com/peaceiris/actions-gh-pages/commit/d1700b565361478232daa6d66d3fe7c146b9d08f)), closes [#411](https://github.com/peaceiris/actions-gh-pages/issues/411)
+* bump @types/node from 12.12.51 to 12.12.52 (#412) ([1b5d710](https://github.com/peaceiris/actions-gh-pages/commit/1b5d710b249d09c1e229931378217c47773de8ed)), closes [#412](https://github.com/peaceiris/actions-gh-pages/issues/412)
+
+### fix
+
+* set full path of publishing assets (#413) ([6f6bb26](https://github.com/peaceiris/actions-gh-pages/commit/6f6bb2661a12d5db5d7df62962d1d28403a02860)), closes [#413](https://github.com/peaceiris/actions-gh-pages/issues/413) [/github.com/peaceiris/actions-gh-pages/issues/410#issuecomment-663507581](https://github.com//github.com/peaceiris/actions-gh-pages/issues/410/issues/issuecomment-663507581)
+
+### refactor
+
+* change message type from warning to info ([3667feb](https://github.com/peaceiris/actions-gh-pages/commit/3667febec573a36efa26505b6a712b314242991a))
+
+
+
 # [3.7.0-2](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-1...v3.7.0-2) (2020-07-23)
 
 
