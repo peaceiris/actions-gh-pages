@@ -20,8 +20,9 @@ export async function copyAssets(publishDir: string, destDir: string): Promise<v
     if (file.endsWith('.git') || file.endsWith('.github')) {
       continue;
     }
-    const filePath = path.join(publishDir, file);
-    await io.cp(filePath, `${destDir}/`, copyOpts);
+    const filePublishPath = path.join(publishDir, file);
+    const fileDestPath = path.join(destDir, file);
+    await io.cp(filePublishPath, fileDestPath, copyOpts);
     core.info(`[INFO] copy ${file}`);
   }
 
@@ -49,9 +50,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    process.chdir(destDir);
     await copyAssets(publishDir, destDir);
-    process.chdir(workDir);
     return;
   }
 
@@ -106,7 +105,6 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, destDir);
-    process.chdir(workDir);
     return;
   }
 }
