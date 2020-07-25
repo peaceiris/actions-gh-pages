@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-4](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-3...v3.7.0-4) (2020-07-25)
+
+
+### fix
+
+* copyAssets() for destination_dir (#414) ([674c231](https://github.com/peaceiris/actions-gh-pages/commit/674c2318cebb9ba59aa8fbf8ec4fae8482e51e5c)), closes [#414](https://github.com/peaceiris/actions-gh-pages/issues/414)
+
+
+
 # [3.7.0-3](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-2...v3.7.0-3) (2020-07-24)
 
 
