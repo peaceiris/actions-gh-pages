@@ -76,6 +76,7 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
   - [⭐️ Target Branch `publish_branch`](#%EF%B8%8F-target-branch-publish_branch)
   - [⭐️ Source Directory `publish_dir`](#%EF%B8%8F-source-directory-publish_dir)
   - [⭐️ Deploy to Subdirectory `destination_dir`](#%EF%B8%8F-deploy-to-subdirectory-destination_dir)
+  - [⭐️ Filter publishing assets `exclude_assets`](#%EF%B8%8F-filter-publishing-assets-exclude_assets)
   - [⭐️ Add CNAME file `cname`](#%EF%B8%8F-add-cname-file-cname)
   - [⭐️ Enable Built-in Jekyll `enable_jekyll`](#%EF%B8%8F-enable-built-in-jekyll-enable_jekyll)
   - [⭐️ Allow empty commits `allow_empty_commit`](#%EF%B8%8F-allow-empty-commits-allow_empty_commit)
@@ -275,10 +276,47 @@ A destination subdirectory on a publishing branch. The default is empty.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3.7.0-0
+  uses: peaceiris/actions-gh-pages@v3.7.0-6
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     destination_dir: subdir
+```
+
+### ⭐️ Filter publishing assets `exclude_assets`
+
+*This feature is on beta.*
+*Any feedback is welcome at [Issue #163](https://github.com/peaceiris/actions-gh-pages/issues/163)*
+
+Set files or directories to exclude from publishing assets.
+The default is `.github`.
+Values should be split with a comma.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3.7.0-6
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    exclude_assets: '.github,exclude-file1,exclude-file2'
+```
+
+Set `exclude_assets` to empty for including the `.github` directory to deployment assets.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3.7.0-6
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    exclude_assets: ''
+```
+
+The `exclude_assets` option supports glob patterns.
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3.7.0-6
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    exclude_assets: '.github,exclude-file.txt,exclude-dir/**.txt'
 ```
 
 ### ⭐️ Add CNAME file `cname`
