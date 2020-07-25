@@ -57,6 +57,7 @@
     "@actions/core": "^1.2.4",
     "@actions/exec": "^1.0.4",
     "@actions/github": "^4.0.0",
+    "@actions/glob": "^0.1.0",
     "@actions/io": "^1.0.2"
   },
   "devDependencies": {
