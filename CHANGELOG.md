@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-5](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-4...v3.7.0-5) (2020-07-25)
+
+
+### feat
+
+* Add exclude_assets option (#416) ([0f5c65e](https://github.com/peaceiris/actions-gh-pages/commit/0f5c65e1408b30fe461ba319ca9a01d20c293cd4)), closes [#416](https://github.com/peaceiris/actions-gh-pages/issues/416) [#163](https://github.com/peaceiris/actions-gh-pages/issues/163)
+
+
+
 # [3.7.0-4](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-3...v3.7.0-4) (2020-07-25)
 
 
