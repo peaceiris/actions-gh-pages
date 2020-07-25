@@ -53,6 +53,7 @@ function getInputsLog(authMethod: string, inps: Inputs): string {
 [INFO] TagMessage: ${inps.TagMessage}
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
+[INFO] ExcludeAssets ${inps.ExcludeAssets}
 `;
 }
 
@@ -121,6 +122,7 @@ describe('getInputs()', () => {
     expect(inps.TagMessage).toMatch('');
     expect(inps.DisableNoJekyll).toBe(false);
     expect(inps.CNAME).toMatch('');
+    expect(inps.ExcludeAssets).toMatch('.github');
   });
 
   test('get spec inputs', () => {
@@ -142,6 +144,7 @@ describe('getInputs()', () => {
     process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
     process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
     process.env['INPUT_CNAME'] = 'github.com';
+    process.env['INPUT_EXCLUDE_ASSETS'] = '.github';
 
     const inps: Inputs = getInputs();
 
@@ -163,6 +166,7 @@ describe('getInputs()', () => {
     expect(inps.TagMessage).toMatch('Deployment v1.2.3');
     expect(inps.DisableNoJekyll).toBe(true);
     expect(inps.CNAME).toMatch('github.com');
+    expect(inps.ExcludeAssets).toMatch('.github');
   });
 
   test('get spec inputs enable_jekyll', () => {

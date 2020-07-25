@@ -17,6 +17,7 @@ export interface Inputs {
   readonly TagMessage: string;
   readonly DisableNoJekyll: boolean;
   readonly CNAME: string;
+  readonly ExcludeAssets: string;
 }
 
 export interface CmdResult {
