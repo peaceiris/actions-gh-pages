@@ -1,6 +1,9 @@
 name: 'Dev Image CI'
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 11 * * *'
   push:
     branches:
       - main
