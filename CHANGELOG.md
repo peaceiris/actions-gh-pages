@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-6](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-5...v3.7.0-6) (2020-07-25)
+
+
+### feat
+
+* exclude_assets supports glob patterns (#417) ([6f45501](https://github.com/peaceiris/actions-gh-pages/commit/6f45501409dbe16857c00f6d40a51bea56254f2b)), closes [#417](https://github.com/peaceiris/actions-gh-pages/issues/417) [#163](https://github.com/peaceiris/actions-gh-pages/issues/163)
+
+
+
 # [3.7.0-5](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-4...v3.7.0-5) (2020-07-25)
 
 
