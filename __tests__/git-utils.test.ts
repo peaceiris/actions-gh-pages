@@ -40,6 +40,7 @@ describe('setRepo()', () => {
     // process.env['INPUT_TAG_MESSAGE'] = 'Deployment v1.2.3';
     // process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
     // process.env['INPUT_CNAME'] = 'github.com';
+    process.env['INPUT_EXCLUDE_ASSETS'] = '.github';
     const inps: Inputs = getInputs();
     const remoteURL = 'https://x-access-token:pat@github.com/actions/pages.git';
     const date = new Date();
