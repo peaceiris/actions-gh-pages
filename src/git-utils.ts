@@ -68,7 +68,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, destDir);
+    await copyAssets(publishDir, destDir, inps.ExcludeAssets);
     return;
   }
 
@@ -110,7 +110,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
         }
       }
 
-      await copyAssets(publishDir, destDir);
+      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
       process.chdir(workDir);
       return;
     } else {
@@ -122,7 +122,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     await createDir(destDir);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, destDir);
+    await copyAssets(publishDir, destDir, inps.ExcludeAssets);
     return;
   }
 }
