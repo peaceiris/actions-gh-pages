@@ -1,5 +1,4 @@
 ARG NODE_VERSION
-
 FROM node:${NODE_VERSION}-buster-slim
 
 SHELL ["/bin/bash", "-l", "-c"]
@@ -25,6 +24,8 @@ RUN wget -q "https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz" && \
     ./configure --prefix=/usr && \
     make all && \
     make install
+
+ENV CI="true"
 
 WORKDIR /repo
 
