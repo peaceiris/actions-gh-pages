@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as io from '@actions/io';
+import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
@@ -12,28 +13,38 @@ export async function createBranchForce(branch: string): Promise<void> {
   return;
 }
 
+export async function deleteExcludedAssets(destDir: string, excludeAssets: string): Promise<void> {
+  core.info(`[INFO] delete excluded assets`);
+  const excludedAssetNames: Array<string> = excludeAssets.split(',');
+  const excludedAssetPaths = ((): Array<string> => {
+    const paths: Array<string> = [];
+    for (const pattern of excludedAssetNames) {
+      paths.push(path.join(destDir, pattern));
+    }
+    return paths;
+  })();
+  const globber = await glob.create(excludedAssetPaths.join('\n'));
+  for await (const asset of globber.globGenerator()) {
+    io.rmRF(asset);
+    core.info(`[INFO] delete ${asset}`);
+  }
+  return;
+}
+
 export async function copyAssets(
   publishDir: string,
   destDir: string,
   excludeAssets: string
 ): Promise<void> {
+  core.info(`[INFO] prepare publishing assets`);
   const copyOpts = {recursive: true, force: true};
   const files = fs.readdirSync(publishDir);
   core.debug(`${files}`);
   for await (const file of files) {
-    const isExcludeFile = ((): boolean => {
-      const excludedAssetNames: Array<string> = excludeAssets.split(',');
-      for (const excludedAssetName of excludedAssetNames) {
-        if (file === excludedAssetName) {
-          return true;
-        }
-      }
-      return false;
-    })();
-    if (isExcludeFile || file === '.git') {
+    if (file === '.git') {
+      core.info(`[INFO] skip ${file}`);
       continue;
     }
-
     const filePublishPath = path.join(publishDir, file);
     const fileDestPath = path.join(destDir, file);
     const destPath = path.dirname(fileDestPath);
@@ -43,6 +54,8 @@ export async function copyAssets(
     await io.cp(filePublishPath, fileDestPath, copyOpts);
     core.info(`[INFO] copy ${file}`);
   }
+
+  await deleteExcludedAssets(destDir, excludeAssets);
 
   return;
 }
