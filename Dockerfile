@@ -25,6 +25,12 @@ RUN wget -q "https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz" && \
     make all && \
     make install
 
+ENV LANG="C.UTF-8"
+ENV ImageVersion="20200625.0"
+ENV GITHUB_API_URL="https://api.github.com"
+ENV RUNNER_TOOL_CACHE="/opt/hostedtoolcache"
+ENV GITHUB_REPOSITORY_OWNER="peaceiris"
+ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
 WORKDIR /repo
