@@ -12,14 +12,28 @@ export async function createBranchForce(branch: string): Promise<void> {
   return;
 }
 
-export async function copyAssets(publishDir: string, destDir: string): Promise<void> {
+export async function copyAssets(
+  publishDir: string,
+  destDir: string,
+  excludeAssets: string
+): Promise<void> {
   const copyOpts = {recursive: true, force: true};
   const files = fs.readdirSync(publishDir);
   core.debug(`${files}`);
   for await (const file of files) {
-    if (file.endsWith('.git') || file.endsWith('.github')) {
+    const isExcludeFile = ((): boolean => {
+      const excludedAssetNames: Array<string> = excludeAssets.split(',');
+      for (const excludedAssetName of excludedAssetNames) {
+        if (file === excludedAssetName) {
+          return true;
+        }
+      }
+      return false;
+    })();
+    if (isExcludeFile || file === '.git') {
       continue;
     }
+
     const filePublishPath = path.join(publishDir, file);
     const fileDestPath = path.join(destDir, file);
     const destPath = path.dirname(fileDestPath);

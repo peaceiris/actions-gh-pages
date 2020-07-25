@@ -73,3 +73,7 @@ inputs:
   cname:
     description: 'Set custom domain'
     required: false
+  exclude_assets:
+    description: 'Set files or directories to exclude from a publish directory.'
+    required: false
+    default: '.github'
