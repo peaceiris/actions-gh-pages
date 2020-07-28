@@ -37,8 +37,8 @@ ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
-RUN node -v && \
-    npm -v && \
+RUN echo "node version: $(node -v)" && \
+    echo "npm version: $(npm -v)" && \
     git --version && \
     git config --global init.defaultBranch main && \
     git config --global init.defaultBranch
