@@ -11,6 +11,9 @@ RUN apt-get update && \
     wget \
     ssh \
     vim && \
+    apt-get autoclean && \
+    apt-get clean && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     npm i -g npm
 
