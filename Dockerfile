@@ -39,7 +39,7 @@ ENV CI="true"
 RUN rm -rf /git && \
     git --version && \
     git config --global init.defaultBranch main && \
-    git config init.defaultBranch && \
+    git config init.defaultBranch
 
 WORKDIR /repo
 
