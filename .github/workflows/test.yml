@@ -48,6 +48,9 @@ jobs:
 
       - run: npm ci
 
+      - run: npm audit
+        if: startsWith(matrix.os, 'ubuntu-18.04')
+
       - name: Run prettier
         if: startsWith(matrix.os, 'ubuntu-18.04')
         run: npm run format:check
