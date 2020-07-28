@@ -4,9 +4,11 @@ FROM node:${NODE_VERSION}-buster-slim
 SHELL ["/bin/bash", "-l", "-c"]
 
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository ppa:git-core/ppa && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
-    build-essential \
-    libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf \
+    git==2.28.0 \
     ca-certificates \
     wget \
     ssh \
@@ -17,17 +19,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     npm i -g npm
 
-WORKDIR /git
-ENV GIT_VERSION="2.28.0"
-RUN wget -q "https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz" && \
-    tar -zxf "./v${GIT_VERSION}.tar.gz" && \
-    rm "./v${GIT_VERSION}.tar.gz" && \
-    cd "./git-${GIT_VERSION}" && \
-    make configure && \
-    ./configure --prefix=/usr && \
-    make all && \
-    make install
-
 ENV LANG="C.UTF-8"
 ENV ImageVersion="20200625.0"
 ENV GITHUB_API_URL="https://api.github.com"
@@ -37,8 +28,7 @@ ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
 WORKDIR /repo
-RUN rm -rf /git && \
-    git --version && \
+RUN git --version && \
     git config --global init.defaultBranch main && \
     git config --global init.defaultBranch
 
