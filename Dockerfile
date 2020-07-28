@@ -19,7 +19,7 @@ RUN apt-get update && \
 
 WORKDIR /node
 ARG NODE_VERSION
-RUN curl -o nodejs.deb "https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_${NODE_VERSION}-1nodesource1_amd64.deb" && \
+RUN curl -o nodejs.deb "https://deb.nodesource.com/node_${NODE_VERSION%%.*}.x/pool/main/n/nodejs/nodejs_${NODE_VERSION}-1nodesource1_amd64.deb" && \
     apt-get update && \
     apt-get install -y --no-install-recommends ./nodejs.deb && \
     npm i -g npm && \
