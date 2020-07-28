@@ -1,32 +1,33 @@
-ARG NODE_VERSION
-FROM node:${NODE_VERSION}-buster-slim
+FROM ubuntu:18.04
 
 SHELL ["/bin/bash", "-l", "-c"]
 
 RUN apt-get update && \
+    apt-get install -y --no-install-recommends software-properties-common gnupg && \
+    add-apt-repository ppa:git-core/ppa && \
+    apt-get update && \
     apt-get install -y --no-install-recommends \
-    build-essential \
-    libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev autoconf \
-    ca-certificates \
+    git \
+    curl \
     wget \
     ssh \
     vim && \
     apt-get autoclean && \
     apt-get clean && \
     apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/* && \
-    npm i -g npm
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /git
-ENV GIT_VERSION="2.28.0"
-RUN wget -q "https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz" && \
-    tar -zxf "./v${GIT_VERSION}.tar.gz" && \
-    rm "./v${GIT_VERSION}.tar.gz" && \
-    cd "./git-${GIT_VERSION}" && \
-    make configure && \
-    ./configure --prefix=/usr && \
-    make all && \
-    make install
+WORKDIR /node
+ARG NODE_VERSION
+RUN curl -o nodejs.deb "https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_${NODE_VERSION}-1nodesource1_amd64.deb" && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends ./nodejs.deb && \
+    npm i -g npm && \
+    curl -sL https://deb.nodesource.com/test | bash - && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /node
+
+WORKDIR /repo
 
 ENV LANG="C.UTF-8"
 ENV ImageVersion="20200625.0"
@@ -36,8 +37,8 @@ ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
-WORKDIR /repo
-RUN rm -rf /git && \
+RUN node -v && \
+    npm -v && \
     git --version && \
     git config --global init.defaultBranch main && \
     git config --global init.defaultBranch
