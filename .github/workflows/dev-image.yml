@@ -39,6 +39,7 @@ jobs:
       - run: docker-compose pull --quiet
         if: github.event_name == 'pull_request'
       - run: make build
+      - run: docker images
       - run: make ci
       - run: make all
       - run: docker-compose push
