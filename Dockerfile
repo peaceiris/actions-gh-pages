@@ -36,11 +36,10 @@ ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
+WORKDIR /repo
 RUN rm -rf /git && \
     git --version && \
     git config --global init.defaultBranch main && \
-    git config init.defaultBranch
-
-WORKDIR /repo
+    git config --global init.defaultBranch
 
 CMD [ "bash" ]
