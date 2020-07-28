@@ -14,7 +14,7 @@ RUN apt-get update && \
     vim && \
     add-apt-repository ppa:git-core/ppa && \
     apt-get update && \
-    apt-get install -y --no-install-recommends git==2.28.0 && \
+    apt-get install -y git==2.28.0 && \
     apt-get autoclean && \
     apt-get clean && \
     apt-get autoremove -y && \
