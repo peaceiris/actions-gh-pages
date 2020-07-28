@@ -4,11 +4,10 @@ FROM node:${NODE_VERSION}-buster-slim
 SHELL ["/bin/bash", "-l", "-c"]
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends software-properties-common && \
+    apt-get install -y --no-install-recommends software-properties-common gnupg && \
     add-apt-repository ppa:git-core/ppa && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-    gnupg \
     git==2.28.0 \
     ca-certificates \
     wget \
