@@ -11,6 +11,9 @@ RUN apt-get update && \
     wget \
     ssh \
     vim && \
+    apt-get autoclean && \
+    apt-get clean && \
+    apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* && \
     npm i -g npm
 
@@ -33,8 +36,10 @@ ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
-RUN git config --global init.defaultBranch main
-
 WORKDIR /repo
+RUN rm -rf /git && \
+    git --version && \
+    git config --global init.defaultBranch main && \
+    git config --global init.defaultBranch
 
 CMD [ "bash" ]
