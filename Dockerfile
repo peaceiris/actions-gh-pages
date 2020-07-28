@@ -33,6 +33,8 @@ ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
 ENV CI="true"
 
+RUN git config --global init.defaultBranch main
+
 WORKDIR /repo
 
 CMD [ "bash" ]
