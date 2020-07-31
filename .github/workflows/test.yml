@@ -48,8 +48,11 @@ jobs:
 
       - run: npm ci
 
-      - run: npm audit
+      - name: npm audit
         if: startsWith(matrix.os, 'ubuntu-18.04')
+        run: |
+          npm audit > ./audit.log || echo "::warning::$(cat ./audit.log)"
+          rm ./audit.log
 
       - name: Run prettier
         if: startsWith(matrix.os, 'ubuntu-18.04')
