@@ -38,7 +38,7 @@ Three tokens are supported.
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
 Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it has still some limitations.
-For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab.
+For the first deployment, we need to select the `gh-pages` branch or another branch on the repository settings tab.
 See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
 
 And you may need to push manually for the first deployment on a private repository.
