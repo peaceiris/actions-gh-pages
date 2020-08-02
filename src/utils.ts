@@ -29,22 +29,16 @@ export async function createDir(dirPath: string): Promise<void> {
   return;
 }
 
-export async function addNoJekyll(
-  workDir: string,
-  DisableNoJekyll: boolean,
-  PublishBranch: string
-): Promise<void> {
+export async function addNoJekyll(workDir: string, DisableNoJekyll: boolean): Promise<void> {
   if (DisableNoJekyll) {
     return;
   }
-  if (PublishBranch === 'master' || PublishBranch === 'gh-pages') {
-    const filepath = path.join(workDir, '.nojekyll');
-    if (fs.existsSync(filepath)) {
-      return;
-    }
-    fs.closeSync(fs.openSync(filepath, 'w'));
-    core.info(`[INFO] Created ${filepath}`);
+  const filepath = path.join(workDir, '.nojekyll');
+  if (fs.existsSync(filepath)) {
+    return;
   }
+  fs.closeSync(fs.openSync(filepath, 'w'));
+  core.info(`[INFO] Created ${filepath}`);
 }
 
 export async function addCNAME(workDir: string, content: string): Promise<void> {

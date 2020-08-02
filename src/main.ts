@@ -48,7 +48,7 @@ export async function run(): Promise<void> {
     const unixTime = date.getTime();
     const workDir = await getWorkDirName(`${unixTime}`);
     await setRepo(inps, remoteURL, workDir);
-    await addNoJekyll(workDir, inps.DisableNoJekyll, inps.PublishBranch);
+    await addNoJekyll(workDir, inps.DisableNoJekyll);
     await addCNAME(workDir, inps.CNAME);
     core.endGroup();
 

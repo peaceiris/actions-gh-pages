@@ -70,28 +70,14 @@ async function getWorkDir(): Promise<string> {
 }
 
 describe('addNoJekyll()', () => {
-  test('add .nojekyll gh-pages', async () => {
+  test('add .nojekyll', async () => {
     let workDir = '';
     (async (): Promise<void> => {
       workDir = await getWorkDir();
     })();
     const filepath = path.join(workDir, '.nojekyll');
 
-    await addNoJekyll(workDir, false, 'gh-pages');
-    const test = fs.existsSync(filepath);
-    expect(test).toBe(true);
-
-    fs.unlinkSync(filepath);
-  });
-
-  test('add .nojekyll master', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
-    const filepath = path.join(workDir, '.nojekyll');
-
-    await addNoJekyll(workDir, false, 'master');
+    await addNoJekyll(workDir, false);
     const test = fs.existsSync(filepath);
     expect(test).toBe(true);
 
@@ -106,57 +92,21 @@ describe('addNoJekyll()', () => {
     const filepath = path.join(workDir, '.nojekyll');
     fs.closeSync(fs.openSync(filepath, 'w'));
 
-    await addNoJekyll(workDir, false, 'master');
+    await addNoJekyll(workDir, false);
     const test = fs.existsSync(filepath);
     expect(test).toBe(true);
 
     fs.unlinkSync(filepath);
   });
 
-  test('not add .nojekyll disable_nojekyll gh-pages', async () => {
+  test('not add .nojekyll disable_nojekyll', async () => {
     let workDir = '';
     (async (): Promise<void> => {
       workDir = await getWorkDir();
     })();
     const filepath = path.join(workDir, '.nojekyll');
 
-    await addNoJekyll(workDir, true, 'gh-pages');
-    const test = fs.existsSync(filepath);
-    expect(test).toBe(false);
-  });
-
-  test('not add .nojekyll disable_nojekyll master', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
-    const filepath = path.join(workDir, '.nojekyll');
-
-    await addNoJekyll(workDir, true, 'master');
-    const test = fs.existsSync(filepath);
-    expect(test).toBe(false);
-  });
-
-  test('not add .nojekyll other-branch', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
-    const filepath = path.join(workDir, '.nojekyll');
-
-    await addNoJekyll(workDir, false, 'other-branch');
-    const test = fs.existsSync(filepath);
-    expect(test).toBe(false);
-  });
-
-  test('not add .nojekyll disable_nojekyll other-branch', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
-    const filepath = path.join(workDir, '.nojekyll');
-
-    await addNoJekyll(workDir, true, 'other-branch');
+    await addNoJekyll(workDir, true);
     const test = fs.existsSync(filepath);
     expect(test).toBe(false);
   });
