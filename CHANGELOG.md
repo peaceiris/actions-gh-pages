@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-7](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-6...v3.7.0-7) (2020-08-02)
+
+
+### ci
+
+* add env (#419) ([71958c5](https://github.com/peaceiris/actions-gh-pages/commit/71958c534b1f4dadbef055d8851541314574559b)), closes [#419](https://github.com/peaceiris/actions-gh-pages/issues/419)
+* Add npm audit (#426) ([a49e738](https://github.com/peaceiris/actions-gh-pages/commit/a49e738c320151f18296dbcda6a418408cd64ea3)), closes [#426](https://github.com/peaceiris/actions-gh-pages/issues/426)
+* add workflow_dispatch and schedule ([24d40fe](https://github.com/peaceiris/actions-gh-pages/commit/24d40fe124feecb6c5f4259a1906fcafd603b8f6))
+* change base image from Debian to Ubuntu 18.04 (#428) ([70c0076](https://github.com/peaceiris/actions-gh-pages/commit/70c0076457b26d38a26bacbac279b8bf35cc47c8)), closes [#428](https://github.com/peaceiris/actions-gh-pages/issues/428)
+* Clean up apt cache and junk (#425) ([5d053d3](https://github.com/peaceiris/actions-gh-pages/commit/5d053d30d0c607d63ce46c3d7ce321bfdb1c11c1)), closes [#425](https://github.com/peaceiris/actions-gh-pages/issues/425)
+* enhance version log (#429) ([681dcab](https://github.com/peaceiris/actions-gh-pages/commit/681dcab3fd25a0f24dc66bb2767c0e37934aad5c)), closes [#429](https://github.com/peaceiris/actions-gh-pages/issues/429)
+* reuse NODE_VERSION in nodesource URL (#430) ([2b5ce90](https://github.com/peaceiris/actions-gh-pages/commit/2b5ce90dc9ac2814d6e8ee5322d3e18b42ad008f)), closes [#430](https://github.com/peaceiris/actions-gh-pages/issues/430)
+* Set default branch to main (#424) ([4cf5105](https://github.com/peaceiris/actions-gh-pages/commit/4cf510592915a8c58f536094aa9b881196852ce1)), closes [#424](https://github.com/peaceiris/actions-gh-pages/issues/424)
+* set env CI to true (#418) ([eca3d9d](https://github.com/peaceiris/actions-gh-pages/commit/eca3d9d25efd39b60b2e32fe85e94b53951f9096)), closes [#418](https://github.com/peaceiris/actions-gh-pages/issues/418)
+
+### deps
+
+* Apply npm audit fix (#434) ([4bf31e4](https://github.com/peaceiris/actions-gh-pages/commit/4bf31e45208169b022dc9b870de61d6eea322d29)), closes [#434](https://github.com/peaceiris/actions-gh-pages/issues/434)
+* bump @types/node from 12.12.52 to 12.12.53 (#421) ([c839730](https://github.com/peaceiris/actions-gh-pages/commit/c8397307b446e9d81d20682060c40e8dd4de96b0)), closes [#421](https://github.com/peaceiris/actions-gh-pages/issues/421)
+* bump eslint-plugin-jest from 23.18.0 to 23.18.2 (#420) ([7259f5c](https://github.com/peaceiris/actions-gh-pages/commit/7259f5ccc2d61b325b9c8f33d570170a345d496b)), closes [#420](https://github.com/peaceiris/actions-gh-pages/issues/420)
+* bump eslint-plugin-jest from 23.18.2 to 23.19.0 (#423) ([2392f69](https://github.com/peaceiris/actions-gh-pages/commit/2392f69e4dd8264685215438922790389daedb24)), closes [#423](https://github.com/peaceiris/actions-gh-pages/issues/423)
+* bump eslint-plugin-jest from 23.19.0 to 23.20.0 (#432) ([0c8fc2d](https://github.com/peaceiris/actions-gh-pages/commit/0c8fc2d5e699acedef9512db7f3c240fa110285a)), closes [#432](https://github.com/peaceiris/actions-gh-pages/issues/432)
+* bump git from 2.27.0 to 2.28.0 (#422) ([fecb564](https://github.com/peaceiris/actions-gh-pages/commit/fecb5648609eee9e7add9fa2d5a9397abb3398db)), closes [#422](https://github.com/peaceiris/actions-gh-pages/issues/422)
+* bump jest-circus from 26.1.0 to 26.2.2 (#435) ([4fb3d60](https://github.com/peaceiris/actions-gh-pages/commit/4fb3d60161340ada324107b29fe7f4aa4a6487f0)), closes [#435](https://github.com/peaceiris/actions-gh-pages/issues/435)
+* bump node from 12.18.2 to 12.18.3 (#431) ([0794e07](https://github.com/peaceiris/actions-gh-pages/commit/0794e07c99f802bb0f1a4c00972e46b381a360ee)), closes [#431](https://github.com/peaceiris/actions-gh-pages/issues/431)
+
+### docs
+
+* Add exclude_assets section ([7dd962e](https://github.com/peaceiris/actions-gh-pages/commit/7dd962e52e7deb89dfa860da173ddbb96462d371))
+* bump hugo from 0.74.2 to 0.74.3 ([ded3953](https://github.com/peaceiris/actions-gh-pages/commit/ded3953565f3dde01b9678834705b16df9be1df6))
+
+### feat
+
+* Add .nojekyll file by default for all branches (#438) ([079d483](https://github.com/peaceiris/actions-gh-pages/commit/079d48367e5a8bc6448f5e9846666d27ea66e1e5)), closes [#438](https://github.com/peaceiris/actions-gh-pages/issues/438)
+
+
+
 # [3.7.0-6](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-5...v3.7.0-6) (2020-07-25)
 
 
