@@ -29,13 +29,22 @@ RUN curl -o nodejs.deb "https://deb.nodesource.com/node_${NODE_VERSION%%.*}.x/po
 
 WORKDIR /repo
 
+ENV DEBIAN_FRONTEND="noninteractive"
 ENV LANG="C.UTF-8"
-ENV ImageVersion="20200625.0"
+ENV CI="true"
+ENV ImageVersion="20200717.1"
+ENV GITHUB_SERVER_URL="https://github.com"
 ENV GITHUB_API_URL="https://api.github.com"
-ENV RUNNER_TOOL_CACHE="/opt/hostedtoolcache"
+ENV GITHUB_GRAPHQL_URL="https://api.github.com/graphql"
 ENV GITHUB_REPOSITORY_OWNER="peaceiris"
 ENV GITHUB_ACTIONS="true"
-ENV CI="true"
+ENV GITHUB_ACTOR="peaceiris"
+ENV GITHUB_REPOSITORY="actions/pages"
+ENV RUNNER_OS="Linux"
+ENV RUNNER_TOOL_CACHE="/opt/hostedtoolcache"
+ENV RUNNER_USER="runner"
+ENV RUNNER_TEMP="/home/runner/work/_temp"
+ENV RUNNER_WORKSPACE="/home/runner/work/pages"
 
 RUN echo "node version: $(node -v)" && \
     echo "npm version: $(npm -v)" && \
