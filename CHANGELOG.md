@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [3.7.0-8](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-7...v3.7.0-8) (2020-08-09)
+
+
+### chore
+
+* Add vscode devcontainer ([6b302fd](https://github.com/peaceiris/actions-gh-pages/commit/6b302fdd506eb1874da1e7245b19bc66c4db0bfc))
+
+### ci
+
+* Add actions runner env (#443) ([ba912f7](https://github.com/peaceiris/actions-gh-pages/commit/ba912f746bdcba752e96a9c6731af9f9ff289f0e)), closes [#443](https://github.com/peaceiris/actions-gh-pages/issues/443)
+
+### deps
+
+* bump @types/jest from 26.0.7 to 26.0.8 (#439) ([3f71ec2](https://github.com/peaceiris/actions-gh-pages/commit/3f71ec211a08aef8dde6999c8ee81dae974a26f2)), closes [#439](https://github.com/peaceiris/actions-gh-pages/issues/439)
+* bump @types/jest from 26.0.8 to 26.0.9 (#442) ([02db90c](https://github.com/peaceiris/actions-gh-pages/commit/02db90c5c8564c8b0c1432aca1b52d66d10c7583)), closes [#442](https://github.com/peaceiris/actions-gh-pages/issues/442)
+* bump @types/node from 12.12.53 to 12.12.54 (#441) ([b5599b3](https://github.com/peaceiris/actions-gh-pages/commit/b5599b36fdd4acffdb3fb4d55bb94ac76a2b3b98)), closes [#441](https://github.com/peaceiris/actions-gh-pages/issues/441)
+
+### refactor
+
+* Enhance log (#444) ([f800244](https://github.com/peaceiris/actions-gh-pages/commit/f80024481c7939706fac36cee86324c56371d6fd)), closes [#444](https://github.com/peaceiris/actions-gh-pages/issues/444)
+
+
+
 # [3.7.0-7](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-6...v3.7.0-7) (2020-08-02)
 
 
