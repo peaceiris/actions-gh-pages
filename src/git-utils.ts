@@ -25,8 +25,8 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
   })();
   const globber = await glob.create(excludedAssetPaths.join('\n'));
   for await (const asset of globber.globGenerator()) {
-    io.rmRF(asset);
     core.info(`[INFO] delete ${asset}`);
+    io.rmRF(asset);
   }
   return;
 }
@@ -51,8 +51,8 @@ export async function copyAssets(
     if (fs.existsSync(destPath) === false) {
       await createDir(destPath);
     }
-    await io.cp(filePublishPath, fileDestPath, copyOpts);
     core.info(`[INFO] copy ${file}`);
+    await io.cp(filePublishPath, fileDestPath, copyOpts);
   }
 
   await deleteExcludedAssets(destDir, excludeAssets);
@@ -79,6 +79,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
   core.info(`[INFO] ForceOrphan: ${inps.ForceOrphan}`);
   if (inps.ForceOrphan) {
     await createDir(destDir);
+    core.info(`[INFO] chdir ${workDir}`);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, destDir, inps.ExcludeAssets);
@@ -105,34 +106,28 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     );
     if (result.exitcode === 0) {
       await createDir(destDir);
-      process.chdir(destDir);
 
-      if (inps.DestinationDir !== '') {
-        if (inps.KeepFiles) {
-          core.info('[INFO] Keep existing files');
-        } else {
-          core.info(`[INFO] clean up ${destDir}`);
-          await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
-        }
+      if (inps.KeepFiles) {
+        core.info('[INFO] Keep existing files');
       } else {
-        if (inps.KeepFiles) {
-          core.info('[INFO] Keep existing files');
-        } else {
-          core.info(`[INFO] clean up ${destDir}`);
-          await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
-        }
+        core.info(`[INFO] clean up ${destDir}`);
+        core.info(`[INFO] chdir ${destDir}`);
+        process.chdir(destDir);
+        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
       }
 
-      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
+      core.info(`[INFO] chdir ${workDir}`);
       process.chdir(workDir);
+      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
       return;
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
   } catch (e) {
     core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
-    core.info(e.message);
+    core.info(`[INFO] ${e.message}`);
     await createDir(destDir);
+    core.info(`[INFO] chdir ${workDir}`);
     process.chdir(workDir);
     await createBranchForce(inps.PublishBranch);
     await copyAssets(publishDir, destDir, inps.ExcludeAssets);
