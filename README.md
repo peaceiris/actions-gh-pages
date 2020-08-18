@@ -386,6 +386,9 @@ For example:
     keep_files: true
 ```
 
+With the v3, this option does not support working with the force_orphan option. The next major release (version 4) will support this.
+See [the issue #455](https://github.com/peaceiris/actions-gh-pages/issues/455)
+
 ### ⭐️ Deploy to external repository `external_repository`
 
 By default, your files are published to the repository which is running this action.
