@@ -78,7 +78,7 @@
     "lint-staged": "^10.2.13",
     "prettier": "2.1.0",
     "standard-version": "^9.0.0",
-    "ts-jest": "^26.2.0",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   }
 }
