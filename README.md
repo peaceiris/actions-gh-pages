@@ -68,11 +68,10 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 - [Getting started](#getting-started)
 - [Options](#options)
-  - [⭐️ Set Another GitHub Pages Branch](#%EF%B8%8F-set-another-github-pages-branch)
   - [⭐️ Set Runner's Access Token `github_token`](#%EF%B8%8F-set-runners-access-token-github_token)
   - [⭐️ Set SSH Private Key `deploy_key`](#%EF%B8%8F-set-ssh-private-key-deploy_key)
   - [⭐️ Set Personal Access Token `personal_token`](#%EF%B8%8F-set-personal-access-token-personal_token)
-  - [⭐️ Target Branch `publish_branch`](#%EF%B8%8F-target-branch-publish_branch)
+  - [⭐️ Set Another GitHub Pages Branch `publish_branch`](#%EF%B8%8F-set-another-github-pages-branch-publish_branch)
   - [⭐️ Source Directory `publish_dir`](#%EF%B8%8F-source-directory-publish_dir)
   - [⭐️ Deploy to Subdirectory `destination_dir`](#%EF%B8%8F-deploy-to-subdirectory-destination_dir)
   - [⭐️ Filter publishing assets `exclude_assets`](#%EF%B8%8F-filter-publishing-assets-exclude_assets)
@@ -163,35 +162,6 @@ jobs:
 
 ## Options
 
-### ⭐️ Set Another GitHub Pages Branch
-
-The basic usage is the same as above.
-Here is another workflow file as an example of using a custom branch to deploy.
-
-A default value of `publish_branch` is `gh-pages`.
-
-```yaml
-on:
-  push:
-    branches:
-      - main  # Set a branch name to trigger deployment
-
-jobs:
-  deploy:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-
-      - run: somebuild
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: your-branch  # Set a branch name to use as GitHub Pages branch
-```
-
 ### ⭐️ Set Runner's Access Token `github_token`
 
 **This option is for `GITHUB_TOKEN`, not a personal access token.**
@@ -232,16 +202,17 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
     publish_dir: ./public
 ```
 
-### ⭐️ Target Branch `publish_branch`
+### ⭐️ Set Another GitHub Pages Branch `publish_branch`
 
-A target branch to deploy to GitHub Pages. The default is `gh-pages`.
+Set a branch name to use as GitHub Pages branch.
+The default is `gh-pages`.
 
 ```yaml
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
-    publish_branch: master  # default: gh-pages
+    publish_branch: your-branch  # default: gh-pages
 ```
 
 ### ⭐️ Source Directory `publish_dir`
