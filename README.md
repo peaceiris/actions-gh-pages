@@ -67,9 +67,8 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 
 - [Getting started](#getting-started)
-  - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
-  - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
+  - [⭐️ Set Another GitHub Pages Branch](#%EF%B8%8F-set-another-github-pages-branch)
   - [⭐️ Set Runner's Access Token `github_token`](#%EF%B8%8F-set-runners-access-token-github_token)
   - [⭐️ Set SSH Private Key `deploy_key`](#%EF%B8%8F-set-ssh-private-key-deploy_key)
   - [⭐️ Set Personal Access Token `personal_token`](#%EF%B8%8F-set-personal-access-token-personal_token)
@@ -112,11 +111,9 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 ## Getting started
 
-### ⭐️ Repository type - Project
+Add your workflow file `.github/workflows/gh-pages.yml` and push it to your remote default branch.
 
-Add your workflow file `.github/workflows/gh-pages.yml` and push to the remote default branch branch.
-
-An example workflow for Hugo.
+Here is an example workflow for Hugo.
 
 - [peaceiris/actions-hugo: GitHub Actions for Hugo](https://github.com/peaceiris/actions-hugo)
 
@@ -128,7 +125,7 @@ name: github pages
 on:
   push:
     branches:
-      - main
+      - main  # Set a branch name to trigger deployment
 
 jobs:
   deploy:
@@ -154,16 +151,22 @@ jobs:
           publish_dir: ./public
 ```
 
-The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
-
 | Actions log overview | GitHub Pages log |
 |---|---|
 | ![](./images/log_overview.jpg) | ![](./images/log_success.jpg) |
 
-### ⭐️ Repository type - User and Organization
+<div align="right">
+<a href="#table-of-contents">Back to TOC ☝️</a>
+</div>
 
-For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
-we have to set `master` branch to `publish_branch`.
+
+
+## Options
+
+### ⭐️ Set Another GitHub Pages Branch
+
+The basic usage is the same as above.
+Here is another workflow file as an example of using a custom branch to deploy.
 
 A default value of `publish_branch` is `gh-pages`.
 
@@ -171,7 +174,7 @@ A default value of `publish_branch` is `gh-pages`.
 on:
   push:
     branches:
-      - source  # default branch
+      - main  # Set a branch name to trigger deployment
 
 jobs:
   deploy:
@@ -186,22 +189,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: master  # deploying branch
+          publish_branch: your-branch  # Set a branch name to use as GitHub Pages branch
 ```
-
-[Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
-[User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
-
-![Change default branch](./images/default-branch.jpg)
-![Change default branch](./images/user_repo.jpg)
-
-<div align="right">
-<a href="#table-of-contents">Back to TOC ☝️</a>
-</div>
-
-
-
-## Options
 
 ### ⭐️ Set Runner's Access Token `github_token`
 
