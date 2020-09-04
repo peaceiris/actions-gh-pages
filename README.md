@@ -38,7 +38,7 @@ Three tokens are supported.
 | `personal_token` | ✅️ | ✅️ | HTTPS | Necessary |
 
 Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it has still some limitations.
-For the first deployment, we need to select the `gh-pages` branch or `master` branch on the repository settings tab.
+For the first deployment, we need to select the `gh-pages` branch or another branch on the repository settings tab.
 See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
 
 And you may need to push manually for the first deployment on a private repository.
@@ -67,13 +67,11 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 
 - [Getting started](#getting-started)
-  - [⭐️ Repository type - Project](#%EF%B8%8F-repository-type---project)
-  - [⭐️ Repository type - User and Organization](#%EF%B8%8F-repository-type---user-and-organization)
 - [Options](#options)
   - [⭐️ Set Runner's Access Token `github_token`](#%EF%B8%8F-set-runners-access-token-github_token)
   - [⭐️ Set SSH Private Key `deploy_key`](#%EF%B8%8F-set-ssh-private-key-deploy_key)
   - [⭐️ Set Personal Access Token `personal_token`](#%EF%B8%8F-set-personal-access-token-personal_token)
-  - [⭐️ Target Branch `publish_branch`](#%EF%B8%8F-target-branch-publish_branch)
+  - [⭐️ Set Another GitHub Pages Branch `publish_branch`](#%EF%B8%8F-set-another-github-pages-branch-publish_branch)
   - [⭐️ Source Directory `publish_dir`](#%EF%B8%8F-source-directory-publish_dir)
   - [⭐️ Deploy to Subdirectory `destination_dir`](#%EF%B8%8F-deploy-to-subdirectory-destination_dir)
   - [⭐️ Filter publishing assets `exclude_assets`](#%EF%B8%8F-filter-publishing-assets-exclude_assets)
@@ -112,11 +110,9 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 ## Getting started
 
-### ⭐️ Repository type - Project
+Add your workflow file `.github/workflows/gh-pages.yml` and push it to your remote default branch.
 
-Add your workflow file `.github/workflows/gh-pages.yml` and push to the remote default branch branch.
-
-An example workflow for Hugo.
+Here is an example workflow for Hugo.
 
 - [peaceiris/actions-hugo: GitHub Actions for Hugo](https://github.com/peaceiris/actions-hugo)
 
@@ -128,7 +124,7 @@ name: github pages
 on:
   push:
     branches:
-      - main
+      - main  # Set a branch name to trigger deployment
 
 jobs:
   deploy:
@@ -154,46 +150,9 @@ jobs:
           publish_dir: ./public
 ```
 
-The above example is for [Project Pages sites]. (`<username>/<project_name>` repository)
-
 | Actions log overview | GitHub Pages log |
 |---|---|
 | ![](./images/log_overview.jpg) | ![](./images/log_success.jpg) |
-
-### ⭐️ Repository type - User and Organization
-
-For [User and Organization Pages sites] (`<username>/<username>.github.io` repository),
-we have to set `master` branch to `publish_branch`.
-
-A default value of `publish_branch` is `gh-pages`.
-
-```yaml
-on:
-  push:
-    branches:
-      - source  # default branch
-
-jobs:
-  deploy:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-
-      - run: somebuild
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: master  # deploying branch
-```
-
-[Project Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#project-pages-sites
-[User and Organization Pages sites]: https://help.github.com/en/articles/user-organization-and-project-pages#user-and-organization-pages-sites
-
-![Change default branch](./images/default-branch.jpg)
-![Change default branch](./images/user_repo.jpg)
 
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
@@ -243,16 +202,17 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
     publish_dir: ./public
 ```
 
-### ⭐️ Target Branch `publish_branch`
+### ⭐️ Set Another GitHub Pages Branch `publish_branch`
 
-A target branch to deploy to GitHub Pages. The default is `gh-pages`.
+Set a branch name to use as GitHub Pages branch.
+The default is `gh-pages`.
 
 ```yaml
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
-    publish_branch: master  # default: gh-pages
+    publish_branch: your-branch  # default: gh-pages
 ```
 
 ### ⭐️ Source Directory `publish_dir`
@@ -402,7 +362,7 @@ For example:
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
-    publish_branch: master
+    publish_branch: your-branch  # default: gh-pages
     publish_dir: ./public
 ```
 
