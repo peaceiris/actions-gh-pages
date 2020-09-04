@@ -359,7 +359,7 @@ For example:
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
-    publish_branch: master
+    publish_branch: your-branch  # default: gh-pages
     publish_dir: ./public
 ```
 
