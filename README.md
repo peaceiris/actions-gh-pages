@@ -977,7 +977,7 @@ jobs:
 
 ### ⭐️ Elm
 
-An exapmle workflow for [Elm].
+An example workflow for [Elm].
 
 [Elm]: https://elm-lang.org
 
