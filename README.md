@@ -236,7 +236,7 @@ A destination subdirectory on a publishing branch. The default is empty.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3.7.0-8
+  uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     destination_dir: subdir
@@ -253,7 +253,7 @@ Values should be split with a comma.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3.7.0-8
+  uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file1,exclude-file2'
@@ -263,7 +263,7 @@ Set `exclude_assets` to empty for including the `.github` directory to deploymen
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3.7.0-8
+  uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: ''
@@ -273,7 +273,7 @@ The `exclude_assets` option supports glob patterns.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3.7.0-8
+  uses: peaceiris/actions-gh-pages@v3
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file.txt,exclude-dir/**.txt'
