@@ -1067,17 +1067,25 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup JohnSundell/Publish
         run: |
           cd ${HOME}
-          git clone --depth=1 https://github.com/JohnSundell/Publish.git
+          git clone https://github.com/JohnSundell/Publish.git
           cd ./Publish
+          git checkout 0.7.0
           swift build -c release
-          echo "::add-path::${HOME}/Publish/.build/release"
+          echo "${HOME}/Publish/.build/release" >> ${GITHUB_PATH}
+
+      - uses: actions/cache@v2
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
 
       - run: publish-cli generate
 
