@@ -41,9 +41,6 @@ Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it h
 For the first deployment, we need to select the `gh-pages` branch or another branch on the repository settings tab.
 See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
 
-And you may need to push manually for the first deployment on a private repository.
-See [Issue #349](https://github.com/peaceiris/actions-gh-pages/issues/349)
-
 ### Supported Platforms
 
 All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
