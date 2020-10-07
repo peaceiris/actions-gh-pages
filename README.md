@@ -958,7 +958,7 @@ jobs:
       - name: Setup Flutter
         run: |
           git clone https://github.com/flutter/flutter.git --depth 1 -b beta _flutter
-          echo "::add-path::${GITHUB_WORKSPACE}/_flutter/bin"
+          echo "${GITHUB_WORKSPACE}/_flutter/bin" >> ${GITHUB_PATH}
 
       - name: Install
         run: |
