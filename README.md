@@ -1071,21 +1071,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup JohnSundell/Publish
-        run: |
-          cd ${HOME}
-          git clone https://github.com/JohnSundell/Publish.git
-          cd ./Publish
-          git checkout 0.7.0
-          swift build -c release
-          echo "${HOME}/Publish/.build/release" >> ${GITHUB_PATH}
-
       - uses: actions/cache@v2
         with:
-          path: .build
+          path: |
+            ~/Publish_build
+            .build
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-
+
+      - name: Setup JohnSundell/Publish
+        run: |
+          cd ${HOME}
+          export PUBLISH_VERSION="0.7.0"
+          git clone https://github.com/JohnSundell/Publish.git
+          cd ./Publish && git checkout ${PUBLISH_VERSION}
+          mv ~/Publish_build .build || true
+          swift build -c release
+          cp -r .build ~/Publish_build || true
+          echo "${HOME}/Publish/.build/release" >> ${GITHUB_PATH}
 
       - run: publish-cli generate
 
