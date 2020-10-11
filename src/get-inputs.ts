@@ -29,6 +29,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 [INFO] ExcludeAssets ${inps.ExcludeAssets}
+[INFO] DryRun ${inps.DryRun}
 `);
 }
 
@@ -67,7 +68,8 @@ export function getInputs(): Inputs {
     TagMessage: core.getInput('tag_message'),
     DisableNoJekyll: useBuiltinJekyll,
     CNAME: core.getInput('cname'),
-    ExcludeAssets: core.getInput('exclude_assets')
+    ExcludeAssets: core.getInput('exclude_assets'),
+    DryRun: (core.getInput('dry_run') || 'false').toUpperCase() === 'TRUE'
   };
 
   return inps;
