@@ -10,6 +10,8 @@ import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
 
 export async function run(): Promise<void> {
   try {
+    core.info('[INFO] Usage https://github.com/peaceiris/actions-gh-pages#readme');
+
     const inps: Inputs = getInputs();
     core.startGroup('Dump inputs');
     showInputs(inps);
