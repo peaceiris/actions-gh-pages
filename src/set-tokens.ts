@@ -4,7 +4,9 @@ import * as github from '@actions/github';
 import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cpSpawnSync = require('child_process').spawnSync;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';

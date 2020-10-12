@@ -262,7 +262,9 @@ Set `exclude_assets` to empty for including the `.github` directory to deploymen
 - name: Deploy
   uses: peaceiris/actions-gh-pages@v3
   with:
-    github_token: ${{ secrets.GITHUB_TOKEN }}
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}   # Recommended for this usage
+    # personal_token: ${{ secrets.PERSONAL_TOKEN }} # An alternative
+    # github_token: ${{ secrets.GITHUB_TOKEN }}     # This does not work for this usage
     exclude_assets: ''
 ```
 
