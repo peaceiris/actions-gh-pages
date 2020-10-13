@@ -8,11 +8,8 @@ updates:
     timezone: Japan
   labels:
   - dependencies
-  ignore:
-  - dependency-name: "@types/node"
-    versions:
-    - ">= 13.a, < 14"
-    - ">= 14.a, < 15"
+  allow:
+  - dependency-type: "production"
   commit-message:
     prefix: deps
 
