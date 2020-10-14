@@ -58,7 +58,9 @@
     "@actions/exec": "^1.0.4",
     "@actions/github": "^4.0.0",
     "@actions/glob": "^0.1.0",
-    "@actions/io": "^1.0.2"
+    "@actions/io": "^1.0.2",
+    "@types/shelljs": "^0.8.8",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
