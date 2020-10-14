@@ -62,7 +62,6 @@ jobs:
         run: npm run format:check
 
       - name: Run eslint
-        if: startsWith(matrix.os, 'ubuntu-18.04')
         run: npm run lint
 
       - run: npm test
