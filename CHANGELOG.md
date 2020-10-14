@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0...v3.7.1) (2020-10-14)
+
+
+### chore
+
+* add .prettierignore ([772c200](https://github.com/peaceiris/actions-gh-pages/commit/772c200ac146a7e8d63c227a919456f8e0b4693f))
+
+### ci
+
+* allow dependency-type production (#518) ([572a9b5](https://github.com/peaceiris/actions-gh-pages/commit/572a9b5eb96036fc7a15f7edc15612d6889f9cfa)), closes [#518](https://github.com/peaceiris/actions-gh-pages/issues/518)
+
+### deps
+
+* bump @types/node from 12.12.63 to 12.12.64 (#506) ([a60f467](https://github.com/peaceiris/actions-gh-pages/commit/a60f4671feb4a666aab43d6ac5a3783dc4657a43)), closes [#506](https://github.com/peaceiris/actions-gh-pages/issues/506)
+* bump @types/node from 12.12.64 to 12.12.66 (#508) ([5c575e8](https://github.com/peaceiris/actions-gh-pages/commit/5c575e8b276eea8921774c99a7b83c0d66cea90a)), closes [#508](https://github.com/peaceiris/actions-gh-pages/issues/508)
+* bump @types/node from 12.12.66 to 12.12.67 (#511) ([1447993](https://github.com/peaceiris/actions-gh-pages/commit/144799313d4ad48903ce4729920e3d2f1429bbeb)), closes [#511](https://github.com/peaceiris/actions-gh-pages/issues/511)
+* bump jest from 26.5.0 to 26.5.2 (#504) ([24f34b2](https://github.com/peaceiris/actions-gh-pages/commit/24f34b2d740cd79924d8a98bb8f26576309eeced)), closes [#504](https://github.com/peaceiris/actions-gh-pages/issues/504)
+* bump jest from 26.5.2 to 26.5.3 (#515) ([a284cb0](https://github.com/peaceiris/actions-gh-pages/commit/a284cb02e9b796754ca6b5c8471b228ec8c6958e)), closes [#515](https://github.com/peaceiris/actions-gh-pages/issues/515)
+* bump jest-circus from 26.5.1 to 26.5.2 (#505) ([274c177](https://github.com/peaceiris/actions-gh-pages/commit/274c177da0a2ff2cfe592e6b36c355f8bc062be5)), closes [#505](https://github.com/peaceiris/actions-gh-pages/issues/505)
+* bump jest-circus from 26.5.2 to 26.5.3 (#516) ([9765b50](https://github.com/peaceiris/actions-gh-pages/commit/9765b50692abbd7b95c1c097da071f5a9c98804d)), closes [#516](https://github.com/peaceiris/actions-gh-pages/issues/516)
+* bump node from 12.18.4 to 12.19.0 (#510) ([87e03f1](https://github.com/peaceiris/actions-gh-pages/commit/87e03f1be4c6673e544b6a89259729c5c646cdf6)), closes [#510](https://github.com/peaceiris/actions-gh-pages/issues/510)
+* update (#517) ([d81433e](https://github.com/peaceiris/actions-gh-pages/commit/d81433ecbd529e53bb1201223120e2febf24b310)), closes [#517](https://github.com/peaceiris/actions-gh-pages/issues/517)
+
+### docs
+
+* add notes about keep_files ([c77e4d0](https://github.com/peaceiris/actions-gh-pages/commit/c77e4d0f87024d01904cc067c1a8b8affd80c1f7)), closes [#507](https://github.com/peaceiris/actions-gh-pages/issues/507) [#509](https://github.com/peaceiris/actions-gh-pages/issues/509)
+* pin version to v3 ([b3747cd](https://github.com/peaceiris/actions-gh-pages/commit/b3747cde802bb259e2c13135ae1f36d309bd3808))
+* remove link to #349 ([1a9f7eb](https://github.com/peaceiris/actions-gh-pages/commit/1a9f7eb4817f70390ed147b00fdf4b7284cd913d)), closes [#349](https://github.com/peaceiris/actions-gh-pages/issues/349)
+* update exclude_assets ([4682881](https://github.com/peaceiris/actions-gh-pages/commit/4682881fa3a4b9f5a25027d6bf1b47f6d6fda5e9))
+* update Flutter Web ([edd5ff3](https://github.com/peaceiris/actions-gh-pages/commit/edd5ff366e489149e15c36cfe923b1d71953b7a7))
+* update Swift Publish ([c6c5feb](https://github.com/peaceiris/actions-gh-pages/commit/c6c5feba5e7cdf1e9227296b38c6ab27a6372304))
+* update Swift Publish ([f15a311](https://github.com/peaceiris/actions-gh-pages/commit/f15a3114676f95a60146c8270e93a3ddd2c03086))
+* update title position ([46b269e](https://github.com/peaceiris/actions-gh-pages/commit/46b269eb77e5fe6f2fc9c9cc531541227dfeca22))
+
+### feat
+
+* Add link to README in log ([25e5ffa](https://github.com/peaceiris/actions-gh-pages/commit/25e5ffa1476a0017af4dfa0feb054ac18ccd1797))
+
+### fix
+
+* copyAssets (#512) ([725f7db](https://github.com/peaceiris/actions-gh-pages/commit/725f7db867bb4bb443f5d8bdffb18297aab5e5a3)), closes [#512](https://github.com/peaceiris/actions-gh-pages/issues/512)
+
+
+
 # [3.7.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0-8...v3.7.0) (2020-10-06)
 
 
