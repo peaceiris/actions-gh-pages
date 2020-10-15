@@ -10,27 +10,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2.3.1
-
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${GITHUB_CONTEXT}"
-
-      - name: Install github/hub
-        run: |
-          export HUB_VERSION="2.14.2"
-          curl -fsSL https://github.com/github/hub/raw/8d91904208171b013f9a9d1175f4ab39068db047/script/get | bash -s "${HUB_VERSION}"
-
-      - name: Create release
+      - uses: peaceiris/workflows/create-release-npm@v0.7.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG_NAME="${GITHUB_REF##refs/tags/}"
-          echo "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for more details." > ./release_notes.md
-          RELEASE_NAME="$(jq -r '.name' ./package.json)"
-          sed -i "1i${RELEASE_NAME} ${TAG_NAME}\n" ./release_notes.md
-          ./bin/hub release create \
-            --draft \
-            --prerelease \
-            --file ./release_notes.md \
-            "${TAG_NAME}"
