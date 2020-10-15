@@ -51,8 +51,7 @@ export async function copyAssets(
   }
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
-  cp('-RfL', [`${publishDir}/*`], destDir);
-  cp('-RfL', [`${publishDir}/.*`], destDir);
+  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
