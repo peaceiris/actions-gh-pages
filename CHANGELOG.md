@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.1...v3.7.2) (2020-10-15)
+
+
+### ci
+
+* peaceiris/workflows/create-release-npm@v0.7.0 ([45bd46f](https://github.com/peaceiris/actions-gh-pages/commit/45bd46f92200c682e8e4a5d0f542aa12f9417131))
+
+### fix
+
+* copy dotfiles (#521) ([95792e1](https://github.com/peaceiris/actions-gh-pages/commit/95792e1c0fe9dfef8ebe7284d1af7ca787fde866)), closes [#521](https://github.com/peaceiris/actions-gh-pages/issues/521) [#520](https://github.com/peaceiris/actions-gh-pages/issues/520) [#512](https://github.com/peaceiris/actions-gh-pages/issues/512) [#507](https://github.com/peaceiris/actions-gh-pages/issues/507) [#509](https://github.com/peaceiris/actions-gh-pages/issues/509) [#390](https://github.com/peaceiris/actions-gh-pages/issues/390) [#324](https://github.com/peaceiris/actions-gh-pages/issues/324) [#103](https://github.com/peaceiris/actions-gh-pages/issues/103)
+
+
+
 ## [3.7.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.0...v3.7.1) (2020-10-14)
 
 
