@@ -54,11 +54,11 @@ export async function copyAssets(
 
   if (core.isDebug()) {
     core.startGroup('Debug: ls -a publishDir');
-    console.log(ls('-A', [publishDir]));
+    ls('-A', [publishDir]);
     core.endGroup();
 
     core.startGroup('Debug: ls -a destDir');
-    console.log(ls('-A', [destDir]));
+    ls('-A', [destDir]);
     core.endGroup();
   }
 
