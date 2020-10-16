@@ -52,8 +52,6 @@ export async function copyAssets(
     rm('-rf', dotGitPath);
   }
 
-  await deleteExcludedAssets(destDir, excludeAssets);
-
   if (core.isDebug()) {
     core.startGroup('Debug: ls -a publishDir');
     ls('-A', [publishDir]);
@@ -63,6 +61,10 @@ export async function copyAssets(
     ls('-A', [destDir]);
     core.endGroup();
   }
+
+  await deleteExcludedAssets(destDir, excludeAssets);
+
+  ls('-A', [destDir]);
 
   return;
 }
