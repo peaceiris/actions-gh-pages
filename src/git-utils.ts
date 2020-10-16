@@ -54,17 +54,19 @@ export async function copyAssets(
 
   if (core.isDebug()) {
     core.startGroup('Debug: ls -a publishDir');
-    ls('-A', [publishDir]);
+    console.log(ls('-A', [publishDir]));
     core.endGroup();
 
     core.startGroup('Debug: ls -a destDir');
-    ls('-A', [destDir]);
+    console.log(ls('-A', [destDir]));
     core.endGroup();
   }
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
-  ls('-A', [destDir]);
+  if (core.isDebug()) {
+    console.log(ls('-A', [destDir]));
+  }
 
   return;
 }
