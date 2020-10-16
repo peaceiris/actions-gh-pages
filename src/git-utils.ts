@@ -1,12 +1,11 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {cp, rm} from 'shelljs';
+import {cp, rm, ls} from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -52,6 +51,16 @@ export async function copyAssets(
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
   cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+
+  if (core.isDebug()) {
+    core.startGroup('Debug: ls -a publishDir');
+    console.log(ls('-A', [publishDir]));
+    core.endGroup();
+
+    core.startGroup('Debug: ls -a destDir');
+    console.log(ls('-A', [destDir]));
+    core.endGroup();
+  }
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
