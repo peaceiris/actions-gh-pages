@@ -203,9 +203,9 @@ export async function commit(allowEmptyCommit: boolean, msg: string): Promise<vo
 
 export async function push(branch: string, forceOrphan: boolean): Promise<void> {
   if (forceOrphan) {
-    await exec.exec('git', ['push', 'origin', '--force', `HEAD:${branch}`]);
+    await exec.exec('git', ['push', 'origin', '--force', `${branch}:${branch}`]);
   } else {
-    await exec.exec('git', ['push', 'origin', `HEAD:${branch}`]);
+    await exec.exec('git', ['push', 'origin', `${branch}:${branch}`]);
   }
 }
 
