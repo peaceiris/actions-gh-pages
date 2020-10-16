@@ -43,14 +43,16 @@ export async function copyAssets(
     await createDir(destDir);
   }
 
-  const dotGitPath = path.join(publishDir, '.git');
+  core.info(`[INFO] copy ${publishDir} to ${destDir}`);
+  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+
+  const dotGitPath = path.join(destDir, '.git');
   if (fs.existsSync(dotGitPath)) {
     core.info(`[INFO] delete .git`);
     rm('-rf', dotGitPath);
   }
 
-  core.info(`[INFO] copy ${publishDir} to ${destDir}`);
-  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+  await deleteExcludedAssets(destDir, excludeAssets);
 
   if (core.isDebug()) {
     core.startGroup('Debug: ls -a publishDir');
@@ -61,8 +63,6 @@ export async function copyAssets(
     ls('-A', [destDir]);
     core.endGroup();
   }
-
-  await deleteExcludedAssets(destDir, excludeAssets);
 
   return;
 }
