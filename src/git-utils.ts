@@ -30,7 +30,8 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     core.endGroup();
     console.log(`excludedAssetNames:\n${excludedAssetNames}`);
     console.log(`excludedAssetPaths:\n${excludedAssetPaths}`);
-    console.log(`globber:\n${globber}`);
+    console.log('globber:');
+    console.log(globber);
   }
   for await (const asset of globber.globGenerator()) {
     core.info(`[INFO] delete ${asset}`);
