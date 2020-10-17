@@ -24,6 +24,14 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     return paths;
   })();
   const globber = await glob.create(excludedAssetPaths.join('\n'));
+  if (core.isDebug()) {
+    core.startGroup('Debug: ls -a destDir');
+    console.log(ls('-A', [destDir]));
+    core.endGroup();
+    console.log(`excludedAssetNames:\n${excludedAssetNames}`);
+    console.log(`excludedAssetPaths:\n${excludedAssetPaths}`);
+    console.log(`globber:\n${globber}`);
+  }
   for await (const asset of globber.globGenerator()) {
     core.info(`[INFO] delete ${asset}`);
     rm('-rf', asset);
@@ -65,7 +73,9 @@ export async function copyAssets(
   await deleteExcludedAssets(destDir, excludeAssets);
 
   if (core.isDebug()) {
+    core.startGroup('Debug: ls -a destDir');
     console.log(ls('-A', [destDir]));
+    core.endGroup();
   }
 
   return;
