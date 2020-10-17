@@ -688,6 +688,50 @@ jobs:
           publish_dir: ./public
 ```
 
+### ⭐️ React with Create React App
+
+An example for [React] (React.js) project with [create-react-app]
+
+[React]: https://reactjs.org/
+[create-react-app]: https://github.com/facebook/create-react-app
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.0
+        with:
+          node-version: '12.x'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+```
+
 ### ⭐️ React and Next
 
 An example for [Next.js] (React.js) project with [create-next-app]
