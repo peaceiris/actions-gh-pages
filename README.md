@@ -596,7 +596,9 @@ jobs:
 
 ### ⭐️ Static Site Generators with Node.js
 
-[hexo], [vuepress], [react-static], [gridsome], [create-react-app] and so on. Create react app requires `publish_dir` to be set to `./build`
+[hexo], [vuepress], [react-static], [gridsome], [create-react-app] and so on.
+Please check where your output directory is before pushing your workflow.
+e.g. `create-react-app` requires `publish_dir` to be set to `./build`
 
 [hexo]: https://github.com/hexojs/hexo
 [vuepress]: https://github.com/vuejs/vuepress
