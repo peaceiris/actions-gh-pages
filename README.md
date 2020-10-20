@@ -596,12 +596,15 @@ jobs:
 
 ### ⭐️ Static Site Generators with Node.js
 
-[hexo], [vuepress], [react-static], [gridsome], and so on.
+[hexo], [vuepress], [react-static], [gridsome], [create-react-app] and so on.
+Please check where your output directory is before pushing your workflow.
+e.g. `create-react-app` requires `publish_dir` to be set to `./build`
 
 [hexo]: https://github.com/hexojs/hexo
 [vuepress]: https://github.com/vuejs/vuepress
 [react-static]: https://github.com/react-static/react-static
 [gridsome]: https://github.com/gridsome/gridsome
+[create-react-app]: https://github.com/facebook/create-react-app
 
 Premise: Dependencies are managed by `package.json` and `package-lock.json`
 
