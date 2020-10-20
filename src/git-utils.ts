@@ -1,12 +1,11 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {cp} from 'shelljs';
+import {cp, rm, ls} from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -25,9 +24,12 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     return paths;
   })();
   const globber = await glob.create(excludedAssetPaths.join('\n'));
+  console.log(excludedAssetNames);
+  console.log(excludedAssetPaths);
+  console.log(globber);
   for await (const asset of globber.globGenerator()) {
     core.info(`[INFO] delete ${asset}`);
-    io.rmRF(asset);
+    rm('-rf', asset);
   }
   return;
 }
@@ -39,19 +41,17 @@ export async function copyAssets(
 ): Promise<void> {
   core.info(`[INFO] prepare publishing assets`);
 
-  if (fs.existsSync(destDir) === false) {
-    core.info(`[INFO] create ${destDir}`);
-    await createDir(destDir);
-  }
-
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
-    core.info(`[INFO] delete .git`);
-    io.rmRF(dotGitPath);
+    core.info(`[INFO] delete ${dotGitPath}`);
+    rm('-rf', dotGitPath);
   }
 
+  console.log(ls('-A', publishDir));
+  console.log(ls('-A', destDir));
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
   cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+  console.log(ls('-A', destDir));
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
@@ -60,8 +60,8 @@ export async function copyAssets(
 
 export async function setRepo(inps: Inputs, remoteURL: string, workDir: string): Promise<void> {
   const publishDir = path.isAbsolute(inps.PublishDir)
-    ? inps.PublishDir
-    : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
+    ? path.resolve(inps.PublishDir)
+    : path.resolve(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
   if (path.isAbsolute(inps.DestinationDir)) {
     throw new Error('destination_dir should be a relative path');
