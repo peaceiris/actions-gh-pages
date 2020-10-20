@@ -1,12 +1,11 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
-import * as io from '@actions/io';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {cp, ls} from 'shelljs';
+import {cp, rm, ls} from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -27,7 +26,7 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
   const globber = await glob.create(excludedAssetPaths.join('\n'));
   for await (const asset of globber.globGenerator()) {
     core.info(`[INFO] delete ${asset}`);
-    io.rmRF(asset);
+    rm('-rf', asset);
   }
   return;
 }
@@ -42,7 +41,7 @@ export async function copyAssets(
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
     core.info(`[INFO] delete ${dotGitPath}`);
-    io.rmRF(dotGitPath);
+    rm('-rf', dotGitPath);
   }
 
   console.log(ls('-A', publishDir));
