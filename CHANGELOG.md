@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.7.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.2...v3.7.3) (2020-10-20)
+
+
+### ci
+
+* bump codecov/codecov-action from v1.0.13 to v1.0.14 (#526) ([c4241b2](https://github.com/peaceiris/actions-gh-pages/commit/c4241b26fb90917901c95fabafc9907f71f44508)), closes [#526](https://github.com/peaceiris/actions-gh-pages/issues/526)
+
+### docs
+
+* Add link to create-react-app (#525) ([cf805b9](https://github.com/peaceiris/actions-gh-pages/commit/cf805b9457df587d349ee1684a4801cf9bbaac7d)), closes [#525](https://github.com/peaceiris/actions-gh-pages/issues/525)
+
+### fix
+
+* copyAssets and deleteExcludedAssets (#528) ([e93eed3](https://github.com/peaceiris/actions-gh-pages/commit/e93eed3ba7edf10f461bc4a7bd14cd2a12f44935)), closes [#528](https://github.com/peaceiris/actions-gh-pages/issues/528)
+
+
+
 ## [3.7.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.7.1...v3.7.2) (2020-10-15)
 
 
