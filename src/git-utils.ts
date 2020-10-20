@@ -39,10 +39,7 @@ export async function copyAssets(
 ): Promise<void> {
   core.info(`[INFO] prepare publishing assets`);
 
-  if (!fs.existsSync(destDir)) {
-    core.info(`[INFO] create ${destDir}`);
-    await createDir(destDir);
-  }
+  !fs.existsSync(destDir) && (await createDir(destDir));
 
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
