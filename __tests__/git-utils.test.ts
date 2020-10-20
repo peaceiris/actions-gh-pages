@@ -1,4 +1,5 @@
 import {
+  deleteExcludedAssets,
   setRepo,
   getUserName,
   getUserEmail,
@@ -10,6 +11,15 @@ import {Inputs} from '../src/interfaces';
 import {getWorkDirName, createDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
+import {cp, rm} from 'shelljs';
+import path from 'path';
+import fs from 'fs';
+
+async function createTestDir(): Promise<string> {
+  const date = new Date();
+  const unixTime = date.getTime();
+  return await getWorkDirName(`${unixTime}`);
+}
 
 beforeEach(() => {
   jest.resetModules();
@@ -20,6 +30,40 @@ beforeEach(() => {
 afterEach(() => {
   delete process.env['GITHUB_ACTOR'];
   delete process.env['GITHUB_REPOSITORY'];
+});
+
+describe('deleteExcludedAssets', () => {
+  test('delete .github', async () => {
+    const workDir = await createTestDir();
+    cp('-Rf', './__tests__/fixtures/publish_dir_1', workDir);
+    await deleteExcludedAssets(workDir, '.github');
+    expect(fs.existsSync(path.resolve(workDir, '.github'))).toBeFalsy();
+    expect(fs.existsSync(path.resolve(workDir, 'index.html'))).toBeTruthy();
+    expect(fs.existsSync(path.resolve(workDir, 'assets/lib.css'))).toBeTruthy();
+    rm('-rf', workDir);
+  });
+
+  test('delete nothing', async () => {
+    const workDir = await createTestDir();
+    cp('-Rf', './__tests__/fixtures/publish_dir_root', workDir);
+    await deleteExcludedAssets(workDir, '');
+    expect(fs.existsSync(path.resolve(workDir, '.github'))).toBeTruthy();
+    expect(fs.existsSync(path.resolve(workDir, 'index.html'))).toBeTruthy();
+    expect(fs.existsSync(path.resolve(workDir, 'assets/lib.css'))).toBeTruthy();
+    rm('-rf', workDir);
+  });
+
+  test('delete .github,main.js', async () => {
+    const workDir = await createTestDir();
+    cp('-Rf', './__tests__/fixtures/publish_dir_1', workDir);
+    await deleteExcludedAssets(workDir, '.github,main.js');
+    expect(fs.existsSync(path.resolve(workDir, '.github'))).toBeFalsy();
+    expect(fs.existsSync(path.resolve(workDir, 'index.html'))).toBeTruthy();
+    expect(fs.existsSync(path.resolve(workDir, 'main.js'))).toBeFalsy();
+    expect(fs.existsSync(path.resolve(workDir, 'assets/lib.css'))).toBeTruthy();
+    expect(fs.existsSync(path.resolve(workDir, 'assets/lib.js'))).toBeTruthy();
+    rm('-rf', workDir);
+  });
 });
 
 describe('setRepo()', () => {
