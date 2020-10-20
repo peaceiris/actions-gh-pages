@@ -43,7 +43,7 @@ export async function copyAssets(
 
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
-    core.info(`[INFO] delete .git`);
+    core.info(`[INFO] delete ${dotGitPath}`);
     io.rmRF(dotGitPath);
   }
 
@@ -57,8 +57,8 @@ export async function copyAssets(
 
 export async function setRepo(inps: Inputs, remoteURL: string, workDir: string): Promise<void> {
   const publishDir = path.isAbsolute(inps.PublishDir)
-    ? inps.PublishDir
-    : path.join(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
+    ? path.resolve(inps.PublishDir)
+    : path.resolve(`${process.env.GITHUB_WORKSPACE}`, inps.PublishDir);
 
   if (path.isAbsolute(inps.DestinationDir)) {
     throw new Error('destination_dir should be a relative path');
