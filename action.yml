@@ -77,3 +77,7 @@ inputs:
     description: 'Set files or directories to exclude from a publish directory.'
     required: false
     default: '.github'
+  dry_run:
+    description: 'Set true to run the action with dry run mode.'
+    required: false
+    default: 'false'

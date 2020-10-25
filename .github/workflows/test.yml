@@ -103,6 +103,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: ./
         with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # publish_branch: gh-pages
@@ -122,6 +123,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: ./
         with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           # github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages-ubuntu-16.04
@@ -140,6 +142,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: ./
         with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           # github_token: ${{ secrets.GITHUB_TOKEN }}
           # personal_token: ${{ secrets.PERSONAL_TOKEN }}
@@ -159,6 +162,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: ./
         with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # personal_token: ${{ secrets.PERSONAL_TOKEN }}
@@ -178,6 +182,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: ./
         with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages-ubuntu-20.04

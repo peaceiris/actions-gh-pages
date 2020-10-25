@@ -18,6 +18,7 @@ export interface Inputs {
   readonly DisableNoJekyll: boolean;
   readonly CNAME: string;
   readonly ExcludeAssets: string;
+  readonly DryRun: boolean;
 }
 
 export interface CmdResult {

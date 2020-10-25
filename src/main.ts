@@ -79,8 +79,11 @@ export async function run(): Promise<void> {
     core.endGroup();
 
     core.startGroup('Push the commit or tag');
-    await push(inps.PublishBranch, inps.ForceOrphan);
-    await pushTag(inps.TagName, inps.TagMessage);
+    if (!inps.DryRun) {
+      core.info(`[INFO] dry run mode, skip pushing`);
+      await push(inps.PublishBranch, inps.ForceOrphan);
+      await pushTag(inps.TagName, inps.TagMessage);
+    }
     core.endGroup();
 
     core.info('[INFO] Action successfully completed');
