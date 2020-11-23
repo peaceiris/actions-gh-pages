@@ -9,7 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2.3.1
+      - uses: actions/checkout@v2
       - uses: peaceiris/workflows/create-release-npm@v0.7.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
