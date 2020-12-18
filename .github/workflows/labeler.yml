@@ -1,0 +1,13 @@
+name: "Pull Request Labeler"
+# https://github.com/actions/labeler
+
+on:
+  - pull_request_target
+
+jobs:
+  triage:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/labeler@v3
+      with:
+        repo-token: "${{ secrets.GH_PAT }}"
