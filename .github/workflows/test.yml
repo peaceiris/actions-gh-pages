@@ -73,7 +73,7 @@ jobs:
           name: coverage-${{ matrix.os }}
           path: coverage
 
-      - uses: codecov/codecov-action@v1.0.15
+      - uses: codecov/codecov-action@v1.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
