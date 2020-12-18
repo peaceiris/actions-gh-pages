@@ -74,8 +74,6 @@ jobs:
           path: coverage
 
       - uses: codecov/codecov-action@v1.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Run ncc
         run: npm run build
