@@ -8,3 +8,13 @@ dependencies:
 
 documentation:
   - README.md
+
+test:
+  - __tests__
+
+docker:
+  - .devcontainer/*
+  - .dockerignore
+  - Dockerfile
+  - Makefile
+  - docker-compose.yml
