@@ -24,6 +24,11 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
     publish_dir: ./public
 ```
 
+For newbies of GitHub Actions:
+Note that the `GITHUB_TOKEN` is **NOT** a personal access token.
+A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to authenticate in your workflow.
+So, you can start to deploy immediately without any configuration.
+
 ### Supported Tokens
 
 Three tokens are supported.
@@ -159,7 +164,7 @@ jobs:
 
 **This option is for `GITHUB_TOKEN`, not a personal access token.**
 
-GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use the `GITHUB_TOKEN` to authenticate in a workflow run.
+A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use the `GITHUB_TOKEN` to authenticate in a workflow run.
 
 ```yaml
 - name: Deploy
