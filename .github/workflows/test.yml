@@ -86,7 +86,7 @@ jobs:
 
       - name: Setup mdBook
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-mdbook@v1.1.13
+        uses: peaceiris/actions-mdbook@v1.1.14
         with:
           mdbook-version: '0.4.5'
 
