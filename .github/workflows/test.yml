@@ -98,7 +98,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-18.04') &&
-          github.ref == 'refs/heads/main' && github.repository_owner == 'peaceiris'
+          github.ref == 'refs/heads/main' && github.event.repository.fork == false
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -117,7 +117,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-16.04') &&
-          github.ref == 'refs/heads/main' && github.repository_owner == 'peaceiris'
+          github.ref == 'refs/heads/main' && github.event.repository.fork == false
         uses: ./
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -135,7 +135,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'macos') &&
-          github.ref == 'refs/heads/main' && github.repository_owner == 'peaceiris'
+          github.ref == 'refs/heads/main' && github.event.repository.fork == false
         uses: ./
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -154,7 +154,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'windows') &&
-          github.ref == 'refs/heads/main' && github.repository_owner == 'peaceiris'
+          github.ref == 'refs/heads/main' && github.event.repository.fork == false
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -173,7 +173,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-20.04') &&
-          github.ref == 'refs/heads/main' && github.repository_owner == 'peaceiris'
+          github.ref == 'refs/heads/main' && github.event.repository.fork == false
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
