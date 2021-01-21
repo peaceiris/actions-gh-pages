@@ -43,4 +43,4 @@ jobs:
       - run: make ci
       - run: make all
       - run: docker-compose push
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.event.repository.fork == false
