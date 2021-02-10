@@ -1,2 +1,2 @@
-(git diff 'HEAD@{1}' --name-only | grep 'package-lock.json' > /dev/null) && npm ci || :
+npm ci
 git remote prune origin
