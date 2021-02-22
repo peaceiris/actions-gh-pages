@@ -78,12 +78,6 @@ jobs:
       - name: Run ncc
         run: npm run build
 
-      - name: Remove lint-staged husky
-        if: github.ref == 'refs/heads/main'
-        run: |
-          npm uninstall lint-staged husky
-          git checkout package-lock.json package.json
-
       - name: Setup mdBook
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-mdbook@v1.1.14
