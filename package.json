@@ -8,6 +8,7 @@
     "npm": ">=7.5.2"
   },
   "scripts": {
+    "postinstall": "npx husky install",
     "all": "npm run format && npm run lint && npm test",
     "lint": "eslint ./{src,__tests__}/**/*.ts",
     "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
