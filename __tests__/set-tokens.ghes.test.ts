@@ -1,4 +1,4 @@
-import {getPublishRepo, setPersonalToken, setGithubToken} from '../src/set-tokens';
+import {setPersonalToken, setGithubToken} from '../src/set-tokens';
 
 const OLD_ENV = process.env;
 
