@@ -4,3 +4,4 @@ coverage
 .eslintcache
 .env
 node_modules
+.husky/_

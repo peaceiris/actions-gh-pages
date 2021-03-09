@@ -57,7 +57,11 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
 
+### GitHub Enterprise Server Support
 
+✅️ GitHub Enterprise Server is supported above `2.22.6`.
+
+Note that the `GITHUB_TOKEN` that is created by the runner might not inherently have push/publish privileges on GHES. You might need to create/request a technical user with write permissions to your target repository.
 
 ## Table of Contents
 

@@ -3,6 +3,7 @@ import * as exec from '@actions/exec';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
+import {URL} from 'url';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
 import {cp, rm} from 'shelljs';
@@ -11,6 +12,10 @@ export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
   await exec.exec('git', ['checkout', '--orphan', branch]);
   return;
+}
+
+export function getServerUrl(): URL {
+  return new URL(process.env['GITHUB_SERVER_URL'] || 'https://github.com');
 }
 
 export async function deleteExcludedAssets(destDir: string, excludeAssets: string): Promise<void> {

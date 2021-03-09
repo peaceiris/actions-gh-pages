@@ -10,6 +10,7 @@ const cpSpawnSync = require('child_process').spawnSync;
 const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';
+import {getServerUrl} from './git-utils';
 
 export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<string> {
   core.info('[INFO] setup SSH deploy key');
@@ -20,10 +21,12 @@ export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<stri
   await exec.exec('chmod', ['700', sshDir]);
 
   const knownHosts = path.join(sshDir, 'known_hosts');
-  // ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts on Ubuntu
+  // ssh-keyscan -t rsa github.com or serverUrl >> ~/.ssh/known_hosts on Ubuntu
   const cmdSSHkeyscanOutput = `\
-# github.com:22 SSH-2.0-babeld-1f0633a6
-github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+# ${getServerUrl().host}.com:22 SSH-2.0-babeld-1f0633a6
+${
+  getServerUrl().host
+} ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 `;
   fs.writeFileSync(knownHosts, cmdSSHkeyscanOutput + '\n');
   core.info(`[INFO] wrote ${knownHosts}`);
@@ -36,8 +39,8 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXY
 
   const sshConfigPath = path.join(sshDir, 'config');
   const sshConfigContent = `\
-Host github
-    HostName github.com
+Host ${getServerUrl().host}
+    HostName ${getServerUrl().host}
     IdentityFile ~/.ssh/github
     User git
 `;
@@ -60,7 +63,7 @@ Watch https://github.com/peaceiris/actions-gh-pages/issues/87
   core.exportVariable('SSH_AUTH_SOCK', '/tmp/ssh-auth.sock');
   await exec.exec('ssh-add', [idRSA]);
 
-  return `git@github.com:${publishRepo}.git`;
+  return `git@${getServerUrl().host}:${publishRepo}.git`;
 }
 
 export function setGithubToken(
@@ -94,12 +97,12 @@ This operation is prohibited to protect your contents
     }
   }
 
-  return `https://x-access-token:${githubToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${githubToken}@${getServerUrl().host}/${publishRepo}.git`;
 }
 
 export function setPersonalToken(personalToken: string, publishRepo: string): string {
   core.info('[INFO] setup personal access token');
-  return `https://x-access-token:${personalToken}@github.com/${publishRepo}.git`;
+  return `https://x-access-token:${personalToken}@${getServerUrl().host}/${publishRepo}.git`;
 }
 
 export function getPublishRepo(externalRepository: string, owner: string, repo: string): string {
