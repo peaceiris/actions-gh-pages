@@ -34,7 +34,5 @@ jobs:
         if: github.event_name == 'pull_request'
       - run: make build
       - run: docker images
-      - run: make ci
-      - run: make all
       - run: docker-compose push
         if: github.ref == 'refs/heads/main' && github.event.repository.fork == false
