@@ -21,20 +21,18 @@ RUN git --version && \
     git config --global init.defaultBranch main && \
     git config --global init.defaultBranch
 
-WORKDIR /root
+WORKDIR /node
 ARG NODE_VERSION
-ENV NVM_DIR="/root/.nvm"
-ENV PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin:${PATH}"
-RUN printf '[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"\n' >> ~/.bashrc
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash && \
-    source ${NVM_DIR}/nvm.sh && \
-    nvm -v && \
-    nvm install "${NODE_VERSION}" && \
-    nvm use "${NODE_VERSION}" && \
+RUN curl -o nodejs.deb "https://deb.nodesource.com/node_${NODE_VERSION%%.*}.x/pool/main/n/nodejs/nodejs_${NODE_VERSION}-1nodesource1_amd64.deb" && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends ./nodejs.deb && \
     npm config set user 0 && \
     npm config set unsafe-perm true && \
     npm i -g npm && \
-    npm cache clean --force
+    curl -sL https://deb.nodesource.com/test | bash - && \
+    npm cache clean --force && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /node
 
 WORKDIR /repo
 
