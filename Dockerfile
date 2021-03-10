@@ -31,6 +31,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | b
     nvm -v && \
     nvm install "${NODE_VERSION}" && \
     nvm use "${NODE_VERSION}" && \
+    npm config set user 0 && \
     npm config set unsafe-perm true && \
     npm i -g npm && \
     npm cache clean --force
