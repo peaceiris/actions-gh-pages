@@ -11,7 +11,7 @@ run:
 
 .PHONY: ci
 ci:
-	docker-compose run --rm -T dev npm ci --unsafe-perm=true --allow-root
+	docker-compose run --rm -T dev npm ci
 
 .PHONY: test
 test:
