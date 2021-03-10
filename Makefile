@@ -11,7 +11,7 @@ run:
 
 .PHONY: ci
 ci:
-	docker-compose run --rm -T dev npm ci
+	docker-compose run --rm -T dev npm ci --ignore-scripts
 
 .PHONY: test
 test:
