@@ -46,7 +46,7 @@ jobs:
           npm --version
           git --version
 
-      - run: npm ci
+      - run: npm ci --ignore-scripts
 
       - name: npm audit
         if: startsWith(matrix.os, 'ubuntu-18.04')
