@@ -11,12 +11,12 @@ run:
 
 .PHONY: ci
 ci:
-	docker-compose run --rm -T dev npm ci --ignore-scripts
+	docker-compose run --rm -T dev npm ci --ignore-scripts --allow-root
 
 .PHONY: test
 test:
-	docker-compose run --rm -T dev npm test
+	docker-compose run --rm -T dev npm test --allow-root
 
 .PHONY: all
 all:
-	docker-compose run --rm -T dev npm run all
+	docker-compose run --rm -T dev npm run all --allow-root
