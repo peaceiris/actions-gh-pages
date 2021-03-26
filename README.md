@@ -1,4 +1,4 @@
-# GitHub Actions for GitHub Pages
+## GitHub Actions for GitHub Pages
 
 <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
 
