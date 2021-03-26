@@ -285,9 +285,10 @@ The `exclude_assets` option supports glob patterns.
 
 ### ⭐️ Add CNAME file `cname`
 
-To add `CNAME` file, we can set the `cname` option.
+To add the `CNAME` file, we can set the `cname` option.
+Alternatively, put your `CNAME` file into your `publish_dir`. (e.g. `public/CNAME`)
 
-For more details about `CNAME`, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site)
+For more details about the `CNAME` file, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site)
 
 ```yaml
 - name: Deploy
