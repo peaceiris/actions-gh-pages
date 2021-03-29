@@ -29,6 +29,8 @@ Note that the `GITHUB_TOKEN` is **NOT** a personal access token.
 A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to authenticate in your workflow.
 So, you can start to deploy immediately without any configuration.
 
+
+
 ## Supported Tokens
 
 Three tokens are supported.
@@ -42,6 +44,8 @@ Three tokens are supported.
 Notes: Actually, the `GITHUB_TOKEN` works for deploying to GitHub Pages but it has still some limitations.
 For the first deployment, we need to select the `gh-pages` branch or another branch on the repository settings tab.
 See [First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
+
+
 
 ## Supported Platforms
 
@@ -57,11 +61,15 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 2. WIP, See [Issue #87](https://github.com/peaceiris/actions-gh-pages/issues/87)
 
-<!-- ## GitHub Enterprise Server Support
+
+
+## GitHub Enterprise Server Support
 
 ✅️ GitHub Enterprise Server is supported above `2.22.6`.
 
-Note that the `GITHUB_TOKEN` that is created by the runner might not inherently have push/publish privileges on GHES. You might need to create/request a technical user with write permissions to your target repository. -->
+Note that the `GITHUB_TOKEN` that is created by the runner might not inherently have push/publish privileges on GHES. You might need to create/request a technical user with write permissions to your target repository.
+
+
 
 ## Table of Contents
 
