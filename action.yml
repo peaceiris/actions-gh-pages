@@ -67,7 +67,7 @@ inputs:
     required: false
     default: 'false'
   disable_nojekyll:
-    description: 'An alias for enable_jekyll to disable adding .nojekyll file to master or gh-pages branches'
+    description: 'An alias for enable_jekyll to disable adding .nojekyll file to a publishing branch'
     required: false
     default: 'false'
   cname:
