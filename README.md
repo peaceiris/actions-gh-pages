@@ -726,14 +726,14 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14.x'
 
       - name: Get yarn cache
         id: yarn-cache
@@ -746,10 +746,16 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      
+      - name: Install deps 🔧
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+        
+      - name: Build 🔧
+        run: yarn build
 
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn export
+      - name: Export 🔧
+        run: yarn export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
