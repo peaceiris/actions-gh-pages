@@ -639,9 +639,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -683,9 +683,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -731,9 +731,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Get yarn cache
         id: yarn-cache
@@ -782,9 +782,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -834,9 +834,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Get yarn cache
         id: yarn-cache
@@ -1016,9 +1016,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+          node-version: '14'
 
       - name: Setup Elm
         run: npm install elm --global
