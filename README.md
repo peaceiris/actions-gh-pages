@@ -134,6 +134,7 @@ on:
   push:
     branches:
       - main  # Set a branch name to trigger deployment
+  pull_request:
 
 jobs:
   deploy:
@@ -147,13 +148,14 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.79.1'
+          hugo-version: '0.83.1'
 
       - name: Build
         run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -631,6 +633,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -656,6 +659,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -675,6 +679,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -702,6 +707,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -723,6 +729,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -753,6 +760,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
@@ -774,6 +782,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -800,6 +809,7 @@ jobs:
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
@@ -823,6 +833,7 @@ on:
     paths:
       - '.github/workflows/deploy.yml'
       - 'website/**'
+  pull_request:
 
 jobs:
   deploy:
@@ -855,6 +866,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/build
@@ -877,6 +889,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -913,6 +926,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
@@ -933,6 +947,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -943,13 +958,14 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: '0.4.5'
+          mdbook-version: '0.4.8'
           # mdbook-version: 'latest'
 
       - run: mdbook build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
@@ -968,6 +984,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -990,6 +1007,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
@@ -1008,6 +1026,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -1035,6 +1054,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -1084,6 +1104,7 @@ on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
@@ -1115,6 +1136,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./Output
