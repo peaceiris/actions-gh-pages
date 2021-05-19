@@ -9,6 +9,15 @@ assignees: peaceiris
 
 <!-- Note that an issue which does not follow the template will be closed silently. -->
 
+### Check list before opening this issue
+
+- [ ] [GitHub Status](https://www.githubstatus.com/) is good
+- [ ] I read the latest README
+  - I checked [Available Options](https://github.com/peaceiris/actions-gh-pages#options)
+  - I followed [Tips and FAQ](https://github.com/peaceiris/actions-gh-pages#tips-and-faq)
+  - I tried [Workflow Examples](https://github.com/peaceiris/actions-gh-pages#examples)
+- [ ] I read the latest GitHub Actions official documentation and learned the basic spec and concepts
+
 ### Describe the bug
 
 <!-- A clear and concise description of what the bug is. -->
