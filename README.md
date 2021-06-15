@@ -882,6 +882,8 @@ jobs:
 
 Premise: Dependencies are managed by `requirements.txt`
 
+Example using mkdocs:
+
 ```yaml
 name: github pages
 
@@ -930,6 +932,36 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
+```
+
+Example using Sphinx via [ammaraskar/sphinx-action](https://github.com/ammaraskar/sphinx-action):
+
+```yaml
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build HTML docs
+        uses: ammaraskar/sphinx-action@0.4
+        with:
+          docs-folder: "docs/"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: "docs/_build/html/"
 ```
 
 ### ⭐️ mdBook (Rust)
