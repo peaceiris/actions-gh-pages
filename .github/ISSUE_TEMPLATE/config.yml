@@ -1,11 +1,14 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Discussions
+    url: https://github.com/peaceiris/actions-gh-pages/discussions
+    about: Ask casual questions or share your story about the GitHub Pages Action.
   - name: GitHub Actions - GitHub Support Community Forum
     url: https://github.community/c/code-to-cloud/github-actions/41
     about: Please ask questions about GitHub Actions here.
   - name: GitHub Pages Documentation
-    url: https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages
+    url: https://docs.github.com/en/pages
     about: GitHub Pages official documentaion here.
   - name: GitHub Actions Documentation
-    url: https://docs.github.com/en/free-pro-team@latest/actions
+    url: https://docs.github.com/en/actions
     about: GitHub Actions official documentation here.
