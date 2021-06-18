@@ -2,22 +2,21 @@ name: Update major tag
 
 on:
   release:
-    types: [published]
+    types: [released]
 
 jobs:
   update:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    timeout-minutes: 1
     steps:
+      - uses: actions/checkout@v2.3.4
 
-    - uses: actions/checkout@v2.3.4
-
-    - name: Update major tag
-      if: github.event.release.prerelease == false
-      run: |
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-        export TAG_NAME="${GITHUB_REF##refs/tags/}"
-        export TAG_MAJOR="${TAG_NAME%%.*}"
-        git tag --force -a "${TAG_MAJOR}" -m "Release ${TAG_NAME}"
-        git push --force origin "${TAG_MAJOR}"
+      - name: Update major tag
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          export TAG_NAME="${GITHUB_REF##refs/tags/}"
+          export TAG_MAJOR="${TAG_NAME%%.*}"
+          git tag --force -a "${TAG_MAJOR}" -m "Release ${TAG_NAME}"
+          git push --force origin "${TAG_MAJOR}"
