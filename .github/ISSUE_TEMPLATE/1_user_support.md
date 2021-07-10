@@ -11,6 +11,7 @@ assignees: peaceiris
 ### Check list before opening this issue
 
 - [ ] I read the latest README
+  - I am using the latest version of this action
   - I checked [Available Options](https://github.com/peaceiris/actions-gh-pages#options)
   - I followed [Tips and FAQ](https://github.com/peaceiris/actions-gh-pages#tips-and-faq)
   - I tried [Workflow Examples](https://github.com/peaceiris/actions-gh-pages#examples)
