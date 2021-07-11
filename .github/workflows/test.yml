@@ -10,6 +10,9 @@ on:
     paths-ignore:
       - '*.md'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
