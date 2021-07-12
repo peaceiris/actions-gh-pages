@@ -1,6 +1,6 @@
 name: Proposal
 description: Suggest an idea for this project
-title: ''
+title: 'proposal: '
 labels: proposal
 assignees: peaceiris
 body:

@@ -1,6 +1,6 @@
 name: Bug Report
 description: Try the User Support Issue Template first.
-title: ''
+title: 'bug: '
 labels: bug
 assignees: peaceiris
 body:
