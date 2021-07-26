@@ -15,8 +15,8 @@
     "test": "jest --coverage --verbose --detectOpenHandles",
     "build": "ncc build ./src/index.ts -o lib --minify",
     "tsc": "tsc",
-    "format": "prettier --write **/*.ts",
-    "format:check": "prettier --check **/*.ts",
+    "format": "prettier --write '**/*.ts'",
+    "format:check": "prettier --check '**/*.ts'",
     "release": "standard-version"
   },
   "lint-staged": {
