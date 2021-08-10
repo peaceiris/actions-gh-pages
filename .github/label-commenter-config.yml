@@ -10,3 +10,19 @@ labels:
         action: close
         locking: lock
         lock_reason: resolved
+  - name: inactive
+    labeled:
+      issue:
+        body: |
+          This issue has been marked as inactive.
+
+          If you still encounter this or it has changed, add a comment to provide further information.
+  - name: stale
+    labeled:
+      issue:
+        body: |
+          This issue has been **LOCKED** because of it being old.
+          If you still encounter this or it has changed, open a new issue.
+        action: close
+        locking: lock
+        lock_reason: resolved
