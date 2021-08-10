@@ -13,7 +13,7 @@ body:
       label: Checklist
       description: Checklist before creating an issue.
       options:
-        - label: "I am using the latest version of this aciton."
+        - label: "I am using the latest version of this action."
           required: true
         - label: "I have read the latest README and followed the instructions."
           required: true
