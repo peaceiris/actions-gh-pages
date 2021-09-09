@@ -121,6 +121,8 @@ export async function setTokens(inps: Inputs): Promise<string> {
     );
     if (inps.DeployKey) {
       return setSSHKey(inps, publishRepo);
+    } else if (inps.PersonalToken) {
+      return setPersonalToken(inps.PersonalToken, publishRepo);
     } else if (inps.GithubToken) {
       const context = github.context;
       const ref = context.ref;
@@ -133,8 +135,6 @@ export async function setTokens(inps: Inputs): Promise<string> {
         ref,
         eventName
       );
-    } else if (inps.PersonalToken) {
-      return setPersonalToken(inps.PersonalToken, publishRepo);
     } else {
       throw new Error('not found deploy key or tokens');
     }
