@@ -25,14 +25,14 @@ on:
 
 jobs:
   dev-image-test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
       - name: Login to Packages
         run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login 'docker.pkg.github.com' -u 'peaceiris' --password-stdin
       - run: docker-compose pull --quiet
-        if: github.event_name == 'pull_request'
+        if: ${{ github.event_name == 'pull_request' }}
       - run: make build
       - run: docker images
       - run: docker-compose push
-        if: github.ref == 'refs/heads/main' && github.event.repository.fork == false
+        if: ${{ github.ref == 'refs/heads/main' && github.event.repository.fork == false }}

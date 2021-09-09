@@ -1,0 +1,52 @@
+name: User Support
+description: Questions for this action
+title: "support: "
+labels: support
+assignees: peaceiris
+body:
+  - type: markdown
+    attributes:
+      value:
+        Please note we will close your issue without comment if you do not fill out the issue checklist below and provide ALL the requested information.
+  - type: checkboxes
+    attributes:
+      label: Checklist
+      description: Checklist before creating an issue.
+      options:
+        - label: "I am using the latest version of this action."
+          required: true
+        - label: "I have read the latest README and followed the instructions."
+          required: true
+        - label: "I have read the latest GitHub Actions official documentation and learned the basic spec and concepts."
+          required: true
+  - type: textarea
+    attributes:
+      label: Describe your question
+      description: A clear and concise description of what the question is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Relevant links
+      description:
+        Links to your public repository, YAML config file, and YAML workflow file.
+        Please use [a permanent link](https://docs.github.com/en/github/managing-files-in-a-repository/managing-files-on-github/getting-permanent-links-to-files), not a default branch.
+      render: markdown
+      value: |
+        Public repository:
+        YAML config:
+        YAML workflow:
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Relevant log output
+      description: Copy and paste any relevant log output here.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context.
+      description: Write any other context about the question here.
+    validations:
+      required: true

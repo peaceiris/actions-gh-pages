@@ -1,6 +1,9 @@
-## GitHub Actions for GitHub Pages
+<h2 align="center">
+GitHub Actions for GitHub Pages
+</h2>
 
-<img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
+<div align="center">
+  <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
 
 [![license](https://img.shields.io/github/license/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/blob/main/LICENSE)
 [![release](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases/latest)
@@ -8,6 +11,8 @@
 ![Test](https://github.com/peaceiris/actions-gh-pages/workflows/Test/badge.svg?branch=main&event=push)
 ![Code Scanning](https://github.com/peaceiris/actions-gh-pages/workflows/Code%20Scanning/badge.svg?event=push)
 [![CodeFactor](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages/badge)](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages)
+
+</div>
 
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
 This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
@@ -122,7 +127,7 @@ Here is an example workflow for Hugo.
 [![peaceiris/actions-hugo - GitHub](https://gh-card.dev/repos/peaceiris/actions-hugo.svg?fullname)](https://github.com/peaceiris/actions-hugo)
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -132,7 +137,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -142,14 +149,14 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.83.1'
+          hugo-version: '0.85.0'
 
       - name: Build
         run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./public
 ```
@@ -440,7 +447,7 @@ use the `full_commit_message` option instead of the `commit_message` option.
 Here is an example workflow.
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -451,7 +458,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -565,7 +574,7 @@ For deploying manually, we can set the `on.workflow_dispatch` workflow trigger.
 See [Manual events `workflow_dispatch` | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events)
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -577,7 +586,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
     ...
 ```
@@ -605,7 +616,7 @@ e.g. `create-react-app` requires `publish_dir` to be set to `./build`
 Premise: Dependencies are managed by `package.json` and `package-lock.json`
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -615,7 +626,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -637,7 +650,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./public
 ```
@@ -650,7 +663,7 @@ An example for [Gatsby] (Gatsby.js) project with [gatsby-starter-blog]
 [gatsby-starter-blog]: https://github.com/gatsbyjs/gatsby-starter-blog
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -660,7 +673,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -684,7 +699,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./public
 ```
@@ -699,7 +714,7 @@ An example for [Next.js] (React.js) project with [create-next-app]
 [create-next-app]: https://nextjs.org/docs
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -709,7 +724,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -736,7 +753,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./out
 ```
@@ -751,7 +768,7 @@ An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -761,7 +778,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -784,7 +803,7 @@ jobs:
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./dist
 ```
@@ -798,7 +817,7 @@ An example workflow for [Docusaurus](https://docusaurus.io/).
 ```yaml
 # .github/workflows/deploy.yml
 
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -811,7 +830,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     defaults:
       run:
         working-directory: website
@@ -840,7 +861,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./website/build
 ```
@@ -856,7 +877,7 @@ jobs:
 Premise: Dependencies are managed by `requirements.txt`
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -866,7 +887,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -899,7 +922,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./site
 ```
@@ -913,7 +936,7 @@ An example GitHub Actions workflow to deploy [rust-lang/mdBook] site to GitHub P
 - [peaceiris/actions-mdbook: GitHub Actions for mdBook (rust-lang/mdBook)](https://github.com/peaceiris/actions-mdbook)
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -923,7 +946,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -937,7 +962,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./book
 ```
@@ -949,7 +974,7 @@ An exapmle workflow for [Flutter web project].
 [Flutter web project]: https://flutter.dev/docs/get-started/web
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -959,7 +984,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -978,7 +1005,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./build/web
 ```
@@ -990,7 +1017,7 @@ An example workflow for [Elm].
 [Elm]: https://elm-lang.org
 
 ```yaml
-name: github pages
+name: GitHub Pages
 
 on:
   push:
@@ -1000,7 +1027,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -1024,7 +1053,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./public
 ```
@@ -1047,7 +1076,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to GitHub Pages
@@ -1077,6 +1108,8 @@ on:
 jobs:
   deploy:
     runs-on: macos-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
 
@@ -1104,7 +1137,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           publish_dir: ./Output
 ```

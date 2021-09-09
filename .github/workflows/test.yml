@@ -10,6 +10,9 @@ on:
     paths-ignore:
       - '*.md'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -33,7 +36,7 @@ jobs:
         id: nvm
 
       - name: Setup Node
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.4.0
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
 
@@ -72,25 +75,25 @@ jobs:
           name: coverage-${{ matrix.os }}
           path: coverage
 
-      - uses: codecov/codecov-action@v1.5.2
+      - uses: codecov/codecov-action@v2.0.3
 
       - name: Run ncc
         run: npm run build
 
       - name: Remove lint-staged husky
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           npm uninstall lint-staged husky
           git checkout package-lock.json package.json
 
       - name: Setup mdBook
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-mdbook@v1.1.14
         with:
           mdbook-version: '0.4.5'
 
       - name: Build site
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.ref == 'refs/heads/main' }}
         working-directory: ./test_projects/mdbook
         run: mdbook build
 
