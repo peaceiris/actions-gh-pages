@@ -175,9 +175,10 @@ jobs:
 
 ### ⭐️ Set Runner's Access Token `github_token`
 
-**This option is for `GITHUB_TOKEN`, not a personal access token.**
-
-A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in your workflow. You can use the `GITHUB_TOKEN` to authenticate in a workflow run.
+For newbies of GitHub Actions:
+Note that this option is for `GITHUB_TOKEN`, **NOT** a personal access token.
+A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to authenticate in your workflow.
+So, you can start to deploy immediately without any configuration.
 
 ```yaml
 - name: Deploy
@@ -187,7 +188,7 @@ A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in 
     publish_dir: ./public
 ```
 
-For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
+For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://docs.github.com/en/actions/reference/authentication-in-a-workflow)
 
 ### ⭐️ Set SSH Private Key `deploy_key`
 
