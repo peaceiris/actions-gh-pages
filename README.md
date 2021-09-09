@@ -113,7 +113,6 @@ Note that the `GITHUB_TOKEN` that is created by the runner might not inherently 
   - [⭐️ mdBook (Rust)](#%EF%B8%8F-mdbook-rust)
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
   - [⭐️ Elm](#%EF%B8%8F-elm)
-  - [⭐️ github/personal-website](#%EF%B8%8F-githubpersonal-website)
   - [⭐️ Swift Publish](#%EF%B8%8F-swift-publish)
 - [License](#license)
 - [Maintainer](#maintainer)
@@ -318,8 +317,6 @@ For more details about the `CNAME` file, read the official documentation: [Manag
 ### ⭐️ Enable Built-in Jekyll `enable_jekyll`
 
 If you want GitHub Pages to process your site with the static site generator Jekyll, set `enable_jekyll` to true.
-
-[github/personal-website](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-githubpersonal-website) is one of the examples using GitHub Pages built-in Jekyll.
 
 By default, this action signals to GitHub Pages that the site shall not be processed with Jekyll. This is done by adding an empty `.nojekyll` file when publishing to the master or gh-pages branch. When a `.nojekyll` file already exists, this action does nothing.
 
@@ -1087,39 +1084,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-```
-
-### ⭐️ github/personal-website
-
-- [github/personal-website](https://github.com/github/personal-website) - Code that'll help you kickstart a personal website that showcases your work as a software developer.
-
-```yaml
-# .github/workflows/github-pages.yml
-
-name: GitHub Pages
-
-on:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: '24 */24 * * *'  # Once a day
-
-jobs:
-  deploy:
-    runs-on: ubuntu-20.04
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          allow_empty_commit: true
-          enable_jekyll: true
-          cname: github.peaceiris.com
 ```
 
 ### ⭐️ Swift Publish
