@@ -17,7 +17,7 @@ GitHub Actions for GitHub Pages
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
 This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
 
-[Static Site Generators]: https://www.staticgen.com/
+[Static Site Generators]: https://jamstack.org/generators/
 
 The next example step will deploy `./public` directory to the remote `gh-pages` branch.
 
@@ -193,7 +193,7 @@ A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in 
     publish_dir: ./public
 ```
 
-For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
+For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
 
 ### ⭐️ Set SSH Private Key `deploy_key`
 
@@ -303,7 +303,7 @@ The `exclude_assets` option supports glob patterns.
 To add the `CNAME` file, we can set the `cname` option.
 Alternatively, put your `CNAME` file into your `publish_dir`. (e.g. `public/CNAME`)
 
-For more details about the `CNAME` file, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site)
+For more details about the `CNAME` file, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 
 ```yaml
 - name: Deploy
@@ -356,7 +356,7 @@ By default, existing files in the publish branch (or only in `destination_dir` i
 Note that users who are using a Static Site Generator do not need this option in most cases. Please reconsider your project structure and building scripts, or use a built-in feature of a Static Site Generator before you enable this flag.
 
 - [Static Files | Hugo](https://gohugo.io/content-management/static-files/)
-- [Using the Static Folder | Gatsby](https://www.gatsbyjs.com/docs/static-folder/)
+- [Using the Static Folder | Gatsby](https://www.gatsbyjs.com/docs/how-to/images-and-media/static-folder/)
 
 For example:
 
@@ -582,15 +582,15 @@ updates:
     prefix: ci
 ```
 
-See the official documentation for more details about the Dependabot: [Keeping your dependencies updated automatically - GitHub Docs](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically)
+See the official documentation for more details about the Dependabot: [Keeping your dependencies updated automatically - GitHub Docs](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically)
 
 ### ⭐️ Schedule and Manual Deployment
 
 For deploying regularly, we can set the `on.schedule` workflow trigger.
-See [Scheduled events | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#scheduled-events)
+See [Scheduled events | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#scheduled-events)
 
 For deploying manually, we can set the `on.workflow_dispatch` workflow trigger.
-See [Manual events `workflow_dispatch` | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#manual-events)
+See [Manual events `workflow_dispatch` | Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#manual-events)
 
 ```yaml
 name: GitHub Pages
@@ -729,9 +729,9 @@ jobs:
 
 An example for [Next.js] (React.js) project with [create-next-app]
 
-- cf. [Deploying a Next.js app into GitHub Pages · zeit/next.js Wiki](https://github.com/zeit/next.js/wiki/Deploying-a-Next.js-app-into-GitHub-Pages)
+- cf. [Deploying a Next.js app into GitHub Pages · zeit/next.js Wiki](https://github.com/vercel/next.js)
 
-[Next.js]: https://github.com/zeit/next.js
+[Next.js]: https://github.com/vercel/next.js
 [create-next-app]: https://nextjs.org/docs
 
 ```yaml
@@ -784,7 +784,7 @@ jobs:
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
-- cf. [GitHub Pages Deployment - Nuxt.js](https://nuxtjs.org/faq/github-pages)
+- cf. [GitHub Pages Deployment - Nuxt.js](https://nuxtjs.org/docs/2.x/deployment/github-pages)
 
 [Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
