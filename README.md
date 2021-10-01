@@ -193,7 +193,7 @@ A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in 
     publish_dir: ./public
 ```
 
-For more details about `GITHUB_TOKEN`: [Authenticating with the GITHUB_TOKEN - GitHub Help](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
+For more details about `GITHUB_TOKEN`: [Automatic token authentication - GitHub Docs](https://docs.github.com/en/actions/security-guides/automatic-token-authentication)
 
 ### ⭐️ Set SSH Private Key `deploy_key`
 
@@ -303,7 +303,7 @@ The `exclude_assets` option supports glob patterns.
 To add the `CNAME` file, we can set the `cname` option.
 Alternatively, put your `CNAME` file into your `publish_dir`. (e.g. `public/CNAME`)
 
-For more details about the `CNAME` file, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Help](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+For more details about the `CNAME` file, read the official documentation: [Managing a custom domain for your GitHub Pages site - GitHub Docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 
 ```yaml
 - name: Deploy
@@ -729,8 +729,6 @@ jobs:
 
 An example for [Next.js] (React.js) project with [create-next-app]
 
-- cf. [Deploying a Next.js app into GitHub Pages · zeit/next.js Wiki](https://github.com/vercel/next.js)
-
 [Next.js]: https://github.com/vercel/next.js
 [create-next-app]: https://nextjs.org/docs
 
@@ -784,7 +782,7 @@ jobs:
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
-- cf. [GitHub Pages Deployment - Nuxt.js](https://nuxtjs.org/docs/2.x/deployment/github-pages)
+- cf. [Nuxt - GitHub Pages](https://nuxtjs.org/integrations/deployments/github-pages)
 
 [Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
