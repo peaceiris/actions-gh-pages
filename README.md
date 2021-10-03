@@ -1137,6 +1137,62 @@ jobs:
           publish_dir: ./Output
 ```
 
+### ⭐️ PHPUnit
+
+An example workflow for [sebastianbergmann/phpunit].
+
+[sebastianbergmann/phpunit]: https://github.com/sebastianbergmann/phpunit
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.3', '7.4', '8.0']
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: "Set composer cache directory"
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: "Cache composer"
+        uses: actions/cache@v2.1.2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+            
+      - name: Install Composer dependencies
+        run: composer install --no-progress --optimize-autoloader
+
+      - run: vendor/bin/phpunit --coverage-html var/reports/
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./var/reports
+```
+
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
 </div>
