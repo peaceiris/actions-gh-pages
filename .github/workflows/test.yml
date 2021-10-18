@@ -24,7 +24,7 @@ jobs:
           - 'macos-latest'
           - 'windows-latest'
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
 
       - name: Dump GitHub context
         env:

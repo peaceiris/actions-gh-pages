@@ -27,7 +27,7 @@ jobs:
   dev-image-test:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
       - name: Login to Packages
         run: echo '${{ secrets.GITHUB_TOKEN }}' | docker login 'docker.pkg.github.com' -u 'peaceiris' --password-stdin
       - run: docker-compose pull --quiet

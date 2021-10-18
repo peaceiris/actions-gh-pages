@@ -9,7 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
       - uses: peaceiris/workflows/create-release-npm@v0.11.0
         env:
