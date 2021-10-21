@@ -1,5 +1,5 @@
 <h2 align="center">
-GitHub Actions for GitHub Pages
+GitHub Pages Action
 </h2>
 
 <div align="center">
