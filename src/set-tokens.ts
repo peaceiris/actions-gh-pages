@@ -60,6 +60,7 @@ Watch https://github.com/peaceiris/actions-gh-pages/issues/87
     await exec.exec('sc', ['start', 'ssh-agent']);
   }
   const socketPath = `/tmp/ssh-auth.actions-gh-pages.${Math.random().toString().slice(2)}.sock`;
+  core.info(`[INFO] acquiring socket with path: ${socketPath}`);
   await cpexec('ssh-agent', ['-a', socketPath]);
   core.exportVariable('SSH_AUTH_SOCK', socketPath);
   await exec.exec('ssh-add', [idRSA]);
