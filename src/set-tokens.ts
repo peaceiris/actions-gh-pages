@@ -22,13 +22,18 @@ export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<stri
 
   const knownHosts = path.join(sshDir, 'known_hosts');
   // ssh-keyscan -t rsa github.com or serverUrl >> ~/.ssh/known_hosts on Ubuntu
-  const cmdSSHkeyscanOutput = `\
-# ${getServerUrl().host}.com:22 SSH-2.0-babeld-1f0633a6
-${
-  getServerUrl().host
-} ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+  const defaultGithubSSHkeyscanOutput = `\
+# github.com:22 SSH-2.0-babeld-1f0633a6
+github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
 `;
-  fs.writeFileSync(knownHosts, cmdSSHkeyscanOutput + '\n');
+
+  const keyscanOutput = await exec.getExecOutput('ssh-keyscan', ['-t', 'rsa', getServerUrl().host]);
+  const sshKeyscanOutputString =
+    keyscanOutput.exitCode === 0
+      ? keyscanOutput.stderr + keyscanOutput.stdout
+      : defaultGithubSSHkeyscanOutput;
+
+  fs.writeFileSync(knownHosts, sshKeyscanOutputString);
   core.info(`[INFO] wrote ${knownHosts}`);
   await exec.exec('chmod', ['600', knownHosts]);
 
