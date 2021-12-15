@@ -25,8 +25,12 @@ export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<stri
   // ssh-keyscan -t rsa github.com or serverUrl >> ~/.ssh/known_hosts on Ubuntu
   const foundKnownHostKey = await (async () => {
     try {
-      return (await exec.getExecOutput('ssh-keyscan', ['-t', 'rsa', getServerUrl().host, '&>']))
-        .stdout;
+      const keyscanOutput = await exec.getExecOutput('ssh-keyscan', [
+        '-t',
+        'rsa',
+        getServerUrl().host
+      ]);
+      return keyscanOutput.stderr + keyscanOutput.stdout;
     } catch (e) {
       return `\
 # github.com:22 SSH-2.0-babeld-1f0633a6

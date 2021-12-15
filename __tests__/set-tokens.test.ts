@@ -11,6 +11,7 @@ import * as io from '@actions/io';
 jest.mock('@actions/exec', () => ({
   exec: jest.fn(),
   getExecOutput: jest.fn().mockReturnValue({
+    stderr: '# hostname',
     stdout: 'hostinfo',
     exitCode: 0
   })
@@ -70,7 +71,7 @@ describe('setSSHKey()', () => {
     const mockGetExecOutput = await exec.getExecOutput('');
     expect(fs.writeFileSync).toHaveBeenCalledWith(
       expect.stringContaining('known_hosts'),
-      mockGetExecOutput.stdout
+      mockGetExecOutput.stderr + mockGetExecOutput.stdout
     );
   });
 
