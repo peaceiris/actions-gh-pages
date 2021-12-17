@@ -52,7 +52,7 @@
     "@actions/github": "^5.0.0",
     "@actions/glob": "^0.2.0",
     "@actions/io": "^1.1.1",
-    "@types/shelljs": "^0.8.9",
+    "@types/shelljs": "^0.8.10",
     "shelljs": "^0.8.4"
   },
   "devDependencies": {
