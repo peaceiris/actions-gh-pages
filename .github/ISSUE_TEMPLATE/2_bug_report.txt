@@ -43,10 +43,10 @@ body:
       label: Relevant log output
       description: Copy and paste any relevant log output here.
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Additional context.
       description: Write any other context about the question here.
     validations:
-      required: true
+      required: false
