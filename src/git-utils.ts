@@ -6,7 +6,7 @@ import fs from 'fs';
 import {URL} from 'url';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {cp, rm} from 'shelljs';
+import shell from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -34,7 +34,7 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
   for await (const file of globber.globGenerator()) {
     core.info(`[INFO] delete ${file}`);
   }
-  rm('-rf', files);
+  shell.rm('-rf', files);
   return;
 }
 
@@ -53,11 +53,12 @@ export async function copyAssets(
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
     core.info(`[INFO] delete ${dotGitPath}`);
-    rm('-rf', dotGitPath);
+    shell.rm('-rf', dotGitPath);
   }
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
-  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+  shell.config.globOptions = {dot: true};
+  shell.cp('-RfL', [`${publishDir}/*`], destDir);
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
