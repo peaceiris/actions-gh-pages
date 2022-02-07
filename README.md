@@ -529,10 +529,12 @@ Generate your deploy key with the following command.
 
 ```sh
 ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
-# You will get 2 files:
-#   gh-pages.pub (public key)
-#   gh-pages     (private key)
 ```
+
+You will get 2 files:
+
+- `gh-pages.pub` is a public key
+- `gh-pages` is a private key
 
 Next, Go to **Repository Settings**
 
