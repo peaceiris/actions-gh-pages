@@ -995,7 +995,7 @@ jobs:
 
 ### ⭐️ Flutter Web
 
-An exapmle workflow for [Flutter web project].
+An example workflow for [Flutter web project].
 
 [Flutter web project]: https://flutter.dev/docs/get-started/web
 
