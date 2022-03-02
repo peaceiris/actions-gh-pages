@@ -8,6 +8,6 @@ jobs:
   triage:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/labeler@v3
+    - uses: actions/labeler@v4
       with:
         repo-token: "${{ secrets.GH_PAT }}"
