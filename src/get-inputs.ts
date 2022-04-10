@@ -35,10 +35,10 @@ export function showInputs(inps: Inputs): void {
 export function getInputs(): Inputs {
   let useBuiltinJekyll = false;
 
-  const enableJekyll: boolean =
-    (core.getInput('enable_jekyll') || 'false').toUpperCase() === 'TRUE';
-  const disableNoJekyll: boolean =
-    (core.getInput('disable_nojekyll') || 'false').toUpperCase() === 'TRUE';
+  const isBoolean = (param: string): boolean => (param || 'false').toUpperCase() === 'TRUE';
+
+  const enableJekyll: boolean = isBoolean(core.getInput('enable_jekyll'));
+  const disableNoJekyll: boolean = isBoolean(core.getInput('disable_nojekyll'));
 
   if (enableJekyll && disableNoJekyll) {
     throw new Error(`Use either of enable_jekyll or disable_nojekyll`);
@@ -56,9 +56,9 @@ export function getInputs(): Inputs {
     PublishDir: core.getInput('publish_dir'),
     DestinationDir: core.getInput('destination_dir'),
     ExternalRepository: core.getInput('external_repository'),
-    AllowEmptyCommit: (core.getInput('allow_empty_commit') || 'false').toUpperCase() === 'TRUE',
-    KeepFiles: (core.getInput('keep_files') || 'false').toUpperCase() === 'TRUE',
-    ForceOrphan: (core.getInput('force_orphan') || 'false').toUpperCase() === 'TRUE',
+    AllowEmptyCommit: isBoolean(core.getInput('allow_empty_commit')),
+    KeepFiles: isBoolean(core.getInput('keep_files')),
+    ForceOrphan: isBoolean(core.getInput('force_orphan')),
     UserName: core.getInput('user_name'),
     UserEmail: core.getInput('user_email'),
     CommitMessage: core.getInput('commit_message'),
