@@ -68,7 +68,7 @@ jobs:
       - run: npm test
 
       - name: Upload test coverage as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage-${{ matrix.os }}
           path: coverage
