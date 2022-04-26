@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
-      - uses: peaceiris/workflows/create-release-npm@v0.13.0
+      - uses: peaceiris/workflows/create-release-npm@v0.14.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
