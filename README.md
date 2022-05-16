@@ -143,6 +143,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -477,6 +479,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -622,6 +626,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -662,6 +668,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -710,6 +718,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -760,6 +770,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -815,6 +827,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -868,6 +882,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     defaults:
@@ -926,6 +942,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -986,6 +1004,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -1025,6 +1045,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -1069,6 +1091,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
