@@ -570,7 +570,7 @@ If the action fails to push the commit or tag with the following error:
 
 Navigate to your repository's settings / actions / general and in the "Workflow permissions" section, select "Read and write permissions":
 
-![](https://user-images.githubusercontent.com/2291025/168549250-eb4ca20a-f781-4358-b439-cd4f935205af.png)
+![](./images/settings_permissions.png)
 
 
 ### ⭐️ Use the latest and specific release
