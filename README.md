@@ -561,6 +561,20 @@ The `GITHUB_TOKEN` has limitations for the first deployment so we have to select
 |---|---|
 | ![](./images/settings_select.jpg) | ![](./images/log_success.jpg) |
 
+If the action fails to push the commit or tag with the following error:
+
+```txt
+/usr/bin/git push origin gh-pages
+remote: Write access to repository not granted.
+fatal: unable to access 'https://github.com/username/repository.git/': The requested URL returned error: 403
+Error: Action failed with "The process '/usr/bin/git' failed with exit code 128"
+```
+
+Navigate to your repository's settings / actions / general and in the "Workflow permissions" section, select "Read and write permissions":
+
+<img width="700" alt="Enabling Read and write permissions to the GITHUB_TOKEN on GitHub Actions" src="https://user-images.githubusercontent.com/30958501/168609359-242f59a9-34c6-4272-9793-d6b2cc823837.png">
+
+
 ### ⭐️ Use the latest and specific release
 
 We recommend you to use the latest and specific release of this action for stable CI/CD.
