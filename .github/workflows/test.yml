@@ -23,6 +23,8 @@ jobs:
           - 'ubuntu-18.04'
           - 'macos-latest'
           - 'windows-latest'
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
