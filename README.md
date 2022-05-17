@@ -574,16 +574,14 @@ fatal: unable to access 'https://github.com/username/repository.git/': The reque
 Error: Action failed with "The process '/usr/bin/git' failed with exit code 128"
 ```
 
-Please add the write permission to the `permissions.contents` in a workflow/job.
+Please add the write permission to the [`permissions.contents` in a workflow/job](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions).
 
 ```yaml
 permissions:
   contents: write
 ```
 
-Or, navigate to your repository's settings / actions / general and in the "Workflow permissions" section, select "Read and write permissions":
-
-<img width="700" alt="Enabling Read and write permissions to the GITHUB_TOKEN on GitHub Actions" src="https://user-images.githubusercontent.com/30958501/168609359-242f59a9-34c6-4272-9793-d6b2cc823837.png">
+Alternatively, you can [configure the default `GITHUB_TOKEN` permissions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#configuring-the-default-github_token-permissions) by selecting read and write permissions.
 
 
 ### ⭐️ Use the latest and specific release
