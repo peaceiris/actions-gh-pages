@@ -98,6 +98,7 @@ Note that the `GITHUB_TOKEN` that is created by the runner might not inherently 
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
+  - [⭐️ Upload large files with Git LFS](#%EF%B8%8F-upload-large-files-with-git-lfs)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
@@ -523,7 +524,44 @@ v1.2.3         # Tag on the main branch
 <a href="#table-of-contents">Back to TOC ☝️</a>
 </div>
 
+### ⭐️ Upload large files with Git LFS
 
+If you are using [Git LFS](https://git-lfs.github.com/) as an option to manage files larger than 100MB in your repository, you can push these to the deployed site.
+
+It is expected that you would run your checkout action with `lfs` enabled (see below for an example).
+
+You will also need to make sure that your build tool includes the `.gitattributes` file in its output.
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v3
+        with:
+          lfs: 'true'
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          lfs: 'true'
+```
 
 ## Tips and FAQ
 

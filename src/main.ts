@@ -55,6 +55,9 @@ export async function run(): Promise<void> {
     core.endGroup();
 
     core.startGroup('Setup Git config');
+    if (inps.Lfs) {
+      await exec.exec('git', ['lfs', 'install', '--local']);
+    }
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
     } catch (e) {

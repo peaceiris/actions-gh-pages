@@ -11,7 +11,6 @@ RUN apt-get update && \
     curl \
     wget \
     ssh \
-    git-lfs \
     vim && \
     apt-get autoclean && \
     apt-get clean && \
@@ -20,8 +19,7 @@ RUN apt-get update && \
 
 RUN git --version && \
     git config --global init.defaultBranch main && \
-    git config --global init.defaultBranch && \
-    git lfs install
+    git config --global init.defaultBranch
 
 WORKDIR /node
 ARG NODE_VERSION
