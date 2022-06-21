@@ -240,6 +240,7 @@ The default is `gh-pages`.
 ### ⭐️ Source Directory `publish_dir`
 
 A source directory to deploy to GitHub Pages. The default is `public`.
+Only the contents of this dir are pushed to GitHub Pages branch, `gh-pages` by default.
 
 ```yaml
 - name: Deploy
@@ -1034,6 +1035,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book
 ```
+
+Hint: you may want to publish your rustdocs. And use relative links to it from the md docs, and have them checked by `mdbook`.
+Then, according to the [doc](https://rust-lang.github.io/mdBook/guide/creating.html#source-files), you may put `./target/doc/`
+to your `./book/src` dir before you `mdbook build` and then it will end up in `./book/html/` and in your Github Pages.
 
 ### ⭐️ Flutter Web
 
