@@ -114,6 +114,7 @@ Note that the `GITHUB_TOKEN` that is created by the runner might not inherently 
   - [⭐️ Flutter Web](#%EF%B8%8F-flutter-web)
   - [⭐️ Elm](#%EF%B8%8F-elm)
   - [⭐️ Swift Publish](#%EF%B8%8F-swift-publish)
+  - [⭐️ jigsaw](#%EF%B8%8F-jigsaw)
 - [License](#license)
 - [Maintainer](#maintainer)
 
@@ -1190,6 +1191,48 @@ jobs:
           publish_dir: ./Output
 ```
 
+### ⭐️ jigsaw
+
+An example workflow for [jigsaw](https://github.com/tighten/jigsaw)
+
+[tighten/jigsaw]: https://github.com/tighten/jigsaw
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Node.js for use with actions
+        uses: actions/setup-node@v3
+        with:
+          version:  16.15.1
+
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Build Jigsaw
+        run: composer install
+
+      - name: Build app
+        run: npm run prod
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: ./build_production
+```
 <div align="right">
 <a href="#table-of-contents">Back to TOC ☝️</a>
 </div>
