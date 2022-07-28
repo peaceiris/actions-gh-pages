@@ -17,6 +17,8 @@ GitHub Pages Action
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
 This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
 
+See also [GitHub Pages: Custom GitHub Actions Workflows (beta) | GitHub Changelog](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/)
+
 [Static Site Generators]: https://jamstack.org/generators/
 
 The next example step will deploy `./public` directory to the remote `gh-pages` branch.
