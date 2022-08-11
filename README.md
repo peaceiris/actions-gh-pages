@@ -14,10 +14,15 @@ GitHub Pages Action
 
 </div>
 
+> **Note**
+>
+> See also the GitHub official GitHub Pages Action first.
+>
+> - [GitHub Pages now uses Actions by default | The GitHub Blog](https://github.blog/2022-08-10-github-pages-now-uses-actions-by-default/)
+> - [GitHub Pages: Custom GitHub Actions Workflows (beta) | GitHub Changelog](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/)
+
 This is a **GitHub Action** to deploy your static files to **GitHub Pages**.
 This deploy action can be combined simply and freely with [Static Site Generators]. (Hugo, MkDocs, Gatsby, mdBook, Next, Nuxt, and so on.)
-
-See also [GitHub Pages: Custom GitHub Actions Workflows (beta) | GitHub Changelog](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/)
 
 [Static Site Generators]: https://jamstack.org/generators/
 
