@@ -6,7 +6,7 @@ on:
 
 jobs:
   triage:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/labeler@v4
       with:

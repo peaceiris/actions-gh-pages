@@ -65,8 +65,9 @@ All Actions runners: Linux (Ubuntu), macOS, and Windows are supported.
 
 | runs-on | `github_token` | `deploy_key` | `personal_token` |
 |---|:---:|:---:|:---:|
+| ubuntu-22.04 | ✅️ | ✅️ | ✅️ |
 | ubuntu-20.04 | ✅️ | ✅️ | ✅️ |
-| ubuntu-18.04 | ✅️ | ✅️ | ✅️ |
+| ubuntu-latest | ✅️ | ✅️ | ✅️ |
 | macos-latest | ✅️ | ✅️ | ✅️ |
 | windows-latest | ✅️ | (2) | ✅️ |
 
@@ -149,7 +150,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -170,8 +171,8 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        # If you're changing the branch from main, 
-        # also change the `main` in `refs/heads/main` 
+        # If you're changing the branch from main,
+        # also change the `main` in `refs/heads/main`
         # below accordingly.
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
@@ -489,7 +490,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -641,7 +642,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -683,7 +684,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -733,7 +734,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -785,7 +786,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -842,7 +843,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -897,7 +898,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -957,7 +958,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -1019,7 +1020,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -1064,7 +1065,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:
@@ -1110,7 +1111,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     concurrency:

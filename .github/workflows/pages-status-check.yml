@@ -4,7 +4,7 @@ on: page_build
 
 jobs:
   pages-status-check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - name: check status
         run: |
