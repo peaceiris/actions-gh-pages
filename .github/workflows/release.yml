@@ -69,7 +69,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: 'dist'
-          path: 'dist'
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
       # - uses: peaceiris/workflows/create-release-npm@v0.16.0
       #   env:
