@@ -2,7 +2,8 @@ name: Update major tag
 
 on:
   release:
-    types: [released]
+    types: [published]
+  
 
 jobs:
   update:
@@ -13,8 +14,8 @@ jobs:
 
       - name: Update major tag
         run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config user.name "GitHub Bot"
+          git config user.email "githubbot@users.noreply.github.com"
           git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           export TAG_NAME="${GITHUB_REF##refs/tags/}"
           export TAG_MAJOR="${TAG_NAME%%.*}"
