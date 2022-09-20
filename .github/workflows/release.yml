@@ -59,7 +59,7 @@ jobs:
           git config user.email 'githubbot@users.noreply.github.com'
           git commit -m 'New release from CI' --allow-empty
           git tag --force -a "${{ inputs.version-tag }}"  -m "Release ${{ inputs.version-tag }}"
-          git push --force origin dist --follow-tags
+          git push --force origin dist --tags
         if: steps.status.outputs.has_changes == '1'
         working-directory: dist
 
