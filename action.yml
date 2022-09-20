@@ -3,7 +3,7 @@ description: 'GitHub Actions for GitHub Pages 🚀 Deploy static files and publi
 author: 'peaceiris'
 runs:
   using: 'node12'
-  main: 'lib/index.js'
+  main: 'index.js'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
