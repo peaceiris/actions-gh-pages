@@ -44,6 +44,7 @@ jobs:
           cp README.md dist/
           cp LICENSE dist/
           cp CHANGELOG.md dist/
+          cp package.json dist/
       - name: Check for changes
         id: status
         run: |

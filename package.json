@@ -1,8 +1,8 @@
 {
-  "name": "actions-github-pages",
-  "version": "3.8.0",
+  "name": "peaceiris-github-pages",
+  "version": "3.9.0",
   "description": "GitHub Actions for GitHub Pages",
-  "main": "lib/index.js",
+  "main": "index.js",
   "engines": {
     "node": ">=12.20.1",
     "npm": ">=7.5.2"
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peaceiris/actions-gh-pages.git"
+    "url": "git+https://github.com/telia-actions/peaceiris-gh-pages.git"
   },
   "keywords": [
     "GitHub Actions",
@@ -42,9 +42,9 @@
   "author": "peaceiris",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/peaceiris/actions-gh-pages/issues"
+    "url": "https://github.com/telia-actions/peaceiris-gh-pages/issues"
   },
-  "homepage": "https://github.com/peaceiris/actions-gh-pages#readme",
+  "homepage": "https://github.com/telia-actions/peaceiris-gh-pages#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.1",
