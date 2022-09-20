@@ -55,10 +55,10 @@ jobs:
         run: |
           git add --verbose .
           git config user.name 'GitHub Bot'
-          git config user.email 'githubbot@github.noreply.com'
+          git config user.email 'githubbot@users.noreply.github.com'
           git commit -m 'New release from CI' --allow-empty
-          git tag ${{ inputs.version-tag }}
-          git push origin dist --follow-tags
+          git tag --force -a "${{ inputs.version-tag }}"  -m "Release ${{ inputs.version-tag }}"
+          git push --force origin dist --follow-tags
         if: steps.status.outputs.has_changes == '1'
         working-directory: dist
 
