@@ -6,6 +6,10 @@ on:
   #     - 'v3.*.*'
   workflow_dispatch:
     inputs:
+      version-tag:
+        description: 'Version number for the release'
+        default: ''
+        required: true
       draft:
         description: 'Enable --draft flag'
         default: '--draft'
@@ -16,10 +20,56 @@ on:
         required: false
 
 jobs:
+  create-dist:
+    runs-on: ubuntu-latest
+    # if: github.event_name == 'push'
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v3
+      - name: Check out distribution branch
+        uses: actions/checkout@v3
+        with:
+          ref: 'dist'
+          path: 'dist'
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+          cp action.yml dist/
+          cp README.md dist/
+          cp LICENSE dist/
+          cp CHANGELOG.md dist/
+      - name: Check for changes
+        id: status
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::set-output name=has_changes::1"
+          fi
+        working-directory: dist
+      - name: Publish action
+        run: |
+          git add --verbose .
+          git config user.name 'GitHub Bot'
+          git config user.email 'githubbot@github.noreply.com'
+          git commit -m 'New release from CI' --allow-empty
+          git tag ${{ inputs.version-tag }}
+          git push origin dist --follow-tags
+        if: steps.status.outputs.has_changes == '1'
+        working-directory: dist
+
   release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    needs: create-dist
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: 'dist'
+          path: 'dist'
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
       # - uses: peaceiris/workflows/create-release-npm@v0.16.0
       #   env:
@@ -27,7 +77,7 @@ jobs:
 
       - name: Create release
         run: |
-          TAG_NAME="${GITHUB_REF##refs/tags/}"
+          TAG_NAME=$(git describe --tags)
           echo "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for more details." > ./release_notes.md
           RELEASE_TITLE="$(jq -r '.name' ./package.json) ${TAG_NAME}"
           gh release create "${TAG_NAME}" ${{ inputs.draft }} ${{ inputs.prerelease }} \

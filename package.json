@@ -13,7 +13,7 @@
     "lint": "eslint ./{src,__tests__}/**/*.ts",
     "lint:fix": "eslint --fix ./{src,__tests__}/**/*.ts",
     "test": "jest --coverage --verbose --detectOpenHandles",
-    "build": "ncc build ./src/index.ts -o lib --minify",
+    "build": "ncc build ./src/index.ts --minify",
     "tsc": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format:check": "prettier --check '**/*.ts'"
