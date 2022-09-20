@@ -76,6 +76,7 @@ jobs:
 
       - name: Create release
         run: |
+          git fetch --tags
           TAG_NAME=$(git describe --tags)
           echo "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for more details." > ./release_notes.md
           RELEASE_TITLE="$(jq -r '.name' ./package.json) ${TAG_NAME}"
