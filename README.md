@@ -5,12 +5,11 @@ GitHub Pages Action
 <div align="center">
   <img width="400" alt="GitHub Actions for deploying to GitHub Pages with Static Site Generators" src="./images/ogp.svg">
 
-[![license](https://img.shields.io/github/license/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/blob/main/LICENSE)
-[![release](https://img.shields.io/github/release/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases/latest)
-[![GitHub release date](https://img.shields.io/github/release-date/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages/releases)
-![Test](https://github.com/peaceiris/actions-gh-pages/workflows/Test/badge.svg?branch=main&event=push)
-![Code Scanning](https://github.com/peaceiris/actions-gh-pages/workflows/Code%20Scanning/badge.svg?event=push)
-[![CodeFactor](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages/badge)](https://www.codefactor.io/repository/github/peaceiris/actions-gh-pages)
+[![license](https://img.shields.io/github/license/telia-actions/peaceiris-gh-pages.svg)](https://github.com/telia-actions/peaceiris-gh-pages/blob/main/LICENSE)
+[![release](https://img.shields.io/github/release/telia-actions/peaceiris-gh-pages.svg)](https://github.com/telia-actions/peaceiris-gh-pages/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/telia-actions/peaceiris-gh-pages.svg)](https://github.com/telia-actions/peaceiris-gh-pages/releases)
+![Test](https://github.com/telia-actions/peaceiris-gh-pages/workflows/Test/badge.svg?branch=main&event=push)
+![Code Scanning](https://github.com/telia-actions/peaceiris-gh-pages/workflows/Code%20Scanning/badge.svg?event=push)
 
 </div>
 
@@ -30,7 +29,7 @@ The next example step will deploy `./public` directory to the remote `gh-pages` 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -170,7 +169,7 @@ jobs:
         run: hugo --minify
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         # If you're changing the branch from main,
         # also change the `main` in `refs/heads/main`
         # below accordingly.
@@ -200,7 +199,7 @@ A GitHub Actions runner automatically creates a `GITHUB_TOKEN` secret to use in 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -214,7 +213,7 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     publish_dir: ./public
@@ -226,7 +225,7 @@ Read [Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key), create your SSH 
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     personal_token: ${{ secrets.PERSONAL_TOKEN }}
     publish_dir: ./public
@@ -239,7 +238,7 @@ The default is `gh-pages`.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_branch: your-branch  # default: gh-pages
@@ -252,7 +251,7 @@ Only the contents of this dir are pushed to GitHub Pages branch, `gh-pages` by d
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./out  # default: public
@@ -267,7 +266,7 @@ A destination subdirectory on a publishing branch. The default is empty.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     destination_dir: subdir
@@ -284,7 +283,7 @@ Values should be split with a comma.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file1,exclude-file2'
@@ -294,7 +293,7 @@ Set `exclude_assets` to empty for including the `.github` directory to deploymen
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}   # Recommended for this usage
     # personal_token: ${{ secrets.PERSONAL_TOKEN }} # An alternative
@@ -306,7 +305,7 @@ The `exclude_assets` option supports glob patterns.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     exclude_assets: '.github,exclude-file.txt,exclude-dir/**.txt'
@@ -321,7 +320,7 @@ For more details about the `CNAME` file, read the official documentation: [Manag
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -339,7 +338,7 @@ Bypassing Jekyll makes the deployment faster and is necessary if you are deployi
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -356,7 +355,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -376,7 +375,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -395,7 +394,7 @@ For example:
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
     external_repository: username/external-repository
@@ -422,7 +421,7 @@ This allows you to make your publish branch with only the latest commit.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -436,7 +435,7 @@ A commit is always created with the same user.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -453,7 +452,7 @@ When we create a commit with a message `docs: Update some post`, a deployment co
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -467,7 +466,7 @@ use the `full_commit_message` option instead of the `commit_message` option.
 
 ```yaml
 - name: Deploy
-  uses: peaceiris/actions-gh-pages@v3
+  uses: telia-actions/peaceiris-gh-pages@v4
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     publish_dir: ./public
@@ -509,7 +508,7 @@ jobs:
           echo "::set-output name=deploy_tag_name::deploy-${TAG_NAME}"
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -601,7 +600,7 @@ Alternatively, you can [configure the default `GITHUB_TOKEN` permissions](https:
 We recommend you to use the latest and specific release of this action for stable CI/CD.
 It is useful to watch this repository (release only) to check the [latest release] of this action.
 
-[latest release]: https://github.com/peaceiris/actions-gh-pages/releases
+[latest release]: https://github.com/telia-actions/peaceiris-gh-pages/releases
 
 For continuous updating, we can use the GitHub native Dependabot.
 Here is an example configuration of the bot. The config file is located in `.github/dependabot.yml`.
@@ -709,7 +708,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -761,7 +760,7 @@ jobs:
       - run: npm run build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -816,7 +815,7 @@ jobs:
       - run: yarn export
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -869,7 +868,7 @@ jobs:
       - run: npm run generate
 
       - name: deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -930,7 +929,7 @@ jobs:
       - run: yarn build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -994,7 +993,7 @@ jobs:
       - run: mkdocs build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1037,7 +1036,7 @@ jobs:
       - run: mdbook build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1087,7 +1086,7 @@ jobs:
         run: flutter build web
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1138,7 +1137,7 @@ jobs:
         # provide --output=<output-file> option for `elm make` and remove this step
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1191,7 +1190,7 @@ jobs:
       - run: publish-cli generate
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: telia-actions/peaceiris-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -1206,9 +1205,9 @@ jobs:
 
 ## License
 
-- [MIT License - peaceiris/actions-gh-pages]
+- [MIT License - telia-actions/peaceiris-gh-pages]
 
-[MIT License - peaceiris/actions-gh-pages]: https://github.com/peaceiris/actions-gh-pages/blob/main/LICENSE
+[MIT License - telia-actions/peaceiris-gh-pages]: https://github.com/telia-actions/peaceiris-gh-pages/blob/main/LICENSE
 
 
 
