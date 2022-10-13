@@ -26,3 +26,11 @@ labels:
         action: close
         locking: lock
         lock_reason: resolved
+  - name: duplicate
+    labeled:
+      issue:
+        body: |
+          This issue has been closed because of duplication.
+        action: close
+        locking: lock
+        lock_reason: resolved
