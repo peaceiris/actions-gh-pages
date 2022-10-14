@@ -127,9 +127,9 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
-  } catch (e: any) {
+  } catch (e) {
     core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
-    core.info(`[INFO] ${e.message}`);
+    core.info(`[INFO] ${(e as Error).message}`);
     await createDir(destDir);
     core.info(`[INFO] chdir ${workDir}`);
     process.chdir(workDir);
@@ -201,9 +201,9 @@ export async function commit(allowEmptyCommit: boolean, msg: string): Promise<vo
     } else {
       await exec.exec('git', ['commit', '-m', `${msg}`]);
     }
-  } catch (e: any) {
+  } catch (e) {
     core.info('[INFO] skip commit');
-    core.debug(`[INFO] skip commit ${e.message}`);
+    core.debug(`[INFO] skip commit ${(e as Error).message}`);
   }
 }
 

@@ -4,7 +4,7 @@ import * as main from './main';
 (async (): Promise<void> => {
   try {
     await main.run();
-  } catch (e: any) {
-    core.setFailed(`Action failed with "${e.message}"`);
+  } catch (e) {
+    core.setFailed(`Action failed with "${(e as Error).message}"`);
   }
 })();
