@@ -35,7 +35,7 @@ jobs:
         run: echo "${GITHUB_CONTEXT}"
 
       - name: Read .nvmrc
-        run: echo "::set-output name=NVMRC::$(cat .nvmrc)"
+        run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
         id: nvm
 
       - name: Setup Node
