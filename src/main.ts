@@ -57,7 +57,7 @@ export async function run(): Promise<void> {
     core.startGroup('Setup Git config');
     try {
       await exec.exec('git', ['remote', 'rm', 'origin']);
-    } catch (e) {
+    } catch (e: any) {
       core.info(`[INFO] ${e.message}`);
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
@@ -86,7 +86,7 @@ export async function run(): Promise<void> {
     core.info('[INFO] Action successfully completed');
 
     return;
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(e.message);
   }
 }
