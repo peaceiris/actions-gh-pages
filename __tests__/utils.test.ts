@@ -27,7 +27,7 @@ describe('getHomeDir()', () => {
   test('get home directory name', async () => {
     let test = '';
     if (process.platform === 'win32') {
-      test = 'C:\\Users\\runneradmin';
+      test = `${process.env.USERPROFILE}`;
     } else {
       test = `${process.env.HOME}`;
     }
@@ -40,7 +40,7 @@ describe('getWorkDirName()', () => {
   test('get work directory name', async () => {
     let home = '';
     if (process.platform === 'win32') {
-      home = 'C:\\Users\\runneradmin';
+      home = `${process.env.USERPROFILE}`;
     } else {
       home = `${process.env.HOME}`;
     }
