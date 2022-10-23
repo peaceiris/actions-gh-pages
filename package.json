@@ -4,8 +4,8 @@
   "description": "GitHub Actions for GitHub Pages",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=12.20.1",
-    "npm": ">=7.5.2"
+    "node": ">=16.18.0",
+    "npm": ">=8.19.0"
   },
   "scripts": {
     "postinstall": "npx husky install",
@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/peaceiris/actions-gh-pages#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.0.1",
     "@actions/glob": "^0.2.1",
