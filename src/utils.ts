@@ -29,6 +29,14 @@ export async function createDir(dirPath: string): Promise<void> {
   return;
 }
 
+export async function deleteDir(dirPath: string): Promise<void> {
+  if (fs.existsSync(dirPath)) {
+    await io.rmRF(dirPath);
+    core.debug(`Deleted directory ${dirPath}`);
+    return;
+  }
+}
+
 export async function addNoJekyll(workDir: string, DisableNoJekyll: boolean): Promise<void> {
   if (DisableNoJekyll) {
     return;

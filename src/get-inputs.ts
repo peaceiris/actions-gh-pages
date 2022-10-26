@@ -29,6 +29,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 [INFO] ExcludeAssets ${inps.ExcludeAssets}
+[INFO] CleanupWorkDir: ${inps.CleanupWorkDir}
 `);
 }
 
@@ -67,7 +68,8 @@ export function getInputs(): Inputs {
     TagMessage: core.getInput('tag_message'),
     DisableNoJekyll: useBuiltinJekyll,
     CNAME: core.getInput('cname'),
-    ExcludeAssets: core.getInput('exclude_assets')
+    ExcludeAssets: core.getInput('exclude_assets'),
+    CleanupWorkDir: isBoolean(core.getInput('cleanup_work_dir'))
   };
 
   return inps;

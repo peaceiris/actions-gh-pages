@@ -106,6 +106,7 @@ Note that the `GITHUB_TOKEN` that is created by the runner might not inherently 
   - [⭐️ Set Git username and email](#%EF%B8%8F-set-git-username-and-email)
   - [⭐️ Set custom commit message](#%EF%B8%8F-set-custom-commit-message)
   - [⭐️ Create Git tag](#%EF%B8%8F-create-git-tag)
+  - [⭐️ Clean up a working directory `cleanup_work_dir`](#%EF%B8%8F-clean-up-a-working-directory-cleanup_work_dir)
 - [Tips and FAQ](#tips-and-faq)
   - [⭐️ Create SSH Deploy Key](#%EF%B8%8F-create-ssh-deploy-key)
   - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
@@ -527,6 +528,19 @@ $ git fetch origin
 $ git tag
 deploy-v1.2.3  # Tag on the gh-pages branch
 v1.2.3         # Tag on the main branch
+```
+
+### ⭐️ Clean up a working directory `cleanup_work_dir`
+We can set the `cleanup_work_dir: true` option.
+This allows you to delete a working directory (`$HOME/actions_github_pages_{unixTime}`).
+
+```yaml
+- name: Deploy
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+    cleanup_work_dir: true
 ```
 
 <div align="right">

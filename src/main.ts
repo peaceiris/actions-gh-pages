@@ -6,7 +6,7 @@ import {Inputs} from './interfaces';
 import {showInputs, getInputs} from './get-inputs';
 import {setTokens} from './set-tokens';
 import {setRepo, setCommitAuthor, getCommitMessage, commit, push, pushTag} from './git-utils';
-import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork} from './utils';
+import {getWorkDirName, addNoJekyll, addCNAME, skipOnFork, deleteDir} from './utils';
 
 export async function run(): Promise<void> {
   try {
@@ -82,6 +82,12 @@ export async function run(): Promise<void> {
     await push(inps.PublishBranch, inps.ForceOrphan);
     await pushTag(inps.TagName, inps.TagMessage);
     core.endGroup();
+
+    if (inps.CleanupWorkDir) {
+      core.startGroup('Clean up working directory');
+      await deleteDir(workDir);
+      core.endGroup();
+    }
 
     core.info('[INFO] Action successfully completed');
 
