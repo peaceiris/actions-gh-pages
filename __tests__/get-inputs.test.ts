@@ -188,6 +188,6 @@ describe('getInputs()', () => {
 
     expect(() => {
       getInputs();
-    }).toThrowError('Use either of enable_jekyll or disable_nojekyll');
+    }).toThrow('Use either of enable_jekyll or disable_nojekyll');
   });
 });
