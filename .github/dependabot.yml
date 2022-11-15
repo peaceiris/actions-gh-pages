@@ -18,6 +18,6 @@ updates:
   schedule:
     interval: "daily"
   labels:
-  - "CI/CD"
+  - "cicd"
   commit-message:
     prefix: ci
