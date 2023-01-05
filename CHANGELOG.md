@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.0...v3.9.1) (2023-01-05)
+
+
+### chore
+
+* change cicd label name ([1808965](https://github.com/peaceiris/actions-gh-pages/commit/180896524151a5634ff5815a72c59467fc27c874))
+
+### ci
+
+* add Renovate config (#802) ([072d16c](https://github.com/peaceiris/actions-gh-pages/commit/072d16c439270cd3a36c3e0977ccbe10f2b2bc55)), closes [#802](https://github.com/peaceiris/actions-gh-pages/issues/802)
+* bump actions/dependency-review-action from 2 to 3 (#799) ([e3b45f2](https://github.com/peaceiris/actions-gh-pages/commit/e3b45f27007dc55bcdd52f01e38af6f61576ec7f)), closes [#799](https://github.com/peaceiris/actions-gh-pages/issues/799)
+* bump peaceiris/actions-github-app-token from 1.1.4 to 1.1.5 (#798) ([a5f971f](https://github.com/peaceiris/actions-gh-pages/commit/a5f971f112fd50b6dd28469f23be2618b1ea87e7)), closes [#798](https://github.com/peaceiris/actions-gh-pages/issues/798)
+* bump peaceiris/actions-mdbook from 1.1.14 to 1.2.0 (#793) ([9af6a68](https://github.com/peaceiris/actions-gh-pages/commit/9af6a68dde7720af8fd55364c2c637ca5922a879)), closes [#793](https://github.com/peaceiris/actions-gh-pages/issues/793)
+* bump peaceiris/workflows from 0.17.1 to 0.17.2 (#794) ([087a759](https://github.com/peaceiris/actions-gh-pages/commit/087a759f907a127fdee23c8994321ff96f7d9430)), closes [#794](https://github.com/peaceiris/actions-gh-pages/issues/794)
+* bump peaceiris/workflows from 0.17.2 to 0.18.1 (#806) ([f94667a](https://github.com/peaceiris/actions-gh-pages/commit/f94667a25cd2716a8a046111457e4b17c8c28407)), closes [#806](https://github.com/peaceiris/actions-gh-pages/issues/806)
+
+### deps
+
+* bump @actions/github from 5.0.1 to 5.1.1 (#785) ([679dbf0](https://github.com/peaceiris/actions-gh-pages/commit/679dbf02f69022f8c402975fdefe41ddb31516cd)), closes [#785](https://github.com/peaceiris/actions-gh-pages/issues/785)
+* bump @actions/glob from 0.2.1 to 0.3.0 (#735) ([25b12e2](https://github.com/peaceiris/actions-gh-pages/commit/25b12e2a24490dbc96aa0d5201e94b1b4cca7fb0)), closes [#735](https://github.com/peaceiris/actions-gh-pages/issues/735)
+* bump minimatch from 3.0.4 to 3.1.2 (#807) ([2f463a5](https://github.com/peaceiris/actions-gh-pages/commit/2f463a5ad59a66a5a83e0f072f6d556898e6cc9e)), closes [#807](https://github.com/peaceiris/actions-gh-pages/issues/807)
+
+### docs
+
+* replace deprecated set-output (#800) ([7166f2c](https://github.com/peaceiris/actions-gh-pages/commit/7166f2caa423717780ff24040f0163cbe511c18c)), closes [#800](https://github.com/peaceiris/actions-gh-pages/issues/800)
+
+
+
 # [3.9.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.8.0...v3.9.0) (2022-10-23)
 
 
