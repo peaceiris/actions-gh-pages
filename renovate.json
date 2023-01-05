@@ -5,5 +5,12 @@
   ],
   "enabledManagers": [
     "nvm"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch"],
+      "automergeStrategy": "squash"
+    }
   ]
 }
