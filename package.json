@@ -4,7 +4,7 @@
   "description": "GitHub Actions for GitHub Pages",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=16.18.0",
+    "node": ">=v16.19.0",
     "npm": ">=8.19.0"
   },
   "scripts": {
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@types/js-yaml": "^4.0.0",
-    "@types/node": "~12",
+    "@types/node": "~16",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "@vercel/ncc": "^0.27.0",
