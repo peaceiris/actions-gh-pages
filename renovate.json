@@ -4,6 +4,8 @@
     "local>peaceiris/renovate-config"
   ],
   "enabledManagers": [
+    "github-actions",
+    "npm",
     "nvm"
   ],
   "packageRules": [
