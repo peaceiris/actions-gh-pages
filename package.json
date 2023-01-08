@@ -61,7 +61,7 @@
     "@types/node": "~16",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
-    "@vercel/ncc": "^0.27.0",
+    "@vercel/ncc": "^0.36.0",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-jest": "^24.1.5",
