@@ -1,4 +1,4 @@
-CI/CD:
+cicd:
   - .github/workflows/*
 
 dependencies:
