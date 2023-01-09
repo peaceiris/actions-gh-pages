@@ -56,7 +56,7 @@
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^26.0.24",
     "@types/js-yaml": "^4.0.0",
     "@types/node": "~16",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
