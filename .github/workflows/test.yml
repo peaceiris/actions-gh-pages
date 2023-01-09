@@ -29,19 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${GITHUB_CONTEXT}"
-
-      - name: Read .nvmrc
-        run: echo "::set-output name=NVMRC::$(cat .nvmrc)"
-        id: nvm
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: peaceiris/workflows/setup-node@v0.19.1
         with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+          node-version-file: ".nvmrc"
 
       - name: Dump version
         run: |
