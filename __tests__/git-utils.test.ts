@@ -148,7 +148,7 @@ describe('setRepo()', () => {
     const date = new Date();
     const unixTime = date.getTime();
     const workDir = await getWorkDirName(`${unixTime}`);
-    await expect(setRepo(inps, remoteURL, workDir)).rejects.toThrowError(
+    await expect(setRepo(inps, remoteURL, workDir)).rejects.toThrow(
       'destination_dir should be a relative path'
     );
   });
@@ -241,17 +241,13 @@ describe('setCommitAuthor()', () => {
   test('throw error user_email is undefined', async () => {
     const userName = 'custom-octocat';
     const userEmail = '';
-    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrowError(
-      'user_email is undefined'
-    );
+    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrow('user_email is undefined');
   });
 
   test('throw error user_name is undefined', async () => {
     const userName = '';
     const userEmail = 'custom-octocat@github.com';
-    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrowError(
-      'user_name is undefined'
-    );
+    await expect(setCommitAuthor(userName, userEmail)).rejects.toThrow('user_name is undefined');
   });
 });
 
