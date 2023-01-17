@@ -47,7 +47,7 @@ else
   git pull origin --tags
 fi
 
-npm ci
+npm install
 
 mkdir ./lib
 npm run build
