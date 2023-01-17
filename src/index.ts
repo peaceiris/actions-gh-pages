@@ -8,7 +8,7 @@ import * as main from './main';
     if (error instanceof Error) {
       core.setFailed(`Action failed with "${error.message}"`);
     } else {
-      throw new Error('unexpected error');
+      core.setFailed('unexpected error');
     }
   }
 })();
