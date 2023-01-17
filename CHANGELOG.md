@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.1...v3.9.2) (2023-01-17)
+
+
+### chore
+
+* rename cicd ([32c9288](https://github.com/peaceiris/actions-gh-pages/commit/32c9288f553bbcbf66869cf553c82754431faf03))
+* replace npm ci with install ([9839780](https://github.com/peaceiris/actions-gh-pages/commit/983978086a87d25a1ff678aa1ef4c2acc413784a))
+
+### ci
+
+* add github-actions npm ([5e5dc6d](https://github.com/peaceiris/actions-gh-pages/commit/5e5dc6d02eeb18001e0a7af6d6fcbabd4fd9e2b7))
+* enable automerge ([dd7d778](https://github.com/peaceiris/actions-gh-pages/commit/dd7d77895818fd15ebecf20b6bf76028d377e1b6))
+* remove dependabot ([7af79a8](https://github.com/peaceiris/actions-gh-pages/commit/7af79a873e9c2b6c37690db94012342fdb90914a))
+* remove enabledManagers ([cba22ba](https://github.com/peaceiris/actions-gh-pages/commit/cba22ba760f1c7e62c9ae43167ea68ca9de56506))
+* use peaceiris/workflows/setup-node 0.19.1 (#818) ([416f539](https://github.com/peaceiris/actions-gh-pages/commit/416f539fb4263ec46f9bbee251e87cfeae9f85ff)), closes [#818](https://github.com/peaceiris/actions-gh-pages/issues/818)
+
+### deps
+
+* apply npm audit fix (#809) ([e3aa46d](https://github.com/peaceiris/actions-gh-pages/commit/e3aa46d23bbf7f669a6d92c15dda089b2edf4959)), closes [#809](https://github.com/peaceiris/actions-gh-pages/issues/809)
+
+
+
 ## [3.9.1](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.0...v3.9.1) (2023-01-05)
 
 
