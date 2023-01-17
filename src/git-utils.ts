@@ -127,15 +127,19 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     } else {
       throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
     }
-  } catch (e) {
-    core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
-    core.info(`[INFO] ${e.message}`);
-    await createDir(destDir);
-    core.info(`[INFO] chdir ${workDir}`);
-    process.chdir(workDir);
-    await createBranchForce(inps.PublishBranch);
-    await copyAssets(publishDir, destDir, inps.ExcludeAssets);
-    return;
+  } catch (error) {
+    if (error instanceof Error) {
+      core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
+      core.info(`[INFO] ${error.message}`);
+      await createDir(destDir);
+      core.info(`[INFO] chdir ${workDir}`);
+      process.chdir(workDir);
+      await createBranchForce(inps.PublishBranch);
+      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
+      return;
+    } else {
+      throw new Error('unexpected error');
+    }
   }
 }
 
@@ -201,9 +205,13 @@ export async function commit(allowEmptyCommit: boolean, msg: string): Promise<vo
     } else {
       await exec.exec('git', ['commit', '-m', `${msg}`]);
     }
-  } catch (e) {
-    core.info('[INFO] skip commit');
-    core.debug(`[INFO] skip commit ${e.message}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      core.info('[INFO] skip commit');
+      core.debug(`[INFO] skip commit ${error.message}`);
+    } else {
+      throw new Error('unexpected error');
+    }
   }
 }
 

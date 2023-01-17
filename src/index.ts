@@ -4,7 +4,11 @@ import * as main from './main';
 (async (): Promise<void> => {
   try {
     await main.run();
-  } catch (e) {
-    core.setFailed(`Action failed with "${e.message}"`);
+  } catch (error) {
+    if (error instanceof Error) {
+      core.setFailed(`Action failed with "${error.message}"`);
+    } else {
+      throw new Error('unexpected error');
+    }
   }
 })();
