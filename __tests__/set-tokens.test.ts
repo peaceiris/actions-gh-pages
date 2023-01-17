@@ -70,13 +70,13 @@ describe('setGithubToken()', () => {
         'refs/heads/gh-pages-base',
         'push'
       );
-    }).toThrowError('You deploy from gh-pages-base to gh-pages-base');
+    }).toThrow('You deploy from gh-pages-base to gh-pages-base');
   });
 
   test('throw error master to master', () => {
     expect(() => {
       setGithubToken('GITHUB_TOKEN', 'owner/repo', 'master', '', 'refs/heads/master', 'push');
-    }).toThrowError('You deploy from master to master');
+    }).toThrow('You deploy from master to master');
   });
 
   test('throw error external repository with GITHUB_TOKEN', () => {
@@ -89,7 +89,7 @@ describe('setGithubToken()', () => {
         'refs/heads/master',
         'push'
       );
-    }).toThrowError(`\
+    }).toThrow(`\
 The generated GITHUB_TOKEN (github_token) does not support to push to an external repository.
 Use deploy_key or personal_token.
 `);
