@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "engines": {
     "node": ">=v16.19.0",
-    "npm": ">=9.3.0"
+    "npm": ">=9.3.1"
   },
   "scripts": {
     "postinstall": "npx husky install",
