@@ -10,7 +10,7 @@ jobs:
     permissions: {}
     steps:
       # https://github.com/peaceiris/actions-github-app-token
-      - uses: peaceiris/actions-github-app-token@v1.1.5
+      - uses: peaceiris/actions-github-app-token@v1.1.6
         id: app
         with:
           app_id: ${{ secrets.GH_APP_ID }}
