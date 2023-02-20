@@ -8,7 +8,7 @@ contact_links:
     about: Please ask questions about GitHub Actions here.
   - name: GitHub Pages Documentation
     url: https://docs.github.com/en/pages
-    about: GitHub Pages official documentaion here.
+    about: GitHub Pages official documentation here.
   - name: GitHub Actions Documentation
     url: https://docs.github.com/en/actions
     about: GitHub Actions official documentation here.
