@@ -74,6 +74,6 @@
     "prettier": "2.8.4",
     "standard-version": "^9.1.1",
     "ts-jest": "^29.0.5",
-    "typescript": "^4.9.4"
+    "typescript": "^5.0.0"
   }
 }
