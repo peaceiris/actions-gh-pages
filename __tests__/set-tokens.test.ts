@@ -1,4 +1,27 @@
-import {getPublishRepo, setPersonalToken, setGithubToken} from '../src/set-tokens';
+import {getPublishRepo, setPersonalToken, setGithubToken, setSSHKey} from '../src/set-tokens';
+import {Inputs} from '../src/interfaces';
+
+import fs from 'fs';
+import * as exec from '@actions/exec';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as core from '@actions/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as io from '@actions/io';
+
+jest.mock('@actions/exec', () => ({
+  exec: jest.fn(),
+  getExecOutput: jest.fn().mockReturnValue({
+    stderr: '# hostname',
+    stdout: 'hostinfo',
+    exitCode: 0
+  })
+}));
+jest.mock('@actions/io', () => ({
+  mkdirP: jest.fn()
+}));
+jest.mock('@actions/core');
+jest.mock('fs');
+jest.mock('child_process');
 
 beforeEach(() => {
   jest.resetModules();
@@ -7,6 +30,64 @@ beforeEach(() => {
 // afterEach(() => {
 
 // });
+
+describe('setSSHKey()', () => {
+  const createInputs = (): Inputs => ({
+    DeployKey: 'DEPLOY_KEY',
+    GithubToken: '',
+    PersonalToken: '',
+    PublishBranch: 'gh-pages',
+    PublishDir: '',
+    DestinationDir: '',
+    ExternalRepository: '',
+    AllowEmptyCommit: false,
+    KeepFiles: false,
+    ForceOrphan: false,
+    UserName: '',
+    UserEmail: '',
+    CommitMessage: '',
+    FullCommitMessage: '',
+    TagName: '',
+    TagMessage: '',
+    DisableNoJekyll: false,
+    CNAME: '',
+    ExcludeAssets: ''
+  });
+
+  beforeEach(() => {
+    jest.resetModules();
+  });
+
+  test('return correct repo address', async () => {
+    const inps: Inputs = createInputs();
+    const test = await setSSHKey(inps, 'owner/repo');
+    expect(test).toMatch('git@github.com:owner/repo.git');
+  });
+
+  test('set known_hosts with the ssh-keyscan output if it succeeded', async () => {
+    const inps: Inputs = createInputs();
+    await setSSHKey(inps, 'owner/repo');
+
+    const mockGetExecOutput = await exec.getExecOutput('');
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      expect.stringContaining('known_hosts'),
+      mockGetExecOutput.stderr + mockGetExecOutput.stdout
+    );
+  });
+
+  test('SSH key fallbacks to default value if ssh-keyscan fails', async () => {
+    const inps: Inputs = createInputs();
+    (exec.getExecOutput as jest.Mock).mockImplementation(() => {
+      throw new Error('error');
+    });
+
+    await setSSHKey(inps, 'owner/repo');
+    expect(fs.writeFileSync).toHaveBeenCalledWith(
+      expect.stringContaining('known_hosts'),
+      expect.stringContaining('# github.com:22 SSH-2.0-babeld-1f0633a6')
+    );
+  });
+});
 
 describe('getPublishRepo()', () => {
   test('return repository name', () => {
