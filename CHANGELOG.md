@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.2...v3.9.3) (2023-03-30)
+
+
+### docs
+
+* fix typo, bump hugo version (#851) ([884a022](https://github.com/peaceiris/actions-gh-pages/commit/884a0224fd48faeb3bde89519e9d612d0585a679)), closes [#851](https://github.com/peaceiris/actions-gh-pages/issues/851)
+
+### fix
+
+* fix error handling (#841) ([32e33dc](https://github.com/peaceiris/actions-gh-pages/commit/32e33dcd3ae1d0cf56ac5a88267de6cbf0359353)), closes [#841](https://github.com/peaceiris/actions-gh-pages/issues/841)
+* update known_hosts (#871) ([31c15f0](https://github.com/peaceiris/actions-gh-pages/commit/31c15f03292ac100ae41a50fd3055e00d1b11a32)), closes [#871](https://github.com/peaceiris/actions-gh-pages/issues/871)
+
+
+
 ## [3.9.2](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.1...v3.9.2) (2023-01-17)
 
 
