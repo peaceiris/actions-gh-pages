@@ -111,6 +111,7 @@ Note that the `GITHUB_TOKEN` that is created by the runner might not inherently 
   - [⭐️ First Deployment with `GITHUB_TOKEN`](#%EF%B8%8F-first-deployment-with-github_token)
   - [⭐️ Use the latest and specific release](#%EF%B8%8F-use-the-latest-and-specific-release)
   - [⭐️ Schedule and Manual Deployment](#%EF%B8%8F-schedule-and-manual-deployment)
+  - [⭐️ Release Strategy](#%EF%B8%8F-release-strategy)
 - [Examples](#examples)
   - [⭐️ Static Site Generators with Node.js](#%EF%B8%8F-static-site-generators-with-nodejs)
   - [⭐️ Gatsby](#%EF%B8%8F-gatsby)
@@ -647,6 +648,49 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
     ...
+```
+
+### ⭐️ Release Strategy
+
+cf. [support: execution from hashref disabled/broken vs GitHub Actions Security Best Practice? · Issue #712 · peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages/issues/712)
+
+Our project builds and provides build assets only when creating a release. This is to prevent the user from executing this action with a specific branch (like main). For example, if we maintain build assets in the main branch and users use this action as follows, a major release including breaking changes will break the CI workflow of the users silently.
+
+```yaml
+- uses: peaceiris/actions-gh-pages@main # Bad example!
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+```
+
+In this project, a major tag (e.g. v3) is guaranteed to contain no breaking changes. But, we recommend using a tag or a commit hash for the stability of your workflows.
+
+```yaml
+- uses: peaceiris/actions-gh-pages@v3.9.3 # tag: Better
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+```
+
+```yaml
+- uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # commit hash of v3.9.3: Best!
+  with:
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    publish_dir: ./public
+```
+
+For verifying the release asset, we can use the following commands.
+
+```sh
+git clone https://github.com/peaceiris/actions-gh-pages.git
+cd ./actions-gh-pages
+git checkout v3.9.3
+nvm install
+nvm use
+npm i -g npm
+npm ci
+npm run build
+git diff ./lib/index.js # We will get zero exit code
 ```
 
 <div align="right">
