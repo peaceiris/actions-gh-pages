@@ -869,7 +869,7 @@ jobs:
 
 An example for [Nuxt.js] (Vue.js) project with [create-nuxt-app]
 
-- cf. [Nuxt - GitHub Pages](https://nuxtjs.org/integrations/deployments/github-pages)
+- cf. [Nuxt - GitHub Pages](https://nuxtjs.org/deployments/github-pages)
 
 [Nuxt.js]: https://github.com/nuxt/nuxt.js
 [create-nuxt-app]: https://github.com/nuxt/create-nuxt-app
