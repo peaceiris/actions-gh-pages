@@ -17,6 +17,6 @@ jobs:
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       # https://github.com/actions/labeler
-      - uses: actions/labeler@v5
+      - uses: actions/labeler@v4
         with:
           repo-token: "${{ steps.app.outputs.token }}"
