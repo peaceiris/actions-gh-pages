@@ -4,7 +4,7 @@
   "description": "GitHub Actions for GitHub Pages",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=v16.19.0",
+    "node": ">=v20.11.0",
     "npm": ">=8.0.0"
   },
   "scripts": {
