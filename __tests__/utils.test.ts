@@ -4,6 +4,7 @@ import {
   getHomeDir,
   getWorkDirName,
   createDir,
+  deleteDir,
   addNoJekyll,
   addCNAME,
   skipOnFork
@@ -58,6 +59,17 @@ describe('createDir()', () => {
     await createDir(workDirName);
     const test = fs.existsSync(workDirName);
     expect(test).toBe(true);
+  });
+});
+
+describe('deleteDir()', () => {
+  test('delete a directory', async () => {
+    const unixTime = await getTime();
+    const workDirName = await getWorkDirName(`${unixTime}`);
+    await createDir(workDirName);
+    await deleteDir(workDirName);
+    const test = fs.existsSync(workDirName);
+    expect(test).toBe(false);
   });
 });
 
