@@ -31,8 +31,7 @@ jobs:
 
       - uses: peaceiris/workflows/setup-node@v0.19.1
         with:
-          node-version: "18"
-          # node-version-file: ".nvmrc"
+          node-version-file: ".nvmrc"
 
       - name: Dump version
         run: |
