@@ -1,5 +1,4 @@
 import * as core from '@actions/core';
-import * as io from '@actions/io';
 import path from 'path';
 import fs from 'fs';
 
@@ -24,7 +23,7 @@ export async function getWorkDirName(unixTime: string): Promise<string> {
 }
 
 export async function createDir(dirPath: string): Promise<void> {
-  await io.mkdirP(dirPath);
+  await fs.promises.mkdir(dirPath, {recursive: true});
   core.debug(`Created directory ${dirPath}`);
   return;
 }
