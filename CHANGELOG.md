@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [4.0.0](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.3...v4.0.0) (2024-04-08)
+
+
+### build
+
+* node 20.11.1 ([5049354](https://github.com/peaceiris/actions-gh-pages/commit/5049354438ced05ab8a5da89ef20fd8efff107c7))
+
+### chore
+
+* bump node16 to node20 (#1067) ([4eb285e](https://github.com/peaceiris/actions-gh-pages/commit/4eb285e828117bca26638192c3ed309c622e7bad)), closes [#1067](https://github.com/peaceiris/actions-gh-pages/issues/1067)
+* downgrade engines.npm to 8.0.0 ([87231bc](https://github.com/peaceiris/actions-gh-pages/commit/87231bc03a428df52f90a00b3b9e6bef82f7daf9))
+
+### ci
+
+* pin node-version to 18 (#981) ([65ebf11](https://github.com/peaceiris/actions-gh-pages/commit/65ebf11929c082120c54719c87069f0827d2084c)), closes [#981](https://github.com/peaceiris/actions-gh-pages/issues/981)
+
+### docs
+
+* add Release Strategy ([67f80d9](https://github.com/peaceiris/actions-gh-pages/commit/67f80d94a1668353e4733223685dcb84340c44b5))
+* fix link to Nuxt github-pages (#980) ([88b4d2a](https://github.com/peaceiris/actions-gh-pages/commit/88b4d2aa927893f8976712406df9928468be3c88)), closes [#980](https://github.com/peaceiris/actions-gh-pages/issues/980)
+* remove braces in if conditions (#920) ([0fbd122](https://github.com/peaceiris/actions-gh-pages/commit/0fbd12244217a1fa04396b8a52d911a436893771)), closes [#920](https://github.com/peaceiris/actions-gh-pages/issues/920)
+
+
+
 ## [3.9.3](https://github.com/peaceiris/actions-gh-pages/compare/v3.9.2...v3.9.3) (2023-03-30)
 
 
