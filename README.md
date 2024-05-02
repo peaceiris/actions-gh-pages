@@ -149,6 +149,9 @@ on:
       - main  # Set a branch name to trigger deployment
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -489,6 +492,9 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -639,6 +645,9 @@ on:
     - cron: "22 22 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -724,6 +733,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -773,6 +785,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -825,6 +840,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -883,6 +901,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -937,6 +958,9 @@ on:
       - '.github/workflows/deploy.yml'
       - 'website/**'
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -997,6 +1021,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -1060,6 +1087,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -1104,6 +1134,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -1150,6 +1183,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -1201,6 +1237,9 @@ on:
     branches:
       - main
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
