@@ -14,7 +14,7 @@ GitHub Pages Action
 
 </div>
 
-> **Note**
+> [!NOTE]
 >
 > See also the GitHub official GitHub Pages Action first.
 >
