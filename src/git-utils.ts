@@ -30,7 +30,6 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     return paths;
   })();
   const globber = await glob.create(excludedAssetPaths.join('\n'));
-  const files = await globber.glob();
   for await (const file of globber.globGenerator()) {
     core.info(`[INFO] delete ${file}`);
     fs.rmSync(file, {recursive: true, force: true});
