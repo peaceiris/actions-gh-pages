@@ -51,14 +51,13 @@
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
     "@actions/glob": "^0.4.0",
-    "@actions/io": "^1.1.2",
-    "@types/shelljs": "^0.8.11",
-    "shelljs": "^0.8.5"
+    "@actions/io": "^1.1.2"
   },
   "devDependencies": {
     "@types/jest": "^29.2.6",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "~16",
+    "@types/shelljs": "^0.8.15",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "@vercel/ncc": "^0.38.0",
@@ -72,6 +71,7 @@
     "js-yaml": "^4.1.0",
     "lint-staged": "^13.1.0",
     "prettier": "2.8.8",
+    "shelljs": "^0.8.5",
     "standard-version": "^9.1.1",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.4"

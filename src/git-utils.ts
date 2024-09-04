@@ -3,10 +3,10 @@ import * as exec from '@actions/exec';
 import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
+import fsp from 'fs/promises';
 import {URL} from 'url';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {cp, rm} from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -30,11 +30,11 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     return paths;
   })();
   const globber = await glob.create(excludedAssetPaths.join('\n'));
-  const files = await globber.glob();
   for await (const file of globber.globGenerator()) {
     core.info(`[INFO] delete ${file}`);
+    fs.rmSync(file, {recursive: true, force: true});
   }
-  rm('-rf', files);
+
   return;
 }
 
@@ -53,12 +53,12 @@ export async function copyAssets(
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
     core.info(`[INFO] delete ${dotGitPath}`);
-    rm('-rf', dotGitPath);
+    await fsp.rm(dotGitPath, {recursive: true, force: true});
   }
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
-  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
 
+  await fsp.cp(publishDir, destDir, {recursive: true});
   await deleteExcludedAssets(destDir, excludeAssets);
 
   return;
