@@ -77,3 +77,7 @@ inputs:
     description: 'Set files or directories to exclude from a publish directory.'
     required: false
     default: '.github'
+  lfs:
+    description: 'Whether to use Git-LFS to upload files'
+    required: false
+    default: 'false'
