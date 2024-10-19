@@ -97,12 +97,12 @@ This operation is prohibited to protect your contents
     }
   }
 
-  return `https://x-access-token:${githubToken}@${getServerUrl().host}/${publishRepo}.git`;
+  return `${getServerUrl().host}//x-access-token:${githubToken}@${getServerUrl().host}/${publishRepo}.git`;
 }
 
 export function setPersonalToken(personalToken: string, publishRepo: string): string {
   core.info('[INFO] setup personal access token');
-  return `https://x-access-token:${personalToken}@${getServerUrl().host}/${publishRepo}.git`;
+  return `${getServerUrl().host}//x-access-token:${personalToken}@${getServerUrl().host}/${publishRepo}.git`;
 }
 
 export function getPublishRepo(externalRepository: string, owner: string, repo: string): string {
