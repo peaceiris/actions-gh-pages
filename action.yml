@@ -40,6 +40,10 @@ inputs:
     description: 'If existing files in the publish branch should be not removed before deploying'
     required: false
     default: 'false'
+  keep_target_files:
+    description: 'Keep only these files in the publishing branch'
+    required: false
+    default: ''
   force_orphan:
     description: 'Keep only the latest commit on a GitHub Pages branch'
     required: false

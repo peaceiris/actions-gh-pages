@@ -19,6 +19,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] ExternalRepository: ${inps.ExternalRepository}
 [INFO] AllowEmptyCommit: ${inps.AllowEmptyCommit}
 [INFO] KeepFiles: ${inps.KeepFiles}
+[INFO] KeepFiles: ${inps.KeepTargetFiles}
 [INFO] ForceOrphan: ${inps.ForceOrphan}
 [INFO] UserName: ${inps.UserName}
 [INFO] UserEmail: ${inps.UserEmail}
@@ -58,6 +59,7 @@ export function getInputs(): Inputs {
     ExternalRepository: core.getInput('external_repository'),
     AllowEmptyCommit: isBoolean(core.getInput('allow_empty_commit')),
     KeepFiles: isBoolean(core.getInput('keep_files')),
+    KeepTargetFiles: core.getInput('keep_target_files'),
     ForceOrphan: isBoolean(core.getInput('force_orphan')),
     UserName: core.getInput('user_name'),
     UserEmail: core.getInput('user_email'),
