@@ -105,7 +105,15 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
   try {
     result.exitcode = await exec.exec(
       'git',
-      ['clone', '--depth=1', '--single-branch', '--branch', inps.PublishBranch, remoteURL, workDir],
+      [
+        'clone',
+        '--filter=tree:0',
+        '--single-branch',
+        '--branch',
+        inps.PublishBranch,
+        remoteURL,
+        workDir
+      ],
       options
     );
     if (result.exitcode === 0) {
