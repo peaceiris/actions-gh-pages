@@ -29,6 +29,7 @@ export function showInputs(inps: Inputs): void {
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 [INFO] ExcludeAssets ${inps.ExcludeAssets}
+[INFO] Lfs: ${inps.Lfs}
 `);
 }
 
@@ -48,9 +49,12 @@ export function getInputs(): Inputs {
     useBuiltinJekyll = true;
   }
 
+  const enableLfs: boolean = isBoolean(core.getInput('lfs'));
+
   const inps: Inputs = {
     DeployKey: core.getInput('deploy_key'),
     GithubToken: core.getInput('github_token'),
+    Lfs: enableLfs,
     PersonalToken: core.getInput('personal_token'),
     PublishBranch: core.getInput('publish_branch'),
     PublishDir: core.getInput('publish_dir'),
