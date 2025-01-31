@@ -77,3 +77,7 @@ inputs:
     description: 'Set files or directories to exclude from a publish directory.'
     required: false
     default: '.github'
+  cleanup_work_dir:
+    description: 'Clean up a working directory.'
+    required: false
+    default: 'false'
