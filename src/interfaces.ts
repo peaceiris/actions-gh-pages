@@ -1,6 +1,7 @@
 export interface Inputs {
   readonly DeployKey: string;
   readonly GithubToken: string;
+  readonly Lfs: boolean;
   readonly PersonalToken: string;
   readonly PublishBranch: string;
   readonly PublishDir: string;
