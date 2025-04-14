@@ -57,7 +57,11 @@ export async function copyAssets(
   }
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);
-  cp('-RfL', [`${publishDir}/*`, `${publishDir}/.*`], destDir);
+  const sourceDir = [`${publishDir}/*`];
+  if (fs.readdirSync(publishDir).some(ele => ele.startsWith('.'))) {
+    sourceDir.push(`${publishDir}/.*`);
+  }
+  cp('-RfL', sourceDir, destDir);
 
   await deleteExcludedAssets(destDir, excludeAssets);
 
