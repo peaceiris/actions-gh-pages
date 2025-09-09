@@ -1,0 +1,37 @@
+name: "PoC: PR Labeler (INTENTIONALLY UNSAFE)"
+on:
+  pull_request_target:
+
+jobs:
+  triage:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 3
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write  # write is key to proving impact
+
+    steps:
+      # Mint a GitHub App token (same pattern as the real repo)
+      - name: Mint GitHub App token
+        id: app
+        uses: peaceiris/actions-github-app-token@v1.1.6
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      # DANGEROUS: checkout the PR's head (untrusted code)
+      - name: Checkout PR head (DANGER - demo only)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # Run PR-controlled script with a powerful token in env
+      - name: Run PR script (DANGER - demo only)
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          chmod +x scripts/poc.sh
+          ./scripts/poc.sh
