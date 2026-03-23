@@ -2,7 +2,7 @@ name: 'GitHub Pages action'
 description: 'GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.'
 author: 'peaceiris'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'lib/index.js'
 branding:
   icon: 'upload-cloud'
