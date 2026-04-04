@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: peaceiris/workflows/setup-node@v0.20.1
+      - uses: peaceiris/workflows/setup-node@344651af76054dbb5c8231c3d0a18b109c029630 # v0.20.1
         with:
           node-version-file: ".nvmrc"
 
@@ -66,7 +66,7 @@ jobs:
           name: coverage-${{ matrix.os }}
           path: coverage
 
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4
 
       - name: Run ncc
         run: npm run build
@@ -79,7 +79,7 @@ jobs:
 
       - name: Setup mdBook
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: peaceiris/actions-mdbook@v1.2.0
+        uses: peaceiris/actions-mdbook@adeb05db28a0c0004681db83893d56c0388ea9ea # v1.2.0
         with:
           mdbook-version: '0.4.5'
 
