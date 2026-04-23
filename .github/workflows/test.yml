@@ -20,7 +20,6 @@ jobs:
       matrix:
         os:
           - 'ubuntu-22.04'
-          - 'ubuntu-20.04'
           - 'ubuntu-latest'
           - 'macos-latest'
           - 'windows-latest'
