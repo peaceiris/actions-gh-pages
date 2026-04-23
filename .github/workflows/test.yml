@@ -90,7 +90,7 @@ jobs:
       - name: Deploy
         if: |
           startsWith(matrix.os, 'ubuntu-latest') &&
-          github.ref == 'refs/heads/main' && github.event.repository.fork == false
+          github.ref == 'refs/heads/main'
         uses: ./
         with:
           # deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
