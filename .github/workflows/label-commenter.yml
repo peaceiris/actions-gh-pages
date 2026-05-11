@@ -19,7 +19,7 @@ jobs:
   comment:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Label Commenter
         uses: peaceiris/actions-label-commenter@v1
