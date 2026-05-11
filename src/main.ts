@@ -61,7 +61,7 @@ export async function run(): Promise<void> {
       if (error instanceof Error) {
         core.info(`[INFO] ${error.message}`);
       } else {
-        throw new Error('unexpected error');
+        throw new Error('unexpected error', {cause: error});
       }
     }
     await exec.exec('git', ['remote', 'add', 'origin', remoteURL]);
@@ -92,9 +92,9 @@ export async function run(): Promise<void> {
     return;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw new Error(error.message, {cause: error});
     } else {
-      throw new Error('unexpected error');
+      throw new Error('unexpected error', {cause: error});
     }
   }
 }

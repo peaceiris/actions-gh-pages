@@ -2,12 +2,9 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
 import * as io from '@actions/io';
+import {execFileSync, spawnSync} from 'child_process';
 import path from 'path';
 import fs from 'fs';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cpSpawnSync = require('child_process').spawnSync;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cpexec = require('child_process').execFileSync;
 import {Inputs} from './interfaces';
 import {getHomeDir} from './utils';
 import {getServerUrl} from './git-utils';
@@ -54,12 +51,12 @@ Currently, the deploy_key option is not supported on the windows-latest.
 Watch https://github.com/peaceiris/actions-gh-pages/issues/87
 `);
 
-    await cpSpawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
-    await cpSpawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
+    await spawnSync('Start-Process', ['powershell.exe', '-Verb', 'runas']);
+    await spawnSync('sh', ['-c', '\'eval "$(ssh-agent)"\''], {shell: true});
     await exec.exec('sc', ['config', 'ssh-agent', 'start=auto']);
     await exec.exec('sc', ['start', 'ssh-agent']);
   }
-  await cpexec('ssh-agent', ['-a', '/tmp/ssh-auth.sock']);
+  await execFileSync('ssh-agent', ['-a', '/tmp/ssh-auth.sock']);
   core.exportVariable('SSH_AUTH_SOCK', '/tmp/ssh-auth.sock');
   await exec.exec('ssh-add', [idRSA]);
 
@@ -78,7 +75,6 @@ export function setGithubToken(
 
   core.debug(`ref: ${ref}`);
   core.debug(`eventName: ${eventName}`);
-  let isProhibitedBranch = false;
 
   if (externalRepository) {
     throw new Error(`\
@@ -88,7 +84,7 @@ Use deploy_key or personal_token.
   }
 
   if (eventName === 'push') {
-    isProhibitedBranch = ref.match(new RegExp(`^refs/heads/${publishBranch}$`)) !== null;
+    const isProhibitedBranch = ref.match(new RegExp(`^refs/heads/${publishBranch}$`)) !== null;
     if (isProhibitedBranch) {
       throw new Error(`\
 You deploy from ${publishBranch} to ${publishBranch}
@@ -140,9 +136,9 @@ export async function setTokens(inps: Inputs): Promise<string> {
     }
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message);
+      throw new Error(error.message, {cause: error});
     } else {
-      throw new Error('unexpected error');
+      throw new Error('unexpected error', {cause: error});
     }
   }
 }

@@ -25,12 +25,7 @@ async function getTime(): Promise<string> {
 
 describe('getHomeDir()', () => {
   test('get home directory name', async () => {
-    let test = '';
-    if (process.platform === 'win32') {
-      test = 'C:\\Users\\runneradmin';
-    } else {
-      test = `${process.env.HOME}`;
-    }
+    const test = process.platform === 'win32' ? 'C:\\Users\\runneradmin' : `${process.env.HOME}`;
     const expected = await getHomeDir();
     expect(test).toMatch(expected);
   });
@@ -38,12 +33,7 @@ describe('getHomeDir()', () => {
 
 describe('getWorkDirName()', () => {
   test('get work directory name', async () => {
-    let home = '';
-    if (process.platform === 'win32') {
-      home = 'C:\\Users\\runneradmin';
-    } else {
-      home = `${process.env.HOME}`;
-    }
+    const home = process.platform === 'win32' ? 'C:\\Users\\runneradmin' : `${process.env.HOME}`;
     const unixTime = await getTime();
     const expected = path.join(home, `actions_github_pages_${unixTime}`);
     const test = await getWorkDirName(`${unixTime}`);
@@ -63,18 +53,14 @@ describe('createDir()', () => {
 
 async function getWorkDir(): Promise<string> {
   const unixTime = await getTime();
-  let workDir = '';
-  workDir = await getWorkDirName(`${unixTime}`);
+  const workDir = await getWorkDirName(`${unixTime}`);
   await createDir(workDir);
   return workDir;
 }
 
 describe('addNoJekyll()', () => {
   test('add .nojekyll', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, false);
@@ -85,10 +71,7 @@ describe('addNoJekyll()', () => {
   });
 
   test('.nojekyll already exists', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, '.nojekyll');
     fs.closeSync(fs.openSync(filepath, 'w'));
 
@@ -100,10 +83,7 @@ describe('addNoJekyll()', () => {
   });
 
   test('not add .nojekyll disable_nojekyll', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, '.nojekyll');
 
     await addNoJekyll(workDir, true);
@@ -114,10 +94,7 @@ describe('addNoJekyll()', () => {
 
 describe('addCNAME()', () => {
   test('add CNAME', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, 'CNAME');
 
     await addCNAME(workDir, 'github.com');
@@ -128,10 +105,7 @@ describe('addCNAME()', () => {
   });
 
   test('do nothing', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, 'CNAME');
 
     await addCNAME(workDir, '');
@@ -140,10 +114,7 @@ describe('addCNAME()', () => {
   });
 
   test('CNAME already exists', async () => {
-    let workDir = '';
-    (async (): Promise<void> => {
-      workDir = await getWorkDir();
-    })();
+    const workDir = await getWorkDir();
     const filepath = path.join(workDir, 'CNAME');
 
     await addCNAME(workDir, 'github.io');

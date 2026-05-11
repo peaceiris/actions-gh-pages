@@ -138,7 +138,7 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
       await copyAssets(publishDir, destDir, inps.ExcludeAssets);
       return;
     } else {
-      throw new Error('unexpected error');
+      throw new Error('unexpected error', {cause: error});
     }
   }
 }
@@ -210,7 +210,7 @@ export async function commit(allowEmptyCommit: boolean, msg: string): Promise<vo
       core.info('[INFO] skip commit');
       core.debug(`[INFO] skip commit ${error.message}`);
     } else {
-      throw new Error('unexpected error');
+      throw new Error('unexpected error', {cause: error});
     }
   }
 }
@@ -228,12 +228,7 @@ export async function pushTag(tagName: string, tagMessage: string): Promise<void
     return;
   }
 
-  let msg = '';
-  if (tagMessage) {
-    msg = tagMessage;
-  } else {
-    msg = `Deployment ${tagName}`;
-  }
+  const msg = tagMessage || `Deployment ${tagName}`;
 
   await exec.exec('git', ['tag', '-a', `${tagName}`, '-m', `${msg}`]);
   await exec.exec('git', ['push', 'origin', `${tagName}`]);

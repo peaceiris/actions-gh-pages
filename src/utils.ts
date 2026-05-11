@@ -4,13 +4,8 @@ import path from 'path';
 import fs from 'fs';
 
 export async function getHomeDir(): Promise<string> {
-  let homedir = '';
-
-  if (process.platform === 'win32') {
-    homedir = process.env['USERPROFILE'] || 'C:\\';
-  } else {
-    homedir = `${process.env.HOME}`;
-  }
+  const homedir =
+    process.platform === 'win32' ? process.env['USERPROFILE'] || 'C:\\' : `${process.env.HOME}`;
 
   core.debug(`homeDir: ${homedir}`);
 
