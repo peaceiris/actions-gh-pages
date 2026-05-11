@@ -29,9 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: peaceiris/workflows/setup-node@v0.20.1
+      - uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
+          cache: 'npm'
 
       - name: Dump version
         run: |
@@ -68,7 +69,7 @@ jobs:
 
       - uses: codecov/codecov-action@v4
 
-      - name: Run ncc
+      - name: Run build
         run: npm run build
 
       - name: Remove lint-staged husky
