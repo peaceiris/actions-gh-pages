@@ -17,6 +17,7 @@ concurrency:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
       matrix:
         os:
@@ -28,9 +29,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version-file: ".nvmrc"
           cache: 'npm'
@@ -44,7 +45,7 @@ jobs:
       - run: npm ci --ignore-scripts
 
       - name: npm audit
-        if: startsWith(matrix.os, 'ubuntu-22.04')
+        if: startsWith(matrix.os, 'ubuntu-24.04')
         run: |
           npm audit > ./audit.log || true
           if ! [ "$(cat ./audit.log | wc -l)" = 1 ]; then
@@ -53,22 +54,22 @@ jobs:
           rm ./audit.log
 
       - name: Run prettier
-        if: startsWith(matrix.os, 'ubuntu-22.04')
+        if: startsWith(matrix.os, 'ubuntu-24.04')
         run: npm run format:check
 
       - name: Run eslint
-        if: startsWith(matrix.os, 'ubuntu-22.04')
+        if: startsWith(matrix.os, 'ubuntu-24.04')
         run: npm run lint
 
       - run: npm test
 
       - name: Upload test coverage as artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-${{ matrix.os }}
           path: coverage
 
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4.6.0
 
       - name: Run build
         run: npm run build
@@ -81,7 +82,7 @@ jobs:
 
       - name: Setup mdBook
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: peaceiris/actions-mdbook@v2.0.0
+        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2.0.0
         with:
           mdbook-version: '0.4.5'
 

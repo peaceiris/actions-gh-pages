@@ -8,9 +8,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
-      - uses: peaceiris/workflows/create-release-npm@v0.21.6
+      - uses: peaceiris/workflows/create-release-npm@99f66a30a38f806fd0df9014275c7cef0b6d9ca5 # v0.21.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
