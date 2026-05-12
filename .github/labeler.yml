@@ -1,20 +1,27 @@
 cicd:
-  - .github/workflows/*
+  - changed-files:
+      - any-glob-to-any-file: .github/workflows/*
 
 dependencies:
-  - .nvmrc
-  - package.json
-  - package-lock.json
+  - changed-files:
+      - any-glob-to-any-file:
+          - .nvmrc
+          - package.json
+          - package-lock.json
 
 documentation:
-  - README.md
+  - changed-files:
+      - any-glob-to-any-file: README.md
 
 test:
-  - __tests__
+  - changed-files:
+      - any-glob-to-any-file: __tests__
 
 docker:
-  - .devcontainer/*
-  - .dockerignore
-  - Dockerfile
-  - Makefile
-  - docker-compose.yml
+  - changed-files:
+      - any-glob-to-any-file:
+          - .devcontainer/*
+          - .dockerignore
+          - Dockerfile
+          - Makefile
+          - docker-compose.yml
