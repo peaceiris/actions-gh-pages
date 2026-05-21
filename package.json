@@ -75,7 +75,7 @@
     "lint-staged": "17.0.5",
     "prettier": "3.8.3",
     "standard-version": "9.5.0",
-    "ts-jest": "29.4.9",
+    "ts-jest": "29.4.11",
     "typescript": "6.0.3"
   },
   "overrides": {
