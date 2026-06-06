@@ -56,6 +56,7 @@ function getInputsLog(authMethod: string, inps: Inputs): string {
 [INFO] EnableJekyll (DisableNoJekyll): ${inps.DisableNoJekyll}
 [INFO] CNAME: ${inps.CNAME}
 [INFO] ExcludeAssets ${inps.ExcludeAssets}
+[INFO] CleanupWorkDir: ${inps.CleanupWorkDir}
 `;
 }
 
@@ -125,6 +126,7 @@ describe('getInputs()', () => {
     expect(inps.DisableNoJekyll).toBe(false);
     expect(inps.CNAME).toMatch('');
     expect(inps.ExcludeAssets).toMatch('.github');
+    expect(inps.CleanupWorkDir).toBe(false);
   });
 
   test('get spec inputs', () => {
@@ -147,6 +149,7 @@ describe('getInputs()', () => {
     process.env['INPUT_DISABLE_NOJEKYLL'] = 'true';
     process.env['INPUT_CNAME'] = 'github.com';
     process.env['INPUT_EXCLUDE_ASSETS'] = '.github';
+    process.env['INPUT_CLEANUP_WORK_DIR'] = 'false';
 
     const inps: Inputs = getInputs();
 
@@ -169,6 +172,7 @@ describe('getInputs()', () => {
     expect(inps.DisableNoJekyll).toBe(true);
     expect(inps.CNAME).toMatch('github.com');
     expect(inps.ExcludeAssets).toMatch('.github');
+    expect(inps.CleanupWorkDir).toBe(false);
   });
 
   test('get spec inputs enable_jekyll', () => {
