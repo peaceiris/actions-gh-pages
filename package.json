@@ -58,7 +58,7 @@
     "@eslint/js": "10.0.1",
     "@types/jest": "30.0.0",
     "@types/js-yaml": "4.0.9",
-    "@types/node": "25.9.1",
+    "@types/node": "25.9.2",
     "@types/shelljs": "0.10.0",
     "@typescript-eslint/eslint-plugin": "8.60.1",
     "@typescript-eslint/parser": "8.60.1",
