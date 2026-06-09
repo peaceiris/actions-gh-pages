@@ -3,6 +3,16 @@
   "extends": [
     "local>peaceiris/renovate-config"
   ],
+  "timezone": "Asia/Tokyo",
+  "reviewersFromCodeOwners": true,
+  "rebaseWhen": "conflicted",
+  "separateMinorPatch": true,
+  "major": { "minimumReleaseAge": "63 days" },
+  "minor": { "minimumReleaseAge": "21 days" },
+  "patch": { "minimumReleaseAge": "14 days" },
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "automerge": false,
