@@ -6,7 +6,6 @@ import fs from 'fs';
 import {URL} from 'url';
 import {Inputs, CmdResult} from './interfaces';
 import {createDir} from './utils';
-import {rm} from 'shelljs';
 
 export async function createBranchForce(branch: string): Promise<void> {
   await exec.exec('git', ['init']);
@@ -35,7 +34,7 @@ export async function deleteExcludedAssets(destDir: string, excludeAssets: strin
     core.info(`[INFO] delete ${file}`);
   }
   if (files.length > 0) {
-    rm('-rf', files);
+    await Promise.all(files.map(file => fs.promises.rm(file, {force: true, recursive: true})));
   }
   return;
 }
@@ -66,7 +65,7 @@ export async function copyAssets(
   const dotGitPath = path.join(publishDir, '.git');
   if (fs.existsSync(dotGitPath)) {
     core.info(`[INFO] delete ${dotGitPath}`);
-    rm('-rf', dotGitPath);
+    await fs.promises.rm(dotGitPath, {force: true, recursive: true});
   }
 
   core.info(`[INFO] copy ${publishDir} to ${destDir}`);

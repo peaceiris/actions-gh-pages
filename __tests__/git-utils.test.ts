@@ -11,7 +11,6 @@ import {Inputs} from '../src/interfaces';
 import {getWorkDirName, createDir} from '../src/utils';
 import {CmdResult} from '../src/interfaces';
 import * as exec from '@actions/exec';
-import {cp, rm} from 'shelljs';
 import path from 'path';
 import fs from 'fs';
 
@@ -21,6 +20,14 @@ async function createTestDir(name: string): Promise<string> {
   const date = new Date();
   const unixTime = date.getTime();
   return await getWorkDirName(`${unixTime}_${name}`);
+}
+
+async function copy(source: string, destination: string): Promise<void> {
+  await fs.promises.cp(source, destination, {dereference: true, force: true, recursive: true});
+}
+
+async function remove(...paths: string[]): Promise<void> {
+  await Promise.all(paths.map(path => fs.promises.rm(path, {force: true, recursive: true})));
 }
 
 beforeEach(() => {
@@ -51,21 +58,21 @@ describe('copyAssets', () => {
   test('copy assets from publish_dir to root, delete .github', async () => {
     const publishDir = await createTestDir('src');
     const destDir = await createTestDir('dst');
-    cp('-Rf', path.resolve(testRoot, 'fixtures/publish_dir_1'), publishDir);
-    cp('-Rf', gitTempDir, destDir);
+    await copy(path.resolve(testRoot, 'fixtures/publish_dir_1'), publishDir);
+    await copy(gitTempDir, destDir);
 
     await copyAssets(publishDir, destDir, '.github');
     expect(fs.existsSync(path.resolve(destDir, '.github'))).toBeFalsy();
     expect(fs.existsSync(path.resolve(destDir, 'index.html'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.css'))).toBeTruthy();
-    rm('-rf', publishDir, destDir);
+    await remove(publishDir, destDir);
   });
 
   test('copy assets from publish_dir to root, delete .github,main.js', async () => {
     const publishDir = await createTestDir('src');
     const destDir = await createTestDir('dst');
-    cp('-Rf', path.resolve(testRoot, 'fixtures/publish_dir_1'), publishDir);
-    cp('-Rf', gitTempDir, destDir);
+    await copy(path.resolve(testRoot, 'fixtures/publish_dir_1'), publishDir);
+    await copy(gitTempDir, destDir);
 
     await copyAssets(publishDir, destDir, '.github,main.js');
     expect(fs.existsSync(path.resolve(destDir, '.github'))).toBeFalsy();
@@ -73,14 +80,14 @@ describe('copyAssets', () => {
     expect(fs.existsSync(path.resolve(destDir, 'main.js'))).toBeFalsy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.css'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.js'))).toBeTruthy();
-    rm('-rf', publishDir, destDir);
+    await remove(publishDir, destDir);
   });
 
   test('copy assets from publish_dir to root, delete nothing', async () => {
     const publishDir = await createTestDir('src');
     const destDir = await createTestDir('dst');
-    cp('-Rf', path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
-    cp('-Rf', gitTempDir, destDir);
+    await copy(path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
+    await copy(gitTempDir, destDir);
 
     await copyAssets(publishDir, destDir, '');
     expect(fs.existsSync(path.resolve(destDir, '.github'))).toBeTruthy();
@@ -88,35 +95,35 @@ describe('copyAssets', () => {
     expect(fs.existsSync(path.resolve(destDir, 'main.js'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.css'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.js'))).toBeTruthy();
-    rm('-rf', publishDir, destDir);
+    await remove(publishDir, destDir);
   });
 
   test('copy assets from root to root, delete .github', async () => {
     const publishDir = await createTestDir('src');
     const destDir = await createTestDir('dst');
-    cp('-Rf', path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
-    cp('-Rf', gitTempDir, destDir);
-    cp('-Rf', gitTempDir, publishDir);
+    await copy(path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
+    await copy(gitTempDir, destDir);
+    await copy(gitTempDir, publishDir);
 
     await copyAssets(publishDir, destDir, '.github');
     expect(fs.existsSync(path.resolve(destDir, '.github'))).toBeFalsy();
     expect(fs.existsSync(path.resolve(destDir, 'index.html'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.css'))).toBeTruthy();
-    rm('-rf', publishDir, destDir);
+    await remove(publishDir, destDir);
   });
 
   test('copy assets from root to root, delete nothing', async () => {
     const publishDir = await createTestDir('src');
     const destDir = await createTestDir('dst');
-    cp('-Rf', path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
-    cp('-Rf', gitTempDir, destDir);
-    cp('-Rf', gitTempDir, publishDir);
+    await copy(path.resolve(testRoot, 'fixtures/publish_dir_root'), publishDir);
+    await copy(gitTempDir, destDir);
+    await copy(gitTempDir, publishDir);
 
     await copyAssets(publishDir, destDir, '');
     expect(fs.existsSync(path.resolve(destDir, '.github'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'index.html'))).toBeTruthy();
     expect(fs.existsSync(path.resolve(destDir, 'assets/lib.css'))).toBeTruthy();
-    rm('-rf', publishDir, destDir);
+    await remove(publishDir, destDir);
   });
 
   test.todo('copy assets from root to subdir, delete .github');
