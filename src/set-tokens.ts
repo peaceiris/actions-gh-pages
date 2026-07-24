@@ -1,7 +1,6 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
-import * as io from '@actions/io';
 import {execFileSync, spawnSync} from 'child_process';
 import path from 'path';
 import fs from 'fs';
@@ -14,7 +13,7 @@ export async function setSSHKey(inps: Inputs, publishRepo: string): Promise<stri
 
   const homeDir = await getHomeDir();
   const sshDir = path.join(homeDir, '.ssh');
-  await io.mkdirP(sshDir);
+  await fs.promises.mkdir(sshDir, {recursive: true});
   await exec.exec('chmod', ['700', sshDir]);
 
   const knownHosts = path.join(sshDir, 'known_hosts');

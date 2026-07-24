@@ -51,7 +51,6 @@
     "@actions/exec": "3.0.0",
     "@actions/github": "9.1.1",
     "@actions/glob": "0.7.0",
-    "@actions/io": "3.0.2",
     "shelljs": "0.10.0"
   },
   "devDependencies": {
