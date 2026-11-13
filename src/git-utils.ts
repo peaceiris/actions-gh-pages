@@ -4,7 +4,7 @@ import * as glob from '@actions/glob';
 import path from 'path';
 import fs from 'fs';
 import {URL} from 'url';
-import {Inputs, CmdResult} from './interfaces';
+import {Inputs} from './interfaces';
 import {createDir} from './utils';
 import {rm} from 'shelljs';
 
@@ -103,57 +103,50 @@ export async function setRepo(inps: Inputs, remoteURL: string, workDir: string):
     return;
   }
 
-  const result: CmdResult = {
-    exitcode: 0,
-    output: ''
-  };
-  const options = {
-    listeners: {
-      stdout: (data: Buffer): void => {
-        result.output += data.toString();
-      }
-    }
-  };
-
-  try {
-    result.exitcode = await exec.exec(
-      'git',
-      ['clone', '--depth=1', '--single-branch', '--branch', inps.PublishBranch, remoteURL, workDir],
-      options
-    );
-    if (result.exitcode === 0) {
-      await createDir(destDir);
-
-      if (inps.KeepFiles) {
-        core.info('[INFO] Keep existing files');
-      } else {
-        core.info(`[INFO] clean up ${destDir}`);
-        core.info(`[INFO] chdir ${destDir}`);
-        process.chdir(destDir);
-        await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
-      }
-
-      core.info(`[INFO] chdir ${workDir}`);
-      process.chdir(workDir);
-      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
-      return;
-    } else {
-      throw new Error(`Failed to clone remote branch ${inps.PublishBranch}`);
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
-      core.info(`[INFO] ${error.message}`);
-      await createDir(destDir);
-      core.info(`[INFO] chdir ${workDir}`);
-      process.chdir(workDir);
-      await createBranchForce(inps.PublishBranch);
-      await copyAssets(publishDir, destDir, inps.ExcludeAssets);
-      return;
-    } else {
-      throw new Error('unexpected error', {cause: error});
-    }
+  // Only a successful remote query with no matching branch means first deployment.
+  const remoteExitCode = await exec.exec(
+    'git',
+    ['ls-remote', '--exit-code', '--heads', remoteURL, `refs/heads/${inps.PublishBranch}`],
+    {ignoreReturnCode: true}
+  );
+  if (remoteExitCode === 2) {
+    core.info(`[INFO] first deployment, create new branch ${inps.PublishBranch}`);
+    await createDir(destDir);
+    core.info(`[INFO] chdir ${workDir}`);
+    process.chdir(workDir);
+    await createBranchForce(inps.PublishBranch);
+    await copyAssets(publishDir, destDir, inps.ExcludeAssets);
+    return;
   }
+  if (remoteExitCode !== 0) {
+    throw new Error(
+      `Failed to query remote branch ${inps.PublishBranch}: exit code ${remoteExitCode}`
+    );
+  }
+
+  await exec.exec('git', [
+    'clone',
+    '--depth=1',
+    '--single-branch',
+    '--branch',
+    inps.PublishBranch,
+    remoteURL,
+    workDir
+  ]);
+  await createDir(destDir);
+
+  if (inps.KeepFiles) {
+    core.info('[INFO] Keep existing files');
+  } else {
+    core.info(`[INFO] clean up ${destDir}`);
+    core.info(`[INFO] chdir ${destDir}`);
+    process.chdir(destDir);
+    await exec.exec('git', ['rm', '-r', '--ignore-unmatch', '*']);
+  }
+
+  core.info(`[INFO] chdir ${workDir}`);
+  process.chdir(workDir);
+  await copyAssets(publishDir, destDir, inps.ExcludeAssets);
 }
 
 export function getUserName(userName: string): string {
