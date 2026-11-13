@@ -17,7 +17,7 @@
     "tsc": "tsc --noEmit",
     "format": "prettier --write '**/*.ts'",
     "format:check": "prettier --check '**/*.ts'",
-    "release": "standard-version"
+    "release": "commit-and-tag-version"
   },
   "lint-staged": {
     "{src,__tests__}/**/*.ts": [
