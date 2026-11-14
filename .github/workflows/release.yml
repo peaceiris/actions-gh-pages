@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       # https://github.com/peaceiris/workflows/blob/main/create-release-npm/action.yml
       - uses: peaceiris/workflows/create-release-npm@99f66a30a38f806fd0df9014275c7cef0b6d9ca5 # v0.21.6
         env:
