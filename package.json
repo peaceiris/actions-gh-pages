@@ -74,7 +74,7 @@
     "js-yaml": "4.3.2",
     "lint-staged": "17.6.0",
     "prettier": "3.9.10",
-    "commit-and-tag-version": "9.5.0",
+    "commit-and-tag-version": "9.6.0",
     "ts-jest": "29.4.15",
     "typescript": "6.0.3"
   },
