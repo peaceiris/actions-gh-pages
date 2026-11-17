@@ -540,10 +540,10 @@ v1.2.3         # Tag on the main branch
 
 ### ⭐️ Create SSH Deploy Key
 
-Generate your deploy key with the following command.
+Generate an Ed25519 deploy key without a passphrase using the following command.
 
 ```sh
-ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages -N ""
+ssh-keygen -t ed25519 -C "$(git config user.email)" -f gh-pages -N ""
 ```
 
 You will get 2 files:
