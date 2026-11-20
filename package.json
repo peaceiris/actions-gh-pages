@@ -71,7 +71,7 @@
     "husky": "9.1.7",
     "jest": "30.5.2",
     "jest-circus": "30.5.2",
-    "js-yaml": "4.3.2",
+    "js-yaml": "5.4.2",
     "lint-staged": "17.6.0",
     "prettier": "3.9.10",
     "commit-and-tag-version": "9.6.0",
