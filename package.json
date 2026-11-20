@@ -76,7 +76,7 @@
     "prettier": "3.9.10",
     "commit-and-tag-version": "9.6.0",
     "ts-jest": "29.4.15",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "overrides": {
     "trim-newlines": "5.0.0"
